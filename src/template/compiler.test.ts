@@ -1,5 +1,6 @@
 import test, { ExecutionContext } from 'ava';
-import { Compiler, TemplateFunction } from './compiler';
+import { Compiler } from './compiler';
+import { TemplateFunction } from './funcs';
 import { Parser } from './parser';
 import { tokenize } from './tokenize';
 
@@ -13,6 +14,7 @@ function valid(
   const parser = new Parser(tokenize(input));
 
   const compiler = new Compiler({
+    document: { path: '', attributes: {} as any, resources: [] },
     vars: new Map(vars),
     funcs: new Map(funcs),
   });
