@@ -22,4 +22,12 @@ Expect: --> {{ input | upper }}
 
 Actual: {{ input | replace '.ts$' '.js' }} ({{ input }})
 Expect: foo.js
+
+{{ relative "../src/template/compiler.ts" }}
+```
+
+# `{{ input | snake }}/nest/test.md`
+
+```markdown
+{{ relative "../src/template/compiler.ts" }}
 ```

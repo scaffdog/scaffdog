@@ -122,7 +122,7 @@ export default class GenerateCommand extends Command {
       ]);
 
       // depends on runtime function
-      funcs.set('relative', (_: Context, s: string) => path.relative(dist, path.resolve(dir, s)));
+      funcs.set('relative', (_: Context, s: string) => path.relative(path.dirname(output), path.resolve(dir, s)));
 
       return {
         filename: path.join(dist, fname),
