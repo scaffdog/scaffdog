@@ -1,11 +1,9 @@
 import { Command } from '@oclif/command';
 import chalk from 'chalk';
 import * as path from 'path';
-import * as windowSize from 'window-size';
 import { commonFlags } from '../flags';
 import { Reader } from '../template/reader';
-
-const MAX_DISPLAY_DESCRIPTION = windowSize.width - 15;
+import { truncate } from '../utils';
 
 export default class ListCommand extends Command {
   public static description = 'Print a list of available templates.';
@@ -25,9 +23,7 @@ export default class ListCommand extends Command {
 
     for (const document of documents) {
       const { name, description } = document.attributes;
-      const desc = `${description.slice(0, MAX_DISPLAY_DESCRIPTION)}${
-        description.length > MAX_DISPLAY_DESCRIPTION ? '...' : ''
-      }`;
+      const desc = truncate(description);
 
       this.log(`    - ${chalk.bold(name)} ${chalk.gray(`(${path.relative(cwd, document.path)})`)}`);
 

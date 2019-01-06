@@ -1,4 +1,7 @@
 import * as fs from 'fs';
+import * as windowSize from 'window-size';
+
+const MAX_DISPLAY_DESCRIPTION = windowSize.width - 15;
 
 export const createTemplate = (name: string) =>
   `
@@ -18,6 +21,9 @@ Let's create a template with reference to the document!
 https://github.com/cats-oss/scaffdog/#templates
 \`\`\`
 `.trim();
+
+export const truncate = (value: string) =>
+  `${value.slice(0, MAX_DISPLAY_DESCRIPTION)}${value.length > MAX_DISPLAY_DESCRIPTION ? '...' : ''}`;
 
 export const fstat = (path: string) => {
   try {
