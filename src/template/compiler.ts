@@ -1,7 +1,16 @@
 import { CallExpr, IdentExpr, LiteralExpr, Node, RawExpr, TagExpr } from './ast';
 import { Context } from './context';
+import { Parser } from './parser';
+import { tokenize } from './tokenize';
 
 export class Compiler {
+  public static compile(context: Context, input: string) {
+    const parser = new Parser(tokenize(input));
+    const compiler = new Compiler(context);
+
+    return compiler.compile(parser.parse());
+  }
+
   public constructor(private context: Context) {}
 
   public compile(ast: Node[]) {

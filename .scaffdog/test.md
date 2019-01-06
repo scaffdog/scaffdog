@@ -31,3 +31,10 @@ Expect: foo.js
 ```markdown
 {{ relative "../src/template/compiler.ts" }}
 ```
+
+# `{{ input | snake }}`/nest/read.md
+
+```markdown
+From body : {{ relative "../src/template/ast.ts" }}
+From partials: {{ read "./partials/content.md" }}
+```

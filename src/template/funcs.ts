@@ -1,7 +1,10 @@
 import * as cc from 'change-case';
+import * as fs from 'fs';
 import * as path from 'path';
 import eval from 'safe-eval';
-import { Context } from './context';
+import { fileExists } from '../utils';
+import { Compiler } from './compiler';
+import { Context, createContext } from './context';
 
 export type TemplateFunction = (context: Context, ...args: any[]) => string;
 
@@ -26,6 +29,26 @@ funcs.set('relative', (ctx: Context, to: string) => {
   }
 
   return path.relative(path.dirname(output), path.resolve(path.dirname(ctx.document.path), to));
+});
+
+funcs.set('read', (ctx: Context, target: string) => {
+  const file = path.join(path.dirname(ctx.document.path), target);
+  if (!fileExists(file)) {
+    throw new Error(`"${file}" does not exists.`);
+  }
+
+  const content = fs.readFileSync(file, 'utf8');
+
+  return Compiler.compile(
+    createContext(
+      {
+        ...ctx.document,
+        path: file,
+      },
+      ctx.vars,
+    ),
+    content,
+  );
 });
 
 funcs.set('eval', (ctx: Context, v: string, code?: string) => {

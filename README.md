@@ -295,6 +295,7 @@ When invoked on a pipe, the previous processing result is passed to the first ar
 | `replace`  | `[value: string, pattern: string, replacement: string]` | Replace `pattern` with`replacement`. `pattern` is specified as a string, but it is treated as a regular expression. |
 | `eval`     | `[code: string]`                                        | Executes the specified code and returns the result.                                                                 |
 | `relative` | `[path: string]`                                        | Convert the path from the template file to the path from the destination file.                                      |
+| `read`     | `[path: string]`                                        | Read the specified file. The contents of the loaded file are also expanded as a template.                           |
 
 ## Contributing
 

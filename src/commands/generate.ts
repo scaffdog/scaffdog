@@ -11,18 +11,9 @@ import * as path from 'path';
 import * as windowSize from 'window-size';
 import { commonFlags } from '../flags';
 import { Compiler } from '../template/compiler';
-import { Context, createContext } from '../template/context';
-import { Parser } from '../template/parser';
+import { createContext } from '../template/context';
 import { Reader, Resource } from '../template/reader';
-import { tokenize } from '../template/tokenize';
 import { fileExists } from '../utils';
-
-const compile = (context: Context, input: string) => {
-  const parser = new Parser(tokenize(input));
-  const compiler = new Compiler(context);
-
-  return compiler.compile(parser.parse());
-};
 
 export default class GenerateCommand extends Command {
   public static description =
@@ -106,7 +97,7 @@ export default class GenerateCommand extends Command {
     ]);
 
     const results = document.resources.map(({ filename, content }) => {
-      const fname = compile(
+      const fname = Compiler.compile(
         createContext(document, new Map([['input', input], ['root', document.attributes.root]])),
         filename,
       );
@@ -116,7 +107,7 @@ export default class GenerateCommand extends Command {
 
       return {
         filename: path.join(dist, fname),
-        content: compile(
+        content: Compiler.compile(
           createContext(
             document,
             new Map([
