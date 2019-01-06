@@ -1,6 +1,9 @@
 import * as cc from 'change-case';
+import * as path from 'path';
 import eval from 'safe-eval';
-import { Context, TemplateFunction } from './compiler';
+import { Context } from './context';
+
+export type TemplateFunction = (context: Context, ...args: any[]) => string;
 
 const funcs = new Map<string, TemplateFunction>();
 
@@ -15,6 +18,15 @@ funcs.set('lower', (_: Context, v: string) => v.toLowerCase());
 funcs.set('replace', (_: Context, v: string, pattern: string, replacement: string) =>
   v.replace(new RegExp(pattern, 'g'), replacement),
 );
+
+funcs.set('relative', (ctx: Context, to: string) => {
+  const output = ctx.vars.get('output');
+  if (output == null) {
+    return '';
+  }
+
+  return path.relative(path.dirname(output), path.resolve(path.dirname(ctx.document.path), to));
+});
 
 funcs.set('eval', (ctx: Context, v: string, code?: string) => {
   const evalCode = code != null ? code : v;

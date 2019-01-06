@@ -1,11 +1,5 @@
 import { CallExpr, IdentExpr, LiteralExpr, Node, RawExpr, TagExpr } from './ast';
-
-export type TemplateFunction = (context: Context, ...args: any[]) => string;
-
-export interface Context {
-  vars: Map<string, string>;
-  funcs: Map<string, TemplateFunction>;
-}
+import { Context } from './context';
 
 export class Compiler {
   public constructor(private context: Context) {}

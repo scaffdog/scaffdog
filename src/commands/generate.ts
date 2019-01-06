@@ -10,8 +10,8 @@ import { emojify } from 'node-emoji';
 import * as path from 'path';
 import * as windowSize from 'window-size';
 import { commonFlags } from '../flags';
-import { Compiler, Context } from '../template/compiler';
-import { funcs } from '../template/funcs';
+import { Compiler } from '../template/compiler';
+import { Context, createContext } from '../template/context';
 import { Parser } from '../template/parser';
 import { Reader, Resource } from '../template/reader';
 import { tokenize } from '../template/tokenize';
@@ -106,27 +106,30 @@ export default class GenerateCommand extends Command {
     ]);
 
     const results = document.resources.map(({ filename, content }) => {
-      let vars = new Map([['input', input], ['root', document.attributes.root]]);
+      const fname = compile(
+        createContext(document, new Map([['input', input], ['root', document.attributes.root]])),
+        filename,
+      );
 
-      const fname = compile({ vars, funcs }, filename);
       const output = path.join(dist, fname);
       const info = path.parse(output);
 
-      vars = new Map([
-        ['input', input],
-        ['basename', info.base],
-        ['filename', info.name],
-        ['extname', info.ext],
-        ['root', document.attributes.root],
-        ['output', output],
-      ]);
-
-      // depends on runtime function
-      funcs.set('relative', (_: Context, s: string) => path.relative(path.dirname(output), path.resolve(dir, s)));
-
       return {
         filename: path.join(dist, fname),
-        content: compile({ vars, funcs }, content),
+        content: compile(
+          createContext(
+            document,
+            new Map([
+              ['input', input],
+              ['basename', info.base],
+              ['filename', info.name],
+              ['extname', info.ext],
+              ['root', document.attributes.root],
+              ['output', output],
+            ]),
+          ),
+          content,
+        ),
       };
     });
 
