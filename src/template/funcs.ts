@@ -7,6 +7,7 @@ const funcs = new Map<string, TemplateFunction>();
 funcs.set('camel', (_: Context, v: string) => cc.camel(v));
 funcs.set('snake', (_: Context, v: string) => cc.snake(v));
 funcs.set('pascal', (_: Context, v: string) => cc.pascal(v));
+funcs.set('kebab', (_: Context, v: string) => cc.param(v));
 funcs.set('constant', (_: Context, v: string) => cc.constant(v));
 funcs.set('upper', (_: Context, v: string) => v.toUpperCase());
 funcs.set('lower', (_: Context, v: string) => v.toLowerCase());
