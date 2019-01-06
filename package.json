@@ -1,0 +1,112 @@
+{
+  "name": "scaffdog",
+  "version": "0.0.1",
+  "description": "scaffdog is Markdown driven scaffolding tool.",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "bin": {
+    "scaffdog": "./bin/run"
+  },
+  "scripts": {
+    "build": "tsc -p .",
+    "test": "ava 'src/**/*.test.ts' --verbose",
+    "test:watch": "yarn test --watch",
+    "lint": "tslint -p . -t stylish",
+    "format": "yarn format:tslint && yarn format:prettier",
+    "format:tslint": "yarn lint --fix",
+    "format:prettier": "prettier --config prettier.config.js --write '**/*.+(ts|tsx|js|md|json)'",
+    "prepublish": "yarn build",
+    "postpack": "rm -f oclif.manifest.json",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme"
+  },
+  "author": "Cyberagent, Inc.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cats-oss/scaffdog.git"
+  },
+  "homepage": "https://github.com/cats-oss/scaffdog#readme",
+  "bugs": {
+    "url": "https://github.com/cats-oss/scaffdog/issues"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=8.0.0",
+    "yarn": ">=1.12.0"
+  },
+  "keywords": [
+    "nodejs",
+    "cli",
+    "scaffdog",
+    "scaffold"
+  ],
+  "files": [
+    "bin",
+    "oclif.manifest.json",
+    "lib"
+  ],
+  "dependencies": {
+    "@oclif/dev-cli": "^1",
+    "@oclif/tslint": "^3",
+    "@types/node": "^10",
+    "chalk": "^2.4.1",
+    "change-case": "^3.0.2",
+    "esprima": "^4.0.1",
+    "front-matter": "^3.0.1",
+    "globby": "^8",
+    "inquirer": "^6.2.1",
+    "log-symbols": "^2.2.0",
+    "marked": "^0.6.0",
+    "mkdirp": "^0.5.1",
+    "node-emoji": "^1.8.1",
+    "oclif": "^1.12.8",
+    "safe-eval": "^0.4.1",
+    "window-size": "^1.1.1"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1",
+    "@types/esprima": "^4.0.2",
+    "@types/globby": "^8.0.0",
+    "@types/inquirer": "^0.0.43",
+    "@types/log-symbols": "^2.0.0",
+    "@types/marked": "^0.6.0",
+    "@types/mkdirp": "^0.5.2",
+    "@types/node-emoji": "^1.8.0",
+    "@types/window-size": "^0.2.4",
+    "ava": "^1.0.1",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.0",
+    "prettier": "^1.15.3",
+    "ts-node": "^7",
+    "tslib": "^1",
+    "tslint": "^5",
+    "tslint-config-prettier": "^1.17.0",
+    "typescript": "^3.2"
+  },
+  "ava": {
+    "compileEnhancements": false,
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  },
+  "oclif": {
+    "commands": "./lib/commands",
+    "bin": "scaffdog",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,css,md}": [
+      "prettier --config prettier.config.js --write '**/*.+(ts|tsx|js|md|json)'",
+      "git add"
+    ]
+  }
+}
