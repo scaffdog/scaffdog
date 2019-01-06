@@ -33,6 +33,8 @@
 
 ## Description
 
+![DEMO](./docs/images/demo.gif)
+
 This is Markdown driven scaffolding tool. Multiple files can be output in one classification, and flexible scaffolding is possible with a simple but powerful template syntax :dog2:
 
 ## Features
