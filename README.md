@@ -287,7 +287,7 @@ When invoked on a pipe, the previous processing result is passed to the first ar
 | :--------- | :------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------ |
 | `camel`    | `[value: string]`                                       | Conversion to a camel case.                                                                                         |
 | `snake`    | `[value: string]`                                       | Conversion to a snake case.                                                                                         |
-| `pascal`   | `[value: string]`                                       | Conversion to a snake case.                                                                                         |
+| `pascal`   | `[value: string]`                                       | Conversion to a pascal case.                                                                                        |
 | `kebab`    | `[value: string]`                                       | Conversion to a kebab case.                                                                                         |
 | `constant` | `[value: string]`                                       | Conversion to a constant case.                                                                                      |
 | `upper`    | `[value: string]`                                       | Conversion to a upper case.                                                                                         |
