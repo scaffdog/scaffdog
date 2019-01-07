@@ -15,6 +15,8 @@ import { createContext } from '../template/context';
 import { Reader, Resource } from '../template/reader';
 import { fileExists } from '../utils';
 
+const LIST_PAGE_SIZE = windowSize.height - 10;
+
 export default class GenerateCommand extends Command {
   public static description =
     'Scaffold using the specified template. If you do not specify the template name and execute it, interactively select the template.';
@@ -57,6 +59,7 @@ export default class GenerateCommand extends Command {
           message: 'Please select a template',
           type: 'list',
           choices: documents.map(({ attributes }) => attributes.name),
+          pageSize: LIST_PAGE_SIZE,
         },
       ]);
 
@@ -87,6 +90,7 @@ export default class GenerateCommand extends Command {
         message: 'Please select the output destination directory.',
         type: 'list',
         choices: directories,
+        pageSize: LIST_PAGE_SIZE,
       },
       {
         name: 'input',
