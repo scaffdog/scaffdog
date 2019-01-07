@@ -12,25 +12,38 @@ export enum TokenType {
   CLOSE_TAG,
 }
 
-// TODO type-safe token...
-export type Token<T, L> = {
-  type: T;
-  literal: L;
+export type TokenMap = {
+  [TokenType.ILLEGAL]: null;
+  [TokenType.EOF]: null;
+  [TokenType.NULL]: null;
+  [TokenType.UNDEFINED]: undefined;
+  [TokenType.BOOLEAN]: boolean;
+  [TokenType.STRING]: string;
+  [TokenType.NUMBER]: number;
+  [TokenType.IDENT]: string;
+  [TokenType.PIPE]: string;
+  [TokenType.OPEN_TAG]: string;
+  [TokenType.CLOSE_TAG]: string;
 };
 
-export type AnyToken = Token<any, any>;
-export type IllegalToken = Token<TokenType.ILLEGAL, null>;
-export type EofToken = Token<TokenType.EOF, null>;
-export type NullToken = Token<TokenType.NULL, null>;
-export type UndefinedToken = Token<TokenType.UNDEFINED, undefined>;
-export type BooleanToken = Token<TokenType.BOOLEAN, boolean>;
-export type StringToken = Token<TokenType.STRING, string>;
-export type NumberToken = Token<TokenType.NUMBER, number>;
-export type IdentToken = Token<TokenType.IDENT, string>;
-export type PipeToken = Token<TokenType.IDENT, '|'>;
-export type OpenTagToken = Token<TokenType.IDENT, '{{'>;
-export type CloseTagToken = Token<TokenType.IDENT, '}}'>;
+export type Token<T extends keyof TokenMap> = {
+  type: T;
+  literal: TokenMap[T];
+};
 
-export function createToken<T, L>(type: T, literal: L) {
+export type AnyToken =
+  | Token<TokenType.ILLEGAL>
+  | Token<TokenType.EOF>
+  | Token<TokenType.NULL>
+  | Token<TokenType.UNDEFINED>
+  | Token<TokenType.BOOLEAN>
+  | Token<TokenType.STRING>
+  | Token<TokenType.NUMBER>
+  | Token<TokenType.IDENT>
+  | Token<TokenType.PIPE>
+  | Token<TokenType.OPEN_TAG>
+  | Token<TokenType.CLOSE_TAG>;
+
+export function createToken<T extends keyof TokenMap>(type: T, literal: TokenMap[T]) {
   return { type, literal };
 }

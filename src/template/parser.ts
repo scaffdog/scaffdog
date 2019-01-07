@@ -145,7 +145,7 @@ export class Parser {
       switch (this.next.type) {
         case TokenType.CLOSE_TAG:
         case TokenType.PIPE:
-          return new CallExpr(name, args);
+          return new CallExpr(name as string, args);
         default:
           this.bump();
       }
