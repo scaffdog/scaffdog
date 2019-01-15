@@ -1,0 +1,11 @@
+{
+  "extends": ["config:base"],
+  "timezone": "Asia/Tokyo",
+  "assignees": ["tsuyoshiwada"],
+  "labels": ["dependencies :package:"],
+  "unpublishSafe": true,
+  "semanticCommits": true,
+  "semanticCommitType": "update",
+  "semanticCommitScope": null,
+  "ignoreDeps": []
+}
