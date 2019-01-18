@@ -53,7 +53,7 @@
     "change-case": "^3.0.2",
     "esprima": "^4.0.1",
     "front-matter": "^3.0.1",
-    "globby": "^8",
+    "globby": "^9.0.0",
     "inquirer": "^6.2.1",
     "log-symbols": "^2.2.0",
     "marked": "^0.6.0",
