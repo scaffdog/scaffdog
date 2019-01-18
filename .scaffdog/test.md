@@ -7,7 +7,9 @@ output: '**/*'
 ignore: []
 ---
 
-# `test.md`
+# `paths.md`
+
+description. description.
 
 ```markdown
 - input: {{ input }}
@@ -16,13 +18,13 @@ ignore: []
 - extname: {{ extname }}
 - root: {{ root }}
 - output: {{ output }}
+```
 
-Actual: {{ input | eval '("--> " + input).toUpperCase()' }}
-Expect: --> {{ input | upper }}
+# `functions.md`
 
-Actual: {{ input | replace '.ts$' '.js' }} ({{ input }})
-Expect: foo.js
-
+```markdown
+{{ input | eval '("--> " + input).toUpperCase()' }}
+{{ input | replace '.ts$' '.js' }} ({{ input }})
 {{ relative "../src/template/compiler.ts" }}
 ```
 
@@ -32,9 +34,9 @@ Expect: foo.js
 {{ relative "../src/template/compiler.ts" }}
 ```
 
-# `{{ input | snake }}`/nest/read.md
+# `{{ input | snake }}/nest/read.md`
 
 ```markdown
-From body : {{ relative "../src/template/ast.ts" }}
+From body: {{ relative "../src/template/ast.ts" }}
 From partials: {{ read "./partials/content.md" }}
 ```
