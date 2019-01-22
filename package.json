@@ -79,7 +79,7 @@
     "lint-staged": "8.1.0",
     "nixt": "0.5.1",
     "np": "*",
-    "prettier": "1.15.3",
+    "prettier": "1.16.1",
     "rimraf": "2.6.3",
     "ts-node": "7.0.1",
     "tslib": "1.9.3",
