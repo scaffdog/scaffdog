@@ -71,7 +71,7 @@
     "@types/log-symbols": "2.0.0",
     "@types/marked": "0.6.0",
     "@types/mkdirp": "0.5.2",
-    "@types/node-emoji": "1.8.0",
+    "@types/node-emoji": "1.8.1",
     "@types/rimraf": "2.0.2",
     "@types/window-size": "0.2.4",
     "ava": "1.1.0",
