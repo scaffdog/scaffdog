@@ -84,7 +84,7 @@
     "ts-node": "8.0.2",
     "tslib": "1.9.3",
     "tslint": "5.12.1",
-    "tslint-config-prettier": "1.17.0",
+    "tslint-config-prettier": "1.18.0",
     "typescript": "3.3.1"
   },
   "ava": {
