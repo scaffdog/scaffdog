@@ -36,7 +36,7 @@ test.serial('basic', (t) => {
         t.falsy(err);
 
         const contents = globby
-          .sync(PATH, { onlyFiles: true })
+          .sync(`${PATH}/**/*`, { onlyFiles: true })
           .map((file) => `${path.relative(CWD, file)}\n${fs.readFileSync(file, 'utf8')}`)
           .join('\n\n');
 
@@ -62,7 +62,7 @@ test.serial('overwrite', (t) => {
         t.falsy(err);
 
         const contents = globby
-          .sync(PATH, { onlyFiles: true })
+          .sync(`${PATH}/**/*`, { onlyFiles: true })
           .map((file) => `${path.relative(CWD, file)}\n${fs.readFileSync(file, 'utf8')}`)
           .join('\n\n');
 
