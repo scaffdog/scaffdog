@@ -71,11 +71,12 @@ export class Parser {
             case TokenType.BOOLEAN:
             case TokenType.STRING:
             case TokenType.NUMBER:
+            case TokenType.IDENT:
               expressions.push(this.parseCallExpr());
               break;
 
-            case TokenType.IDENT:
-              throw new Error('unexpected syntax (invalid identitifer)');
+            // case TokenType.IDENT:
+            //   throw new Error('unexpected syntax (invalid identitifer)');
 
             default:
               if (passedPipe) {
@@ -137,10 +138,10 @@ export class Parser {
 
     while (!this.endOfTokens()) {
       if (this.current.type === TokenType.IDENT) {
-        throw new Error('unexpected syntax');
+        args.push(new IdentExpr(new Ident(this.current.literal)));
+      } else {
+        args.push(new LiteralExpr(new Literal(this.current.literal)));
       }
-
-      args.push(new LiteralExpr(new Literal(this.current.literal)));
 
       switch (this.next.type) {
         case TokenType.CLOSE_TAG:

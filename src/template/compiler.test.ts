@@ -4,13 +4,13 @@ import { TemplateFunction } from './funcs';
 import { Parser } from './parser';
 import { tokenize } from './tokenize';
 
-function valid(
+const valid = (
   t: ExecutionContext,
   input: string,
   vars: Array<[string, string]>,
   funcs: Array<[string, TemplateFunction]>,
   expected: string,
-) {
+) => {
   const parser = new Parser(tokenize(input));
 
   const compiler = new Compiler({
@@ -22,7 +22,26 @@ function valid(
   const output = compiler.compile(parser.parse());
 
   t.is(output, expected);
-}
+};
+
+const invalid = (
+  t: ExecutionContext,
+  input: string,
+  vars: Array<[string, string]>,
+  funcs: Array<[string, TemplateFunction]>,
+) => {
+  const parser = new Parser(tokenize(input));
+
+  const compiler = new Compiler({
+    document: { path: '', attributes: {} as any, resources: [] },
+    vars: new Map(vars),
+    funcs: new Map(funcs),
+  });
+
+  t.throws(() => {
+    compiler.compile(parser.parse());
+  });
+};
 
 test('raw', valid, 'foo bar baz', [], [], 'foo bar baz');
 
@@ -35,9 +54,19 @@ test('number', valid, '{{ 123 }}', [], [], '123');
 
 test('identifier - variables', valid, '{{key}}', [['key', 'value']], [], 'value');
 test('identifier - function', valid, '{{key}}', [], [['key', () => 'result']], 'result');
+test('identifier - identifier (invalid)', invalid, '{{key1 | key2}}', [['key1', 'key1'], ['key2', 'key2']], []);
 
 test('function - string', valid, '{{ fn "arg" }}', [], [['fn', (_: any, arg: any) => `result=${arg}`]], 'result=arg');
 test('function - number', valid, '{{ fn 123 }}', [], [['fn', (_: any, arg: any) => `result=${arg}`]], 'result=123');
+
+test(
+  'function - identifier',
+  valid,
+  '{{ fn input }}',
+  [['input', 'ident']],
+  [['fn', (_: any, arg: any) => `result=${arg}`]],
+  'result=ident',
+);
 
 test(
   'pipe call - 0 argument',
@@ -55,6 +84,15 @@ test(
   [['key', 'value']],
   [['join', (_: any, ...args: any[]) => args.join(', ')]],
   'value, arg',
+);
+
+test(
+  'pipe call - 1 argument x identifier',
+  valid,
+  '{{ key1 | join "arg" key2 }}',
+  [['key1', 'value1'], ['key2', 'value2']],
+  [['join', (_: any, ...args: any[]) => args.join(', ')]],
+  'value1, arg, value2',
 );
 
 test(
