@@ -13,12 +13,6 @@ const valid = (t: ExecutionContext, input: string, expected: string) => {
   t.is(parse(input), expected);
 };
 
-const invalid = (t: ExecutionContext, input: string) => {
-  t.throws(() => {
-    parse(input);
-  });
-};
-
 test('raw', valid, 'foo/bar.ts', 'foo/bar.ts');
 test('null', valid, '{{ null }}', '{{ null }}');
 test('undefined', valid, '{{ undefined }}', '{{ undefined }}');
@@ -27,8 +21,7 @@ test('false', valid, '{{ false }}', '{{ false }}');
 test('string', valid, '{{ "str" }}', '{{ "str" }}');
 test('number', valid, '{{ 123 }}', '{{ 123 }}');
 
-test('identifier - valid', valid, '{{ identifier }}', '{{ identifier }}');
-test('identifier - invalid', invalid, '{{ identifier ident }}');
+test('identifier', valid, '{{ identifier }}', '{{ identifier }}');
 
 test('call - null', valid, '{{ fn null}}', '{{ fn(null) }}');
 test('call - undefined', valid, '{{ fn undefined}}', '{{ fn(undefined) }}');
@@ -36,7 +29,8 @@ test('call - true', valid, '{{ fn true}}', '{{ fn(true) }}');
 test('call - false', valid, '{{ fn false}}', '{{ fn(false) }}');
 test('call - string', valid, '{{ fn "str" }}', '{{ fn("str") }}');
 test('call - number', valid, '{{ fn 123}}', '{{ fn(123) }}');
-test('call - multiple arguments', valid, '{{ fn 123 "string" null }}', '{{ fn(123, "string", null) }}');
+test('call - identifier', valid, '{{ fn input }}', '{{ fn(input) }}');
+test('call - multiple arguments', valid, '{{ fn 123 "string" null input }}', '{{ fn(123, "string", null, input) }}');
 
 test('pipe call - 0 arguments', valid, '{{ identifier | fn }}', '{{ fn(identifier) }}');
 test('pipe call - 1 arguments', valid, '{{ identifier | fn "str" }}', '{{ fn(identifier, "str") }}');

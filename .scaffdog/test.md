@@ -24,7 +24,9 @@ description. description.
 
 ```markdown
 {{ input | eval '("--> " + input).toUpperCase()' }}
-{{ input | replace '.ts$' '.js' }} ({{ input }})
+{{ output | replace '.md$' '.txt' }} ({{ output }})
+{{ output | replace extname '.txt' }} ({{ output }})
+{{ output | replace basename filename }} ({{ output }})
 {{ relative "../src/template/compiler.ts" }}
 ```
 

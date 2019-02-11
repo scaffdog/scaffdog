@@ -240,6 +240,7 @@ Example:
 ```
 {{ input | upper }}
 {{ input | replace "$.ts" ".js" | pascal }}
+{{ basename | replace extname ".js" | pascal }}
 ```
 
 ### Attributes
@@ -338,8 +339,6 @@ $ yarn format
 
 ## TODO
 
-- [ ] `hooks` template config
-- [ ] `extends` template config
 - [ ] Custom functions
 
 ## License
