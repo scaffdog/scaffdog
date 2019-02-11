@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "tsc -p .",
-    "test": "ava 'src/**/*.test.ts' --timeout=5s --verbose",
+    "test": "ava 'src/**/*.test.ts' --timeout=10s --verbose",
     "test:watch": "yarn test -w",
     "test:approve": "yarn test -u",
     "lint": "tslint -p . -t stylish",
