@@ -69,7 +69,7 @@
     "@types/globby": "8.0.0",
     "@types/inquirer": "0.0.43",
     "@types/log-symbols": "2.0.0",
-    "@types/marked": "0.6.0",
+    "@types/marked": "0.6.1",
     "@types/mkdirp": "0.5.2",
     "@types/node-emoji": "1.8.1",
     "@types/rimraf": "2.0.2",
