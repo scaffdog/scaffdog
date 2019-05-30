@@ -87,7 +87,7 @@
     "tslib": "1.9.3",
     "tslint": "5.14.0",
     "tslint-config-prettier": "1.18.0",
-    "typescript": "3.3.3333"
+    "typescript": "3.5.1"
   },
   "ava": {
     "snapshotDir": "test/snapshots",
