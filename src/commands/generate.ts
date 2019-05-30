@@ -2,8 +2,10 @@ import { Command, flags } from '@oclif/command';
 import chalk from 'chalk';
 import { clear } from 'console';
 import * as fs from 'fs';
+import * as fuzzy from 'fuzzy';
 import globby from 'globby';
 import * as inquirer from 'inquirer';
+import inquirerAutocomplete from 'inquirer-autocomplete-prompt';
 import * as symbols from 'log-symbols';
 import mkdirp from 'mkdirp';
 import { emojify } from 'node-emoji';
@@ -16,6 +18,16 @@ import { Reader, Resource } from '../template/reader';
 import { fileExists } from '../utils';
 
 const LIST_PAGE_SIZE = windowSize.height - 10;
+
+const searchDir = (directories: string[]) => (_: any, input = ''): Promise<string[]> => {
+  return new Promise((resolve) => {
+    const fuzzyResult = fuzzy.filter(input, directories);
+    resolve(fuzzyResult.map((el) => el.original));
+  });
+};
+
+// inquirer can fuzzy search
+inquirer.registerPrompt('autocomplete', inquirerAutocomplete);
 
 export default class GenerateCommand extends Command {
   public static description =
@@ -84,12 +96,15 @@ export default class GenerateCommand extends Command {
     directories = [root, ...directories].map((directory) => path.join(path.relative(cwd, directory)));
 
     // prepare output & input
-    const { dist, input } = await inquirer.prompt<{ dist: string; input: string }>([
+    const { dist, input } = await inquirer.prompt<{
+      dist: string;
+      input: string;
+    }>([
       {
         name: 'dist',
         message: 'Please select the output destination directory.',
-        type: 'list',
-        choices: directories,
+        type: 'autocomplete',
+        source: searchDir(directories),
         pageSize: LIST_PAGE_SIZE,
       },
       {
@@ -98,7 +113,7 @@ export default class GenerateCommand extends Command {
         type: 'input',
         validate: (v: string) => (v !== '' ? true : 'required input!'),
       },
-    ]);
+    ] as inquirer.Question[]);
 
     const results = document.resources.map(({ filename, content }) => {
       const fname = Compiler.compile(
