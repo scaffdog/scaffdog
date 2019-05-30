@@ -70,7 +70,6 @@
     "@types/esprima": "4.0.2",
     "@types/globby": "8.0.0",
     "@types/inquirer": "6.0.3",
-    "@types/log-symbols": "2.0.0",
     "@types/marked": "0.6.5",
     "@types/mkdirp": "0.5.2",
     "@types/node-emoji": "1.8.1",
