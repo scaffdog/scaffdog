@@ -84,7 +84,7 @@
     "rimraf": "2.6.3",
     "ts-node": "8.2.0",
     "tslib": "1.9.3",
-    "tslint": "5.16.0",
+    "tslint": "5.17.0",
     "tslint-config-prettier": "1.18.0",
     "typescript": "3.5.1"
   },
