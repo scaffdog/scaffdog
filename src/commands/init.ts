@@ -1,7 +1,7 @@
 import { Command } from '@oclif/command';
 import chalk from 'chalk';
 import * as fs from 'fs';
-import * as symbols from 'log-symbols';
+import symbols from 'log-symbols';
 import mkdirp from 'mkdirp';
 import { emojify } from 'node-emoji';
 import * as path from 'path';
