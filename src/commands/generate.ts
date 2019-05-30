@@ -96,7 +96,6 @@ export default class GenerateCommand extends Command {
     directories = [root, ...directories].map((directory) => path.join(path.relative(cwd, directory)));
 
     // prepare output & input
-    type Questions = inquirer.Question[];
     const { dist, input } = await inquirer.prompt<{
       dist: string;
       input: string;
@@ -114,7 +113,7 @@ export default class GenerateCommand extends Command {
         type: 'input',
         validate: (v: string) => (v !== '' ? true : 'required input!'),
       },
-    ] as Questions);
+    ] as inquirer.Question[]);
 
     const results = document.resources.map(({ filename, content }) => {
       const fname = Compiler.compile(
