@@ -20,7 +20,7 @@
     "prebuild": "yarn clean",
     "prepublish": "yarn build",
     "postpack": "rm -f oclif.manifest.json",
-    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "prepack": "oclif-dev manifest && oclif-dev readme",
     "release": "np"
   },
   "author": "Cyberagent, Inc.",
