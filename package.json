@@ -8,6 +8,7 @@
     "scaffdog": "./bin/run"
   },
   "scripts": {
+    "clean": "rm -rf tsconfig.tsbuildinfo lib",
     "build": "tsc -p .",
     "test": "ava 'src/**/*.test.ts' --timeout=10s --verbose",
     "test:watch": "yarn test -w",
@@ -16,6 +17,7 @@
     "format": "yarn format:tslint && yarn format:prettier",
     "format:tslint": "yarn lint --fix",
     "format:prettier": "prettier --config prettier.config.js --write '**/*.+(ts|tsx|js|md|json)'",
+    "prebuild": "yarn clean",
     "prepublish": "yarn build",
     "postpack": "rm -f oclif.manifest.json",
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
