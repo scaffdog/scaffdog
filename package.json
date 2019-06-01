@@ -1,6 +1,6 @@
 {
   "name": "scaffdog",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "scaffdog is Markdown driven scaffolding tool.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
