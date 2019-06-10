@@ -212,6 +212,14 @@ Example:
 {{ input }}
 ```
 
+#### Comment out
+
+You can use comment out to keep the template readable. Of course, it is not deployed as a template.
+
+```
+{{ /* a comment */ }}
+```
+
 #### Call function
 
 Execute the function with the specified name. Arguments are separated by whitespace. See the [Functions](#functions) section for the functions that can be used.

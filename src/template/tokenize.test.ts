@@ -29,6 +29,11 @@ test('tag - identifier', valid, '{{ identifier }}', [
   createToken(TokenType.CLOSE_TAG, '}}'),
 ]);
 
+test('tag - comment out', valid, '{{/*a comment*/ }}', [
+  createToken(TokenType.OPEN_TAG, '{{'),
+  createToken(TokenType.CLOSE_TAG, '}}'),
+]);
+
 test('tag - pipe', valid, '{{ foo|   bar }}', [
   createToken(TokenType.OPEN_TAG, '{{'),
   createToken(TokenType.IDENT, 'foo'),

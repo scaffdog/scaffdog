@@ -51,6 +51,7 @@ test('true', valid, '{{ true }}', [], [], '');
 test('false', valid, '{{ false }}', [], [], '');
 test('string', valid, '{{ "string" }}', [], [], 'string');
 test('number', valid, '{{ 123 }}', [], [], '123');
+test('comment out', valid, '{{ /* a comment */ }}', [], [], '');
 
 test('identifier - variables', valid, '{{key}}', [['key', 'value']], [], 'value');
 test('identifier - function', valid, '{{key}}', [], [['key', () => 'result']], 'result');

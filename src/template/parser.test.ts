@@ -21,6 +21,8 @@ test('false', valid, '{{ false }}', '{{ false }}');
 test('string', valid, '{{ "str" }}', '{{ "str" }}');
 test('number', valid, '{{ 123 }}', '{{ 123 }}');
 
+test('comment out', valid, '{{ /*a comment*/ }}', '{{  }}');
+
 test('identifier', valid, '{{ identifier }}', '{{ identifier }}');
 
 test('call - null', valid, '{{ fn null}}', '{{ fn(null) }}');
