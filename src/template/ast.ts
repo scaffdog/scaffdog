@@ -1,3 +1,5 @@
+import { Token, TokenType } from './tokens';
+
 // tslint:disable: max-classes-per-file
 export interface Node {
   toString(): string;
@@ -48,9 +50,21 @@ export class CallExpr implements Node {
 }
 
 export class TagExpr implements Node {
-  public constructor(public expressions: Node[]) {}
+  public constructor(
+    public open: Token<TokenType.OPEN_TAG>,
+    public close: Token<TokenType.CLOSE_TAG>,
+    public expressions: Node[],
+  ) {}
+
+  public isOpenTrim() {
+    return this.open.literal.endsWith('-');
+  }
+
+  public isCloseTrim() {
+    return this.close.literal.startsWith('-');
+  }
 
   public toString() {
-    return `{{ ${this.expressions.map((expr) => expr.toString()).join('')} }}`;
+    return `${this.open.literal} ${this.expressions.map((expr) => expr.toString()).join('')} ${this.close.literal}`;
   }
 }

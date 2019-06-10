@@ -212,6 +212,31 @@ Example:
 {{ input }}
 ```
 
+#### Whitespaces
+
+Trim the expression to be expanded and the space and line feed around it.  
+Use `{{-` to trim before the tag, and `-}}` to trim after the tag.
+
+```
+{{- <expression> -}}
+```
+
+Example:
+
+```
+before {{- "text" }} after
+before {{ "text" -}} after
+before {{- "text" -}} after
+```
+
+Output:
+
+```
+beforetext after
+before textafter
+beforetextafter
+```
+
 #### Comment out
 
 You can use comment out to keep the template readable. Of course, it is not deployed as a template.

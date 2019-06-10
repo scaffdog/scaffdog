@@ -21,6 +21,8 @@ test('false', valid, '{{ false }}', '{{ false }}');
 test('string', valid, '{{ "str" }}', '{{ "str" }}');
 test('number', valid, '{{ 123 }}', '{{ 123 }}');
 
+test('trimed tag', valid, '{{-"str"       -}}', '{{- "str" -}}');
+
 test('comment out', valid, '{{ /*a comment*/ }}', '{{  }}');
 
 test('identifier', valid, '{{ identifier }}', '{{ identifier }}');
@@ -47,6 +49,6 @@ test(
 test(
   'complex',
   valid,
-  'path/{{fn 1 2 3}}{{foo}}/{{ key | fn1 5 | fn2 "../" }}.ts',
-  'path/{{ fn(1, 2, 3) }}{{ foo }}/{{ fn2(fn1(key, 5), "../") }}.ts',
+  'path/{{fn 1 2 3}}{{foo}}/{{- key | fn1 5 | fn2 "../" }}.ts',
+  'path/{{ fn(1, 2, 3) }}{{ foo }}/{{- fn2(fn1(key, 5), "../") }}.ts',
 );

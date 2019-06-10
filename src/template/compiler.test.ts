@@ -53,6 +53,43 @@ test('string', valid, '{{ "string" }}', [], [], 'string');
 test('number', valid, '{{ 123 }}', [], [], '123');
 test('comment out', valid, '{{ /* a comment */ }}', [], [], '');
 
+test('trim - before spaces', valid, 'before {{- "text" }} after', [], [], 'beforetext after');
+test(
+  'trim - before spaces & newlines',
+  valid,
+  `before 
+    {{- "text" }}  
+after`,
+  [],
+  [],
+  `beforetext  
+after`,
+);
+
+test('trim - after spaces', valid, 'before {{ "text" -}} after', [], [], 'before textafter');
+test(
+  'trim - after spaces & newlines',
+  valid,
+  `before 
+    {{ "text" -}}  
+after`,
+  [],
+  [],
+  `before 
+    textafter`,
+);
+
+test(
+  'trim',
+  valid,
+  `before 
+  {{- "text" -}}    
+ after`,
+  [],
+  [],
+  `beforetextafter`,
+);
+
 test('identifier - variables', valid, '{{key}}', [['key', 'value']], [], 'value');
 test('identifier - function', valid, '{{key}}', [], [['key', () => 'result']], 'result');
 test('identifier - identifier (invalid)', invalid, '{{key1 | key2}}', [['key1', 'key1'], ['key2', 'key2']], []);

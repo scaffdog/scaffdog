@@ -20,6 +20,16 @@ description. description.
 - output: {{ output }}
 ```
 
+# `trim.md`
+
+```markdown
+- {{- input /* a comment */ -}} test
+
+  {{- input -}}
+
+test
+```
+
 # `functions.md`
 
 ```markdown

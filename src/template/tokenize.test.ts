@@ -23,6 +23,21 @@ test('raw - incomplete close tag', valid, '} }', [createToken(TokenType.STRING, 
 
 test('tag - empty', valid, '{{}}', [createToken(TokenType.OPEN_TAG, '{{'), createToken(TokenType.CLOSE_TAG, '}}')]);
 
+test('tag - trimed open', valid, '{{- }}', [
+  createToken(TokenType.OPEN_TAG, '{{-'),
+  createToken(TokenType.CLOSE_TAG, '}}'),
+]);
+
+test('tag - trimed close', valid, '{{ -}}', [
+  createToken(TokenType.OPEN_TAG, '{{'),
+  createToken(TokenType.CLOSE_TAG, '-}}'),
+]);
+
+test('tag - trimed', valid, '{{- -}}', [
+  createToken(TokenType.OPEN_TAG, '{{-'),
+  createToken(TokenType.CLOSE_TAG, '-}}'),
+]);
+
 test('tag - identifier', valid, '{{ identifier }}', [
   createToken(TokenType.OPEN_TAG, '{{'),
   createToken(TokenType.IDENT, 'identifier'),

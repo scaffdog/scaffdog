@@ -1,5 +1,5 @@
 import { CallExpr, Ident, IdentExpr, Literal, LiteralExpr, Node, RawExpr, TagExpr } from './ast';
-import { AnyToken, createToken, TokenType } from './tokens';
+import { AnyToken, createToken, Token, TokenType } from './tokens';
 
 const eofToken = createToken(TokenType.EOF, null);
 
@@ -57,6 +57,7 @@ export class Parser {
   }
 
   private parseTagExpr() {
+    const openTag = this.current as Token<TokenType.OPEN_TAG>;
     const expressions: Node[] = [];
     let passedPipe = false;
 
@@ -100,7 +101,7 @@ export class Parser {
           break;
 
         case TokenType.CLOSE_TAG:
-          return new TagExpr(this.combineTagExpressions(expressions));
+          return new TagExpr(openTag, this.current, this.combineTagExpressions(expressions));
       }
 
       this.bump();
