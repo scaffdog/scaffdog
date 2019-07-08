@@ -60,7 +60,7 @@
     "inquirer": "^6.2.1",
     "inquirer-autocomplete-prompt": "^1.0.1",
     "log-symbols": "^3.0.0",
-    "marked": "^0.6.0",
+    "marked": "^0.7.0",
     "mkdirp": "^0.5.1",
     "node-emoji": "^1.8.1",
     "oclif": "^1.12.8",
