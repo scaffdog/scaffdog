@@ -79,7 +79,7 @@
     "@types/window-size": "0.2.4",
     "ava": "2.2.0",
     "husky": "3.0.0",
-    "lint-staged": "8.2.1",
+    "lint-staged": "9.2.1",
     "nixt": "0.5.1",
     "np": "*",
     "prettier": "1.18.2",
