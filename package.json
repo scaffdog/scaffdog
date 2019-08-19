@@ -68,7 +68,7 @@
     "window-size": "^1.1.1"
   },
   "devDependencies": {
-    "@oclif/dev-cli": "1.22.0",
+    "@oclif/dev-cli": "1.22.2",
     "@types/esprima": "4.0.2",
     "@types/globby": "8.0.0",
     "@types/inquirer": "6.0.3",
