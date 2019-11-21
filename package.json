@@ -51,7 +51,7 @@
     "@oclif/dev-cli": "^1",
     "@oclif/tslint": "^3",
     "@types/node": "^10",
-    "chalk": "^2.4.1",
+    "chalk": "^3.0.0",
     "change-case": "^3.0.2",
     "esprima": "^4.0.1",
     "front-matter": "^3.0.1",
