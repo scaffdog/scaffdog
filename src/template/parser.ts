@@ -6,7 +6,7 @@ const eofToken = createToken(TokenType.EOF, null);
 export class Parser {
   private tokens: AnyToken[];
   private length: number;
-  private pos: number = 0;
+  private pos = 0;
   private current: AnyToken = eofToken;
   private next: AnyToken = eofToken;
 

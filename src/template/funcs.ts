@@ -10,11 +10,11 @@ export type TemplateFunction = (context: Context, ...args: any[]) => string;
 
 const funcs = new Map<string, TemplateFunction>();
 
-funcs.set('camel', (_: Context, v: string) => cc.camel(v));
-funcs.set('snake', (_: Context, v: string) => cc.snake(v));
-funcs.set('pascal', (_: Context, v: string) => cc.pascal(v));
-funcs.set('kebab', (_: Context, v: string) => cc.param(v));
-funcs.set('constant', (_: Context, v: string) => cc.constant(v));
+funcs.set('camel', (_: Context, v: string) => cc.camelCase(v));
+funcs.set('snake', (_: Context, v: string) => cc.snakeCase(v));
+funcs.set('pascal', (_: Context, v: string) => cc.pascalCase(v));
+funcs.set('kebab', (_: Context, v: string) => cc.paramCase(v));
+funcs.set('constant', (_: Context, v: string) => cc.constantCase(v));
 funcs.set('upper', (_: Context, v: string) => v.toUpperCase());
 funcs.set('lower', (_: Context, v: string) => v.toLowerCase());
 
@@ -59,7 +59,7 @@ funcs.set('eval', (ctx: Context, v: string, code?: string) => {
     context[key] = value;
   }
 
-  return eval(evalCode, context); // tslint:disable-line: no-eval
+  return eval(evalCode, context);
 });
 
 export { funcs };
