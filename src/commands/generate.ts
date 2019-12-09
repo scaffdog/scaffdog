@@ -6,7 +6,7 @@ import * as fuzzy from 'fuzzy';
 import globby from 'globby';
 import * as inquirer from 'inquirer';
 import inquirerAutocomplete from 'inquirer-autocomplete-prompt';
-import * as symbols from 'log-symbols';
+import symbols from 'log-symbols';
 import mkdirp from 'mkdirp';
 import { emojify } from 'node-emoji';
 import * as path from 'path';
@@ -117,7 +117,13 @@ export default class GenerateCommand extends Command {
 
     const results = document.resources.map(({ filename, content }) => {
       const fname = Compiler.compile(
-        createContext(document, new Map([['input', input], ['root', document.attributes.root]])),
+        createContext(
+          document,
+          new Map([
+            ['input', input],
+            ['root', document.attributes.root],
+          ]),
+        ),
         filename,
       );
 
