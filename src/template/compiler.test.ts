@@ -92,7 +92,16 @@ test(
 
 test('identifier - variables', valid, '{{key}}', [['key', 'value']], [], 'value');
 test('identifier - function', valid, '{{key}}', [], [['key', () => 'result']], 'result');
-test('identifier - identifier (invalid)', invalid, '{{key1 | key2}}', [['key1', 'key1'], ['key2', 'key2']], []);
+test(
+  'identifier - identifier (invalid)',
+  invalid,
+  '{{key1 | key2}}',
+  [
+    ['key1', 'key1'],
+    ['key2', 'key2'],
+  ],
+  [],
+);
 
 test('function - string', valid, '{{ fn "arg" }}', [], [['fn', (_: any, arg: any) => `result=${arg}`]], 'result=arg');
 test('function - number', valid, '{{ fn 123 }}', [], [['fn', (_: any, arg: any) => `result=${arg}`]], 'result=123');
@@ -128,7 +137,10 @@ test(
   'pipe call - 1 argument x identifier',
   valid,
   '{{ key1 | join "arg" key2 }}',
-  [['key1', 'value1'], ['key2', 'value2']],
+  [
+    ['key1', 'value1'],
+    ['key2', 'value2'],
+  ],
   [['join', (_: any, ...args: any[]) => args.join(', ')]],
   'value1, arg, value2',
 );
@@ -151,7 +163,10 @@ test(
   valid,
   '{{ fn1 | fn2 }}',
   [],
-  [['fn1', () => `fn1()`], ['fn2', (_: any, v: any) => `fn2(${v})`]],
+  [
+    ['fn1', () => `fn1()`],
+    ['fn2', (_: any, v: any) => `fn2(${v})`],
+  ],
   'fn2(fn1())',
 );
 
@@ -160,6 +175,9 @@ test(
   valid,
   '{{ fn1 "arg1" | fn2 }}',
   [],
-  [['fn1', (_: any, s: string) => `fn1(${s})`], ['fn2', (_: any, v: any) => `fn2(${v})`]],
+  [
+    ['fn1', (_: any, s: string) => `fn1(${s})`],
+    ['fn2', (_: any, v: any) => `fn2(${v})`],
+  ],
   'fn2(fn1(arg1))',
 );

@@ -75,6 +75,7 @@ export default class GenerateCommand extends Command {
         },
       ]);
 
+      /* eslint-disable-next-line require-atomic-updates */
       templateName = choice;
     }
 

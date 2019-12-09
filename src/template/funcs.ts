@@ -59,7 +59,7 @@ funcs.set('eval', (ctx: Context, v: string, code?: string) => {
     context[key] = value;
   }
 
-  return eval(evalCode, context); // tslint:disable-line: no-eval
+  return eval(evalCode, context);
 });
 
 export { funcs };

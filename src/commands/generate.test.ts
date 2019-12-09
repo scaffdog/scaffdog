@@ -5,7 +5,7 @@ import * as mkdirp from 'mkdirp';
 import * as path from 'path';
 import * as rimraf from 'rimraf';
 
-const nixt = require('nixt'); // tslint:disable-line: no-var-requires
+const nixt = require('nixt'); /* eslint-disable-line @typescript-eslint/no-var-requires */
 
 const CWD = path.resolve(__dirname, '../..');
 const PATH = path.resolve(CWD, 'tmp');

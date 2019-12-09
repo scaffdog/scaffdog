@@ -98,7 +98,7 @@ export const tokenize = (input: string) => {
   let pos = 0;
 
   const endOfSource = (index: number) => index + 1 > length;
-  const lookahead = (n: number = 1) => (endOfSource(pos + n) ? '' : source[pos + n]);
+  const lookahead = (n = 1) => (endOfSource(pos + n) ? '' : source[pos + n]);
 
   const buf2str = () => buffer.join('');
 

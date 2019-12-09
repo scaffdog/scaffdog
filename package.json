@@ -13,10 +13,10 @@
     "test": "ava --verbose",
     "test:watch": "yarn test -w",
     "test:approve": "yarn test -u",
-    "lint": "tslint -p . -t stylish",
-    "format": "yarn format:tslint && yarn format:prettier",
-    "format:tslint": "yarn lint --fix",
-    "format:prettier": "prettier --config prettier.config.js --write '**/*.+(ts|tsx|js|md|json)'",
+    "lint": "eslint . --ext \".js,.ts\"",
+    "format": "yarn format:lint && yarn format:prettier",
+    "format:lint": "yarn lint --fix",
+    "format:prettier": "prettier --write \"**/*.+(ts|tsx|js|md|json)\"",
     "prebuild": "yarn clean",
     "prepublish": "yarn build",
     "postpack": "rm -f oclif.manifest.json",
@@ -48,7 +48,6 @@
     "lib"
   ],
   "dependencies": {
-    "@oclif/tslint": "^3",
     "@types/node": "^12.12.15",
     "chalk": "^3.0.0",
     "change-case": "^4.1.0",
@@ -76,7 +75,12 @@
     "@types/node-emoji": "1.8.1",
     "@types/rimraf": "2.0.3",
     "@types/window-size": "0.2.4",
+    "@typescript-eslint/eslint-plugin": "^2.10.0",
+    "@typescript-eslint/parser": "^2.10.0",
     "ava": "2.4.0",
+    "eslint": "^6.7.2",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-prettier": "^3.1.1",
     "husky": "3.1.0",
     "lint-staged": "9.5.0",
     "nixt": "0.5.1",
@@ -85,8 +89,6 @@
     "rimraf": "3.0.0",
     "ts-node": "8.5.4",
     "tslib": "1.10.0",
-    "tslint": "5.20.1",
-    "tslint-config-prettier": "1.18.0",
     "typescript": "3.7.3"
   },
   "ava": {
@@ -117,7 +119,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx,js,json,css,md}": [
-      "prettier --config prettier.config.js --write",
+      "prettier --write",
       "git add"
     ]
   }

@@ -1,6 +1,5 @@
 import { Token, TokenType } from './tokens';
 
-// tslint:disable: max-classes-per-file
 export interface Node {
   toString(): string;
 }
