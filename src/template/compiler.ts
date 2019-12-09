@@ -14,17 +14,29 @@ export class Compiler {
   public constructor(private context: Context) {}
 
   public compile(ast: Node[]) {
-    let output = '';
+    const output: Array<[string, boolean, boolean]> = [];
 
     for (const expr of ast) {
       if (expr instanceof RawExpr) {
-        output += expr.toString();
+        output.push([expr.toString(), false, false]);
       } else if (expr instanceof TagExpr) {
-        output += this.compileTagExpr(expr);
+        output.push([this.compileTagExpr(expr), expr.isOpenTrim(), expr.isCloseTrim()]);
       }
     }
 
-    return output;
+    return output.reduce((acc, cur, index, self) => {
+      if (cur[1] === true) {
+        acc = acc.trimRight();
+      }
+
+      if (self[index - 1] != null && self[index - 1][2] === true) {
+        acc += cur[0].trimLeft();
+      } else {
+        acc += cur[0];
+      }
+
+      return acc;
+    }, '');
   }
 
   private compileTagExpr(tagExpr: TagExpr) {
@@ -38,6 +50,14 @@ export class Compiler {
       } else if (expr instanceof CallExpr) {
         output += this.compileCallExpr(expr);
       }
+    }
+
+    if (tagExpr.isOpenTrim()) {
+      output = output.trimLeft();
+    }
+
+    if (tagExpr.isCloseTrim()) {
+      output = output.trimRight();
     }
 
     return output;

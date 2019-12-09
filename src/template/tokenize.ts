@@ -98,7 +98,7 @@ export const tokenize = (input: string) => {
   let pos = 0;
 
   const endOfSource = (index: number) => index + 1 > length;
-  const lookahead = () => (endOfSource(pos + 1) ? '' : source[pos + 1]);
+  const lookahead = (n: number = 1) => (endOfSource(pos + n) ? '' : source[pos + n]);
 
   const buf2str = () => buffer.join('');
 
@@ -121,8 +121,29 @@ export const tokenize = (input: string) => {
 
           inTag = true;
           consumeBuffer();
-          output.push(createToken(TokenType.OPEN_TAG, '{{'));
           pos++;
+
+          if (lookahead() === '-') {
+            output.push(createToken(TokenType.OPEN_TAG, '{{-'));
+            pos++;
+          } else {
+            output.push(createToken(TokenType.OPEN_TAG, '{{'));
+          }
+        } else {
+          buffer.push(str);
+        }
+        break;
+
+      case '-':
+        if (lookahead() === '}' && lookahead(2) === '}') {
+          if (!inTag) {
+            unopened();
+          }
+
+          inTag = false;
+          output = [...output, ...tokenizeInTag(buf2str()), createToken(TokenType.CLOSE_TAG, '-}}')];
+          pos += 2;
+          buffer = [];
         } else {
           buffer.push(str);
         }
