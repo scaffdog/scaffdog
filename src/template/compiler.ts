@@ -84,7 +84,6 @@ export class Compiler {
       case 'string':
       case 'number':
         return `${literalExpr.literal.value}`;
-        break;
 
       default:
         return '';

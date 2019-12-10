@@ -1,7 +1,7 @@
 import { CallExpr, Ident, IdentExpr, Literal, LiteralExpr, Node, RawExpr, TagExpr } from './ast';
 import { AnyToken, createToken, Token, TokenType } from './tokens';
 
-const eofToken = createToken(TokenType.EOF, null);
+const eofToken = createToken(TokenType.EOF, null, { line: 0, column: 0 }, { line: 0, column: 0 });
 
 export class Parser {
   private tokens: AnyToken[];

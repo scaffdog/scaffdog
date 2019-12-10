@@ -16,6 +16,7 @@ import { Compiler } from '../template/compiler';
 import { createContext } from '../template/context';
 import { Reader, Resource } from '../template/reader';
 import { fileExists } from '../utils';
+import { Reporter } from '../template/reporter';
 
 const LIST_PAGE_SIZE = windowSize.height - 10;
 
@@ -116,24 +117,31 @@ export default class GenerateCommand extends Command {
       },
     ] as inquirer.Question[]);
 
+    const reporter = new Reporter(this.log);
+
     const results = document.resources.map(({ filename, content }) => {
-      const fname = Compiler.compile(
-        createContext(
-          document,
-          new Map([
-            ['input', input],
-            ['root', document.attributes.root],
-          ]),
-        ),
-        filename,
-      );
+      let fname = '';
+      try {
+        fname = Compiler.compile(
+          createContext(
+            document,
+            new Map([
+              ['input', input],
+              ['root', document.attributes.root],
+            ]),
+          ),
+          filename,
+        );
+      } catch (e) {
+        reporter.report(e);
+      }
 
       const output = path.join(dist, fname);
       const info = path.parse(output);
 
-      return {
-        filename: path.join(dist, fname),
-        content: Compiler.compile(
+      let combpiledContent = '';
+      try {
+        combpiledContent = Compiler.compile(
           createContext(
             document,
             new Map([
@@ -146,7 +154,14 @@ export default class GenerateCommand extends Command {
             ]),
           ),
           content,
-        ),
+        );
+      } catch (e) {
+        reporter.report(e);
+      }
+
+      return {
+        filename: path.join(dist, fname),
+        content: combpiledContent,
       };
     });
 

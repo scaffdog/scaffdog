@@ -26,9 +26,16 @@ export type TokenMap = {
   [TokenType.CLOSE_TAG]: string;
 };
 
+export type Loc = {
+  line: number;
+  column: number;
+};
+
 export type Token<T extends keyof TokenMap> = {
   type: T;
   literal: TokenMap[T];
+  start: Loc;
+  end: Loc;
 };
 
 export type AnyToken =
@@ -44,6 +51,11 @@ export type AnyToken =
   | Token<TokenType.OPEN_TAG>
   | Token<TokenType.CLOSE_TAG>;
 
-export function createToken<T extends keyof TokenMap>(type: T, literal: TokenMap[T]) {
-  return { type, literal };
+export function createToken<T extends keyof TokenMap>(type: T, literal: TokenMap[T], start: Loc, end: Loc) {
+  return {
+    type,
+    literal,
+    start,
+    end,
+  };
 }

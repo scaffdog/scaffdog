@@ -1,7 +1,7 @@
 import fm from 'front-matter';
 import * as fs from 'fs';
 import globby from 'globby';
-import * as marked from 'marked';
+import marked from 'marked';
 import * as path from 'path';
 
 export type Resource = {
