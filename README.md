@@ -2,8 +2,8 @@
 
 # scaffdog
 
-[![npm](https://img.shields.io/npm/v/scaffdog.svg?style=flat-square)](https://www.npmjs.com/package/scaffdog)
-[![CircleCI](https://img.shields.io/circleci/project/github/cats-oss/scaffdog/master.svg?style=flat-square)](https://circleci.com/gh/cats-oss/scaffdog)
+[![Actions Status](https://github.com/cats-oss/scaffdog/workflows/CI/badge.svg)](https://github.com/cats-oss/scaffdog/actions)
+[![npm](https://img.shields.io/npm/v/scaffdog.svg?style=flat)](https://www.npmjs.com/package/scaffdog)
 
 > :dog: `scaffdog` is Markdown driven scaffolding tool.
 
