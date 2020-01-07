@@ -139,9 +139,9 @@ export default class GenerateCommand extends Command {
       const output = path.join(dist, fname);
       const info = path.parse(output);
 
-      let combpiledContent = '';
+      let compiledContent = '';
       try {
-        combpiledContent = Compiler.compile(
+        compiledContent = Compiler.compile(
           createContext(
             document,
             new Map([
@@ -161,7 +161,7 @@ export default class GenerateCommand extends Command {
 
       return {
         filename: path.join(dist, fname),
-        content: combpiledContent,
+        content: compiledContent,
       };
     });
 
