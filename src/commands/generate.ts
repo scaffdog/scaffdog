@@ -56,7 +56,7 @@ export default class GenerateCommand extends Command {
     let templateName = args.templateName;
 
     const cwd = process.cwd();
-    const dir = path.resolve(cwd, templateDir as string);
+    const dir = path.resolve(cwd, templateDir).replace(/\\/g, '/');
     const reader = new Reader(dir);
     const documents = reader.readAll();
 

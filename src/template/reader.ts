@@ -57,7 +57,7 @@ export class Reader {
   }
 
   private list() {
-    return globby.sync(`${path.join(this.dir, '*.md')}`, { onlyFiles: true }).map((file) => path.basename(file));
+    return globby.sync(path.posix.join(this.dir, '*.md'), { onlyFiles: true }).map((file) => path.basename(file));
   }
 
   private collect(tokens: marked.TokensList) {
