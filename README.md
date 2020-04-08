@@ -356,7 +356,7 @@ $ yarn test
 
 #### `yarn lint`
 
-Run lint with [TSLint](TSLint).
+Run lint with [ESLint](https://github.com/eslint/eslint).
 
 ```bash
 $ yarn lint
@@ -364,7 +364,7 @@ $ yarn lint
 
 #### `yarn format`
 
-Run formatting with [TSLint](TSLint) (`--fix`) and [Prettier](https://github.com/prettier/prettier).
+Run formatting with [ESLint](https://github.com/eslint/eslint) (`--fix`) and [Prettier](https://github.com/prettier/prettier).
 
 ```bash
 $ yarn format
