@@ -18,7 +18,7 @@ export default class ListCommand extends Command {
     } = this.parse(ListCommand);
 
     const cwd = process.cwd();
-    const reader = new Reader(path.resolve(cwd, templateDir as string));
+    const reader = new Reader(path.resolve(cwd, templateDir).replace(/\\/g, '/'));
     const documents = reader.readAll();
 
     for (const document of documents) {
