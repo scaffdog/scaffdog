@@ -9,16 +9,19 @@ export type Resource = {
   content: string;
 };
 
-export type Attributes = {
-  extends: string; // TODO
+type SpecifiedAttributes = {
   name: string;
-  description: string;
   message: string;
-  root: string;
   output: string;
-  ignore: string[];
-  hooks: string[]; // TODO
+
+  extends?: string;
+  description?: string;
+  root?: string;
+  ignore?: string[];
+  hooks?: string[];
 };
+
+export type Attributes = Required<SpecifiedAttributes>;
 
 export type Document = {
   path: string;
@@ -36,7 +39,7 @@ export class Reader {
   private read(filename: string): Document {
     const template = path.resolve(this.dir, filename);
     const markdown = fs.readFileSync(template, { encoding: 'utf8' });
-    const { attributes, body } = fm(markdown);
+    const { attributes, body } = fm<SpecifiedAttributes>(markdown);
     const resources = this.collect(marked.lexer(body));
 
     return {
