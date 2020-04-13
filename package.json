@@ -73,7 +73,7 @@
     "@types/marked": "0.7.3",
     "@types/mkdirp": "0.5.2",
     "@types/node-emoji": "1.8.1",
-    "@types/rimraf": "2.0.3",
+    "@types/rimraf": "2.0.4",
     "@types/window-size": "0.2.4",
     "@typescript-eslint/eslint-plugin": "2.11.0",
     "@typescript-eslint/parser": "2.11.0",
