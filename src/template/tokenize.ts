@@ -11,9 +11,9 @@ type EsprimaToken = {
   };
 };
 
-const unexpected = (input: string, loc: Loc) => {
+function unexpected(input: string, loc: Loc): never {
   throw new SyntaxError(ErrorType.UNEXPECTED, input, loc, loc);
-};
+}
 
 const unclosed = (input: string, tokens: AnyToken[]) => {
   const open = tokens.find((token) => token.type === TokenType.OPEN_TAG);
