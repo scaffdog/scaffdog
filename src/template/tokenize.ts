@@ -31,17 +31,20 @@ const unopened = (input: string, token: Token<TokenType.CLOSE_TAG>) => {
 
 const parseNumeric = (value: string) => Number(value);
 
+const tokenizeUsingEsprima = (source: string, input: string, loc: Loc) => {
+  try {
+    return esprima.tokenize(input, { loc: true }) as EsprimaToken[];
+  } catch (e) {
+    unexpected(source, {
+      line: loc.line + e.lineNumber - 1,
+      column: loc.column + e.index - input.length,
+    });
+  }
+};
+
 const tokenizeInTag = (source: string, input: string, loc: Loc) => {
   const output = [];
-  let tokens: EsprimaToken[] = [];
-
-  try {
-    tokens = esprima.tokenize(input, { loc: true }) as any;
-  } catch (e) {
-    loc.line += e.lineNumber - 1;
-    loc.column += e.index - input.length;
-    unexpected(source, loc);
-  }
+  const tokens = tokenizeUsingEsprima(source, input, loc);
 
   const size = input.length;
   const length = tokens.length;
