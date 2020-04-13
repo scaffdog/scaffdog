@@ -73,7 +73,7 @@
     "@types/marked": "0.7.3",
     "@types/mkdirp": "0.5.2",
     "@types/node-emoji": "1.8.1",
-    "@types/rimraf": "2.0.3",
+    "@types/rimraf": "3.0.0",
     "@types/window-size": "0.2.4",
     "@typescript-eslint/eslint-plugin": "2.11.0",
     "@typescript-eslint/parser": "2.11.0",
@@ -86,7 +86,7 @@
     "nixt": "0.5.1",
     "np": "5.2.1",
     "prettier": "1.19.1",
-    "rimraf": "3.0.0",
+    "rimraf": "3.0.2",
     "ts-node": "8.5.4",
     "tslib": "1.10.0",
     "typescript": "3.7.3"
