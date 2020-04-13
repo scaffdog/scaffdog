@@ -31,7 +31,13 @@ const unopened = (input: string, token: Token<TokenType.CLOSE_TAG>) => {
 
 const parseNumeric = (value: string) => Number(value);
 
-const tokenizeUsingEsprima = (source: string, input: string, loc: Loc) => {
+interface TokenizationContext {
+  source: string;
+  input: string;
+  loc: Loc;
+}
+
+const tokenizeUsingEsprima = ({ source, input, loc }: TokenizationContext) => {
   try {
     return esprima.tokenize(input, { loc: true }) as EsprimaToken[];
   } catch (e) {
@@ -42,9 +48,9 @@ const tokenizeUsingEsprima = (source: string, input: string, loc: Loc) => {
   }
 };
 
-const tokenizeInTag = (source: string, input: string, loc: Loc) => {
+const tokenizeInTag = ({ source, input, loc }: TokenizationContext) => {
   const output = [];
-  const tokens = tokenizeUsingEsprima(source, input, loc);
+  const tokens = tokenizeUsingEsprima({ source, input, loc });
 
   const size = input.length;
   const length = tokens.length;
@@ -244,7 +250,7 @@ export const tokenize = (input: string) => {
           }
 
           inTag = false;
-          output.push(...tokenizeInTag(input, buf2str(), loc), close);
+          output.push(...tokenizeInTag({ source: input, input: buf2str(), loc }), close);
           pos += 2;
           buffer.length = 0;
         } else {
@@ -269,7 +275,7 @@ export const tokenize = (input: string) => {
           }
 
           inTag = false;
-          output.push(...tokenizeInTag(input, buf2str(), loc), close);
+          output.push(...tokenizeInTag({ source: input, input: buf2str(), loc }), close);
           pos++;
           loc.column++;
           buffer.length = 0;
