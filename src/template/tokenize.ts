@@ -11,9 +11,9 @@ type EsprimaToken = {
   };
 };
 
-const unexpected = (input: string, loc: Loc) => {
+function unexpected(input: string, loc: Loc): never {
   throw new SyntaxError(ErrorType.UNEXPECTED, input, loc, loc);
-};
+}
 
 const unclosed = (input: string, tokens: AnyToken[]) => {
   const open = tokens.find((token) => token.type === TokenType.OPEN_TAG);
@@ -31,17 +31,26 @@ const unopened = (input: string, token: Token<TokenType.CLOSE_TAG>) => {
 
 const parseNumeric = (value: string) => Number(value);
 
-const tokenizeInTag = (source: string, input: string, loc: Loc) => {
-  const output = [];
-  let tokens: EsprimaToken[] = [];
+interface TokenizationContext {
+  source: string;
+  input: string;
+  loc: Loc;
+}
 
+const tokenizeUsingEsprima = ({ source, input, loc }: TokenizationContext) => {
   try {
-    tokens = esprima.tokenize(input, { loc: true }) as any;
+    return esprima.tokenize(input, { loc: true }) as EsprimaToken[];
   } catch (e) {
-    loc.line += e.lineNumber - 1;
-    loc.column += e.index - input.length;
-    unexpected(source, loc);
+    unexpected(source, {
+      line: loc.line + e.lineNumber - 1,
+      column: loc.column + e.index - input.length,
+    });
   }
+};
+
+const tokenizeInTag = ({ source, input, loc }: TokenizationContext) => {
+  const output = [];
+  const tokens = tokenizeUsingEsprima({ source, input, loc });
 
   const size = input.length;
   const length = tokens.length;
@@ -141,8 +150,8 @@ export const tokenize = (input: string) => {
   const length = source.length;
 
   const loc: Loc = { line: 1, column: 1 };
-  let output: AnyToken[] = [];
-  let buffer: string[] = [];
+  const output: AnyToken[] = [];
+  const buffer: string[] = [];
   let bufLoc: Loc | null = null;
   let inTag = false;
   let pos = 0;
@@ -167,7 +176,7 @@ export const tokenize = (input: string) => {
           { ...loc, column: loc.column - 1 },
         ),
       );
-      buffer = [];
+      buffer.length = 0;
       bufLoc = null;
     }
   };
@@ -241,9 +250,9 @@ export const tokenize = (input: string) => {
           }
 
           inTag = false;
-          output = [...output, ...tokenizeInTag(input, buf2str(), loc), close];
+          output.push(...tokenizeInTag({ source: input, input: buf2str(), loc }), close);
           pos += 2;
-          buffer = [];
+          buffer.length = 0;
         } else {
           buffer.push(str);
         }
@@ -266,10 +275,10 @@ export const tokenize = (input: string) => {
           }
 
           inTag = false;
-          output = [...output, ...tokenizeInTag(input, buf2str(), loc), close];
+          output.push(...tokenizeInTag({ source: input, input: buf2str(), loc }), close);
           pos++;
           loc.column++;
-          buffer = [];
+          buffer.length = 0;
         } else {
           buffer.push(str);
         }
