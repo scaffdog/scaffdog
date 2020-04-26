@@ -57,7 +57,7 @@
     "globby": "^11.0.0",
     "inquirer": "^7.1.0",
     "inquirer-autocomplete-prompt": "^1.0.2",
-    "log-symbols": "^3.0.0",
+    "log-symbols": "^4.0.0",
     "marked": "^0.8.2",
     "mkdirp": "^1.0.0",
     "node-emoji": "^1.10.0",
