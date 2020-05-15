@@ -357,10 +357,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/window-size@0.2.4":
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/@types/window-size/-/window-size-0.2.4.tgz#3a7cddfe027a4d4dc72b6bfc5a6e3969237f64a9"
-  integrity sha1-Onzd/gJ6TU3HK2v8Wm45aSN/ZKk=
+"@types/window-size@0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@types/window-size/-/window-size-0.2.5.tgz#506173de1a08b338699df1eea6e70c3e778512d9"
+  integrity sha512-aWZqgJ9yk9DBKKRfqaIrawLrT7tzfpkMxDv609k80dYskEk96N4wMYXYAOdYUHszCE14Tb0BVgOEqsRaIR2itw==
 
 "@typescript-eslint/eslint-plugin@2.28.0":
   version "2.28.0"
