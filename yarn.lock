@@ -2216,10 +2216,10 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
-front-matter@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/front-matter/-/front-matter-3.1.0.tgz#a0b758c3c6c39ce43e107dd0909a57d42964c2de"
-  integrity sha512-RFEK8N6waWTdwBZOPNEtvwMjZ/hUfpwXkYUYkmmOhQGdhSulXhWrFwiUhdhkduLDiIwbROl/faF1X/PC/GGRMw==
+front-matter@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/front-matter/-/front-matter-4.0.0.tgz#41c1d7267c082d28f14566366a32369ba6bd2a82"
+  integrity sha512-N8uzPf026Za9KqPT+oeZv99PszNbeDlgZhGpqbVQL9lYfbuy7RhvfIs/kKSTMEHv/QADltU0Dp78Q9uy3GwwEg==
   dependencies:
     js-yaml "^3.13.1"
 
