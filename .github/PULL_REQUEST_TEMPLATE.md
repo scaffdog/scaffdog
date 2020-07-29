@@ -4,7 +4,7 @@
 
 {Please write here}
 
-## How this PR fixes the problem?
+## How does PR fix the problem?
 
 {Please write here}
 
@@ -12,7 +12,7 @@
 
 {Please write here}
 
-## Check lists
+## Checklist
 
 - [ ] Test passed
 - [ ] Coding style (indentation, etc)
