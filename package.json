@@ -48,7 +48,6 @@
     "lib"
   ],
   "dependencies": {
-    "@types/node": "^13.11.1",
     "chalk": "^4.0.0",
     "change-case": "^4.1.1",
     "esprima": "^4.0.1",
@@ -67,6 +66,7 @@
   },
   "devDependencies": {
     "@oclif/dev-cli": "1.22.2",
+    "@types/node": "^13.11.1",
     "@types/esprima": "4.0.2",
     "@types/globby": "9.1.0",
     "@types/inquirer": "6.5.0",
