@@ -27,6 +27,6 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/camelcase': ['error', { properties: 'never', ignoreDestructuring: true }],
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
 };
