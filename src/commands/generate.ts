@@ -1,15 +1,17 @@
 import { Command, flags } from '@oclif/command';
 import chalk from 'chalk';
+import ansiEscapes from 'ansi-escapes';
 import { clear } from 'console';
-import * as fs from 'fs';
-import * as fuzzy from 'fuzzy';
+import fs from 'fs';
+import path from 'path';
+import fuzzy from 'fuzzy';
 import globby from 'globby';
-import * as inquirer from 'inquirer';
-import inquirerAutocomplete from 'inquirer-autocomplete-prompt';
+import inquirer from 'inquirer';
+import utils from 'inquirer/lib/utils/readline';
+import InquirerAutocomplete from 'inquirer-autocomplete-prompt';
 import symbols from 'log-symbols';
 import mkdirp from 'mkdirp';
 import { emojify } from 'node-emoji';
-import * as path from 'path';
 import * as windowSize from 'window-size';
 import { commonFlags } from '../flags';
 import { Compiler } from '../template/compiler';
@@ -27,12 +29,64 @@ const searchDir = (directories: string[]) => (_: any, input = ''): Promise<strin
   });
 };
 
-// inquirer can fuzzy search
-inquirer.registerPrompt('autocomplete', inquirerAutocomplete);
+/**
+ * Autocomplete prompt for inquirer
+ *
+ * The following classes include patches for the following keystrokes.
+ * - `ctrl+n` (alias for down)
+ * - `ctrl+p` (alias for up)
+ *
+ * See the URL for details of the patch.
+ *
+ * @see https://github.com/mokkabonna/inquirer-autocomplete-prompt/pull/85
+ */
+export class Autocomplete extends InquirerAutocomplete {
+  public opt: any;
+  public currentChoices: any;
+  public selected: any;
+  public rl: any;
+  public lastSearchTerm: any;
+  public render: any;
+  public ensureSelectedInRange: any;
+  public search: any;
+
+  public onKeypress(e: { key: { name: string; ctrl: boolean }; value: string }) {
+    const keyName = e.key?.name;
+    let len;
+
+    if (keyName === 'tab' && this.opt.suggestOnly) {
+      if (this.currentChoices.getChoice(this.selected)) {
+        this.rl.write(ansiEscapes.cursorLeft);
+        const autoCompleted = this.currentChoices.getChoice(this.selected).value;
+        this.rl.write(ansiEscapes.cursorForward(autoCompleted.length));
+        this.rl.line = autoCompleted;
+        this.render();
+      }
+    } else if (keyName === 'down' || (['n', 'j'].includes(keyName) && e.key.ctrl)) {
+      len = this.currentChoices.length;
+      this.selected = this.selected < len - 1 ? this.selected + 1 : 0;
+      this.ensureSelectedInRange();
+      this.render();
+      utils.up(this.rl, 2);
+    } else if (keyName === 'up' || (['p', 'k'].includes(keyName) && e.key.ctrl)) {
+      len = this.currentChoices.length;
+      this.selected = this.selected > 0 ? this.selected - 1 : len - 1;
+      this.ensureSelectedInRange();
+      this.render();
+    } else {
+      this.render();
+      if (this.lastSearchTerm !== this.rl.line) {
+        this.search(this.rl.line);
+      }
+    }
+  }
+}
+
+inquirer.registerPrompt('autocomplete', Autocomplete);
 
 export default class GenerateCommand extends Command {
   public static description =
-    'Scaffold using the specified template. If you do not specify the template name and execute it, interactively select the template.';
+    'Build a scaffold using the specified template. If you do not specify the template name and execute it, interactively select the template.';
 
   public static args = [{ name: 'templateName' }];
 

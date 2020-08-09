@@ -7,7 +7,7 @@ import { commonFlags } from '../flags';
 import { createTemplate, fileExists } from '../utils';
 
 export default class TemplateCommand extends Command {
-  public static description = 'Creating a template with the specified name.';
+  public static description = 'Create a template with the specified name.';
 
   public static args = [
     {

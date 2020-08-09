@@ -5,7 +5,7 @@ export const commonFlags = {
 
   templateDir: flags.string({
     char: 'd',
-    description: 'Directory where to load scaffdog templates from.',
+    description: 'Directory to load the scaffdog template.',
     default: '.scaffdog',
   }),
 };

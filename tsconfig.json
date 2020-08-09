@@ -27,9 +27,5 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": false
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"],
-  "paths": {
-    "*": ["src/types/**/*"]
-  }
+  "include": ["src/**/*"]
 }

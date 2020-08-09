@@ -46,11 +46,8 @@ export class Reader {
       path: template,
       attributes: {
         extends: '',
-        name: '',
         description: '',
-        message: '',
         root: '',
-        output: '',
         ignore: [],
         hooks: [],
         ...attributes,
@@ -68,12 +65,17 @@ export class Reader {
     let filename: string | null = null;
 
     for (const token of tokens) {
+      if (!('type' in token)) {
+        continue;
+      }
+
       switch (token.type) {
         case 'heading':
           if (token.depth === 1) {
             filename = token.text.trim().replace(/^`|`$/g, '');
           }
           break;
+
         case 'code':
           if (filename != null) {
             resources.push({

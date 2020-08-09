@@ -10,7 +10,7 @@ import { createTemplate, directoryExists, fileExists } from '../utils';
 
 export default class InitCommand extends Command {
   public static description =
-    'Prepare for using scaffdog. By default it creates a `.scaffdog` directory and creates a simple template.';
+    'Prepare to use scaffdog. Create a `.scaffdog` directory, by default, and create a simple template.';
 
   public static flags = {
     ...commonFlags,
