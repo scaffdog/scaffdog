@@ -48,6 +48,7 @@
     "ansi-escapes": "^4.3.1",
     "chalk": "^4.1.0",
     "change-case": "^4.1.1",
+    "dayjs": "^1.8.32",
     "esprima": "^4.0.1",
     "front-matter": "^4.0.2",
     "fuzzy": "^0.1.3",
