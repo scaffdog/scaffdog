@@ -2,6 +2,7 @@ import * as cc from 'change-case';
 import * as fs from 'fs';
 import * as path from 'path';
 import eval from 'safe-eval';
+import dayjs from 'dayjs';
 import { fileExists } from '../utils';
 import { Compiler } from './compiler';
 import { Context, createContext } from './context';
@@ -21,6 +22,12 @@ funcs.set('lower', (_: Context, v: string) => v.toLowerCase());
 funcs.set('replace', (_: Context, v: string, pattern: string, replacement: string) =>
   v.replace(new RegExp(pattern, 'g'), replacement),
 );
+
+funcs.set('date', (_: Context, format?: string) => {
+  const d = dayjs();
+
+  return format ? d.format(format) : d.toISOString();
+});
 
 funcs.set('relative', (ctx: Context, to: string) => {
   const output = ctx.vars.get('output');
