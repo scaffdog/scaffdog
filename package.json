@@ -67,7 +67,7 @@
     "@types/globby": "9.1.0",
     "@types/inquirer": "6.5.0",
     "@types/marked": "0.7.4",
-    "@types/mkdirp": "1.0.0",
+    "@types/mkdirp": "1.0.1",
     "@types/node": "^13.11.1",
     "@types/node-emoji": "1.8.1",
     "@types/rimraf": "3.0.0",
