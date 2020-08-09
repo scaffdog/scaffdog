@@ -1,4 +1,7 @@
 declare module 'inquirer-autocomplete-prompt' {
-  let AutocompletePrompt: any;
-  export = AutocompletePrompt;
+  import inquirer from 'inquirer';
+
+  const InquirerAutocomplete: inquirer.prompts.PromptConstructor;
+
+  export default InquirerAutocomplete;
 }

@@ -45,6 +45,7 @@
     "lib"
   ],
   "dependencies": {
+    "ansi-escapes": "^4.3.1",
     "chalk": "^4.1.0",
     "change-case": "^4.1.1",
     "esprima": "^4.0.1",
