@@ -67,7 +67,7 @@
     "@oclif/dev-cli": "1.22.2",
     "@types/esprima": "4.0.2",
     "@types/globby": "9.1.0",
-    "@types/inquirer": "7.3.0",
+    "@types/inquirer": "7.3.1",
     "@types/marked": "1.1.0",
     "@types/mkdirp": "1.0.1",
     "@types/node": "14.0.27",
