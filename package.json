@@ -70,7 +70,7 @@
     "@types/inquirer": "7.3.0",
     "@types/marked": "1.1.0",
     "@types/mkdirp": "1.0.1",
-    "@types/node": "14.0.27",
+    "@types/node": "14.14.20",
     "@types/node-emoji": "1.8.1",
     "@types/rimraf": "3.0.0",
     "@types/window-size": "0.2.5",
