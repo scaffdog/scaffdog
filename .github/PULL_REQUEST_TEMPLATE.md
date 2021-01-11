@@ -12,18 +12,6 @@
 
 {Please write here}
 
-## Checklist
+## References
 
-- [ ] Test passed
-- [ ] Coding style (indentation, etc)
-
-## Additional Comments (if any)
-
-{Please write here}
-
-## Which issue(s) does this PR fix?
-
-<!--
-fixes #
-fixes #
--->
+- {Please write here}

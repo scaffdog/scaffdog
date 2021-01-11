@@ -1,32 +1,78 @@
 name: CI
-on: [push, pull_request]
+
+on:
+  push:
+    branches: [canary]
+  pull_request:
+    types: [opened, synchronize]
+
 jobs:
-  build_and_test:
-    name: Build and Test
+  build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: ['14', '12']
     steps:
       - uses: actions/checkout@v2
-
+      - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
       - uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node }}
-
-      - name: Get yarn cache
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
+          node-version: '12.x'
+      - name: Install depedencies
+        run: yarn --frozen-lockfile --check-files
+      - run: yarn build
       - uses: actions/cache@v2
         with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-${{ matrix.node }}-yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ matrix.node }}-yarn-
+          path: ./*
+          key: ${{ github.sha }}
 
-      - run: yarn --frozen-lockfile
-      - run: yarn build
-      - run: yarn test
+  lint:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - uses: actions/cache@v2
+        id: restore-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}
       - run: yarn lint
-      - run: yarn format && git diff --exit-code || exit 1
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - uses: actions/cache@v2
+        id: restore-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+      - run: yarn test
+
+  pass:
+    runs-on: ubuntu-latest
+    needs: [build, lint, test]
+    steps:
+      - run: exit 0
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: [pass]
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - uses: actions/cache@v2
+        id: restore-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+      - run: |
+          git config --local user.email "${{ secrets.GIT_USER_EMAIL }}"
+          git config --local user.name "${{ secrets.GIT_USER_NAME }}"
+      - run: ./scripts/publish.sh
