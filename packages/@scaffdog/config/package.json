@@ -1,6 +1,6 @@
 {
   "name": "@scaffdog/config",
-  "version": "1.0.0",
+  "version": "1.0.0-canary.0",
   "description": "A module to manipulate configs of scaffdog.",
   "keywords": [
     "scaffdog",
@@ -32,7 +32,7 @@
     "zod": "^1.11.11"
   },
   "devDependencies": {
-    "@scaffdog/types": "1.0.0"
+    "@scaffdog/types": "1.0.0-canary.0"
   },
   "publishConfig": {
     "access": "public"
