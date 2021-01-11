@@ -1,4 +1,4 @@
-![scaffdog](./docs/assets/repo-banner.png)
+![scaffdog](/packages/scaffdog/docs/assets/repo-banner.png)
 
 <p align="center">
   scaffdog is Markdown driven scaffolding tool.
@@ -526,4 +526,4 @@ $ yarn format
 
 [MIT © Cyberagent, Inc](./LICENSE)
 
-![thank you for reading!](./docs/assets/repo-footer.png)
+![thank you for reading!](/packages/scaffdog/docs/assets/repo-footer.png)
