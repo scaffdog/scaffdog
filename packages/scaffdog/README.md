@@ -108,7 +108,7 @@ After this, please customize the `hello.md` template with reference to the docum
 
 There are important changes in the major update.
 
-See [Migration Guide](../../MIGRATION.md).
+See [Migration Guide](/MIGRATION.md).
 
 ## Configuration
 
