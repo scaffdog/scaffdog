@@ -12,6 +12,8 @@
 
 # scaffdog
 
+![DEMO](/packages/scaffdog/docs/assets/demo.gif)
+
 Multiple files can be output in a document, and flexible scaffolding is possible with a simple but powerful template syntax :dog2:
 
 ## Table of Contents
@@ -28,7 +30,7 @@ Multiple files can be output in a document, and flexible scaffolding is possible
 - :poodle: [Commands](#commands)
   - [`scaffdog init`](#scaffdog-init)
   - [`scaffdog generate`](#scaffdog-generate)
-  - [`scaffdog template`](#scaffdog-template)
+  - [`scaffdog create`](#scaffdog-create)
   - [`scaffdog list`](#scaffdog-list)
 - :memo: [Templates](#templates)
   - [Structure](#structure)
@@ -71,15 +73,29 @@ In the following tutorial you can start using `scaffdog` immediately !
 
 #### Setup
 
-By default, it stores the template file in the directory `.scaffdog`.
+By default, it stores the document file and configuration file in the `.scaffdog` directory.
 
-Creating directories and initial templates can be done with the `init` subcommand.
+Creating directories, configuration file and initial documents can be done with the `init` subcommand.
 
 ```bash
 $ npx scaffdog init
+
+? Please enter a document name. hello
+
+Setup of scaffdog 🐶 is complete!
+
+  ✔ .scaffdog/config.js
+  ✔ .scaffdog/hello.md
+
+Now you can do scaffold by running `$ scaffdog generate`.
+
+Please refer to the following documents and customize it.
+https://github.com/cats-oss/scaffdog/#templates
 ```
 
-This will create a file called `.scaffdog/hello.md`. Let's scaffold immediately using the `hello` template!
+After running the command, the `.scaffdog/hello.md` file should have been generated.
+
+Let's scaffold using the `hello` document!
 
 ```bash
 $ npx scaffdog generate hello
@@ -87,26 +103,29 @@ $ npx scaffdog generate hello
 ? Please select the output destination directory. .
 ? Please enter any text. pretty-dog
 
-✨ Completed scaffolding !
+🐶 Generated 1 file!
 
-    ✔ pretty-dog.md
-
+     ✔ pretty-dog.md
 ```
 
-Congratulations :tada: The first file was created.
+Congratulations :tada:
+
+The first file was generated.
 
 ```bash
 $ cat pretty-dog.md
 
-Let's create a template with reference to the document!
+Let's make a document! See more detail scaffdog repository.
 https://github.com/cats-oss/scaffdog/#templates
 ```
 
-After this, please customize the `hello.md` template with reference to the document and try to see if you can do what you expect. :+1:
+Please refer to this document and customize the document file :+1:
 
 ## Migration
 
 There are important changes in the major update.
+
+- [To v1 from v0](/MIGRATION.md#to-v1-from-v0)
 
 See [Migration Guide](/MIGRATION.md).
 
@@ -190,58 +209,58 @@ type Context = {
 
 ### `scaffdog init`
 
-Prepare for using scaffdog. By default it creates a `.scaffdog` directory and creates a simple template.
+Prepare to use scaffdog. Create a `.scaffdog` directory by default, and create a first document file.
 
 ```bash
-USAGE
-  $ scaffdog init
-
-OPTIONS
-  -d, --templateDir=templateDir  [default: .scaffdog] Directory where to load scaffdog templates from.
-  -h, --help                     show CLI help
+Options:
+  -p, --project  Directory to load the scaffdog project.        [string] [default: ".scaffdog"]
+  -v, --verbose  Enable logging.                                                      [boolean]
+      --help     Show help                                                            [boolean]
+      --version  Output the version number                                            [boolean]
 ```
 
 ### `scaffdog generate`
 
-Scaffold using the specified template. If you do not specify the template name and execute it, interactively select the template.
+Build a scaffold using the specified template. If you do not specify the template name and execute it, interactively select the template.
 
 ```bash
-USAGE
-  $ scaffdog generate [TEMPLATENAME]
+Positionals:
+  name                                                                                 [string]
 
-OPTIONS
-  -d, --templateDir=templateDir  [default: .scaffdog] Directory where to load scaffdog templates from.
-  -h, --help                     show CLI help
-  -n, --dryRun                   Output the result to stdout.
+Options:
+  -p, --project  Directory to load the scaffdog project.        [string] [default: ".scaffdog"]
+  -v, --verbose  Enable logging.                                                      [boolean]
+      --help     Show help                                                            [boolean]
+      --version  Output the version number                                            [boolean]
+  -n, --dry-run  Output the result to stdout.                                         [boolean]
 ```
 
-### `scaffdog template`
+### `scaffdog create`
 
-Creating a template with the specified name.
+Create a document file with the specified name.
 
 ```bash
-USAGE
-  $ scaffdog template NAME
+Positionals:
+  name  Specify a document file name.                                                  [string]
 
-ARGUMENTS
-  NAME  Template name.
-
-OPTIONS
-  -d, --templateDir=templateDir  [default: .scaffdog] Directory where to load scaffdog templates from.
-  -h, --help                     show CLI help
+Options:
+  -p, --project  Directory to load the scaffdog project.        [string] [default: ".scaffdog"]
+  -v, --verbose  Enable logging.                                                      [boolean]
+      --help     Show help                                                            [boolean]
+      --version  Output the version number                                            [boolean]
+  -y, --yes      Use default options.                                                 [boolean]
 ```
 
 ### `scaffdog list`
 
-Print a list of available templates.
+Print a list of available documents.
 
 ```bash
-USAGE
-  $ scaffdog list
-
-OPTIONS
-  -d, --templateDir=templateDir  [default: .scaffdog] Directory where to load scaffdog templates from.
-  -h, --help                     show CLI help
+Options:
+  -p, --project  Directory to load the scaffdog project.        [string] [default: ".scaffdog"]
+  -v, --verbose  Enable logging.                                                      [boolean]
+      --help     Show help                                                            [boolean]
+      --version  Output the version number                                            [boolean]
 ```
 
 ## Templates
@@ -332,9 +351,9 @@ You can use comment out to keep the template readable. Of course, it is not depl
 {{ /* a comment */ }}
 ```
 
-#### Call helper
+#### Call helper function
 
-Execute the helper with the specified name. Arguments are separated by whitespace. See the [Helpers](#helpers) section for the helpers that can be used.
+Execute the helper function with the specified name. Arguments are separated by whitespace. See the [Helpers](#helpers) section for the helpers that can be used.
 
 ```
 {{ <helper> <argument> ... }}
@@ -491,7 +510,7 @@ We are always welcoming your contribution :clap:
 1. Create a feature branch :coffee:
 1. Run test suite with the `$ yarn test` command and confirm that it passes :zap:
 1. Commit your changes :memo:
-1. Rebase your local changes against the `master` branch :bulb:
+1. Rebase your local changes against the `canary` branch :bulb:
 1. Create new Pull Request :love_letter:
 
 Bugs, feature requests and comments are more than welcome in the [issues](https://github.com/cats-oss/scaffdog/issues).

@@ -10,14 +10,8 @@ const count = (word: string, cnt: number) => `${cnt} ${plur(word, cnt)}`;
 export default createCommand({
   name: 'list',
   key: 'list',
-  description: 'Print a list of available templates.',
-  build: (yargs) =>
-    yargs.options({
-      foo: {
-        type: 'boolean',
-        description: '',
-      },
-    }),
+  description: 'Print a list of available documents.',
+  build: (yargs) => yargs,
 })(async ({ cwd, logger, options }) => {
   const { project } = options;
   const config = loadConfig(cwd, { project });
