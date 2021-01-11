@@ -1,0 +1,37 @@
+{
+  "name": "@scaffdog/types",
+  "version": "1.0.0",
+  "description": "scaffdog's type declarations.",
+  "keywords": [
+    "scaffdog",
+    "markdown",
+    "template"
+  ],
+  "homepage": "https://github.com/cats-oss/scaffdog/tree/main/packages/@scaffdog/types",
+  "bugs": {
+    "url": "https://github.com/cats-oss/scaffdog/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cats-oss/scaffdog.git",
+    "directory": "packages/@scaffdog/types"
+  },
+  "license": "MIT",
+  "author": "wadackel <wadackel@gmail.com>",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "!lib/**/*.test.js"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "type-fest": "^0.20.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "name": "scaffdog",
+  "version": "1.0.0",
+  "description": "scaffdog is Markdown driven scaffolding tool.",
+  "keywords": [
+    "scaffdog",
+    "markdown",
+    "template"
+  ],
+  "homepage": "https://github.com/cats-oss/scaffdog/tree/main/packages/scaffdog",
+  "bugs": {
+    "url": "https://github.com/cats-oss/scaffdog/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cats-oss/scaffdog.git",
+    "directory": "packages/scaffdog"
+  },
+  "license": "MIT",
+  "author": "wadackel <wadackel@gmail.com>",
+  "bin": {
+    "scaffdog": "./lib/bin.js"
+  },
+  "files": [
+    "lib",
+    "!lib/**/*.test.js",
+    "!lib/mocks"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "scaffold": "ts-node src/bin.ts generate",
+    "test": "ava"
+  },
+  "dependencies": {
+    "@scaffdog/config": "1.0.0",
+    "@scaffdog/core": "1.0.0",
+    "@scaffdog/engine": "1.0.0",
+    "@scaffdog/error": "1.0.0",
+    "ansi-escapes": "^4.3.1",
+    "chalk": "^4.1.0",
+    "cli-truncate": "^2.1.0",
+    "consola": "^2.15.0",
+    "figures": "^3.2.0",
+    "front-matter": "^4.0.2",
+    "fuse.js": "^6.4.6",
+    "globby": "^11.0.2",
+    "indent-string": "^4.0.0",
+    "inquirer": "^7.3.3",
+    "inquirer-autocomplete-prompt": "^1.3.0",
+    "is-plain-object": "^5.0.0",
+    "log-symbols": "^4.0.0",
+    "micromatch": "^4.0.2",
+    "node-emoji": "^1.10.0",
+    "plur": "^4.0.0",
+    "term-size": "^2.2.1",
+    "update-notifier": "^5.0.1",
+    "valid-filename": "^3.1.0",
+    "wrap-ansi": "^7.0.0",
+    "yargs": "^16.2.0",
+    "zod": "^1.11.11"
+  },
+  "devDependencies": {
+    "@scaffdog/types": "1.0.0",
+    "@types/inquirer": "^7.3.1",
+    "@types/micromatch": "^4.0.1",
+    "@types/node-emoji": "^1.8.1",
+    "@types/update-notifier": "^5.0.0",
+    "@types/wrap-ansi": "^3.0.0",
+    "@types/yargs": "^15.0.12",
+    "strip-ansi": "^6.0.0",
+    "type-fest": "^0.20.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

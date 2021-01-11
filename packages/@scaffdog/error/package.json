@@ -1,0 +1,38 @@
+{
+  "name": "@scaffdog/error",
+  "version": "1.0.0",
+  "description": "A utility module of scaffdog error.",
+  "keywords": [
+    "scaffdog",
+    "markdown",
+    "template"
+  ],
+  "homepage": "https://github.com/cats-oss/scaffdog/tree/main/packages/@scaffdog/error",
+  "bugs": {
+    "url": "https://github.com/cats-oss/scaffdog/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cats-oss/scaffdog.git",
+    "directory": "packages/@scaffdog/error"
+  },
+  "license": "MIT",
+  "author": "wadackel <wadackel@gmail.com>",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "!lib/**/*.test.js"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "ava"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0"
+  },
+  "devDependencies": {},
+  "publishConfig": {
+    "access": "public"
+  }
+}
