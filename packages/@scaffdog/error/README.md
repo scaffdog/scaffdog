@@ -13,5 +13,20 @@ $ npm install @scaffdog/error
 ## Usage
 
 ```typescript
-// T.B.A
+import { error } from '@scaffdog/error';
+
+const e = error('unexpected token', {
+  source: 'text {{ ] }}',
+  loc: {
+    start: { line: 1, column: 9 },
+    end: { line: 1, column: 9 },
+  },
+});
+
+console.log(e.message);
+
+//   unexpected token:
+//
+// > │ text {{ ] }}
+//   │         ^
 ```

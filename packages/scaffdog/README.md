@@ -20,6 +20,7 @@ Multiple files can be output in a document, and flexible scaffolding is possible
 
 - :dog: [Features](#features)
 - :feet: [Getting Started](#getting-started)
+- :bellhop_bell: [Requirements](#requirements)
   - [Installation](#installation)
   - [Quick Start](#quick-start)
 - :fire: [Migration](#migration)
@@ -56,6 +57,10 @@ Multiple files can be output in a document, and flexible scaffolding is possible
   - Provide minimum necessary functions in built-in.
 - :rocket: **Ready to use**
   - You can quickly start using `$ scaffdog init`.
+
+## Requirements
+
+- Node.js v12.10 +
 
 ## Getting Started
 
