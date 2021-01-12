@@ -195,9 +195,8 @@ export default createCommand({
   const skips: Set<File> = new Set();
 
   if (options['dry-run']) {
-    logger.log('');
-
     files.forEach((file) => {
+      logger.log('');
       logger.log(
         formatFile(file, {
           columns: size.columns,
