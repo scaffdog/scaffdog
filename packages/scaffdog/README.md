@@ -171,10 +171,10 @@ module.exports = {
 
     // Using Helper Registry
     (registry) => {
-      registry.set('padstart', (context, value, str) =>
+      registry.set('padstart', (context, value, size, str) =>
         value.padStart(size, str || ' '),
       );
-      registry.set('padend', (context, value, str) =>
+      registry.set('padend', (context, value, size, str) =>
         value.padEnd(size, str || ' '),
       );
     },
@@ -494,7 +494,7 @@ utils/input.js
 utils-input.js
 ```
 
-Defined a variable called `out` which is a processed version of` output.path`. This is made up of some magic.
+Defined a variable called `out` which is a processed version of `output.path`. This is made up of some magic.
 
 1. Save the calculation result to `key` with `define` helper function.
 1. Convert to empty string with `noop` helper function so that the result is not output.
