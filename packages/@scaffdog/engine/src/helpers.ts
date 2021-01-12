@@ -65,5 +65,5 @@ helpers.set('noop', () => '');
 
 helpers.set('define', (ctx: Context, v: string, key: string) => {
   ctx.variables.set(key, v);
-  return v;
+  return '';
 });

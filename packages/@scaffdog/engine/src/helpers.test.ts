@@ -87,14 +87,14 @@ test(
   'define - basic',
   equals,
   context,
-  `{{ define "value" "key" }} key = {{ key }}`,
-  `value key = value`,
+  `{{ define "value" "key" -}} key = {{ key }}`,
+  `key = value`,
 );
 
 test(
   'define - chain',
   equals,
   context,
-  `{{ "value" | define "key" }} key = {{ key }}`,
-  `value key = value`,
+  `{{ "value" | define "key" -}} key = {{ key }}`,
+  `key = value`,
 );

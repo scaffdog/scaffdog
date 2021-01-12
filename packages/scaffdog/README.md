@@ -480,7 +480,7 @@ However, it is possible to define variables in combination with helper functions
 See the following example.
 
 ```markdown
-{{- output.path | replace "^src" "" | define "out" | noop -}}
+{{- output.path | replace "^src/" "" | define "out" -}}
 {{ output.path }}
 {{ out }}
 {{ out | replace "/" "-" }}
@@ -496,8 +496,7 @@ utils-input.js
 
 Defined a variable called `out` which is a processed version of `output.path`. This is made up of some magic.
 
-1. Save the calculation result to `key` with `define` helper function.
-1. Convert to empty string with `noop` helper function so that the result is not output.
+1. Save the calculation result to `out` with `define` helper function.
 1. The variable definition tag trims whitespaces. (use `{{-` and `-}}`)
 
 </details>
