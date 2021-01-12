@@ -43,6 +43,36 @@ content
   });
 });
 
+test('parseDocument - valid (multiple output)', (t) => {
+  const result = parseDocument(
+    'path',
+    `
+---
+name: 'name'
+root: 'root'
+output: ['a', 'b']
+---
+
+# title.txt
+
+\`\`\`
+content
+\`\`\`
+`.trim(),
+  );
+
+  t.deepEqual(result, {
+    ...createPartialDocument('path'),
+    output: ['a', 'b'],
+    templates: [
+      {
+        filename: 'title.txt',
+        content: 'content',
+      },
+    ],
+  });
+});
+
 test('parseDocument - valid (full)', (t) => {
   const result = parseDocument(
     'path',

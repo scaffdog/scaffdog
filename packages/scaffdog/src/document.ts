@@ -30,7 +30,7 @@ const questionSchema = z.union([
 const attrSchema = z.object({
   name: z.string(),
   root: z.string(),
-  output: z.string(),
+  output: z.union([z.string(), z.array(z.string())]),
   ignore: z.array(z.string()).optional(),
   questions: z.record(questionSchema).optional(),
 });

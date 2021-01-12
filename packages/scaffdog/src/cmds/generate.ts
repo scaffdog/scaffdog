@@ -79,19 +79,27 @@ export default createCommand({
   logger.debug('found document: %O', doc);
 
   // dist
-  let dirs: string[] = [];
-  if (globby.hasMagic(doc.output)) {
-    dirs = await globby(doc.output, {
-      cwd: path.resolve(cwd, doc.root),
-      onlyDirectories: true,
-      dot: true,
-      unique: true,
-    });
+  const directories = new Set([doc.root]);
+  const output = typeof doc.output === 'string' ? [doc.output] : doc.output;
 
-    dirs = [doc.root, ...dirs.map((dir) => path.join(doc.root, dir))];
-  } else {
-    dirs = Array.from(new Set([doc.root, path.join(doc.root, doc.output)]));
+  for (const pattern of output) {
+    if (globby.hasMagic(pattern)) {
+      const found = await globby(pattern, {
+        cwd: path.resolve(cwd, doc.root),
+        onlyDirectories: true,
+        dot: true,
+        unique: true,
+      });
+
+      found.forEach((dir) => {
+        directories.add(dir);
+      });
+    } else {
+      directories.add(pattern);
+    }
   }
+
+  let dirs = Array.from(directories);
 
   logger.debug('found directories: %O', dirs);
 
