@@ -1,11 +1,11 @@
 {
-  "extends": ["config:base"],
+  "extends": ["config:base", "group:typescript-eslintMonorepo"],
   "timezone": "Asia/Tokyo",
-  "assignees": ["tsuyoshiwada"],
-  "labels": ["dependencies :package:"],
+  "labels": ["A-dependencies"],
+  "baseBranches": ["canary"],
   "unpublishSafe": true,
-  "semanticCommits": true,
-  "semanticCommitType": "update",
-  "semanticCommitScope": null,
+  "semanticCommits": "auto",
+  "semanticCommitType": "chore",
+  "semanticCommitScope": "parentDir",
   "ignoreDeps": []
 }
