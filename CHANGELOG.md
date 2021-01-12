@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-canary.6](https://github.com/cats-oss/scaffdog/compare/v1.0.0-canary.5...v1.0.0-canary.6) (2021-01-12)
+
+### Features
+
+- **scaffdog:** improve dry-run output ([67d2977](https://github.com/cats-oss/scaffdog/commit/67d2977f311987a510bf9c0663acb85c99ec49e6))
+- **scaffdog:** support multiple output ([7410dc4](https://github.com/cats-oss/scaffdog/commit/7410dc4db2b7cacbd1beea461343696b01b7f534))
+
 # [1.0.0-canary.5](https://github.com/cats-oss/scaffdog/compare/v1.0.0-canary.4...v1.0.0-canary.5) (2021-01-12)
 
 **Note:** Version bump only for package scaffdog
