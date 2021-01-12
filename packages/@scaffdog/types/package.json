@@ -1,6 +1,6 @@
 {
   "name": "@scaffdog/types",
-  "version": "1.0.0-canary.4",
+  "version": "1.0.0-canary.5",
   "description": "scaffdog's type declarations.",
   "keywords": [
     "scaffdog",
@@ -32,5 +32,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "gitHead": "14824585829ad0b2093ef44b30f36fce3f4fd682"
 }

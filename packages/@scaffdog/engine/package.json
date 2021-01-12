@@ -1,6 +1,6 @@
 {
   "name": "@scaffdog/engine",
-  "version": "1.0.0-canary.4",
+  "version": "1.0.0-canary.5",
   "description": "A module of scaffdog template engine.",
   "keywords": [
     "scaffdog",
@@ -29,7 +29,7 @@
     "test": "ava"
   },
   "dependencies": {
-    "@scaffdog/error": "1.0.0-canary.4",
+    "@scaffdog/error": "1.0.0-canary.5",
     "change-case": "^4.1.2",
     "dayjs": "^1.10.3",
     "esprima": "^4.0.1",
@@ -37,10 +37,11 @@
     "safe-eval": "^0.4.1"
   },
   "devDependencies": {
-    "@scaffdog/types": "1.0.0-canary.4",
+    "@scaffdog/types": "1.0.0-canary.5",
     "@types/esprima": "^4.0.2"
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "gitHead": "14824585829ad0b2093ef44b30f36fce3f4fd682"
 }
