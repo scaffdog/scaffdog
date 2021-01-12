@@ -13,6 +13,7 @@ if [[ -z "$NPM_TOKEN" ]]; then
 fi
 
 echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+echo $(npm whoami)
 
 if [[ $(git describe --exact-match 2> /dev/null || :) =~ -canary ]]; then
   echo "Publishing canary"
