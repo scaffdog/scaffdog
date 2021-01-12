@@ -1,22 +1,19 @@
 import * as esprima from 'esprima';
 import { error } from '@scaffdog/error';
-import type { AnyToken, Loc, Token } from './tokens';
+import type { SourceLocation, SourcePosition } from '@scaffdog/types';
+import type { AnyToken, Token } from './tokens';
 import { createToken } from './tokens';
 
 type EsprimaToken = {
   type: string;
   value: string;
-  loc: {
-    start: Loc;
-    end: Loc;
-  };
+  loc: SourceLocation;
 };
 
-function unexpected(input: string, loc: Loc): never {
+function unexpected(input: string, loc: SourceLocation): never {
   throw error(`unexpected token`, {
     source: input,
-    start: loc,
-    end: loc,
+    loc,
   });
 }
 
@@ -26,16 +23,20 @@ const unclosed = (input: string, tokens: AnyToken[]) => {
 
   throw error('unclosed tag', {
     source: input,
-    start: last != null ? last.start : { line: 1, column: 1 },
-    end: last != null ? last.end : { line: 1, column: 1 },
+    loc:
+      last != null
+        ? last.loc
+        : {
+            start: { line: 1, column: 1 },
+            end: { line: 1, column: 1 },
+          },
   });
 };
 
 const unopened = (input: string, token: Token<'CLOSE_TAG'>) => {
   throw error('unopend tag', {
     source: input,
-    start: token.start,
-    end: token.end,
+    loc: token.loc,
   });
 };
 
@@ -44,47 +45,53 @@ const parseNumeric = (value: string) => Number(value);
 type TokenizationContext = {
   source: string;
   input: string;
-  loc: Loc;
+  pos: SourcePosition;
 };
 
-const tokenizeUsingEsprima = ({ source, input, loc }: TokenizationContext) => {
+const tokenizeUsingEsprima = ({ source, input, pos }: TokenizationContext) => {
   try {
     return esprima.tokenize(input, { loc: true }) as EsprimaToken[];
   } catch (e) {
+    const p = {
+      line: pos.line + e.lineNumber - 1,
+      column: pos.column + e.index - input.length,
+    };
+
     unexpected(source, {
-      line: loc.line + e.lineNumber - 1,
-      column: loc.column + e.index - input.length,
+      start: p,
+      end: p,
     });
   }
 };
 
-const tokenizeInTag = ({ source, input, loc }: TokenizationContext) => {
+const tokenizeInTag = ({ source, input, pos }: TokenizationContext) => {
   const output = [];
-  const tokens = tokenizeUsingEsprima({ source, input, loc });
+  const tokens = tokenizeUsingEsprima({ source, input, pos });
 
   const size = input.length;
   const length = tokens.length;
-  let pos = 0;
+  let i = 0;
 
   const endOfSource = (index: number) => index + 1 > length;
-  const lookahead = () => (endOfSource(pos + 1) ? null : tokens[pos + 1]);
+  const lookahead = () => (endOfSource(i + 1) ? null : tokens[i + 1]);
 
-  while (!endOfSource(pos)) {
-    const token = tokens[pos];
+  while (!endOfSource(i)) {
+    const token = tokens[i];
 
-    const start: Loc = {
-      line: loc.line - (token.loc.start.line - 1),
-      column: loc.column - size + token.loc.start.column,
-    };
-
-    const end: Loc = {
-      line: loc.line - (token.loc.end.line - 1),
-      column: loc.column - size + token.loc.end.column - 1,
+    const loc: SourceLocation = {
+      start: {
+        line: pos.line - (token.loc.start.line - 1),
+        column: pos.column - size + token.loc.start.column,
+      },
+      end: {
+        line: pos.line - (token.loc.end.line - 1),
+        column: pos.column - size + token.loc.end.column - 1,
+      },
     };
 
     switch (token.type) {
       case 'Null':
-        output.push(createToken('NULL', null, start, end));
+        output.push(createToken('NULL', null, loc));
         break;
 
       case 'String':
@@ -92,33 +99,30 @@ const tokenizeInTag = ({ source, input, loc }: TokenizationContext) => {
           createToken(
             'STRING',
             token.value.slice(1, token.value.length - 1),
-            start,
-            end,
+            loc,
           ),
         );
         break;
 
       case 'Boolean':
-        output.push(createToken('BOOLEAN', token.value === 'true', start, end));
+        output.push(createToken('BOOLEAN', token.value === 'true', loc));
         break;
 
       case 'Numeric':
         if (token.value.startsWith('.')) {
           unexpected(source, loc);
         }
-        output.push(
-          createToken('NUMBER', parseNumeric(token.value), start, end),
-        );
+        output.push(createToken('NUMBER', parseNumeric(token.value), loc));
         break;
 
       case 'Identifier':
         switch (token.value) {
           case 'undefined':
-            output.push(createToken('UNDEFINED', undefined, start, end));
+            output.push(createToken('UNDEFINED', undefined, loc));
             break;
 
           default:
-            output.push(createToken('IDENT', token.value, start, end));
+            output.push(createToken('IDENT', token.value, loc));
         }
         break;
 
@@ -133,35 +137,37 @@ const tokenizeInTag = ({ source, input, loc }: TokenizationContext) => {
                   'NUMBER',
                   parseNumeric(`${token.value}${next.value}`),
                   {
-                    line: loc.line - (next.loc.start.line - 1),
-                    column: loc.column - size + next.loc.start.column - 1,
-                  },
-                  {
-                    line: loc.line - (next.loc.end.line - 1),
-                    column: loc.column - size + next.loc.end.column - 1,
+                    start: {
+                      line: pos.line - (next.loc.start.line - 1),
+                      column: pos.column - size + next.loc.start.column - 1,
+                    },
+                    end: {
+                      line: pos.line - (next.loc.end.line - 1),
+                      column: pos.column - size + next.loc.end.column - 1,
+                    },
                   },
                 ),
               );
-              pos++;
+              i++;
             } else {
               unexpected(source, loc);
             }
             break;
 
           case '|':
-            output.push(createToken('PIPE', '|', start, end));
+            output.push(createToken('PIPE', '|', loc));
             break;
 
           case '.':
-            output.push(createToken('DOT', '.', start, end));
+            output.push(createToken('DOT', '.', loc));
             break;
 
           case '[':
-            output.push(createToken('OPEN_BRACKET', '[', start, end));
+            output.push(createToken('OPEN_BRACKET', '[', loc));
             break;
 
           case ']':
-            output.push(createToken('CLOSE_BRACKET', ']', start, end));
+            output.push(createToken('CLOSE_BRACKET', ']', loc));
             break;
 
           default:
@@ -173,7 +179,7 @@ const tokenizeInTag = ({ source, input, loc }: TokenizationContext) => {
         unexpected(source, loc);
     }
 
-    pos++;
+    i++;
   }
 
   return output;
@@ -183,40 +189,42 @@ export const tokenize = (input: string): AnyToken[] => {
   const source = Array.from(input);
   const length = source.length;
 
-  const loc: Loc = { line: 1, column: 1 };
+  const pos: SourcePosition = { line: 1, column: 1 };
   const output: AnyToken[] = [];
-  const buffer: string[] = [];
-  let bufLoc: Loc | null = null;
+  const buf: string[] = [];
+  let bufPos: SourcePosition | null = null;
   let inTag = false;
-  let pos = 0;
+  let i = 0;
 
   const endOfSource = (index: number) => index + 1 > length;
-  const lookahead = (n = 1) => (endOfSource(pos + n) ? '' : source[pos + n]);
+  const lookahead = (n = 1) => (endOfSource(i + n) ? '' : source[i + n]);
 
-  const buf2str = () => buffer.join('');
+  const buf2str = () => buf.join('');
 
   const consumeBuffer = () => {
-    if (buffer.length > 0) {
+    if (buf.length > 0) {
       output.push(
-        createToken(
-          'STRING',
-          buf2str(),
-          bufLoc != null
-            ? bufLoc
-            : {
-                line: 1,
-                column: 1,
-              },
-          { ...loc, column: loc.column - 1 },
-        ),
+        createToken('STRING', buf2str(), {
+          start:
+            bufPos != null
+              ? bufPos
+              : {
+                  line: 1,
+                  column: 1,
+                },
+          end: {
+            ...pos,
+            column: pos.column - 1,
+          },
+        }),
       );
-      buffer.length = 0;
-      bufLoc = null;
+      buf.length = 0;
+      bufPos = null;
     }
   };
 
-  while (!endOfSource(pos)) {
-    const str = source[pos];
+  while (!endOfSource(i)) {
+    const str = source[i];
 
     switch (str) {
       case '{':
@@ -227,57 +235,53 @@ export const tokenize = (input: string): AnyToken[] => {
 
           inTag = true;
           consumeBuffer();
-          pos++;
-          loc.column++;
+          i++;
+          pos.column++;
 
           if (lookahead() === '-') {
             output.push(
-              createToken(
-                'OPEN_TAG',
-                '{{-',
-                {
-                  ...loc,
-                  column: loc.column - 1,
+              createToken('OPEN_TAG', '{{-', {
+                start: {
+                  ...pos,
+                  column: pos.column - 1,
                 },
-                {
-                  ...loc,
-                  column: loc.column + 1,
+                end: {
+                  ...pos,
+                  column: pos.column + 1,
                 },
-              ),
+              }),
             );
-            pos++;
-            loc.column++;
+            i++;
+            pos.column++;
           } else {
             output.push(
-              createToken(
-                'OPEN_TAG',
-                '{{',
-                {
-                  ...loc,
-                  column: loc.column - 1,
+              createToken('OPEN_TAG', '{{', {
+                start: {
+                  ...pos,
+                  column: pos.column - 1,
                 },
-                {
-                  ...loc,
+                end: {
+                  ...pos,
                 },
-              ),
+              }),
             );
           }
         } else {
-          buffer.push(str);
+          buf.push(str);
         }
         break;
 
       case '-':
         if (lookahead() === '}' && lookahead(2) === '}') {
-          const close = createToken(
-            'CLOSE_TAG',
-            '-}}',
-            { ...loc },
-            {
-              ...loc,
-              column: loc.column + 2,
+          const close = createToken('CLOSE_TAG', '-}}', {
+            start: {
+              ...pos,
             },
-          );
+            end: {
+              ...pos,
+              column: pos.column + 2,
+            },
+          });
 
           if (!inTag) {
             unopened(input, close);
@@ -285,27 +289,27 @@ export const tokenize = (input: string): AnyToken[] => {
 
           inTag = false;
           output.push(
-            ...tokenizeInTag({ source: input, input: buf2str(), loc }),
+            ...tokenizeInTag({ source: input, input: buf2str(), pos }),
             close,
           );
-          pos += 2;
-          buffer.length = 0;
+          i += 2;
+          buf.length = 0;
         } else {
-          buffer.push(str);
+          buf.push(str);
         }
         break;
 
       case '}':
         if (lookahead() === '}') {
-          const close = createToken(
-            'CLOSE_TAG',
-            '}}',
-            { ...loc },
-            {
-              ...loc,
-              column: loc.column + 1,
+          const close = createToken('CLOSE_TAG', '}}', {
+            start: {
+              ...pos,
             },
-          );
+            end: {
+              ...pos,
+              column: pos.column + 1,
+            },
+          });
 
           if (!inTag) {
             unopened(input, close);
@@ -313,28 +317,28 @@ export const tokenize = (input: string): AnyToken[] => {
 
           inTag = false;
           output.push(
-            ...tokenizeInTag({ source: input, input: buf2str(), loc }),
+            ...tokenizeInTag({ source: input, input: buf2str(), pos }),
             close,
           );
-          pos++;
-          loc.column++;
-          buffer.length = 0;
+          i++;
+          pos.column++;
+          buf.length = 0;
         } else {
-          buffer.push(str);
+          buf.push(str);
         }
         break;
 
       default:
-        buffer.push(str);
+        buf.push(str);
     }
 
     if (str === '\n') {
-      loc.line++;
-      loc.column = 0;
+      pos.line++;
+      pos.column = 0;
     }
 
-    loc.column++;
-    pos++;
+    pos.column++;
+    i++;
   }
 
   if (inTag) {

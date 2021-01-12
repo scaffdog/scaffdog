@@ -20,6 +20,7 @@ const valid = (
       variables: new Map(variables),
       helpers: new Map(helpers),
     }),
+    input,
   );
 
   const output = compiler.compile(parser.parse());
@@ -40,6 +41,7 @@ const invalid = (
       variables: new Map(variables),
       helpers: new Map(helpers),
     }),
+    input,
   );
 
   t.throws(() => {

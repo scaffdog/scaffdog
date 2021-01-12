@@ -13,12 +13,10 @@ import {
 import type { AnyToken, Token } from './tokens';
 import { createToken } from './tokens';
 
-const eofToken = createToken(
-  'EOF',
-  null,
-  { line: 0, column: 0 },
-  { line: 0, column: 0 },
-);
+const eofToken = createToken('EOF', null, {
+  start: { line: 0, column: 0 },
+  end: { line: 0, column: 0 },
+});
 
 export class Parser {
   private _tokens: AnyToken[];
@@ -46,7 +44,7 @@ export class Parser {
           break;
 
         case 'STRING':
-          ast.push(new RawExpr(this._current.literal));
+          ast.push(new RawExpr(this._current.literal, this._current.loc));
           break;
       }
 
@@ -97,7 +95,9 @@ export class Parser {
 
             case 'DOT':
             case 'OPEN_BRACKET': {
-              const object = new IdentExpr(new Ident(this._current.literal));
+              const object = new IdentExpr(
+                new Ident(this._current.literal, this._current.loc),
+              );
               this._bump();
               expressions.push(this._parseMemberExpr(object));
               break;
@@ -105,10 +105,14 @@ export class Parser {
 
             default:
               if (passedPipe) {
-                expressions.push(new CallExpr(this._current.literal, []));
+                expressions.push(
+                  new CallExpr(this._current.literal, [], this._current.loc),
+                );
               } else {
                 expressions.push(
-                  new IdentExpr(new Ident(this._current.literal)),
+                  new IdentExpr(
+                    new Ident(this._current.literal, this._current.loc),
+                  ),
                 );
               }
           }
@@ -119,7 +123,11 @@ export class Parser {
         case 'BOOLEAN':
         case 'STRING':
         case 'NUMBER':
-          expressions.push(new LiteralExpr(new Literal(this._current.literal)));
+          expressions.push(
+            new LiteralExpr(
+              new Literal(this._current.literal, this._current.loc),
+            ),
+          );
           break;
 
         case 'PIPE':
@@ -171,11 +179,15 @@ export class Parser {
       switch (this._current.type) {
         case 'STRING':
         case 'NUMBER':
-          property = new LiteralExpr(new Literal(this._current.literal));
+          property = new LiteralExpr(
+            new Literal(this._current.literal, this._current.loc),
+          );
           break;
 
         case 'IDENT':
-          property = new IdentExpr(new Ident(this._current.literal));
+          property = new IdentExpr(
+            new Ident(this._current.literal, this._current.loc),
+          );
           break;
 
         default:
@@ -205,7 +217,9 @@ export class Parser {
     } else {
       switch (this._current.type) {
         case 'IDENT':
-          property = new LiteralExpr(new Literal(this._current.literal));
+          property = new LiteralExpr(
+            new Literal(this._current.literal, this._current.loc),
+          );
           break;
 
         default:
@@ -227,21 +241,28 @@ export class Parser {
 
   private _parseCallExpr() {
     const name = this._current.literal;
+    const loc = this._current.loc;
     const args: Node[] = [];
 
     this._bump();
 
     while (!this._endOfTokens()) {
       if (this._current.type === 'IDENT') {
-        args.push(new IdentExpr(new Ident(this._current.literal)));
+        args.push(
+          new IdentExpr(new Ident(this._current.literal, this._current.loc)),
+        );
       } else {
-        args.push(new LiteralExpr(new Literal(this._current.literal)));
+        args.push(
+          new LiteralExpr(
+            new Literal(this._current.literal, this._current.loc),
+          ),
+        );
       }
 
       switch (this._next.type) {
         case 'CLOSE_TAG':
         case 'PIPE':
-          return new CallExpr(name as string, args);
+          return new CallExpr(name as string, args, loc);
         default:
           this._bump();
       }
@@ -253,8 +274,7 @@ export class Parser {
   private _error(msg: string, token: AnyToken) {
     return error(msg, {
       source: this._source,
-      start: token.start,
-      end: token.end,
+      loc: token.loc,
     });
   }
 }

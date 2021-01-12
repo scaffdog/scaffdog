@@ -1,3 +1,5 @@
+import type { SourceLocation } from '@scaffdog/types';
+
 export type TokenType =
   | 'ILLEGAL'
   | 'EOF'
@@ -31,16 +33,10 @@ export type TokenMap = {
   CLOSE_TAG: string;
 };
 
-export type Loc = {
-  line: number;
-  column: number;
-};
-
 export type Token<T extends TokenType> = {
   type: T;
   literal: TokenMap[T];
-  start: Loc;
-  end: Loc;
+  loc: SourceLocation;
 };
 
 export type AnyToken =
@@ -62,11 +58,9 @@ export type AnyToken =
 export const createToken = <T extends TokenType>(
   type: T,
   literal: TokenMap[T],
-  start: Loc,
-  end: Loc,
+  loc: SourceLocation,
 ): Token<T> => ({
   type,
   literal,
-  start,
-  end,
+  loc,
 });

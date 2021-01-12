@@ -5,7 +5,7 @@ import { tokenize } from './tokenize';
 
 export const compile = (input: string, context: Context): string => {
   const parser = new Parser(tokenize(input), input);
-  const compiler = new Compiler(context);
+  const compiler = new Compiler(context, input);
   const ast = parser.parse();
   const output = compiler.compile(ast);
 

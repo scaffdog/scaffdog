@@ -1,3 +1,4 @@
+import { error } from '@scaffdog/error';
 import type { Context, Variable } from '@scaffdog/types';
 import { isPlainObject } from 'is-plain-object';
 import type { Node } from './ast';
@@ -12,9 +13,11 @@ import {
 
 export class Compiler {
   private _context: Context;
+  private _source: string;
 
-  public constructor(context: Context) {
+  public constructor(context: Context, source: string) {
     this._context = context;
+    this._source = source;
   }
 
   public compile(ast: Node[]): string {
@@ -84,7 +87,7 @@ export class Compiler {
       return helpers.get(expr.ident.name)!(this._context);
     }
 
-    throw new Error(`"${expr.ident.name}" identifier does not exist.`);
+    throw this._error(`"${expr.ident.name}" identifier does not exist`, expr);
   }
 
   private _compileMemberExpr(expr: MemberExpr): Variable {
@@ -107,14 +110,17 @@ export class Compiler {
           break;
 
         default:
-          throw new Error(`[${expr.property.literal}] is invalid property`);
+          throw this._error(
+            `[${expr.property.literal}] is invalid property`,
+            expr.property,
+          );
       }
     } else if (expr.property instanceof MemberExpr) {
       property = this._compileMemberExpr(expr.property);
     }
 
     if (object === null || property === null) {
-      throw new Error(`"${expr.toString()}" is invalid member access`);
+      throw this._error(`"${expr.toString()}" is invalid member access`, expr);
     }
 
     switch (typeof property) {
@@ -145,7 +151,7 @@ export class Compiler {
     const helper = helpers.get(expr.name);
 
     if (helper == null) {
-      throw new Error(`"${expr.name}" function does not exist.`);
+      throw this._error(`"${expr.name}" function does not exist`, expr);
     }
 
     const args: any[] = expr.args.map((expr) => {
@@ -159,9 +165,16 @@ export class Compiler {
         return this._compileCallExpr(expr);
       }
 
-      throw new Error(`"${expr}" is invalid argument`);
+      throw this._error(`"${expr}" is invalid argument`, expr);
     });
 
     return helper(this._context, ...args);
+  }
+
+  private _error(msg: string, node: Node) {
+    return error(msg, {
+      source: this._source,
+      loc: node.loc,
+    });
   }
 }

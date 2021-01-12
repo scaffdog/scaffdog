@@ -1,16 +1,11 @@
+import type { SourceLocation } from '@scaffdog/types';
 import chalk from 'chalk';
 
 const NEWLINE = /\r\n|[\n\r\u2028\u2029]/;
 
-export type ErrorLoc = {
-  line: number;
-  column: number;
-};
-
 export type ScaffdogErrorOptions = {
   source: string;
-  start: ErrorLoc;
-  end: ErrorLoc;
+  loc: SourceLocation;
   color: boolean;
 };
 
@@ -26,11 +21,10 @@ export class ScaffdogError extends Error {
       ...options,
     };
 
-    if (opts.source && opts.start && opts.end) {
+    if (opts.source && opts.loc) {
       this.message = this._format(message, {
         source: opts.source,
-        start: opts.start,
-        end: opts.end,
+        loc: opts.loc,
         color: !!opts.color,
       });
     }
@@ -60,23 +54,24 @@ export class ScaffdogError extends Error {
       red(line.substring(s - 1, e)) +
       line.substring(e);
 
-    const base = Math.max(options.start.line - 3, 0);
+    const base = Math.max(options.loc.start.line - 3, 0);
     const lines = options.source.split(NEWLINE);
 
     lines.splice(0, base);
-    lines.splice(options.end.line - options.start.line + 5);
+    lines.splice(options.loc.end.line - options.loc.start.line + 5);
 
     const start = {
-      line: options.start.line - 1 - base,
-      column: options.start.column,
+      line: options.loc.start.line - 1 - base,
+      column: options.loc.start.column,
     };
 
     const end = {
-      line: options.end.line - 1 - base,
-      column: options.end.column,
+      line: options.loc.end.line - 1 - base,
+      column: options.loc.end.column,
     };
 
-    const output: string[] = [];
+    const output = [`   ${red(`${message}:`)}`, ''];
+    const gutter = chk.gray('│');
 
     lines.forEach((line, index) => {
       if (start.line <= index && index <= end.line) {
@@ -88,15 +83,17 @@ export class ScaffdogError extends Error {
         };
 
         output.push(
-          emphasis(line, col.start, col.end),
-          space(col.start - 1) + mark(col.end - col.start + 1),
+          ` ${red('>')} ${gutter} ` + emphasis(line, col.start, col.end),
+          `   ${gutter} ` +
+            space(col.start - 1) +
+            mark(col.end - col.start + 1),
         );
       } else {
-        output.push(line);
+        output.push(`   ${gutter} ${line}`);
       }
     });
 
-    return [`${red(message)}:`, output.join('\n')].join('\n\n');
+    return output.join('\n');
   }
 }
 
