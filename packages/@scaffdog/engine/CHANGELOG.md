@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-canary.8](https://github.com/cats-oss/scaffdog/compare/v1.0.0-canary.7...v1.0.0-canary.8) (2021-01-12)
+
+**Note:** Version bump only for package @scaffdog/engine
+
 # [1.0.0-canary.7](https://github.com/cats-oss/scaffdog/compare/v1.0.0-canary.6...v1.0.0-canary.7) (2021-01-12)
 
 **Note:** Version bump only for package @scaffdog/engine

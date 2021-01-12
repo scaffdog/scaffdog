@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-canary.8](https://github.com/cats-oss/scaffdog/compare/v1.0.0-canary.7...v1.0.0-canary.8) (2021-01-12)
+
+### Bug Fixes
+
+- **scaffdog:** fix searching directories behavior when using magic pattern ([8052b4b](https://github.com/cats-oss/scaffdog/commit/8052b4baf65dbfa264bb6af813b7193bf1525332))
+
 # [1.0.0-canary.7](https://github.com/cats-oss/scaffdog/compare/v1.0.0-canary.6...v1.0.0-canary.7) (2021-01-12)
 
 ### Bug Fixes

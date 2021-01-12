@@ -1,6 +1,6 @@
 {
   "name": "@scaffdog/error",
-  "version": "1.0.0-canary.7",
+  "version": "1.0.0-canary.8",
   "description": "A utility module of scaffdog error.",
   "keywords": [
     "scaffdog",
@@ -32,7 +32,7 @@
     "chalk": "^4.1.0"
   },
   "devDependencies": {
-    "@scaffdog/types": "1.0.0-canary.7"
+    "@scaffdog/types": "1.0.0-canary.8"
   },
   "publishConfig": {
     "access": "public"
