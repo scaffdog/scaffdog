@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-canary.7](https://github.com/cats-oss/scaffdog/compare/v1.0.0-canary.6...v1.0.0-canary.7) (2021-01-12)
+
+### Bug Fixes
+
+- **scaffdog:** fix output field handling ([4b90771](https://github.com/cats-oss/scaffdog/commit/4b90771e36cf39f70434401d289ec051dc5bfc0d))
+
 # [1.0.0-canary.6](https://github.com/cats-oss/scaffdog/compare/v1.0.0-canary.5...v1.0.0-canary.6) (2021-01-12)
 
 ### Features
