@@ -84,11 +84,12 @@ export default createCommand({
 
   for (const pattern of output) {
     if (globby.hasMagic(pattern)) {
-      const found = await globby(pattern, {
-        cwd: path.resolve(cwd, doc.root),
+      const found = await globby(path.join(doc.root, pattern), {
+        cwd,
         onlyDirectories: true,
         dot: true,
         unique: true,
+        gitignore: true,
       });
 
       found.forEach((dir) => {
