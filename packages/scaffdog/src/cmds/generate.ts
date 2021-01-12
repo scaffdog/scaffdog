@@ -95,7 +95,7 @@ export default createCommand({
         directories.add(dir);
       });
     } else {
-      directories.add(pattern);
+      directories.add(path.join(doc.root, pattern));
     }
   }
 
