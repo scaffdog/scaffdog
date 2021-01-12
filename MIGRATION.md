@@ -59,6 +59,29 @@ The `description` field has been removed.
   ---
 ```
 
+##### `output`
+
+The `output` field is backwards compatible.  
+As a behavior addition, you can now also receive string arrays.
+
+```markdown
+---
+name: 'utility'
+root: '.'
+output: ['**/internal', 'utilities/**/*']
+---
+```
+
+or
+
+```markdown
+---
+name: 'utility'
+root: '.'
+output: '(**/internal|utilities/**/*)'
+---
+```
+
 #### Variables
 
 The built-in variables of scaffdog have changed significantly. The changed variables are:
