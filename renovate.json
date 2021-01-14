@@ -9,5 +9,5 @@
   "unpublishSafe": true,
   "semanticCommits": "auto",
   "semanticCommitType": "chore",
-  "semanticCommitScope": "parentDir"
+  "semanticCommitScope": "{{parentDir}}"
 }
