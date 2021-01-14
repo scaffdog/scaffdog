@@ -1,11 +1,13 @@
 {
-  "extends": ["config:base", "group:typescript-eslintMonorepo"],
-  "timezone": "Asia/Tokyo",
+  "extends": [
+    "config:js-lib",
+    "group:typescript-eslintMonorepo",
+    "group:commitlintMonorepo"
+  ],
   "labels": ["A-dependencies"],
   "baseBranches": ["canary"],
   "unpublishSafe": true,
   "semanticCommits": "auto",
   "semanticCommitType": "chore",
-  "semanticCommitScope": "parentDir",
-  "ignoreDeps": []
+  "semanticCommitScope": "parentDir"
 }
