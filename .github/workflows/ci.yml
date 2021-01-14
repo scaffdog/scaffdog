@@ -34,6 +34,7 @@ jobs:
           name: dist
           path: |
             */*/lib
+            */*/*/lib
             !node_modules
   lint:
     runs-on: ubuntu-latest
