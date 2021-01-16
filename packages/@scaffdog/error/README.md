@@ -23,7 +23,7 @@ const e = error('unexpected token', {
   },
 });
 
-console.log(e.message);
+console.log(e.format());
 
 //   unexpected token:
 //

@@ -17,13 +17,12 @@ const defaults = {
 };
 
 test('default', (t) => {
-  const e = error(message, { ...defaults });
+  const e = error(message);
   t.is(e.message, message);
 });
 
 test('single line - single character', (t) => {
   const e = error(message, {
-    ...defaults,
     source: `{{ @ }}`,
     loc: {
       start: { line: 1, column: 4 },
@@ -32,7 +31,7 @@ test('single line - single character', (t) => {
   });
 
   t.is(
-    e.message,
+    e.format({ ...defaults }),
     `   ${errorMessage}
 
  ${r} ${l} {{ ${red('@')} }}
@@ -42,7 +41,6 @@ test('single line - single character', (t) => {
 
 test('single line - multiple character', (t) => {
   const e = error(message, {
-    ...defaults,
     source: `before {{ after`,
     loc: {
       start: { line: 1, column: 8 },
@@ -51,7 +49,7 @@ test('single line - multiple character', (t) => {
   });
 
   t.is(
-    e.message,
+    e.format({ ...defaults }),
     `   ${errorMessage}
 
  ${r} ${l} before ${red('{{')} after
@@ -61,7 +59,6 @@ test('single line - multiple character', (t) => {
 
 test('multi line', (t) => {
   const e = error(message, {
-    ...defaults,
     source: `1
 2
 3
@@ -77,7 +74,7 @@ test('multi line', (t) => {
   });
 
   t.is(
-    e.message,
+    e.format({ ...defaults }),
     `   ${errorMessage}
 
  ${s} ${l} 4
@@ -91,7 +88,6 @@ test('multi line', (t) => {
 
 test('multi line - cross line', (t) => {
   const e = error(message, {
-    ...defaults,
     source: `1
 2
 3
@@ -107,7 +103,7 @@ test('multi line - cross line', (t) => {
   });
 
   t.is(
-    e.message,
+    e.format({ ...defaults }),
     `   ${errorMessage}
 
  ${s} ${l} 2
@@ -125,7 +121,6 @@ test('multi line - cross line', (t) => {
 
 test('multi line - cross line - 2', (t) => {
   const e = error(message, {
-    ...defaults,
     source: `1
 2
 3
@@ -141,7 +136,7 @@ test('multi line - cross line - 2', (t) => {
   });
 
   t.is(
-    e.message,
+    e.format({ ...defaults }),
     `   ${errorMessage}
 
  ${s} ${l} 2

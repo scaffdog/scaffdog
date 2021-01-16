@@ -3,6 +3,7 @@ import path from 'path';
 import type { File } from '@scaffdog/types';
 import { loadConfig } from '@scaffdog/config';
 import { generate } from '@scaffdog/core';
+import { ScaffdogError } from '@scaffdog/error';
 import globby from 'globby';
 import ansiEscapes from 'ansi-escapes';
 import micromatch from 'micromatch';
@@ -187,9 +188,9 @@ export default createCommand({
       helpers: context.helpers,
     });
   } catch (e) {
-    if (e instanceof Error && e.name === 'ScaffdogError') {
+    if (e instanceof ScaffdogError) {
       logger.error('Compile error');
-      logger.log(indent(e.message, 4));
+      logger.log(indent(e.format({ color: true }), 4));
       logger.log('');
       return 1;
     } else {

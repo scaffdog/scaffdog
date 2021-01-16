@@ -4,30 +4,28 @@ import chalk from 'chalk';
 const NEWLINE = /\r\n|[\n\r\u2028\u2029]/;
 
 export type ScaffdogErrorOptions = {
-  source: string;
-  loc: SourceLocation;
+  source: string | null;
+  loc: SourceLocation | null;
+};
+
+export type ScaffdogErrorFormatOptions = {
   color: boolean;
 };
 
 export class ScaffdogError extends Error {
+  private _options: ScaffdogErrorOptions;
+
   public constructor(
     message: string,
     options: Partial<ScaffdogErrorOptions> = {},
   ) {
     super(message);
 
-    const opts = {
-      color: true,
+    this._options = {
+      source: null,
+      loc: null,
       ...options,
     };
-
-    if (opts.source && opts.loc) {
-      this.message = this._format(message, {
-        source: opts.source,
-        loc: opts.loc,
-        color: !!opts.color,
-      });
-    }
 
     Object.defineProperty(this, 'name', {
       configurable: true,
@@ -41,7 +39,12 @@ export class ScaffdogError extends Error {
     }
   }
 
-  private _format(message: string, options: ScaffdogErrorOptions) {
+  public format(options: Partial<ScaffdogErrorFormatOptions> = {}): string {
+    const { source, loc } = this._options;
+    if (!source || !loc) {
+      return this.message;
+    }
+
     const chk = new chalk.Instance({
       level: options.color ? 1 : 0,
     });
@@ -54,23 +57,23 @@ export class ScaffdogError extends Error {
       red(line.substring(s - 1, e)) +
       line.substring(e);
 
-    const base = Math.max(options.loc.start.line - 3, 0);
-    const lines = options.source.split(NEWLINE);
+    const base = Math.max(loc.start.line - 3, 0);
+    const lines = source.split(NEWLINE);
 
     lines.splice(0, base);
-    lines.splice(options.loc.end.line - options.loc.start.line + 5);
+    lines.splice(loc.end.line - loc.start.line + 5);
 
     const start = {
-      line: options.loc.start.line - 1 - base,
-      column: options.loc.start.column,
+      line: loc.start.line - 1 - base,
+      column: loc.start.column,
     };
 
     const end = {
-      line: options.loc.end.line - 1 - base,
-      column: options.loc.end.column,
+      line: loc.end.line - 1 - base,
+      column: loc.end.column,
     };
 
-    const output = [`   ${red(`${message}:`)}`, ''];
+    const output = [`   ${red(`${this.message}:`)}`, ''];
     const gutter = chk.gray('│');
 
     lines.forEach((line, index) => {
@@ -99,5 +102,5 @@ export class ScaffdogError extends Error {
 
 export const error = (
   message: string,
-  options: Partial<ScaffdogErrorOptions>,
+  options: Partial<ScaffdogErrorOptions> = {},
 ): ScaffdogError => new ScaffdogError(message, options);
