@@ -66,7 +66,7 @@
     "@types/node-emoji": "1.8.1",
     "@types/update-notifier": "5.0.0",
     "@types/wrap-ansi": "3.0.0",
-    "@types/yargs": "15.0.12",
+    "@types/yargs": "15.0.13",
     "strip-ansi": "6.0.0",
     "type-fest": "0.20.2"
   },
