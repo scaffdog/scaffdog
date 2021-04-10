@@ -28,7 +28,7 @@
     "build": "tsc"
   },
   "devDependencies": {
-    "type-fest": "0.20.2"
+    "type-fest": "0.21.3"
   },
   "publishConfig": {
     "access": "public"
