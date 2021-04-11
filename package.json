@@ -24,13 +24,8 @@
     "versionup:cancel": "git tag --points-at @ | xargs -I{} git tag --delete {} && git reset --hard @^",
     "versionup:major": "lerna version major",
     "versionup:minor": "lerna version minor",
-    "versionup:patch": "lerna version patch"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
+    "versionup:patch": "lerna version patch",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "*.{js,jsx,cjs,ts,tsx,css,md,yml,json}": [
@@ -50,7 +45,7 @@
     "eslint": "7.24.0",
     "eslint-config-prettier": "7.2.0",
     "eslint-plugin-import": "2.22.1",
-    "husky": "4.3.7",
+    "husky": "6.0.0",
     "lerna": "4.0.0",
     "lint-staged": "10.5.4",
     "mock-fs": "4.13.0",
