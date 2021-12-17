@@ -1,21 +1,5 @@
 import type { SourceLocation } from '@scaffdog/types';
 
-export type TokenType =
-  | 'ILLEGAL'
-  | 'EOF'
-  | 'NULL'
-  | 'UNDEFINED'
-  | 'BOOLEAN'
-  | 'STRING'
-  | 'NUMBER'
-  | 'IDENT'
-  | 'DOT'
-  | 'OPEN_BRACKET'
-  | 'CLOSE_BRACKET'
-  | 'PIPE'
-  | 'OPEN_TAG'
-  | 'CLOSE_TAG';
-
 export type TokenMap = {
   ILLEGAL: null;
   EOF: null;
@@ -33,27 +17,17 @@ export type TokenMap = {
   CLOSE_TAG: string;
 };
 
+export type TokenType = keyof TokenMap;
+
 export type Token<T extends TokenType> = {
   type: T;
   literal: TokenMap[T];
   loc: SourceLocation;
 };
 
-export type AnyToken =
-  | Token<'ILLEGAL'>
-  | Token<'EOF'>
-  | Token<'NULL'>
-  | Token<'UNDEFINED'>
-  | Token<'BOOLEAN'>
-  | Token<'STRING'>
-  | Token<'NUMBER'>
-  | Token<'IDENT'>
-  | Token<'DOT'>
-  | Token<'OPEN_BRACKET'>
-  | Token<'CLOSE_BRACKET'>
-  | Token<'PIPE'>
-  | Token<'OPEN_TAG'>
-  | Token<'CLOSE_TAG'>;
+export type AnyToken = {
+  [P in TokenType]: Token<P>;
+}[TokenType];
 
 export const createToken = <T extends TokenType>(
   type: T,

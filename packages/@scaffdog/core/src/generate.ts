@@ -1,11 +1,18 @@
 import path from 'path';
 import { compile, createContext, extendContext } from '@scaffdog/engine';
-import type { File, HelperMap, Template, VariableMap } from '@scaffdog/types';
+import type {
+  File,
+  HelperMap,
+  TagPair,
+  Template,
+  VariableMap,
+} from '@scaffdog/types';
 
 export type GenerateOptions = {
   cwd: string;
   root: string;
   helpers: HelperMap;
+  tags?: TagPair;
 };
 
 export type GenerateResult = File[];
@@ -29,6 +36,7 @@ export const generate = (
       cwd: opts.cwd,
       helpers: opts.helpers,
       variables,
+      tags: opts.tags,
     });
 
     const name = compile(template.filename, context);

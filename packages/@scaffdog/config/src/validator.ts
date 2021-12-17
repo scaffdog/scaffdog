@@ -9,6 +9,7 @@ const configSchema = z.object({
   files: z.array(z.string()),
   variables: z.record(variableSchema).optional(),
   helpers: z.array(z.function()).optional(),
+  tags: z.tuple([z.string(), z.string()]).optional(),
 });
 
 export const validateConfig = (maybeConfig: unknown): Config => {

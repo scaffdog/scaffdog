@@ -176,6 +176,7 @@ export default createCommand({
       cwd,
       variables: config.variables,
       helpers: new Map([...config.helpers, ...helpers]),
+      tags: config.tags,
     });
 
     for (const [key, value] of doc.variables) {
@@ -186,6 +187,7 @@ export default createCommand({
       cwd,
       root: dist,
       helpers: context.helpers,
+      tags: context.tags,
     });
   } catch (e) {
     if (e instanceof ScaffdogError) {
