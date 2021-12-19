@@ -52,7 +52,18 @@ export class CLI {
       parser.command(cmd.key, cmd.description, cmd.build);
     }
 
-    const parsed = parser.parse(argv);
+    const parsed = await (async () => {
+      try {
+        return await parser.parse(argv);
+      } catch (e) {
+        this._logger.error(e);
+        return null;
+      }
+    })();
+
+    if (parsed == null) {
+      return 1;
+    }
 
     if (parsed.verbose) {
       this._logger.level = LogLevel.Verbose;
