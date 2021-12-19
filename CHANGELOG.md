@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-canary.0](https://github.com/cats-oss/scaffdog/compare/v1.0.1...v1.1.0-canary.0) (2021-12-19)
+
+### Bug Fixes
+
+- adopt zod v3 ([fdd9ae1](https://github.com/cats-oss/scaffdog/commit/fdd9ae12f7a5a1e47318f5cb32c7d7caf9c69a5f))
+- tweak ([1317737](https://github.com/cats-oss/scaffdog/commit/1317737184f63d274de5057de87caa76aa648f47))
+
+### Features
+
+- add custom tags ([e761c54](https://github.com/cats-oss/scaffdog/commit/e761c546eb3265ef879454d4a29fcc3972397c43))
+
 ## [1.0.1](https://github.com/cats-oss/scaffdog/compare/v1.0.1-canary.0...v1.0.1) (2021-04-11)
 
 **Note:** Version bump only for package scaffdog

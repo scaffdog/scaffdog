@@ -1,6 +1,6 @@
 {
   "name": "@scaffdog/config",
-  "version": "1.0.1",
+  "version": "1.1.0-canary.0",
   "description": "A module to manipulate configs of scaffdog.",
   "keywords": [
     "scaffdog",
@@ -29,7 +29,7 @@
     "test": "ava"
   },
   "dependencies": {
-    "@scaffdog/types": "1.0.1",
+    "@scaffdog/types": "1.1.0-canary.0",
     "zod": "^3.11.6"
   },
   "publishConfig": {
