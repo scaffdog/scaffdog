@@ -38,7 +38,7 @@
     "safe-eval": "^0.4.1"
   },
   "devDependencies": {
-    "@types/esprima": "4.0.2"
+    "@types/esprima": "4.0.3"
   },
   "publishConfig": {
     "access": "public"
