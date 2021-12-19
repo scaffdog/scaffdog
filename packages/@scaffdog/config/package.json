@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@scaffdog/types": "1.0.1",
-    "zod": "^1.11.13"
+    "zod": "^3.11.6"
   },
   "publishConfig": {
     "access": "public"

@@ -11,7 +11,12 @@ test('valid - full', (t) => {
     tags: ['{{', '}}'] as const,
   };
 
-  t.is(validateConfig(config), config);
+  const result = validateConfig(config);
+
+  t.deepEqual(result.files, config.files);
+  t.deepEqual(result.variables, config.variables);
+  t.is(result.helpers?.length, 2); // deep clone
+  t.deepEqual(result.tags, config.tags);
 });
 
 test('valid - partial', (t) => {
@@ -19,7 +24,7 @@ test('valid - partial', (t) => {
     files: ['string'],
   };
 
-  t.is(validateConfig(config), config);
+  t.deepEqual(validateConfig(config), config);
 });
 
 test('invalid - empty', (t) => {
