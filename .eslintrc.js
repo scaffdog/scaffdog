@@ -36,7 +36,6 @@ module.exports = {
     {
       files: ['*.ts', '*.tsx'],
       extends: [
-        'prettier/@typescript-eslint',
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/eslint-recommended',
         'plugin:import/typescript',
