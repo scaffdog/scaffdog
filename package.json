@@ -32,6 +32,10 @@
       "prettier --write"
     ]
   },
+  "resolutions": {
+    "ansi-regex": "5.0.1",
+    "trim-newlines": "3.0.1"
+  },
   "devDependencies": {
     "@commitlint/cli": "15.0.0",
     "@commitlint/config-conventional": "15.0.0",

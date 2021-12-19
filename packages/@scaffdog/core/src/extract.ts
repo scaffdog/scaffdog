@@ -35,7 +35,7 @@ export const extract = (input: string): ExtractResult => {
   visit(ast, (node) => {
     switch (node.type) {
       case 'heading': {
-        if (node.depth !== 1) {
+        if ((node as any).depth !== 1) {
           filename = null;
           break;
         }
