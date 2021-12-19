@@ -1,9 +1,9 @@
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
-      interval: "daily"
-    target-branch: "canary"
+      interval: 'daily'
+    target-branch: 'canary'
     labels:
-      - "A-dependencies"
+      - 'A-dependencies'
