@@ -3721,7 +3721,7 @@ ip@^1.1.5:
   resolved "https://registry.yarnpkg.com/ip/-/ip-1.1.5.tgz#bdded70114290828c0a039e72ef25f5aaec4354a"
   integrity sha1-vd7XARQpCCjAoDnnLvJfWq7ENUo=
 
-irregular-plurals@^3.2.0:
+irregular-plurals@^3.2.0, irregular-plurals@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/irregular-plurals/-/irregular-plurals-3.3.0.tgz#67d0715d4361a60d9fd9ee80af3881c631a31ee2"
   integrity sha512-MVBLKUTangM3EfRPFROhmWQQKRDsrgI83J8GS3jXy+OwYqiR2/aoWndYQ5416jLE3uaGgLH7ncme3X9y09gZ3g==
@@ -5460,6 +5460,13 @@ plur@^4.0.0:
   dependencies:
     irregular-plurals "^3.2.0"
 
+plur@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/plur/-/plur-5.0.0.tgz#97c5864458d5818b6bce8ff873465f8ea31340fc"
+  integrity sha512-ss4dt57ih2p5jIMA+oOsghldeHtpm7pvGgIB92dqLOCPy1CoHeC0FXBdevMUzXI8CsnCfl+ctIdATK0wNdz2Jw==
+  dependencies:
+    irregular-plurals "^3.3.0"
+
 prelude-ls@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
@@ -6534,7 +6541,7 @@ tr46@~0.0.3:
   resolved "https://registry.yarnpkg.com/tr46/-/tr46-0.0.3.tgz#8184fd347dac9cdc185992f3a6622e14b9d9ab6a"
   integrity sha1-gYT9NH2snNwYWZLzpmIuFLnZq2o=
 
-trim-newlines@^3.0.0:
+trim-newlines@3.0.1, trim-newlines@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/trim-newlines/-/trim-newlines-3.0.1.tgz#260a5d962d8b752425b32f3a7db0dcacd176c144"
   integrity sha512-c1PTsA3tYrIsLGkJkzHF+w9F2EyxfXGo4UyJc4pFL++FMjnq0HJS69T3M7d//gKrFKwy429bouPescbjecU+Zw==
