@@ -12,6 +12,8 @@ $ npm install @scaffdog/engine
 
 ## Usage
 
+The following code is a basic example:
+
 ```typescript
 import { compile, createContext } from '@scaffdog/engine';
 
@@ -22,4 +24,18 @@ const context = createContext({
 
 const output = compile(`OUTPUT: {{ name | greet }}`, context);
 // --> "OUTPUT: Hi scaffdog!"
+```
+
+### Custom Tags
+
+You can change the tag delimiter with `context.tags`:
+
+```typescript
+import { compile, createContext } from '@scaffdog/engine';
+
+const context = createContext({
+  tags: ['<%=', '=%>'],
+});
+
+compile(`<%= "custom tag" =%>`, context);
 ```

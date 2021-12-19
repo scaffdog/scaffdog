@@ -8,6 +8,7 @@ test('valid - full', (t) => {
       foo: 'bar',
     },
     helpers: [() => 'str', () => {}],
+    tags: ['{{', '}}'] as const,
   };
 
   t.is(validateConfig(config), config);
@@ -29,9 +30,19 @@ test('invalid - empty', (t) => {
   });
 });
 
-test('invalid - types', (t) => {
+test('invalid - types - files', (t) => {
   const config = {
     files: null,
+  };
+
+  t.throws(() => {
+    validateConfig(config);
+  });
+});
+
+test('invalid - types - tags', (t) => {
+  const config = {
+    tags: [],
   };
 
   t.throws(() => {

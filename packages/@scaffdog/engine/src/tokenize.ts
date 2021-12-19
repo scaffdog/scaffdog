@@ -1,6 +1,7 @@
-import * as esprima from 'esprima';
 import { error } from '@scaffdog/error';
-import type { SourceLocation, SourcePosition } from '@scaffdog/types';
+import type { SourceLocation, SourcePosition, TagPair } from '@scaffdog/types';
+import * as esprima from 'esprima';
+import { defaults } from './syntax';
 import type { AnyToken, Token } from './tokens';
 import { createToken } from './tokens';
 
@@ -185,7 +186,30 @@ const tokenizeInTag = ({ source, input, pos }: TokenizationContext) => {
   return output;
 };
 
-export const tokenize = (input: string): AnyToken[] => {
+export type TokenizeOptions = {
+  tags: TagPair;
+};
+
+export const tokenize = (
+  input: string,
+  options?: Partial<TokenizeOptions>,
+): AnyToken[] => {
+  const opts = {
+    tags: defaults.tags,
+    ...(options ?? {}),
+  };
+
+  const tag = {
+    open: {
+      value: opts.tags[0],
+      length: opts.tags[0].length,
+    },
+    close: {
+      value: opts.tags[1],
+      length: opts.tags[1].length,
+    },
+  };
+
   const source = Array.from(input);
   const length = source.length;
 
@@ -198,6 +222,11 @@ export const tokenize = (input: string): AnyToken[] => {
 
   const endOfSource = (index: number) => index + 1 > length;
   const lookahead = (n = 1) => (endOfSource(i + n) ? '' : source[i + n]);
+
+  const range = (index: number, relative: number) => {
+    const end = index + relative;
+    return endOfSource(end - 1) ? '' : source.slice(index, end).join('');
+  };
 
   const buf2str = () => buf.join('');
 
@@ -225,111 +254,90 @@ export const tokenize = (input: string): AnyToken[] => {
 
   while (!endOfSource(i)) {
     const str = source[i];
+    const open = range(i, tag.open.length);
+    const close = range(i, tag.close.length);
 
-    switch (str) {
-      case '{':
-        if (lookahead() === '{') {
-          if (inTag) {
-            unclosed(input, output);
-          }
+    if (open === tag.open.value) {
+      if (inTag) {
+        unclosed(input, output);
+      }
 
-          inTag = true;
-          consumeBuffer();
-          i++;
-          pos.column++;
+      inTag = true;
+      consumeBuffer();
+      i += tag.open.length - 1;
+      pos.column += tag.open.length - 1;
 
-          if (lookahead() === '-') {
-            output.push(
-              createToken('OPEN_TAG', '{{-', {
-                start: {
-                  ...pos,
-                  column: pos.column - 1,
-                },
-                end: {
-                  ...pos,
-                  column: pos.column + 1,
-                },
-              }),
-            );
-            i++;
-            pos.column++;
-          } else {
-            output.push(
-              createToken('OPEN_TAG', '{{', {
-                start: {
-                  ...pos,
-                  column: pos.column - 1,
-                },
-                end: {
-                  ...pos,
-                },
-              }),
-            );
-          }
-        } else {
-          buf.push(str);
+      const trim = lookahead() === '-';
+
+      output.push(
+        createToken('OPEN_TAG', open + (trim ? '-' : ''), {
+          start: {
+            ...pos,
+            column: pos.column - (tag.open.length - 1),
+          },
+          end: {
+            ...pos,
+            column: pos.column + (trim ? 1 : 0),
+          },
+        }),
+      );
+
+      i += trim ? 1 : 0;
+      pos.column += trim ? 1 : 0;
+    } else if (close === tag.close.value) {
+      const token = createToken('CLOSE_TAG', close, {
+        start: {
+          ...pos,
+        },
+        end: {
+          ...pos,
+          column: pos.column + (tag.close.length - 1),
+        },
+      });
+
+      if (!inTag) {
+        unopened(input, token);
+      }
+
+      inTag = false;
+      output.push(
+        ...tokenizeInTag({ source: input, input: buf2str(), pos }),
+        token,
+      );
+
+      i += tag.close.length - 1;
+      pos.column += tag.close.length - 1;
+      buf.length = 0;
+    } else if (str === '-') {
+      const s = range(i + 1, tag.close.length);
+      if (s === tag.close.value) {
+        const token = createToken('CLOSE_TAG', `-${s}`, {
+          start: {
+            ...pos,
+          },
+          end: {
+            ...pos,
+            column: pos.column + tag.open.length,
+          },
+        });
+
+        if (!inTag) {
+          unopened(input, token);
         }
-        break;
 
-      case '-':
-        if (lookahead() === '}' && lookahead(2) === '}') {
-          const close = createToken('CLOSE_TAG', '-}}', {
-            start: {
-              ...pos,
-            },
-            end: {
-              ...pos,
-              column: pos.column + 2,
-            },
-          });
-
-          if (!inTag) {
-            unopened(input, close);
-          }
-
-          inTag = false;
-          output.push(
-            ...tokenizeInTag({ source: input, input: buf2str(), pos }),
-            close,
-          );
-          i += 2;
-          buf.length = 0;
-        } else {
-          buf.push(str);
-        }
-        break;
-
-      case '}':
-        if (lookahead() === '}') {
-          const close = createToken('CLOSE_TAG', '}}', {
-            start: {
-              ...pos,
-            },
-            end: {
-              ...pos,
-              column: pos.column + 1,
-            },
-          });
-
-          if (!inTag) {
-            unopened(input, close);
-          }
-
-          inTag = false;
-          output.push(
-            ...tokenizeInTag({ source: input, input: buf2str(), pos }),
-            close,
-          );
-          i++;
-          pos.column++;
-          buf.length = 0;
-        } else {
-          buf.push(str);
-        }
-        break;
-
-      default:
+        inTag = false;
+        output.push(
+          ...tokenizeInTag({ source: input, input: buf2str(), pos }),
+          token,
+        );
+        i += tag.close.length;
+        pos.column += tag.close.length;
+        buf.length = 0;
+      } else {
         buf.push(str);
+      }
+    } else {
+      buf.push(str);
     }
 
     if (str === '\n') {

@@ -203,11 +203,32 @@ type Helper = (context: Context, ...args: any[]) => string;
 
 type HelperMap = Map<string, Helper>;
 
+type TagPair = Readonly<[open: string, close: string]>;
+
 type Context = {
   cwd: string;
   variables: VariableMap;
   helpers: HelperMap;
+  tags: TagPair;
 };
+```
+
+### Custom Tags
+
+The default tag delimiter available in templates is `{{` and `}}`.  
+You can change it with `tags`.
+
+```javascript
+module.exports = {
+  files: ['./*'],
+  tags: ['<%', '%>'],
+};
+```
+
+By setting the above config, `<%` and `%>` will be the tag delimiters in the template.
+
+```
+<% inputs.name %>
 ```
 
 ## Commands

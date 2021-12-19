@@ -3,11 +3,12 @@ import test from 'ava';
 import { generate } from './generate';
 
 const cwd = process.cwd();
+const root = path.join(cwd, 'path', 'to');
 
 test('basic', (t) => {
   const opts = {
     cwd,
-    root: path.join(cwd, 'path', 'to'),
+    root,
   };
 
   t.deepEqual(
@@ -38,7 +39,7 @@ output.dir: {{ output.dir }}
     ),
     [
       {
-        output: path.resolve(opts.root, 'plain.txt'),
+        output: path.resolve(root, 'plain.txt'),
         filename: 'plain.txt',
         content: `
 inputs.name: value
@@ -52,9 +53,37 @@ output.dir: path/to
 `.trim(),
       },
       {
-        output: path.resolve(opts.root, 'value.js'),
+        output: path.resolve(root, 'value.js'),
         filename: 'value.js',
         content: 'path/to/value.js',
+      },
+    ],
+  );
+});
+
+test('custom', (t) => {
+  const opts = {
+    cwd,
+    root,
+    tags: ['<%=', '=%>'] as const,
+  };
+
+  t.deepEqual(
+    generate(
+      [
+        {
+          filename: 'plain.txt',
+          content: `cwd: <%= cwd =%>`,
+        },
+      ],
+      new Map(),
+      opts,
+    ),
+    [
+      {
+        output: path.resolve(opts.root, 'plain.txt'),
+        filename: 'plain.txt',
+        content: `cwd: ${cwd}`,
       },
     ],
   );

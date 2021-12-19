@@ -1,80 +1,84 @@
 import type { ExecutionContext } from 'ava';
 import test from 'ava';
+import type { TokenizeOptions } from './tokenize';
 import { tokenize } from './tokenize';
 import type { AnyToken } from './tokens';
 import { createToken } from './tokens';
 
-const valid = (
+const valid = (options: Partial<TokenizeOptions> = {}) => (
   t: ExecutionContext,
   input: string,
   expected: (AnyToken | null)[],
 ) => {
-  t.deepEqual(expected, tokenize(input));
+  t.deepEqual(expected, tokenize(input, options));
 };
 
-const invalid = (t: ExecutionContext, input: string) => {
+const invalid = (options: Partial<TokenizeOptions> = {}) => (
+  t: ExecutionContext,
+  input: string,
+) => {
   t.throws(() => {
-    tokenize(input);
+    tokenize(input, options);
   });
 };
 
-test('raw - true', valid, 'true', [
+test('raw - true', valid(), 'true', [
   createToken('STRING', 'true', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 4 },
   }),
 ]);
 
-test('raw - false', valid, 'false', [
+test('raw - false', valid(), 'false', [
   createToken('STRING', 'false', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 5 },
   }),
 ]);
 
-test('raw - null', valid, 'null', [
+test('raw - null', valid(), 'null', [
   createToken('STRING', 'null', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 4 },
   }),
 ]);
 
-test('raw - undefined', valid, 'undefined', [
+test('raw - undefined', valid(), 'undefined', [
   createToken('STRING', 'undefined', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 9 },
   }),
 ]);
 
-test('raw - string', valid, 'foo', [
+test('raw - string', valid(), 'foo', [
   createToken('STRING', 'foo', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 3 },
   }),
 ]);
 
-test('raw - numeric', valid, '123', [
+test('raw - numeric', valid(), '123', [
   createToken('STRING', '123', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 3 },
   }),
 ]);
 
-test('raw - incomplete open tag', valid, '{ {', [
+test('raw - incomplete open tag', valid(), '{ {', [
   createToken('STRING', '{ {', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 3 },
   }),
 ]);
 
-test('raw - incomplete close tag', valid, '} }', [
+test('raw - incomplete close tag', valid(), '} }', [
   createToken('STRING', '} }', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 3 },
   }),
 ]);
 
-test('tag - empty', valid, '{{}}', [
+test('tag - empty', valid(), '{{}}', [
   createToken('OPEN_TAG', '{{', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 2 },
@@ -85,7 +89,7 @@ test('tag - empty', valid, '{{}}', [
   }),
 ]);
 
-test('tag - trimed open', valid, '{{-  }}', [
+test('tag - trimed open', valid(), '{{-  }}', [
   createToken('OPEN_TAG', '{{-', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 3 },
@@ -96,7 +100,7 @@ test('tag - trimed open', valid, '{{-  }}', [
   }),
 ]);
 
-test('tag - trimed close', valid, '{{ -}}', [
+test('tag - trimed close', valid(), '{{ -}}', [
   createToken('OPEN_TAG', '{{', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 2 },
@@ -107,7 +111,7 @@ test('tag - trimed close', valid, '{{ -}}', [
   }),
 ]);
 
-test('tag - trimed', valid, '{{- -}}', [
+test('tag - trimed', valid(), '{{- -}}', [
   createToken('OPEN_TAG', '{{-', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 3 },
@@ -118,7 +122,7 @@ test('tag - trimed', valid, '{{- -}}', [
   }),
 ]);
 
-test('tag - identifier', valid, '{{ identifier }}', [
+test('tag - identifier', valid(), '{{ identifier }}', [
   createToken('OPEN_TAG', '{{', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 2 },
@@ -135,7 +139,7 @@ test('tag - identifier', valid, '{{ identifier }}', [
 
 test(
   'tag - identifier and dot notation (string)',
-  valid,
+  valid(),
   '{{ identifier.prop }}',
   [
     createToken('OPEN_TAG', '{{', {
@@ -163,13 +167,13 @@ test(
 
 test(
   'tag - identifier and dot notation (number)',
-  invalid,
+  invalid(),
   '{{ identifier.0 }}',
 );
 
 test(
   'tag - identifier and bracket accessor (string)',
-  valid,
+  valid(),
   `{{ identifier["prop"] }}{{ident['prop']}}`,
   [
     createToken('OPEN_TAG', '{{', {
@@ -223,7 +227,7 @@ test(
   ],
 );
 
-test('tag - comment out', valid, '{{/*a comment*/ }}', [
+test('tag - comment out', valid(), '{{/*a comment*/ }}', [
   createToken('OPEN_TAG', '{{', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 2 },
@@ -234,7 +238,7 @@ test('tag - comment out', valid, '{{/*a comment*/ }}', [
   }),
 ]);
 
-test('tag - pipe', valid, '{{ foo|   bar }}', [
+test('tag - pipe', valid(), '{{ foo|   bar }}', [
   createToken('OPEN_TAG', '{{', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 2 },
@@ -257,7 +261,7 @@ test('tag - pipe', valid, '{{ foo|   bar }}', [
   }),
 ]);
 
-test('tag - true', valid, '{{true}}', [
+test('tag - true', valid(), '{{true}}', [
   createToken('OPEN_TAG', '{{', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 2 },
@@ -272,7 +276,7 @@ test('tag - true', valid, '{{true}}', [
   }),
 ]);
 
-test('tag - false', valid, '{{  false}}', [
+test('tag - false', valid(), '{{  false}}', [
   createToken('OPEN_TAG', '{{', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 2 },
@@ -287,7 +291,7 @@ test('tag - false', valid, '{{  false}}', [
   }),
 ]);
 
-test('tag - null', valid, '{{ null }}', [
+test('tag - null', valid(), '{{ null }}', [
   createToken('OPEN_TAG', '{{', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 2 },
@@ -302,7 +306,7 @@ test('tag - null', valid, '{{ null }}', [
   }),
 ]);
 
-test('tag - undefined', valid, '{{undefined }}', [
+test('tag - undefined', valid(), '{{undefined }}', [
   createToken('OPEN_TAG', '{{', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 2 },
@@ -317,7 +321,7 @@ test('tag - undefined', valid, '{{undefined }}', [
   }),
 ]);
 
-test('tag - string (single quote)', valid, "{{ 'string'}}", [
+test('tag - string (single quote)', valid(), "{{ 'string'}}", [
   createToken('OPEN_TAG', '{{', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 2 },
@@ -332,7 +336,7 @@ test('tag - string (single quote)', valid, "{{ 'string'}}", [
   }),
 ]);
 
-test('tag - string (double quote)', valid, '{{ "string"}}', [
+test('tag - string (double quote)', valid(), '{{ "string"}}', [
   createToken('OPEN_TAG', '{{', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 2 },
@@ -347,7 +351,7 @@ test('tag - string (double quote)', valid, '{{ "string"}}', [
   }),
 ]);
 
-test('tag - number (natural)', valid, '{{ 123 }}', [
+test('tag - number (natural)', valid(), '{{ 123 }}', [
   createToken('OPEN_TAG', '{{', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 2 },
@@ -362,7 +366,7 @@ test('tag - number (natural)', valid, '{{ 123 }}', [
   }),
 ]);
 
-test('tag - number (float)', valid, '{{ 123.456}}', [
+test('tag - number (float)', valid(), '{{ 123.456}}', [
   createToken('OPEN_TAG', '{{', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 2 },
@@ -377,7 +381,7 @@ test('tag - number (float)', valid, '{{ 123.456}}', [
   }),
 ]);
 
-test('tag - number (positive)', valid, '{{ +123 }}', [
+test('tag - number (positive)', valid(), '{{ +123 }}', [
   createToken('OPEN_TAG', '{{', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 2 },
@@ -392,7 +396,7 @@ test('tag - number (positive)', valid, '{{ +123 }}', [
   }),
 ]);
 
-test('tag - number (negative)', valid, '{{ -123 }}', [
+test('tag - number (negative)', valid(), '{{ -123 }}', [
   createToken('OPEN_TAG', '{{', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 2 },
@@ -407,7 +411,7 @@ test('tag - number (negative)', valid, '{{ -123 }}', [
   }),
 ]);
 
-test('tag - number (negative float)', valid, '{{ -0.12}}', [
+test('tag - number (negative float)', valid(), '{{ -0.12}}', [
   createToken('OPEN_TAG', '{{', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 2 },
@@ -422,7 +426,7 @@ test('tag - number (negative float)', valid, '{{ -0.12}}', [
   }),
 ]);
 
-test('tag - number (hex)', valid, '{{ 0xF }}', [
+test('tag - number (hex)', valid(), '{{ 0xF }}', [
   createToken('OPEN_TAG', '{{', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 2 },
@@ -437,12 +441,106 @@ test('tag - number (hex)', valid, '{{ 0xF }}', [
   }),
 ]);
 
-test('tag - unclosing', invalid, '{{ foo "bar"');
-test('tag - unopening', invalid, 'foo bar }}');
-test('tag - duplicate opening 1', invalid, '{{ {{');
-test('tag - duplicate opening 2', invalid, '{{ {{ }}');
+test(
+  'tag - custom empty',
+  valid({
+    tags: ['<%=', '=%>'],
+  }),
+  '<%==%>',
+  [
+    createToken('OPEN_TAG', '<%=', {
+      start: { line: 1, column: 1 },
+      end: { line: 1, column: 3 },
+    }),
+    createToken('CLOSE_TAG', '=%>', {
+      start: { line: 1, column: 4 },
+      end: { line: 1, column: 6 },
+    }),
+  ],
+);
 
-test('complex', valid, '{{ foo | bar "hoge" | 123 | null }}', [
+test(
+  'tag - custom string',
+  valid({
+    tags: ['<%=', '=%>'],
+  }),
+  '<%= "{{}}" =%>',
+  [
+    createToken('OPEN_TAG', '<%=', {
+      start: { line: 1, column: 1 },
+      end: { line: 1, column: 3 },
+    }),
+    createToken('STRING', '{{}}', {
+      start: { line: 1, column: 5 },
+      end: { line: 1, column: 10 },
+    }),
+    createToken('CLOSE_TAG', '=%>', {
+      start: { line: 1, column: 12 },
+      end: { line: 1, column: 14 },
+    }),
+  ],
+);
+
+test(
+  'tag - custom trimed open',
+  valid({
+    tags: ['<%=', '=%>'],
+  }),
+  '<%=-  =%>',
+  [
+    createToken('OPEN_TAG', '<%=-', {
+      start: { line: 1, column: 1 },
+      end: { line: 1, column: 4 },
+    }),
+    createToken('CLOSE_TAG', '=%>', {
+      start: { line: 1, column: 7 },
+      end: { line: 1, column: 9 },
+    }),
+  ],
+);
+
+test(
+  'tag - custom trimed close',
+  valid({
+    tags: ['<%=', '=%>'],
+  }),
+  '<%= -=%>',
+  [
+    createToken('OPEN_TAG', '<%=', {
+      start: { line: 1, column: 1 },
+      end: { line: 1, column: 3 },
+    }),
+    createToken('CLOSE_TAG', '-=%>', {
+      start: { line: 1, column: 5 },
+      end: { line: 1, column: 8 },
+    }),
+  ],
+);
+
+test(
+  'tag - custom trimed',
+  valid({
+    tags: ['<%=', '=%>'],
+  }),
+  '<%=- -=%>',
+  [
+    createToken('OPEN_TAG', '<%=-', {
+      start: { line: 1, column: 1 },
+      end: { line: 1, column: 4 },
+    }),
+    createToken('CLOSE_TAG', '-=%>', {
+      start: { line: 1, column: 6 },
+      end: { line: 1, column: 9 },
+    }),
+  ],
+);
+
+test('tag - unclosing', invalid(), '{{ foo "bar"');
+test('tag - unopening', invalid(), 'foo bar }}');
+test('tag - duplicate opening 1', invalid(), '{{ {{');
+test('tag - duplicate opening 2', invalid(), '{{ {{ }}');
+
+test('complex', valid(), '{{ foo | bar "hoge" | 123 | null }}', [
   createToken('OPEN_TAG', '{{', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 2 },
@@ -484,3 +582,53 @@ test('complex', valid, '{{ foo | bar "hoge" | 123 | null }}', [
     end: { line: 1, column: 35 },
   }),
 ]);
+
+test(
+  'complex - custom',
+  valid({
+    tags: ['<%=', '=%>'],
+  }),
+  '<%= foo | bar "hoge" | 123 | null =%>',
+  [
+    createToken('OPEN_TAG', '<%=', {
+      start: { line: 1, column: 1 },
+      end: { line: 1, column: 3 },
+    }),
+    createToken('IDENT', 'foo', {
+      start: { line: 1, column: 5 },
+      end: { line: 1, column: 7 },
+    }),
+    createToken('PIPE', '|', {
+      start: { line: 1, column: 9 },
+      end: { line: 1, column: 9 },
+    }),
+    createToken('IDENT', 'bar', {
+      start: { line: 1, column: 11 },
+      end: { line: 1, column: 13 },
+    }),
+    createToken('STRING', 'hoge', {
+      start: { line: 1, column: 15 },
+      end: { line: 1, column: 20 },
+    }),
+    createToken('PIPE', '|', {
+      start: { line: 1, column: 22 },
+      end: { line: 1, column: 22 },
+    }),
+    createToken('NUMBER', 123, {
+      start: { line: 1, column: 24 },
+      end: { line: 1, column: 26 },
+    }),
+    createToken('PIPE', '|', {
+      start: { line: 1, column: 28 },
+      end: { line: 1, column: 28 },
+    }),
+    createToken('NULL', null, {
+      start: { line: 1, column: 30 },
+      end: { line: 1, column: 33 },
+    }),
+    createToken('CLOSE_TAG', '=%>', {
+      start: { line: 1, column: 35 },
+      end: { line: 1, column: 37 },
+    }),
+  ],
+);
