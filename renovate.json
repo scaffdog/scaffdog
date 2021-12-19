@@ -2,12 +2,12 @@
   "extends": [
     "config:js-lib",
     "group:typescript-eslintMonorepo",
-    "group:commitlintMonorepo"
+    "group:commitlintMonorepo",
+    ":semanticCommits",
+    ":semanticCommitTypeAll(chore)",
+    ":semanticCommitScopeDisabled"
   ],
   "labels": ["A-dependencies"],
   "baseBranches": ["canary"],
-  "unpublishSafe": true,
-  "semanticCommits": "auto",
-  "semanticCommitType": "chore",
-  "semanticCommitScope": null
+  "stabilityDays": 3
 }
