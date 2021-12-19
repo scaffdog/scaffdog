@@ -30,9 +30,9 @@ export type CommandContainer = Map<string, Command<any>>;
 
 export type CreateCommandOptions<T> = Omit<Command<T>, 'handle'>;
 
-export const createCommand = <T>(
-  opts: CreateCommandOptions<T>,
-): CommandCreator<T> => (handle) => ({
-  ...opts,
-  handle,
-});
+export const createCommand =
+  <T>(opts: CreateCommandOptions<T>): CommandCreator<T> =>
+  (handle) => ({
+    ...opts,
+    handle,
+  });

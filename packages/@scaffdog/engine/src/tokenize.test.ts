@@ -5,22 +5,19 @@ import { tokenize } from './tokenize';
 import type { AnyToken } from './tokens';
 import { createToken } from './tokens';
 
-const valid = (options: Partial<TokenizeOptions> = {}) => (
-  t: ExecutionContext,
-  input: string,
-  expected: (AnyToken | null)[],
-) => {
-  t.deepEqual(expected, tokenize(input, options));
-};
+const valid =
+  (options: Partial<TokenizeOptions> = {}) =>
+  (t: ExecutionContext, input: string, expected: (AnyToken | null)[]) => {
+    t.deepEqual(expected, tokenize(input, options));
+  };
 
-const invalid = (options: Partial<TokenizeOptions> = {}) => (
-  t: ExecutionContext,
-  input: string,
-) => {
-  t.throws(() => {
-    tokenize(input, options);
-  });
-};
+const invalid =
+  (options: Partial<TokenizeOptions> = {}) =>
+  (t: ExecutionContext, input: string) => {
+    t.throws(() => {
+      tokenize(input, options);
+    });
+  };
 
 test('raw - true', valid(), 'true', [
   createToken('STRING', 'true', {
