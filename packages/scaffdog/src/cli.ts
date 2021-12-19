@@ -87,7 +87,10 @@ export class CLI {
         pkg: this._pkg,
         logger: this._logger,
         size: Object.defineProperties(
-          {},
+          {
+            rows: 0,
+            columns: 0,
+          },
           {
             rows: {
               enumerable: true,

@@ -54,8 +54,8 @@ const tokenizeUsingEsprima = ({ source, input, pos }: TokenizationContext) => {
     return esprima.tokenize(input, { loc: true }) as EsprimaToken[];
   } catch (e) {
     const p = {
-      line: pos.line + e.lineNumber - 1,
-      column: pos.column + e.index - input.length,
+      line: pos.line + (e as any).lineNumber - 1,
+      column: pos.column + (e as any).index - input.length,
     };
 
     unexpected(source, {
