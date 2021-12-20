@@ -28,6 +28,7 @@ Multiple files can be output in a document, and flexible scaffolding is possible
   - [Simple Configuration](#simple-configuration)
   - [Global Variables](#global-variables)
   - [Custom Helpers](#custom-helpers)
+  - [Custom Tags](#custom-tags)
 - :poodle: [Commands](#commands)
   - [`scaffdog init`](#scaffdog-init)
   - [`scaffdog generate`](#scaffdog-generate)
