@@ -68,7 +68,7 @@
     "@types/wrap-ansi": "3.0.0",
     "@types/yargs": "17.0.7",
     "strip-ansi": "6.0.0",
-    "type-fest": "2.8.0"
+    "type-fest": "2.10.0"
   },
   "publishConfig": {
     "access": "public"
