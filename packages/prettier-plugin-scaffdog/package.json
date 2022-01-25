@@ -1,0 +1,46 @@
+{
+  "name": "prettier-plugin-scaffdog",
+  "version": "1.1.0",
+  "description": "A Prettier plugin for scaffdog templates that automatically format syntax.",
+  "keywords": [
+    "scaffdog",
+    "markdown",
+    "template",
+    "prettier-plugin",
+    "prettier",
+    "formatter"
+  ],
+  "homepage": "https://github.com/cats-oss/scaffdog/tree/main/packages/prettier-plugin-scaffdog",
+  "bugs": {
+    "url": "https://github.com/cats-oss/scaffdog/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cats-oss/scaffdog.git",
+    "directory": "packages/prettier-plugin-scaffdog"
+  },
+  "license": "MIT",
+  "author": "wadackel <wadackel@gmail.com>",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "!lib/**/*.test.js"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "ava"
+  },
+  "dependencies": {
+    "@scaffdog/config": "1.1.0",
+    "@scaffdog/engine": "1.1.0",
+    "@scaffdog/types": "1.1.0",
+    "minimatch": "^3.0.4",
+    "prettier": "2.5.1"
+  },
+  "devDependencies": {
+    "@types/minimatch": "^3.0.5",
+    "@types/prettier": "^2.4.3"
+  },
+  "gitHead": "14824585829ad0b2093ef44b30f36fce3f4fd682"
+}

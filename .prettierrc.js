@@ -2,5 +2,6 @@ module.exports = {
   singleQuote: true,
   trailingComma: 'all',
   arrowParens: 'always',
-  plugins: ['prettier-plugin-packagejson'],
+  scaffdogProject: 'packages/scaffdog/.scaffdog',
+  plugins: ['./packages/prettier-plugin-scaffdog'],
 };
