@@ -34,7 +34,7 @@
   },
   "resolutions": {
     "ansi-regex": "5.0.1",
-    "trim-newlines": "3.0.1"
+    "trim-newlines": "4.0.2"
   },
   "devDependencies": {
     "@commitlint/cli": "16.1.0",
