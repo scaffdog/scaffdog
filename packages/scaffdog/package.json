@@ -53,7 +53,7 @@
     "micromatch": "^4.0.4",
     "node-emoji": "^1.10.0",
     "plur": "^4.0.0",
-    "term-size": "^2.2.1",
+    "term-size": "^3.0.1",
     "update-notifier": "^5.1.0",
     "valid-filename": "^3.1.0",
     "wrap-ansi": "^7.0.0",
