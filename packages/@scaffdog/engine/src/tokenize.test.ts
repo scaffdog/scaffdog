@@ -20,59 +20,91 @@ const invalid =
   };
 
 test('raw - true', valid(), 'true', [
-  createToken('STRING', 'true', {
-    start: { line: 1, column: 1 },
-    end: { line: 1, column: 4 },
-  }),
+  createToken(
+    'STRING',
+    { value: 'true', quote: '' },
+    {
+      start: { line: 1, column: 1 },
+      end: { line: 1, column: 4 },
+    },
+  ),
 ]);
 
 test('raw - false', valid(), 'false', [
-  createToken('STRING', 'false', {
-    start: { line: 1, column: 1 },
-    end: { line: 1, column: 5 },
-  }),
+  createToken(
+    'STRING',
+    { value: 'false', quote: '' },
+    {
+      start: { line: 1, column: 1 },
+      end: { line: 1, column: 5 },
+    },
+  ),
 ]);
 
 test('raw - null', valid(), 'null', [
-  createToken('STRING', 'null', {
-    start: { line: 1, column: 1 },
-    end: { line: 1, column: 4 },
-  }),
+  createToken(
+    'STRING',
+    { value: 'null', quote: '' },
+    {
+      start: { line: 1, column: 1 },
+      end: { line: 1, column: 4 },
+    },
+  ),
 ]);
 
 test('raw - undefined', valid(), 'undefined', [
-  createToken('STRING', 'undefined', {
-    start: { line: 1, column: 1 },
-    end: { line: 1, column: 9 },
-  }),
+  createToken(
+    'STRING',
+    { value: 'undefined', quote: '' },
+    {
+      start: { line: 1, column: 1 },
+      end: { line: 1, column: 9 },
+    },
+  ),
 ]);
 
 test('raw - string', valid(), 'foo', [
-  createToken('STRING', 'foo', {
-    start: { line: 1, column: 1 },
-    end: { line: 1, column: 3 },
-  }),
+  createToken(
+    'STRING',
+    { value: 'foo', quote: '' },
+    {
+      start: { line: 1, column: 1 },
+      end: { line: 1, column: 3 },
+    },
+  ),
 ]);
 
 test('raw - numeric', valid(), '123', [
-  createToken('STRING', '123', {
-    start: { line: 1, column: 1 },
-    end: { line: 1, column: 3 },
-  }),
+  createToken(
+    'STRING',
+    { value: '123', quote: '' },
+    {
+      start: { line: 1, column: 1 },
+      end: { line: 1, column: 3 },
+    },
+  ),
 ]);
 
 test('raw - incomplete open tag', valid(), '{ {', [
-  createToken('STRING', '{ {', {
-    start: { line: 1, column: 1 },
-    end: { line: 1, column: 3 },
-  }),
+  createToken(
+    'STRING',
+    { value: '{ {', quote: '' },
+    {
+      start: { line: 1, column: 1 },
+      end: { line: 1, column: 3 },
+    },
+  ),
 ]);
 
 test('raw - incomplete close tag', valid(), '} }', [
-  createToken('STRING', '} }', {
-    start: { line: 1, column: 1 },
-    end: { line: 1, column: 3 },
-  }),
+  createToken(
+    'STRING',
+    { value: '} }', quote: '' },
+    {
+      start: { line: 1, column: 1 },
+      end: { line: 1, column: 3 },
+    },
+  ),
 ]);
 
 test('tag - empty', valid(), '{{}}', [
@@ -185,10 +217,14 @@ test(
       start: { line: 1, column: 14 },
       end: { line: 1, column: 14 },
     }),
-    createToken('STRING', 'prop', {
-      start: { line: 1, column: 15 },
-      end: { line: 1, column: 20 },
-    }),
+    createToken(
+      'STRING',
+      { value: 'prop', quote: '"' },
+      {
+        start: { line: 1, column: 15 },
+        end: { line: 1, column: 20 },
+      },
+    ),
     createToken('CLOSE_BRACKET', ']', {
       start: { line: 1, column: 21 },
       end: { line: 1, column: 21 },
@@ -209,10 +245,14 @@ test(
       start: { line: 1, column: 32 },
       end: { line: 1, column: 32 },
     }),
-    createToken('STRING', 'prop', {
-      start: { line: 1, column: 33 },
-      end: { line: 1, column: 38 },
-    }),
+    createToken(
+      'STRING',
+      { value: 'prop', quote: "'" },
+      {
+        start: { line: 1, column: 33 },
+        end: { line: 1, column: 38 },
+      },
+    ),
     createToken('CLOSE_BRACKET', ']', {
       start: { line: 1, column: 39 },
       end: { line: 1, column: 39 },
@@ -228,6 +268,10 @@ test('tag - comment out', valid(), '{{/*a comment*/ }}', [
   createToken('OPEN_TAG', '{{', {
     start: { line: 1, column: 1 },
     end: { line: 1, column: 2 },
+  }),
+  createToken('COMMENT', 'a comment', {
+    start: { line: 1, column: 3 },
+    end: { line: 1, column: 15 },
   }),
   createToken('CLOSE_TAG', '}}', {
     start: { line: 1, column: 17 },
@@ -323,10 +367,14 @@ test('tag - string (single quote)', valid(), "{{ 'string'}}", [
     start: { line: 1, column: 1 },
     end: { line: 1, column: 2 },
   }),
-  createToken('STRING', 'string', {
-    start: { line: 1, column: 4 },
-    end: { line: 1, column: 11 },
-  }),
+  createToken(
+    'STRING',
+    { value: 'string', quote: "'" },
+    {
+      start: { line: 1, column: 4 },
+      end: { line: 1, column: 11 },
+    },
+  ),
   createToken('CLOSE_TAG', '}}', {
     start: { line: 1, column: 12 },
     end: { line: 1, column: 13 },
@@ -338,10 +386,14 @@ test('tag - string (double quote)', valid(), '{{ "string"}}', [
     start: { line: 1, column: 1 },
     end: { line: 1, column: 2 },
   }),
-  createToken('STRING', 'string', {
-    start: { line: 1, column: 4 },
-    end: { line: 1, column: 11 },
-  }),
+  createToken(
+    'STRING',
+    { value: 'string', quote: '"' },
+    {
+      start: { line: 1, column: 4 },
+      end: { line: 1, column: 11 },
+    },
+  ),
   createToken('CLOSE_TAG', '}}', {
     start: { line: 1, column: 12 },
     end: { line: 1, column: 13 },
@@ -467,10 +519,14 @@ test(
       start: { line: 1, column: 1 },
       end: { line: 1, column: 3 },
     }),
-    createToken('STRING', '{{}}', {
-      start: { line: 1, column: 5 },
-      end: { line: 1, column: 10 },
-    }),
+    createToken(
+      'STRING',
+      { value: '{{}}', quote: '"' },
+      {
+        start: { line: 1, column: 5 },
+        end: { line: 1, column: 10 },
+      },
+    ),
     createToken('CLOSE_TAG', '=%>', {
       start: { line: 1, column: 12 },
       end: { line: 1, column: 14 },
@@ -554,10 +610,14 @@ test('complex', valid(), '{{ foo | bar "hoge" | 123 | null }}', [
     start: { line: 1, column: 10 },
     end: { line: 1, column: 12 },
   }),
-  createToken('STRING', 'hoge', {
-    start: { line: 1, column: 14 },
-    end: { line: 1, column: 19 },
-  }),
+  createToken(
+    'STRING',
+    { value: 'hoge', quote: '"' },
+    {
+      start: { line: 1, column: 14 },
+      end: { line: 1, column: 19 },
+    },
+  ),
   createToken('PIPE', '|', {
     start: { line: 1, column: 21 },
     end: { line: 1, column: 21 },
@@ -603,10 +663,14 @@ test(
       start: { line: 1, column: 11 },
       end: { line: 1, column: 13 },
     }),
-    createToken('STRING', 'hoge', {
-      start: { line: 1, column: 15 },
-      end: { line: 1, column: 20 },
-    }),
+    createToken(
+      'STRING',
+      { value: 'hoge', quote: '"' },
+      {
+        start: { line: 1, column: 15 },
+        end: { line: 1, column: 20 },
+      },
+    ),
     createToken('PIPE', '|', {
       start: { line: 1, column: 22 },
       end: { line: 1, column: 22 },

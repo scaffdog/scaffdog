@@ -9,6 +9,11 @@ import {
   LiteralExpr,
   RawExpr,
   TagExpr,
+  StringLiteral,
+  NumberLiteral,
+  NullLiteral,
+  UndefinedLiteral,
+  BooleanLiteral,
 } from './ast';
 
 export class Compiler {
@@ -37,11 +42,11 @@ export class Compiler {
 
     return output.reduce((acc, cur, index, self) => {
       if (cur[1] === true) {
-        acc = acc.trimRight();
+        acc = acc.trimEnd();
       }
 
       if (self[index - 1] != null && self[index - 1][2] === true) {
-        acc += cur[0].trimLeft();
+        acc += cur[0].trimStart();
       } else {
         acc += cur[0];
       }
@@ -66,11 +71,11 @@ export class Compiler {
     }
 
     if (tagExpr.isOpenTrim()) {
-      output = output.trimLeft();
+      output = output.trimStart();
     }
 
     if (tagExpr.isCloseTrim()) {
-      output = output.trimRight();
+      output = output.trimEnd();
     }
 
     return output;
@@ -101,19 +106,22 @@ export class Compiler {
     }
 
     if (expr.property instanceof IdentExpr) {
-      property = this._compileIdentExpr(expr.property);
+      if (expr.computed) {
+        property = this._compileIdentExpr(expr.property);
+      } else {
+        property = expr.property.ident.name;
+      }
     } else if (expr.property instanceof LiteralExpr) {
-      switch (typeof expr.property.literal.value) {
-        case 'string':
-        case 'number':
-          property = expr.property.literal.value;
-          break;
-
-        default:
-          throw this._error(
-            `[${expr.property.literal}] is invalid property`,
-            expr.property,
-          );
+      if (
+        expr.property.literal instanceof StringLiteral ||
+        expr.property.literal instanceof NumberLiteral
+      ) {
+        property = expr.property.literal.value;
+      } else {
+        throw this._error(
+          `[${expr.property.literal}] is invalid property`,
+          expr.property,
+        );
       }
     } else if (expr.property instanceof MemberExpr) {
       property = this._compileMemberExpr(expr.property);
@@ -136,13 +144,13 @@ export class Compiler {
   }
 
   private _compileLiteralExpr(expr: LiteralExpr) {
-    switch (typeof expr.literal.value) {
-      case 'string':
-      case 'number':
-        return `${expr.literal.value}`;
-
-      default:
-        return '';
+    if (
+      expr.literal instanceof StringLiteral ||
+      expr.literal instanceof NumberLiteral
+    ) {
+      return `${expr.literal.value}`;
+    } else {
+      return '';
     }
   }
 
@@ -156,7 +164,17 @@ export class Compiler {
 
     const args: any[] = expr.args.map((expr) => {
       if (expr instanceof LiteralExpr) {
-        return expr.literal.value;
+        if (
+          expr.literal instanceof StringLiteral ||
+          expr.literal instanceof NumberLiteral ||
+          expr.literal instanceof BooleanLiteral
+        ) {
+          return expr.literal.value;
+        } else if (expr.literal instanceof NullLiteral) {
+          return null;
+        } else if (expr.literal instanceof UndefinedLiteral) {
+          return undefined;
+        }
       } else if (expr instanceof IdentExpr) {
         return this._compileIdentExpr(expr);
       } else if (expr instanceof MemberExpr) {
@@ -165,7 +183,7 @@ export class Compiler {
         return this._compileCallExpr(expr);
       }
 
-      throw this._error(`"${expr}" is invalid argument`, expr);
+      throw this._error(`${expr} is invalid argument`, expr);
     });
 
     return helper(this._context, ...args);

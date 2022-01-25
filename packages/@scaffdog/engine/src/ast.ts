@@ -6,6 +6,13 @@ export type Node = {
   toString(): string;
 };
 
+export class CommentExpr implements Node {
+  public constructor(public body: string, public loc: SourceLocation) {}
+  public toString(): string {
+    return `/* ${this.body} */`;
+  }
+}
+
 export class Ident implements Node {
   public constructor(public name: string, public loc: SourceLocation) {}
   public toString(): string {
@@ -13,21 +20,50 @@ export class Ident implements Node {
   }
 }
 
-export class Literal implements Node {
+export class StringLiteral implements Node {
   public constructor(
-    public value: string | number | boolean | undefined | null,
+    public value: string,
+    public quote: string,
     public loc: SourceLocation,
   ) {}
 
   public toString(): string {
-    return typeof this.value === 'string' ? `"${this.value}"` : `${this.value}`;
+    return `${this.quote}${this.value}${this.quote}`;
+  }
+}
+
+export class NumberLiteral implements Node {
+  public constructor(public value: number, public loc: SourceLocation) {}
+  public toString(): string {
+    return this.value.toString();
+  }
+}
+
+export class BooleanLiteral implements Node {
+  public constructor(public value: boolean, public loc: SourceLocation) {}
+  public toString(): string {
+    return this.value.toString();
+  }
+}
+
+export class UndefinedLiteral implements Node {
+  public constructor(public loc: SourceLocation) {}
+  public toString(): string {
+    return 'undefined';
+  }
+}
+
+export class NullLiteral implements Node {
+  public constructor(public loc: SourceLocation) {}
+  public toString(): string {
+    return 'null';
   }
 }
 
 export class RawExpr implements Node {
-  public constructor(public value: string, public loc: SourceLocation) {}
+  public constructor(public body: string, public loc: SourceLocation) {}
   public toString(): string {
-    return this.value;
+    return this.body;
   }
 }
 
@@ -42,6 +78,13 @@ export class IdentExpr implements Node {
   }
 }
 
+export type Literal =
+  | StringLiteral
+  | NumberLiteral
+  | BooleanLiteral
+  | UndefinedLiteral
+  | NullLiteral;
+
 export class LiteralExpr implements Node {
   public loc: SourceLocation;
   public constructor(public literal: Literal) {
@@ -53,9 +96,16 @@ export class LiteralExpr implements Node {
   }
 }
 
+export type MemberObject = IdentExpr | MemberExpr;
+export type MemberProperty = IdentExpr | LiteralExpr | MemberExpr;
+
 export class MemberExpr implements Node {
   public loc: SourceLocation;
-  public constructor(public object: Node, public property: Node) {
+  public constructor(
+    public object: MemberObject,
+    public property: MemberProperty,
+    public computed: boolean,
+  ) {
     this.loc = {
       start: object.loc.start,
       end: property.loc.end,
@@ -63,7 +113,9 @@ export class MemberExpr implements Node {
   }
 
   public toString(): string {
-    return `${this.object.toString()}[${this.property.toString()}]`;
+    const obj = this.object.toString();
+    const prop = this.property.toString();
+    return this.computed ? `${obj}[${prop}]` : `${obj}.${prop}`;
   }
 }
 
@@ -71,6 +123,7 @@ export class CallExpr implements Node {
   public constructor(
     public name: string,
     public args: Node[],
+    public pipe: boolean,
     public loc: SourceLocation,
   ) {}
 

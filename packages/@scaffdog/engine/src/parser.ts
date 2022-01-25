@@ -1,14 +1,19 @@
 import { error } from '@scaffdog/error';
-import type { Node } from './ast';
+import type { Node, MemberObject, MemberProperty } from './ast';
 import {
-  MemberExpr,
+  BooleanLiteral,
   CallExpr,
+  CommentExpr,
   Ident,
   IdentExpr,
-  Literal,
   LiteralExpr,
+  MemberExpr,
+  NullLiteral,
+  NumberLiteral,
   RawExpr,
+  StringLiteral,
   TagExpr,
+  UndefinedLiteral,
 } from './ast';
 import type { AnyToken, Token } from './tokens';
 import { createToken } from './tokens';
@@ -44,7 +49,7 @@ export class Parser {
           break;
 
         case 'STRING':
-          ast.push(new RawExpr(this._current.literal, this._current.loc));
+          ast.push(new RawExpr(this._current.literal.value, this._current.loc));
           break;
       }
 
@@ -90,7 +95,7 @@ export class Parser {
             case 'STRING':
             case 'NUMBER':
             case 'IDENT':
-              expressions.push(this._parseCallExpr());
+              expressions.push(this._parseCallExpr(passedPipe));
               break;
 
             case 'DOT':
@@ -106,7 +111,12 @@ export class Parser {
             default:
               if (passedPipe) {
                 expressions.push(
-                  new CallExpr(this._current.literal, [], this._current.loc),
+                  new CallExpr(
+                    this._current.literal,
+                    [],
+                    true,
+                    this._current.loc,
+                  ),
                 );
               } else {
                 expressions.push(
@@ -121,12 +131,14 @@ export class Parser {
         case 'NULL':
         case 'UNDEFINED':
         case 'BOOLEAN':
-        case 'STRING':
         case 'NUMBER':
+        case 'STRING':
+          expressions.push(this._parseLiteralExpr());
+          break;
+
+        case 'COMMENT':
           expressions.push(
-            new LiteralExpr(
-              new Literal(this._current.literal, this._current.loc),
-            ),
+            new CommentExpr(this._current.literal, this._current.loc),
           );
           break;
 
@@ -169,25 +181,33 @@ export class Parser {
     return [combined];
   }
 
-  private _parseMemberExpr(object: Node): MemberExpr {
-    const isBracket = this._current.type === 'OPEN_BRACKET';
-    let property: Node | null = null;
+  private _parseMemberExpr(object: MemberObject): MemberExpr {
+    const computed = this._current.type === 'OPEN_BRACKET';
+    let property: MemberProperty | null = null;
 
     this._bump();
 
-    if (isBracket) {
+    if (computed) {
       switch (this._current.type) {
-        case 'STRING':
         case 'NUMBER':
-          property = new LiteralExpr(
-            new Literal(this._current.literal, this._current.loc),
-          );
+        case 'STRING':
+          property = this._parseLiteralExpr();
           break;
 
         case 'IDENT':
           property = new IdentExpr(
             new Ident(this._current.literal, this._current.loc),
           );
+          switch (this._next.type) {
+            case 'DOT':
+            case 'OPEN_BRACKET':
+              this._bump();
+              return new MemberExpr(
+                object,
+                this._parseMemberExpr(property),
+                true,
+              );
+          }
           break;
 
         default:
@@ -197,49 +217,41 @@ export class Parser {
           );
       }
 
-      switch (this._next.type) {
-        case 'DOT':
-        case 'OPEN_BRACKET':
-          this._bump();
-          return new MemberExpr(object, this._parseMemberExpr(property));
-      }
-
       if (this._next.type !== 'CLOSE_BRACKET') {
         throw this._error('"]" expected', this._next);
       }
 
       this._bump();
-
-      if ((this._next as AnyToken).type === 'OPEN_BRACKET') {
-        this._bump();
-        return this._parseMemberExpr(new MemberExpr(object, property));
-      }
     } else {
       switch (this._current.type) {
         case 'IDENT':
-          property = new LiteralExpr(
-            new Literal(this._current.literal, this._current.loc),
+          property = new IdentExpr(
+            new Ident(this._current.literal, this._current.loc),
           );
           break;
 
         default:
           throw this._error(`unexpected syntax`, this._current);
       }
+    }
 
-      if (this._next.type === 'DOT') {
+    switch (this._next.type) {
+      case 'OPEN_BRACKET':
+      case 'DOT':
         this._bump();
-        return this._parseMemberExpr(new MemberExpr(object, property));
-      }
+        return this._parseMemberExpr(
+          new MemberExpr(object, property, computed),
+        );
     }
 
     if (property != null) {
-      return new MemberExpr(object, property);
+      return new MemberExpr(object, property, computed);
     }
 
     throw this._error(`unexpected syntax`, this._current);
   }
 
-  private _parseCallExpr() {
+  private _parseCallExpr(passedPipe: boolean) {
     const name = this._current.literal;
     const loc = this._current.loc;
     const args: Node[] = [];
@@ -247,28 +259,74 @@ export class Parser {
     this._bump();
 
     while (!this._endOfTokens()) {
-      if (this._current.type === 'IDENT') {
-        args.push(
-          new IdentExpr(new Ident(this._current.literal, this._current.loc)),
-        );
-      } else {
-        args.push(
-          new LiteralExpr(
-            new Literal(this._current.literal, this._current.loc),
-          ),
-        );
+      switch (this._current.type) {
+        case 'IDENT': {
+          const ident = new IdentExpr(
+            new Ident(this._current.literal, this._current.loc),
+          );
+
+          switch (this._next.type) {
+            case 'DOT':
+            case 'OPEN_BRACKET':
+              this._bump();
+              args.push(this._parseMemberExpr(ident));
+              break;
+
+            default:
+              args.push(ident);
+              break;
+          }
+          break;
+        }
+
+        case 'NULL':
+        case 'UNDEFINED':
+        case 'BOOLEAN':
+        case 'NUMBER':
+        case 'STRING':
+          args.push(this._parseLiteralExpr());
+          break;
       }
 
       switch (this._next.type) {
         case 'CLOSE_TAG':
         case 'PIPE':
-          return new CallExpr(name as string, args, loc);
+          return new CallExpr(name as string, args, passedPipe, loc);
         default:
           this._bump();
       }
     }
 
     throw this._error(`unexpected syntax`, this._current);
+  }
+
+  private _parseLiteralExpr() {
+    return new LiteralExpr(this._parseLiteral());
+  }
+
+  private _parseLiteral() {
+    switch (this._current.type) {
+      case 'NULL':
+        return new NullLiteral(this._current.loc);
+
+      case 'UNDEFINED':
+        return new UndefinedLiteral(this._current.loc);
+
+      case 'BOOLEAN':
+        return new BooleanLiteral(this._current.literal, this._current.loc);
+
+      case 'NUMBER':
+        return new NumberLiteral(this._current.literal, this._current.loc);
+
+      case 'STRING':
+        return new StringLiteral(
+          this._current.literal.value,
+          this._current.literal.quote,
+          this._current.loc,
+        );
+    }
+
+    throw this._error('unexpected syntax', this._current);
   }
 
   private _error(msg: string, token: AnyToken) {
