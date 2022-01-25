@@ -3,10 +3,14 @@ import type { SourceLocation } from '@scaffdog/types';
 export type TokenMap = {
   ILLEGAL: null;
   EOF: null;
+  COMMENT: string;
   NULL: null;
   UNDEFINED: undefined;
   BOOLEAN: boolean;
-  STRING: string;
+  STRING: {
+    quote: string;
+    value: string;
+  };
   NUMBER: number;
   IDENT: string;
   DOT: string;

@@ -51,7 +51,10 @@ type TokenizationContext = {
 
 const tokenizeUsingEsprima = ({ source, input, pos }: TokenizationContext) => {
   try {
-    return esprima.tokenize(input, { loc: true }) as EsprimaToken[];
+    return esprima.tokenize(input, {
+      loc: true,
+      comment: true,
+    }) as EsprimaToken[];
   } catch (e) {
     const p = {
       line: pos.line + (e as any).lineNumber - 1,
@@ -91,6 +94,10 @@ const tokenizeInTag = ({ source, input, pos }: TokenizationContext) => {
     };
 
     switch (token.type) {
+      case 'BlockComment':
+        output.push(createToken('COMMENT', token.value, loc));
+        break;
+
       case 'Null':
         output.push(createToken('NULL', null, loc));
         break;
@@ -99,7 +106,10 @@ const tokenizeInTag = ({ source, input, pos }: TokenizationContext) => {
         output.push(
           createToken(
             'STRING',
-            token.value.slice(1, token.value.length - 1),
+            {
+              quote: token.value[0],
+              value: token.value.slice(1, token.value.length - 1),
+            },
             loc,
           ),
         );
@@ -233,19 +243,26 @@ export const tokenize = (
   const consumeBuffer = () => {
     if (buf.length > 0) {
       output.push(
-        createToken('STRING', buf2str(), {
-          start:
-            bufPos != null
-              ? bufPos
-              : {
-                  line: 1,
-                  column: 1,
-                },
-          end: {
-            ...pos,
-            column: pos.column - 1,
+        createToken(
+          'STRING',
+          {
+            quote: '',
+            value: buf2str(),
           },
-        }),
+          {
+            start:
+              bufPos != null
+                ? bufPos
+                : {
+                    line: 1,
+                    column: 1,
+                  },
+            end: {
+              ...pos,
+              column: pos.column - 1,
+            },
+          },
+        ),
       );
       buf.length = 0;
       bufPos = null;

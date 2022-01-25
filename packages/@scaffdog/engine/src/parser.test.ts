@@ -39,7 +39,7 @@ test('number', valid, '{{ 123 }}', '{{ 123 }}');
 
 test('trimed tag', valid, '{{-"str"       -}}', '{{- "str" -}}');
 
-test('comment out', valid, '{{ /*a comment*/ }}', '{{  }}');
+test('comment out', valid, '{{/*a comment*/ }}', '{{ /* a comment */ }}');
 
 test('identifier', valid, '{{ identifier }}', '{{ identifier }}');
 
@@ -47,14 +47,14 @@ test(
   'identifier - dot notation',
   valid,
   '{{ identifier.prop }}',
-  '{{ identifier["prop"] }}',
+  '{{ identifier.prop }}',
 );
 
 test(
   'identifier - dot notation (nest)',
   valid,
-  '{{ identifier.nest1.nest2 }} {{ identifier.nest1.nest2.nest3 }}',
-  '{{ identifier["nest1"]["nest2"] }} {{ identifier["nest1"]["nest2"]["nest3"] }}',
+  '{{ ident.nest1.nest2 }} {{ ident.nest1.nest2["nest3"].nest4 }}',
+  '{{ ident.nest1.nest2 }} {{ ident.nest1.nest2["nest3"].nest4 }}',
 );
 
 test(
@@ -70,24 +70,36 @@ test(
 );
 
 test(
+  'identifier - dot notation (invalid identifier property)',
+  invalid,
+  '{{ identifier["prop".invalid] }}',
+);
+
+test(
+  'identifier - dot notation (invalid literal property)',
+  invalid,
+  '{{ identifier["prop"."invalid"] }}',
+);
+
+test(
   'identifier - bracket accesor',
   valid,
   `{{ identifier[ident] }} {{ identifier['prop'] }} {{ identifier[0] }}`,
-  '{{ identifier[ident] }} {{ identifier["prop"] }} {{ identifier[0] }}',
+  `{{ identifier[ident] }} {{ identifier['prop'] }} {{ identifier[0] }}`,
 );
 
 test(
   'identifier - bracket accesor (nest)',
   valid,
   `{{ identifier[nest1][nest2] }} {{ identifier['nest1']["nest2"] }} {{ identifier[0][1] }}`,
-  '{{ identifier[nest1][nest2] }} {{ identifier["nest1"]["nest2"] }} {{ identifier[0][1] }}',
+  `{{ identifier[nest1][nest2] }} {{ identifier['nest1']["nest2"] }} {{ identifier[0][1] }}`,
 );
 
 test(
   'identifier - bracket accessor (expr)',
   valid,
   '{{ identifier[nest["key"]] }} {{ identifier[nest.key] }}',
-  '{{ identifier[nest["key"]] }} {{ identifier[nest["key"]] }}',
+  '{{ identifier[nest["key"]] }} {{ identifier[nest.key] }}',
 );
 
 /**
@@ -106,6 +118,13 @@ test('call - string', valid, '{{ fn "str" }}', '{{ fn("str") }}');
 test('call - number', valid, '{{ fn 123}}', '{{ fn(123) }}');
 
 test('call - identifier', valid, '{{ fn input }}', '{{ fn(input) }}');
+
+test(
+  'call - member',
+  valid,
+  '{{ fn inputs.name }} {{ fn inputs["name"] }}',
+  '{{ fn(inputs.name) }} {{ fn(inputs["name"]) }}',
+);
 
 test(
   'call - multiple arguments',
