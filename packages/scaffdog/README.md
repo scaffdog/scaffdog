@@ -41,6 +41,8 @@ Multiple files can be output in a document, and flexible scaffolding is possible
   - [Attributes](#attributes)
   - [Variables](#variables)
   - [Helpers](#helpers)
+- :electric_plug: [Integration](#integration)
+  - [Prettier](#prettier)
 - :blue_book: [FAQ](#faq)
 - :dog2: [Contributing](#contributing)
   - [Development scripts](#development-scripts)
@@ -308,6 +310,11 @@ questions:
   name: 'Please enter a filename.'
 ---
 
+# Variables
+
+- constant_key: value
+- computed_key: `{{ inputs.name | pascal }}`
+
 # `{{ inputs.name }}.js`
 
 ```javascript
@@ -326,6 +333,12 @@ describe('{{ inputs.name | camel }}', () => {
 });
 ```
 ````
+
+The `Variables` section is special and is not output to a file. The `Variables` section is special and is not output to a file. The key-value (`key: value`) list allows you to declare variables that can be used in common templates.
+
+This is useful for processing input values that are commonly used in templates.
+
+If you want to define variables in file scope, please see the [FAQ](#faq).
 
 ### Syntax
 
@@ -495,6 +508,20 @@ When invoked on a pipe, the previous processing result is passed to the first ar
 | `relative` | `[path: string]`                                        | Convert the path from the template file to the path from the destination file.                                      |
 | `read`     | `[path: string]`                                        | Read the specified file. The contents of the loaded file are also expanded as a template.                           |
 
+## Integration
+
+### Prettier
+
+We provide a Prettier plugin that automatically formats scaffdog templates :dog: :nail_care:
+
+Install via npm:
+
+```bash
+$ npm install --save-dev prettier-plugin-scaffdog
+```
+
+For more information on this plugin, please refer to [here](/packages/prettier-plugin-scaffdog/).
+
 ## FAQ
 
 <details>
@@ -525,6 +552,14 @@ Defined a variable called `out` which is a processed version of `output.path`. T
 
 1. Save the calculation result to `out` with `define` helper function.
 1. The variable definition tag trims whitespaces. (use `{{-` and `-}}`)
+
+</details>
+
+<details>
+  <summary>Is it possible to use scaffdog as an API?</summary>
+
+Yes, scaffdog consists of a monorepo that is divided into low-level packages so that APIs can be used separately.  
+If you want to create a custom workflow using scaffdog, consider using [@scaffdog/engine](/packages/@scaffdog/engine), which is the lowest level API.
 
 </details>
 
@@ -569,6 +604,6 @@ $ yarn format
 
 ## License
 
-[MIT © Cyberagent, Inc](./LICENSE)
+[MIT © Cyberagent, Inc](/LICENSE)
 
 ![thank you for reading!](/packages/scaffdog/docs/assets/repo-footer.png)
