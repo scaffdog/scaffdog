@@ -1,6 +1,6 @@
 {
   "name": "@scaffdog/error",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A utility module of scaffdog error.",
   "keywords": [
     "scaffdog",
@@ -29,7 +29,7 @@
     "test": "ava"
   },
   "dependencies": {
-    "@scaffdog/types": "1.1.0",
+    "@scaffdog/types": "1.2.0",
     "chalk": "^4.1.0"
   },
   "publishConfig": {

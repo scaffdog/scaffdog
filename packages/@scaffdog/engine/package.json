@@ -1,6 +1,6 @@
 {
   "name": "@scaffdog/engine",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A module of scaffdog template engine.",
   "keywords": [
     "scaffdog",
@@ -29,8 +29,8 @@
     "test": "ava"
   },
   "dependencies": {
-    "@scaffdog/error": "1.1.0",
-    "@scaffdog/types": "1.1.0",
+    "@scaffdog/error": "1.2.0",
+    "@scaffdog/types": "1.2.0",
     "change-case": "^4.1.2",
     "dayjs": "^1.10.4",
     "esprima": "^4.0.1",

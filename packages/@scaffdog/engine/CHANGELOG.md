@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/cats-oss/scaffdog/compare/v1.1.0...v1.2.0) (2022-01-25)
+
+### Features
+
+- **engine:** add syntax formatter ([b8006ef](https://github.com/cats-oss/scaffdog/commit/b8006eff94a365b0a230fca0422fafbe85eda8ca))
+
 # [1.1.0](https://github.com/cats-oss/scaffdog/compare/v1.1.0-canary.0...v1.1.0) (2021-12-19)
 
 **Note:** Version bump only for package @scaffdog/engine
