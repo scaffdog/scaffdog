@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@scaffdog/types": "1.2.0",
-    "chalk": "^4.1.0"
+    "chalk": "^5.0.0"
   },
   "publishConfig": {
     "access": "public"
