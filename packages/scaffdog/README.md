@@ -334,7 +334,7 @@ describe('{{ inputs.name | camel }}', () => {
 ```
 ````
 
-The `Variables` section is special and is not output to a file. The `Variables` section is special and is not output to a file. The key-value (`key: value`) list allows you to declare variables that can be used in common templates.
+The `Variables` section is special and is not output to a file. The key-value (`key: value`) list allows you to declare variables that can be used in common templates.
 
 This is useful for processing input values that are commonly used in templates.
 
