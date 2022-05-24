@@ -6477,10 +6477,15 @@ temp-write@^4.0.0:
     temp-dir "^1.0.0"
     uuid "^3.3.2"
 
-term-size@^2.1.0, term-size@^2.2.1:
+term-size@^2.1.0:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/term-size/-/term-size-2.2.1.tgz#2a6a54840432c2fb6320fea0f415531e90189f54"
   integrity sha512-wK0Ri4fOGjv/XPy8SBHZChl8CM7uMc5VML7SqiQ0zG7+J5Vr+RMQDoHa2CNT6KHUnTGIXH34UDMkPzAUyapBZg==
+
+term-size@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/term-size/-/term-size-3.0.2.tgz#bee88ca0afb8abbd423d698daac747f68aff5009"
+  integrity sha512-YfE8KwjrumviCxmeOS1r1hAwqUcd/AnhrG/Pol/Gry91EyUCS+jQH0qFUZOUkpGQ5rXsKMK6S6kjne53ytYS/w==
 
 text-extensions@^1.0.0:
   version "1.9.0"
