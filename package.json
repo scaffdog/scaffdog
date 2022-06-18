@@ -41,7 +41,7 @@
     "@commitlint/config-conventional": "16.0.0",
     "@commitlint/config-lerna-scopes": "16.0.0",
     "@types/mock-fs": "4.13.1",
-    "@types/node": "16.11.21",
+    "@types/node": "16.11.41",
     "@types/sinon": "10.0.8",
     "@typescript-eslint/eslint-plugin": "5.17.0",
     "@typescript-eslint/parser": "5.17.0",
