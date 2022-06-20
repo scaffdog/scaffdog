@@ -21,7 +21,7 @@ jobs:
       - name: Install depedencies
         run: yarn --frozen-lockfile --check-files
       - run: yarn build
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: dist
           path: |
