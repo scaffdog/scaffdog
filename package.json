@@ -37,9 +37,9 @@
     "trim-newlines": "3.0.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "16.1.0",
-    "@commitlint/config-conventional": "16.0.0",
-    "@commitlint/config-lerna-scopes": "16.0.0",
+    "@commitlint/cli": "16.3.0",
+    "@commitlint/config-conventional": "16.2.4",
+    "@commitlint/config-lerna-scopes": "16.2.4",
     "@types/mock-fs": "4.13.1",
     "@types/node": "16.11.21",
     "@types/sinon": "10.0.8",
