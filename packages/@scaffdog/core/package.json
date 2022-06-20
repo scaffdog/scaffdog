@@ -31,7 +31,7 @@
     "@scaffdog/engine": "1.2.0",
     "@scaffdog/types": "1.2.0",
     "mdast-util-to-string": "^2.0.0",
-    "remark-parse": "^9.0.0",
+    "remark-parse": "^10.0.1",
     "unified": "^9.2.1",
     "unist-util-visit-parents": "^3.1.1"
   },
