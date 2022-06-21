@@ -227,8 +227,15 @@ export const tokenize = (
   const output: AnyToken[] = [];
   const buf: string[] = [];
   let bufPos: SourcePosition | null = null;
-  let inTag = false;
   let i = 0;
+
+  const state: {
+    tag: boolean;
+    string: string | null;
+  } = {
+    tag: false,
+    string: null,
+  };
 
   const endOfSource = (index: number) => index + 1 > length;
   const lookahead = (n = 1) => (endOfSource(i + n) ? '' : source[i + n]);
@@ -274,12 +281,12 @@ export const tokenize = (
     const open = range(i, tag.open.length);
     const close = range(i, tag.close.length);
 
-    if (open === tag.open.value) {
-      if (inTag) {
+    if (open === tag.open.value && state.string == null) {
+      if (state.tag) {
         unclosed(input, output);
       }
 
-      inTag = true;
+      state.tag = true;
       consumeBuffer();
       i += tag.open.length - 1;
       pos.column += tag.open.length - 1;
@@ -301,7 +308,7 @@ export const tokenize = (
 
       i += trim ? 1 : 0;
       pos.column += trim ? 1 : 0;
-    } else if (close === tag.close.value) {
+    } else if (close === tag.close.value && state.string == null) {
       const token = createToken('CLOSE_TAG', close, {
         start: {
           ...pos,
@@ -312,11 +319,11 @@ export const tokenize = (
         },
       });
 
-      if (!inTag) {
+      if (!state.tag) {
         unopened(input, token);
       }
 
-      inTag = false;
+      state.tag = false;
       output.push(
         ...tokenizeInTag({ source: input, input: buf2str(), pos }),
         token,
@@ -338,11 +345,11 @@ export const tokenize = (
           },
         });
 
-        if (!inTag) {
+        if (!state.tag) {
           unopened(input, token);
         }
 
-        inTag = false;
+        state.tag = false;
         output.push(
           ...tokenizeInTag({ source: input, input: buf2str(), pos }),
           token,
@@ -353,6 +360,15 @@ export const tokenize = (
       } else {
         buf.push(str);
       }
+    } else if (str === '"' || str === "'") {
+      if (state.tag) {
+        if (state.string == null) {
+          state.string = str;
+        } else if (state.string === str) {
+          state.string = null;
+        }
+      }
+      buf.push(str);
     } else {
       buf.push(str);
     }
@@ -366,7 +382,7 @@ export const tokenize = (
     i++;
   }
 
-  if (inTag) {
+  if (state.tag) {
     unclosed(input, output);
   }
 

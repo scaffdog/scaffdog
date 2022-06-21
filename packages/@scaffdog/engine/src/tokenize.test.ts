@@ -400,6 +400,28 @@ test('tag - string (double quote)', valid(), '{{ "string"}}', [
   }),
 ]);
 
+test('tag - string (includes tag keyword)', valid(), `{{ "{{ 'foo' }}" }}`, [
+  createToken('OPEN_TAG', '{{', {
+    start: { line: 1, column: 1 },
+    end: { line: 1, column: 2 },
+  }),
+  createToken(
+    'STRING',
+    {
+      quote: `"`,
+      value: `{{ 'foo' }}`,
+    },
+    {
+      start: { line: 1, column: 4 },
+      end: { line: 1, column: 16 },
+    },
+  ),
+  createToken('CLOSE_TAG', '}}', {
+    start: { line: 1, column: 18 },
+    end: { line: 1, column: 19 },
+  }),
+]);
+
 test('tag - number (natural)', valid(), '{{ 123 }}', [
   createToken('OPEN_TAG', '{{', {
     start: { line: 1, column: 1 },
