@@ -13,7 +13,7 @@ jobs:
       matrix:
         node: ['12', '14', '16']
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
@@ -36,7 +36,7 @@ jobs:
       matrix:
         node: ['12', '14', '16']
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
@@ -55,7 +55,7 @@ jobs:
       matrix:
         node: ['12', '14', '16']
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
@@ -80,7 +80,7 @@ jobs:
     env:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
