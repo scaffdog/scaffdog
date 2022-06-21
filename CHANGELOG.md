@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1-canary.0](https://github.com/cats-oss/scaffdog/compare/v1.2.0...v1.2.1-canary.0) (2022-06-21)
+
+### Bug Fixes
+
+- **engine:** fix parser error when using tag keyword in string ([244fd52](https://github.com/cats-oss/scaffdog/commit/244fd527fc4de3761b4ec4a33f7bde0ec40ef222))
+
+### Features
+
+- **engine:** add `head` helper function ([f34fb67](https://github.com/cats-oss/scaffdog/commit/f34fb678dde9c39c3f13a7477e7144976da5a371))
+- **engine:** add `tail` helper function ([be3c7a1](https://github.com/cats-oss/scaffdog/commit/be3c7a1dc442d34226a3ec694970b32d6c3e4e6b))
+
 # [1.2.0](https://github.com/cats-oss/scaffdog/compare/v1.1.0...v1.2.0) (2022-01-25)
 
 ### Features

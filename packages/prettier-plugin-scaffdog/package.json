@@ -1,6 +1,6 @@
 {
   "name": "prettier-plugin-scaffdog",
-  "version": "1.2.0",
+  "version": "1.2.1-canary.0",
   "description": "A Prettier plugin for scaffdog templates that automatically format syntax.",
   "keywords": [
     "scaffdog",
@@ -32,9 +32,9 @@
     "test": "ava"
   },
   "dependencies": {
-    "@scaffdog/config": "1.2.0",
-    "@scaffdog/engine": "1.2.0",
-    "@scaffdog/types": "1.2.0",
+    "@scaffdog/config": "1.2.1-canary.0",
+    "@scaffdog/engine": "1.2.1-canary.0",
+    "@scaffdog/types": "1.2.1-canary.0",
     "minimatch": "^3.0.4",
     "prettier": "2.7.1"
   },
