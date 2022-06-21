@@ -2,9 +2,23 @@ import type { Context } from '@scaffdog/types';
 import type { ExecutionContext } from 'ava';
 import test from 'ava';
 import { compile } from './compile';
-import { createContext, extendContext } from './context';
+import { createContext } from './context';
 
-const context = createContext({});
+const context = createContext({
+  variables: new Map([
+    ['count5', '5'],
+    [
+      'multiline',
+      `
+line1
+line2
+line3
+line4
+line5
+    `.trim(),
+    ],
+  ]),
+});
 
 const equals = (
   t: ExecutionContext,
@@ -55,26 +69,62 @@ test('ltrim', equals, context, `{{ "  foo " | ltrim }}`, `foo `);
 
 test('rtrim', equals, context, `{{ "  foo " | rtrim }}`, `  foo`);
 
+test(
+  'head - number',
+  equals,
+  context,
+  `{{ multiline | head 2 }}`,
+  `line1\nline2`,
+);
+
+test(
+  'head - number (offset)',
+  equals,
+  context,
+  `{{ multiline | head 4 -1 }}`,
+  `line1\nline2\nline3`,
+);
+
+test(
+  'head - string',
+  equals,
+  context,
+  `{{ multiline | head "line4" }}`,
+  `line1\nline2\nline3\nline4`,
+);
+
+test(
+  'head - string (offset)',
+  equals,
+  context,
+  `{{ multiline | head "line2" 2 }}`,
+  `line1\nline2\nline3\nline4`,
+);
+
+test(
+  'head - string (no match)',
+  equals,
+  context,
+  `{{ multiline | head "NOT_FOUND" }}`,
+  `line1\nline2\nline3\nline4\nline5`,
+);
+
 /**
  * language
  */
 test(
   'eval - basic',
   equals,
-  extendContext(context, {
-    variables: new Map([['count', '5']]),
-  }),
-  `{{ eval "parseInt(count, 10) > 4 ? 'true' : 'false'" }}`,
+  context,
+  `{{ eval "parseInt(count5, 10) > 4 ? 'true' : 'false'" }}`,
   `true`,
 );
 
 test(
   'eval - chain',
   equals,
-  extendContext(context, {
-    variables: new Map([['count', '5']]),
-  }),
-  `{{ "foo" | eval "parseInt(count, 10) + 5" }}`,
+  context,
+  `{{ "foo" | eval "parseInt(count5, 10) + 5" }}`,
   `10`,
 );
 

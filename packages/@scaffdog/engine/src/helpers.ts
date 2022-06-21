@@ -7,6 +7,11 @@ import type { Context, HelperMap } from '@scaffdog/types';
 export const helpers: HelperMap = new Map();
 
 /**
+ * internal
+ */
+const splitLines = (v: string) => v.split(/\r?\n/);
+
+/**
  * string utils
  */
 helpers.set('camel', (_: Context, v: string) => cc.camelCase(v));
@@ -34,6 +39,25 @@ helpers.set('trim', (_: Context, v: string) => v.trim());
 helpers.set('ltrim', (_: Context, v: string) => v.trimStart());
 
 helpers.set('rtrim', (_: Context, v: string) => v.trimEnd());
+
+helpers.set(
+  'head',
+  (_: Context, v: string, n: string | number, offset?: number) => {
+    const lines = splitLines(v);
+
+    if (typeof n === 'string') {
+      const regexp = new RegExp(n);
+      for (let i = 0; i < lines.length; i++) {
+        if (regexp.test(lines[i])) {
+          return lines.slice(0, i + 1 + (offset ?? 0)).join('\n');
+        }
+      }
+      return v;
+    }
+
+    return lines.slice(0, n + (offset ?? 0)).join('\n');
+  },
+);
 
 /**
  * date
