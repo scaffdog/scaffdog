@@ -44,18 +44,39 @@ helpers.set(
   'head',
   (_: Context, v: string, n: string | number, offset?: number) => {
     const lines = splitLines(v);
+    const off = offset ?? 0;
 
     if (typeof n === 'string') {
       const regexp = new RegExp(n);
       for (let i = 0; i < lines.length; i++) {
         if (regexp.test(lines[i])) {
-          return lines.slice(0, i + 1 + (offset ?? 0)).join('\n');
+          return lines.slice(0, i + 1 + off).join('\n');
         }
       }
       return v;
     }
 
-    return lines.slice(0, n + (offset ?? 0)).join('\n');
+    return lines.slice(0, n + off).join('\n');
+  },
+);
+
+helpers.set(
+  'tail',
+  (_: Context, v: string, n: string | number, offset?: number) => {
+    const lines = splitLines(v);
+    const off = (offset ?? 0) * -1;
+
+    if (typeof n === 'string') {
+      const regexp = new RegExp(n);
+      for (let i = lines.length - 1; i >= 0; i--) {
+        if (regexp.test(lines[i])) {
+          return lines.slice(lines.length - i + 1 + off).join('\n');
+        }
+      }
+      return v;
+    }
+
+    return lines.slice(lines.length - n + off).join('\n');
   },
 );
 

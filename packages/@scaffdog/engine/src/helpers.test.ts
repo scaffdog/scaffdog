@@ -109,6 +109,46 @@ test(
   `line1\nline2\nline3\nline4\nline5`,
 );
 
+test(
+  'tail - number',
+  equals,
+  context,
+  `{{ multiline | tail 2 }}`,
+  `line4\nline5`,
+);
+
+test(
+  'tail - number (offset)',
+  equals,
+  context,
+  `{{ multiline | tail 4 -1 }}`,
+  `line3\nline4\nline5`,
+);
+
+test(
+  'tail - string',
+  equals,
+  context,
+  `{{ multiline | tail "line4" }}`,
+  `line4\nline5`,
+);
+
+test(
+  'tail - string (offset)',
+  equals,
+  context,
+  `{{ multiline | tail "line2" 2 }}`,
+  `line4\nline5`,
+);
+
+test(
+  'tail - string (no match)',
+  equals,
+  context,
+  `{{ multiline | tail "NOT_FOUND" }}`,
+  `line1\nline2\nline3\nline4\nline5`,
+);
+
 /**
  * language
  */
