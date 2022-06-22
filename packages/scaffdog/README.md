@@ -518,7 +518,7 @@ Injection can be achieved by using the helper function. The following are some e
 
 #### Append
 
-You can use the `read` helper function and `output.path` to get the file to output.  
+You can use the `read` helper function and `output.abs` to get the file to output.  
 If you want to append a text to the last line, put a body after the call to the `read` helper function.
 
 ````markdown
