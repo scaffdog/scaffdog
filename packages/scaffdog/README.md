@@ -41,6 +41,7 @@ Multiple files can be output in a document, and flexible scaffolding is possible
   - [Attributes](#attributes)
   - [Variables](#variables)
   - [Helpers](#helpers)
+  - [Injection](#injection)
 - :electric_plug: [Integration](#integration)
   - [Prettier](#prettier)
 - :blue_book: [FAQ](#faq)
@@ -418,8 +419,8 @@ Example:
 
 ```
 {{ inputs.value | upper }}
-{{ inputs.value | replace "$.ts" ".js" | pascal }}
-{{ basename | replace extname ".js" | pascal }}
+{{ inputs.value | replace ".ts$" ".js" | pascal }}
+{{ output.base | replace output.ext ".js" | pascal }}
 ```
 
 ### Attributes
@@ -438,7 +439,7 @@ List of attributes that can be specified with Front Matter.
 
 `questions` defines the question to be used in prompt with key-value. The values you answer can be used in a variable called `inputs`. (e.g. `inputs.key1`, `inputs.value`)
 
-```
+```markdown
 ---
 questions:
   # Shortest syntax, using `input` prompt.
@@ -509,6 +510,70 @@ When invoked on a pipe, the previous processing result is passed to the first ar
 | `define`   | `[value: string, key: string]`                          | Defines a local variable in the template scope.                                                                                           |
 | `relative` | `[path: string]`                                        | Convert the path from the template file to the path from the destination file.                                                            |
 | `read`     | `[path: string]`                                        | Read the specified file. The contents of the loaded file are also expanded as a template.                                                 |
+
+### Injection
+
+scaffdog can inject code into already existing files! :pick:  
+Injection can be achieved by using the helper function. The following are some examples.
+
+#### Append
+
+You can use the `read` helper function and `output.path` to get the file to output.  
+If you want to append a text to the last line, put a body after the call to the `read` helper function.
+
+````markdown
+# `index.js`
+
+```javascript
+{{ read output.abs }}
+console.log('last line');
+```
+````
+
+#### Prepend
+
+Using much the same mechanism as the [Append](#append) section, text can be added to the first line.
+
+````markdown
+# `index.js`
+
+```javascript
+console.log('first line');
+{{ read output.abs }}
+```
+````
+
+#### Before / After
+
+There may be cases where you want to add text to a specific line in a file's contents. The `before` and `after` helper functions make it easy!
+
+For example, if you want to add text to the first blank line, the case is as follows:
+
+````markdown
+# `index.js`
+
+```javascript
+{{ read output.abs | before "^$" }}
+console.log('first blank line');
+{{ read output.abs | after "^$" -1 }}
+```
+````
+
+The `before` and `after` helper functions each retrieve values that do not include the specified line, so you will need to adjust the position of the inject by making use of the `offset`.
+
+#### At line
+
+The `before` and `after` helper functions are also useful when you want to add text to a specific line.
+
+````markdown
+# `index.js`
+
+```javascript
+{{ read output.abs | before 6 }}
+console.log('line at 6');
+{{ read output.abs | after 6 -1 }}
+```
+````
 
 ## Integration
 
