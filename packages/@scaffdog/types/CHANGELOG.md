@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/cats-oss/scaffdog/compare/v1.2.1-canary.1...v1.3.0) (2022-06-22)
+
+**Note:** Version bump only for package @scaffdog/types
+
 ## [1.2.1-canary.0](https://github.com/cats-oss/scaffdog/compare/v1.2.0...v1.2.1-canary.0) (2022-06-21)
 
 **Note:** Version bump only for package @scaffdog/types
