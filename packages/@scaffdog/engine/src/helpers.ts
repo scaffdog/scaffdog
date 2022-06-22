@@ -7,11 +7,6 @@ import type { Context, HelperMap } from '@scaffdog/types';
 export const helpers: HelperMap = new Map();
 
 /**
- * internal
- */
-const splitLines = (v: string) => v.split(/\r?\n/);
-
-/**
  * string utils
  */
 helpers.set('camel', (_: Context, v: string) => cc.camelCase(v));
@@ -39,46 +34,6 @@ helpers.set('trim', (_: Context, v: string) => v.trim());
 helpers.set('ltrim', (_: Context, v: string) => v.trimStart());
 
 helpers.set('rtrim', (_: Context, v: string) => v.trimEnd());
-
-helpers.set(
-  'head',
-  (_: Context, v: string, n: string | number, offset?: number) => {
-    const lines = splitLines(v);
-    const off = offset ?? 0;
-
-    if (typeof n === 'string') {
-      const regexp = new RegExp(n);
-      for (let i = 0; i < lines.length; i++) {
-        if (regexp.test(lines[i])) {
-          return lines.slice(0, i + 1 + off).join('\n');
-        }
-      }
-      return v;
-    }
-
-    return lines.slice(0, n + off).join('\n');
-  },
-);
-
-helpers.set(
-  'tail',
-  (_: Context, v: string, n: string | number, offset?: number) => {
-    const lines = splitLines(v);
-    const off = (offset ?? 0) * -1;
-
-    if (typeof n === 'string') {
-      const regexp = new RegExp(n);
-      for (let i = lines.length - 1; i >= 0; i--) {
-        if (regexp.test(lines[i])) {
-          return lines.slice(lines.length - i + 1 + off).join('\n');
-        }
-      }
-      return v;
-    }
-
-    return lines.slice(lines.length - n + off).join('\n');
-  },
-);
 
 /**
  * date
