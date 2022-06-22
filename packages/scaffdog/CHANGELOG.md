@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1-canary.1](https://github.com/cats-oss/scaffdog/compare/v1.2.1-canary.0...v1.2.1-canary.1) (2022-06-22)
+
+### Features
+
+- **engine:** add `after` helper function ([ff2f1c3](https://github.com/cats-oss/scaffdog/commit/ff2f1c3e793eff429f17e21f7003e9281804aa1a))
+- **engine:** add `before` helper function ([9a1002a](https://github.com/cats-oss/scaffdog/commit/9a1002a628d230bd1bae0a4bcea40972c7ac181c))
+
 ## [1.2.1-canary.0](https://github.com/cats-oss/scaffdog/compare/v1.2.0...v1.2.1-canary.0) (2022-06-21)
 
 ### Features

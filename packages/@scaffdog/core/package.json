@@ -1,6 +1,6 @@
 {
   "name": "@scaffdog/core",
-  "version": "1.2.1-canary.0",
+  "version": "1.2.1-canary.1",
   "description": "@scaffdog/core is a low layer of scaffdog.",
   "keywords": [
     "scaffdog",
@@ -28,7 +28,7 @@
     "test": "ava"
   },
   "dependencies": {
-    "@scaffdog/engine": "1.2.1-canary.0",
+    "@scaffdog/engine": "1.2.1-canary.1",
     "@scaffdog/types": "1.2.1-canary.0",
     "mdast-util-to-string": "^2.0.0",
     "remark-parse": "^9.0.0",
