@@ -13,6 +13,18 @@ questions:
 # Variables
 
 - name: `{{ inputs.name | kebab }}`
+- cmd: `{{ inputs.name | camel }}Cmd`
+
+# `../bin.ts`
+
+```typescript
+{{- read output.abs | define "file" -}}
+{{ file | before "^$" }}
+import {{ cmd }} from './cmds/{{ name }}';
+{{ file | after "^$" -1 | before "container\.set" }}
+  container.set({{ cmd }}.name, {{ cmd }});
+{{ file | after "container\.set" }}
+```
 
 # `{{ name }}.ts`
 
