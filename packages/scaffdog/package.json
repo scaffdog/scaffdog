@@ -4,6 +4,10 @@
   "description": "scaffdog is Markdown driven scaffolding tool.",
   "keywords": [
     "scaffdog",
+    "scaffold",
+    "scaffolding",
+    "generator",
+    "boilerplate",
     "markdown",
     "template"
   ],
