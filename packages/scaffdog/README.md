@@ -488,25 +488,26 @@ List of variables available in the template. You need to be aware that the file 
 
 When invoked on a pipe, the previous processing result is passed to the first argument.
 
-| name       | arguments                                               | description                                                                                                         |
-| :--------- | :------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------ |
-| `camel`    | `[value: string]`                                       | Conversion to a camel case.                                                                                         |
-| `snake`    | `[value: string]`                                       | Conversion to a snake case.                                                                                         |
-| `pascal`   | `[value: string]`                                       | Conversion to a pascal case.                                                                                        |
-| `kebab`    | `[value: string]`                                       | Conversion to a kebab case.                                                                                         |
-| `constant` | `[value: string]`                                       | Conversion to a constant case.                                                                                      |
-| `upper`    | `[value: string]`                                       | Conversion to a upper case.                                                                                         |
-| `lower`    | `[value: string]`                                       | Conversion to a lower case.                                                                                         |
-| `replace`  | `[value: string, pattern: string, replacement: string]` | Replace `pattern` with`replacement`. `pattern` is specified as a string, but it is treated as a regular expression. |
-| `trim`     | `[value: string]`                                       | Alias for `String.prototype.trim`.                                                                                  |
-| `ltrim`    | `[value: string]`                                       | Alias for `String.prototype.trimStart`.                                                                             |
-| `rtrim`    | `[value: string]`                                       | Alias for `String.prototype.trimEnd`.                                                                               |
-| `eval`     | `[code: string]`                                        | Executes the specified code and returns the result.                                                                 |
-| `date`     | `[format?: string]`                                     | See the [dayjs](https://day.js.org/docs/en/display/format) documentation for format details.                        |
-| `noop`     | `[]`                                                    | Returns an empty string.                                                                                            |
-| `define`   | `[value: string, key: string]`                          | Defines a local variable in the template scope.                                                                     |
-| `relative` | `[path: string]`                                        | Convert the path from the template file to the path from the destination file.                                      |
-| `read`     | `[path: string]`                                        | Read the specified file. The contents of the loaded file are also expanded as a template.                           |
+| name       | arguments                                               | description                                                                                                                               |
+| :--------- | :------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| `camel`    | `[value: string]`                                       | Conversion to a camel case.                                                                                                               |
+| `snake`    | `[value: string]`                                       | Conversion to a snake case.                                                                                                               |
+| `pascal`   | `[value: string]`                                       | Conversion to a pascal case.                                                                                                              |
+| `kebab`    | `[value: string]`                                       | Conversion to a kebab case.                                                                                                               |
+| `constant` | `[value: string]`                                       | Conversion to a constant case.                                                                                                            |
+| `upper`    | `[value: string]`                                       | Conversion to a upper case.                                                                                                               |
+| `lower`    | `[value: string]`                                       | Conversion to a lower case.                                                                                                               |
+| `replace`  | `[value: string, pattern: string, replacement: string]` | Replace `pattern` with `replacement`. `pattern` is specified as a string, but it is treated as a regular expression.                      |
+| `trim`     | `[value: string]`                                       | Alias for `String.prototype.trim`.                                                                                                        |
+| `ltrim`    | `[value: string]`                                       | Alias for `String.prototype.trimStart`.                                                                                                   |
+| `rtrim`    | `[value: string]`                                       | Alias for `String.prototype.trimEnd`.                                                                                                     |
+| `before`   | `[value: string, n: string \| number, offset?: number]` | Returns string before the position by `n`. If `n` is a number, it is the specified line; if it is a string, it is the first matched line. |
+| `eval`     | `[code: string]`                                        | Executes the specified code and returns the result.                                                                                       |
+| `date`     | `[format?: string]`                                     | See the [dayjs](https://day.js.org/docs/en/display/format) documentation for format details.                                              |
+| `noop`     | `[]`                                                    | Returns an empty string.                                                                                                                  |
+| `define`   | `[value: string, key: string]`                          | Defines a local variable in the template scope.                                                                                           |
+| `relative` | `[path: string]`                                        | Convert the path from the template file to the path from the destination file.                                                            |
+| `read`     | `[path: string]`                                        | Read the specified file. The contents of the loaded file are also expanded as a template.                                                 |
 
 ## Integration
 
