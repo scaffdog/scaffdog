@@ -60,6 +60,26 @@ helpers.set(
   },
 );
 
+helpers.set(
+  'after',
+  (_: Context, v: string, n: string | number, offset?: number) => {
+    const lines = splitLines(v);
+    const off = offset ?? 0;
+
+    if (typeof n === 'string') {
+      const regexp = new RegExp(n);
+      for (let i = 0; i < lines.length; i++) {
+        if (regexp.test(lines[i])) {
+          return lines.slice(i + 1 + off).join('\n');
+        }
+      }
+      return v;
+    }
+
+    return lines.slice(n + off).join('\n');
+  },
+);
+
 /**
  * date
  */

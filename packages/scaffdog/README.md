@@ -502,6 +502,7 @@ When invoked on a pipe, the previous processing result is passed to the first ar
 | `ltrim`    | `[value: string]`                                       | Alias for `String.prototype.trimStart`.                                                                                                   |
 | `rtrim`    | `[value: string]`                                       | Alias for `String.prototype.trimEnd`.                                                                                                     |
 | `before`   | `[value: string, n: string \| number, offset?: number]` | Returns string before the position by `n`. If `n` is a number, it is the specified line; if it is a string, it is the first matched line. |
+| `after`    | `[value: string, n: string \| number, offset?: number]` | Returns string after the position by `n`. If `n` is a number, it is the specified line; if it is a string, it is the first matched line.  |
 | `eval`     | `[code: string]`                                        | Executes the specified code and returns the result.                                                                                       |
 | `date`     | `[format?: string]`                                     | See the [dayjs](https://day.js.org/docs/en/display/format) documentation for format details.                                              |
 | `noop`     | `[]`                                                    | Returns an empty string.                                                                                                                  |

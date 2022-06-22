@@ -109,6 +109,46 @@ test(
   `line1\nline2\nline3\nline4\nline5`,
 );
 
+test(
+  'after - number',
+  equals,
+  context,
+  `{{ multiline | after 2 }}`,
+  `line3\nline4\nline5`,
+);
+
+test(
+  'after - number (offset)',
+  equals,
+  context,
+  `{{ multiline | after 4 -1 }}`,
+  `line4\nline5`,
+);
+
+test(
+  'after - string',
+  equals,
+  context,
+  `{{ multiline | after "line4" }}`,
+  `line5`,
+);
+
+test(
+  'after - string (offset)',
+  equals,
+  context,
+  `{{ multiline | after "line2" 1 }}`,
+  `line4\nline5`,
+);
+
+test(
+  'after - string (no match)',
+  equals,
+  context,
+  `{{ multiline | after "NOT_FOUND" }}`,
+  `line1\nline2\nline3\nline4\nline5`,
+);
+
 /**
  * language
  */
