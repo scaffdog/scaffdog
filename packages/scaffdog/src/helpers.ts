@@ -13,6 +13,10 @@ const isObjectVariable = (
 
 export const helpers: HelperMap = new Map();
 
+helpers.set('resolve', (_: Context, ...args: string[]) =>
+  path.resolve(...args),
+);
+
 helpers.set('relative', (ctx: Context, to: string) => {
   const output = ctx.variables.get('output');
   const document = ctx.variables.get('document');

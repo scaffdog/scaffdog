@@ -475,6 +475,7 @@ List of variables available in the template. You need to be aware that the file 
 
 | key             | description                                                      | example                       |
 | :-------------- | :--------------------------------------------------------------- | :---------------------------- |
+| `cwd`           | Current working directory.                                       | `/path/to/`                   |
 | `inputs`        | The object value received at the prompt.                         |                               |
 | `output.name`   | The name of the output destination file excluding the extension. | `scaffdog`                    |
 | `output.base`   | The name of the output destination file including the extension. | `scaffdog.js`                 |
@@ -483,6 +484,7 @@ List of variables available in the template. You need to be aware that the file 
 | `output.path`   | The path of the destination file.                                | `src/scaffdog.js`             |
 | `output.abs`    | The absolute path of the destination file.                       | `/path/to/src/scaffdog.js`    |
 | `document.name` | The document name.                                               | `hello`                       |
+| `document.dir`  | The directory name of the document file.                         | `/path/to/.scaffdog`          |
 | `document.path` | The path of the document file.                                   | `/path/to/.scaffdog/hello.md` |
 
 ### Helpers
@@ -509,6 +511,7 @@ When invoked on a pipe, the previous processing result is passed to the first ar
 | `noop`     | `[]`                                                    | Returns an empty string.                                                                                                                  |
 | `define`   | `[value: string, key: string]`                          | Defines a local variable in the template scope.                                                                                           |
 | `relative` | `[path: string]`                                        | Convert the path from the template file to the path from the destination file.                                                            |
+| `resolve`  | `[...paths: string[]]`                                  | Resolves a sequence of paths or path segments into an absolute path.                                                                      |
 | `read`     | `[path: string]`                                        | Read the specified file. The contents of the loaded file are also expanded as a template.                                                 |
 
 ### Injection

@@ -162,9 +162,12 @@ export default createCommand({
     config.variables.set('inputs', {});
   }
 
+  config.variables.set('cwd', cwd);
+
   config.variables.set('document', {
-    path: doc.path,
     name: doc.name,
+    dir: path.dirname(doc.path),
+    path: doc.path,
   });
 
   logger.debug('variables: %O', config.variables);
