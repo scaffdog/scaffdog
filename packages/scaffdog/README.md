@@ -475,6 +475,7 @@ List of variables available in the template. You need to be aware that the file 
 
 | key             | description                                                      | example                       |
 | :-------------- | :--------------------------------------------------------------- | :---------------------------- |
+| `cwd`           | Current working directory.                                       | `/path/to/`                   |
 | `inputs`        | The object value received at the prompt.                         |                               |
 | `output.name`   | The name of the output destination file excluding the extension. | `scaffdog`                    |
 | `output.base`   | The name of the output destination file including the extension. | `scaffdog.js`                 |
