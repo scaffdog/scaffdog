@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/cats-oss/scaffdog/compare/v1.3.0...v1.4.0) (2022-06-23)
+
+### Features
+
+- **scaffdog:** add `cwd` variable ([ada5d96](https://github.com/cats-oss/scaffdog/commit/ada5d96e6a82e411fe5cf6d4cf8ec641a6c750e5))
+- **scaffdog:** add `document.dir` variable ([f538027](https://github.com/cats-oss/scaffdog/commit/f5380274e6eb4fc4d6cc3fc94a60a64e8e1e8285))
+- **scaffdog:** add `resolve` helper function ([440bc50](https://github.com/cats-oss/scaffdog/commit/440bc507d7be9a86325eb5cff24386e78500d792))
+
 # [1.3.0](https://github.com/cats-oss/scaffdog/compare/v1.2.1-canary.1...v1.3.0) (2022-06-22)
 
 **Note:** Version bump only for package scaffdog
