@@ -511,6 +511,7 @@ When invoked on a pipe, the previous processing result is passed to the first ar
 | `noop`     | `[]`                                                    | Returns an empty string.                                                                                                                  |
 | `define`   | `[value: string, key: string]`                          | Defines a local variable in the template scope.                                                                                           |
 | `relative` | `[path: string]`                                        | Convert the path from the template file to the path from the destination file.                                                            |
+| `resolve`  | `[...paths: string[]]`                                  | Resolves a sequence of paths or path segments into an absolute path.                                                                      |
 | `read`     | `[path: string]`                                        | Read the specified file. The contents of the loaded file are also expanded as a template.                                                 |
 
 ### Injection
