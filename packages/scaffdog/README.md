@@ -484,6 +484,7 @@ List of variables available in the template. You need to be aware that the file 
 | `output.path`   | The path of the destination file.                                | `src/scaffdog.js`             |
 | `output.abs`    | The absolute path of the destination file.                       | `/path/to/src/scaffdog.js`    |
 | `document.name` | The document name.                                               | `hello`                       |
+| `document.dir`  | The directory name of the document file.                         | `/path/to/.scaffdog`          |
 | `document.path` | The path of the document file.                                   | `/path/to/.scaffdog/hello.md` |
 
 ### Helpers
