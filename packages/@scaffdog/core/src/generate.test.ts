@@ -19,6 +19,7 @@ test('basic', (t) => {
           content: `
 inputs.name: {{ inputs.name }}
 cwd: {{ cwd }}
+output.root: {{ output.root }}
 output.path: {{ output.path }}
 output.abs: {{ output.abs }}
 output.name: {{ output.name }}
@@ -44,6 +45,7 @@ output.dir: {{ output.dir }}
         content: `
 inputs.name: value
 cwd: ${cwd}
+output.root: path/to
 output.path: path/to/plain.txt
 output.abs: ${path.join(cwd, 'path/to/plain.txt')}
 output.name: plain
