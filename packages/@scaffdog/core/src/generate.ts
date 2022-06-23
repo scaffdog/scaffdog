@@ -51,6 +51,7 @@ export const generate = (
     const vars: VariableMap = new Map();
     vars.set('cwd', opts.cwd);
     vars.set('output', {
+      root: opts.root,
       path: output.relative,
       abs: output.absolute,
       name: info.name,
