@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/cats-oss/scaffdog/compare/v1.4.0...v1.5.0) (2022-06-26)
+
+### Bug Fixes
+
+- **config:** fix config schema on loader ([20aec67](https://github.com/cats-oss/scaffdog/commit/20aec6734248eb5df7b098a18a7b56d2adc5d113))
+
+### Features
+
+- **core:** add `output.root` variable ([57baef8](https://github.com/cats-oss/scaffdog/commit/57baef84bde86c92976416a738e5c28ef397f47e))
+- **scaffdog:** add `--force` flag ([142e8c1](https://github.com/cats-oss/scaffdog/commit/142e8c1bb2629737930c2e1844072e46596f3986))
+
 # [1.4.0](https://github.com/cats-oss/scaffdog/compare/v1.3.0...v1.4.0) (2022-06-23)
 
 ### Features

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/cats-oss/scaffdog/compare/v1.4.0...v1.5.0) (2022-06-26)
+
+### Features
+
+- **core:** add `output.root` variable ([57baef8](https://github.com/cats-oss/scaffdog/commit/57baef84bde86c92976416a738e5c28ef397f47e))
+
 # [1.4.0](https://github.com/cats-oss/scaffdog/compare/v1.3.0...v1.4.0) (2022-06-23)
 
 **Note:** Version bump only for package @scaffdog/core
