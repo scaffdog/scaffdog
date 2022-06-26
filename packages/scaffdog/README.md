@@ -263,6 +263,7 @@ Options:
       --help     Show help                                                            [boolean]
       --version  Output the version number                                            [boolean]
   -n, --dry-run  Output the result to stdout.                                         [boolean]
+  -f, --force    Attempt to write the files without prompting for confirmation.       [boolean]
 ```
 
 ### `scaffdog create`
