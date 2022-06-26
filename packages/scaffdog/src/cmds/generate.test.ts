@@ -19,6 +19,16 @@ const clear = () => {
   } catch (e) {}
 };
 
+const mount = (files: Record<string, { path: string; content: string }>) => {
+  for (const entry of Object.values(files)) {
+    const filepath = path.resolve(cwd, entry.path);
+    const dirname = path.dirname(filepath);
+
+    fs.mkdirSync(dirname, { recursive: true });
+    fs.writeFileSync(filepath, entry.content, 'utf8');
+  }
+};
+
 before(clear);
 afterEach(clear);
 
@@ -77,11 +87,7 @@ test.serial('document - overwrite files', async (t) => {
     },
   };
 
-  fs.mkdirSync(path.resolve(cwd, 'tmp/nest'), { recursive: true });
-
-  for (const entry of Object.values(file)) {
-    fs.writeFileSync(entry.path, entry.content, 'utf8');
-  }
+  mount(file);
 
   const { code, stdout, stderr } = await runCommand(cmd, {
     ...defaults,
@@ -113,11 +119,7 @@ test.serial('document - force overwrite', async (t) => {
     },
   };
 
-  fs.mkdirSync(path.resolve(cwd, 'tmp/nest'), { recursive: true });
-
-  for (const entry of Object.values(file)) {
-    fs.writeFileSync(entry.path, entry.content, 'utf8');
-  }
+  mount(file);
 
   const { code, stdout, stderr } = await runCommand(cmd, {
     ...defaults,
