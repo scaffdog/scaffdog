@@ -36,6 +36,15 @@ export default createCommand({
           alias: 'n',
           description: 'Output the result to stdout.',
         },
+      })
+      .options({
+        force: {
+          type: 'boolean',
+          alias: 'f',
+          default: false,
+          description:
+            'Attempt to write the files without prompting for confirmation.',
+        },
       }),
 })(async ({ cwd, size, logger, options }) => {
   // configuration
@@ -226,7 +235,7 @@ export default createCommand({
       try {
         await mkdir(path.dirname(file.output), { recursive: true });
 
-        if (fileExists(file.output)) {
+        if (!options.force && fileExists(file.output)) {
           const relative = path.relative(cwd, file.output);
 
           const ok = await confirm(

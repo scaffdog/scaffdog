@@ -8,6 +8,7 @@ import * as prompt from '../prompt';
 const defaults = {
   name: undefined,
   'dry-run': false,
+  force: false,
 };
 
 const clear = () => {
@@ -16,6 +17,16 @@ const clear = () => {
       recursive: true,
     });
   } catch (e) {}
+};
+
+const mount = (files: Record<string, { path: string; content: string }>) => {
+  for (const entry of Object.values(files)) {
+    const filepath = path.resolve(cwd, entry.path);
+    const dirname = path.dirname(filepath);
+
+    fs.mkdirSync(dirname, { recursive: true });
+    fs.writeFileSync(filepath, entry.content, 'utf8');
+  }
 };
 
 before(clear);
@@ -76,11 +87,7 @@ test.serial('document - overwrite files', async (t) => {
     },
   };
 
-  fs.mkdirSync(path.resolve(cwd, 'tmp/nest'), { recursive: true });
-
-  for (const entry of Object.values(file)) {
-    fs.writeFileSync(entry.path, entry.content, 'utf8');
-  }
+  mount(file);
 
   const { code, stdout, stderr } = await runCommand(cmd, {
     ...defaults,
@@ -95,6 +102,39 @@ test.serial('document - overwrite files', async (t) => {
 
   t.not(fs.readFileSync(file.dump.path, 'utf8'), file.dump.content);
   t.is(fs.readFileSync(file.generate.path, 'utf8'), file.generate.content);
+});
+
+test.serial('document - force overwrite', async (t) => {
+  const stub = sinon.stub(prompt, 'confirm').rejects(new Error('unexpected'));
+
+  const { default: cmd } = await import('./generate');
+  const file = {
+    dump: {
+      path: path.resolve(cwd, 'tmp/nest/dump.txt'),
+      content: 'dump',
+    },
+    generate: {
+      path: path.resolve(cwd, 'tmp/generate.txt'),
+      content: 'generate',
+    },
+  };
+
+  mount(file);
+
+  const { code, stdout, stderr } = await runCommand(cmd, {
+    ...defaults,
+    name: 'a',
+    force: true,
+  });
+
+  stub.restore();
+
+  t.is(stderr, '');
+  t.snapshot(stdout);
+  t.is(code, 0);
+
+  t.not(fs.readFileSync(file.dump.path, 'utf8'), file.dump.content);
+  t.not(fs.readFileSync(file.generate.path, 'utf8'), file.generate.content);
 });
 
 test.serial('document - not found', async (t) => {
