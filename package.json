@@ -39,7 +39,7 @@
   "devDependencies": {
     "@commitlint/cli": "16.3.0",
     "@commitlint/config-conventional": "16.2.4",
-    "@commitlint/config-lerna-scopes": "16.2.4",
+    "@commitlint/config-lerna-scopes": "17.0.2",
     "@types/mock-fs": "4.13.1",
     "@types/node": "16.11.41",
     "@types/sinon": "10.0.11",
