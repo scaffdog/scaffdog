@@ -72,7 +72,7 @@
     "@types/wrap-ansi": "3.0.0",
     "@types/yargs": "17.0.10",
     "strip-ansi": "6.0.0",
-    "type-fest": "2.13.1"
+    "type-fest": "2.14.0"
   },
   "publishConfig": {
     "access": "public"
