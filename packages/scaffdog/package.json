@@ -33,7 +33,8 @@
   "scripts": {
     "build": "tsc",
     "scaffold": "ts-node src/bin.ts generate",
-    "test": "ava"
+    "test": "vitest run --dir src",
+    "test:watch": "vitest watch --dir src"
   },
   "dependencies": {
     "@scaffdog/config": "1.5.0",

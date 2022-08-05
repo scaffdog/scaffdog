@@ -1,4 +1,4 @@
-import test from 'ava';
+import { test, expect } from 'vitest';
 import chalk from 'chalk';
 import { error } from './';
 
@@ -16,48 +16,48 @@ const defaults = {
   color: true,
 };
 
-test('default', (t) => {
+test('default', () => {
   const e = error(message);
-  t.is(e.message, message);
+  expect(e.message).toBe(message);
 });
 
-test('single line - single character', (t) => {
+test('single line - single character', () => {
   const e = error(message, {
     source: `{{ @ }}`,
-    loc: {
-      start: { line: 1, column: 4 },
-      end: { line: 1, column: 4 },
-    },
+    range: [3, 3],
   });
 
-  t.is(
-    e.format({ ...defaults }),
-    `   ${errorMessage}
+  expect(e.format({ ...defaults })).toBe(`   ${errorMessage}
 
  ${r} ${l} {{ ${red('@')} }}
- ${s} ${l}    ${red('^')}`,
-  );
+ ${s} ${l}    ${red('^')}`);
 });
 
-test('single line - multiple character', (t) => {
+test('single line - emoji', () => {
   const e = error(message, {
-    source: `before {{ after`,
-    loc: {
-      start: { line: 1, column: 8 },
-      end: { line: 1, column: 9 },
-    },
+    source: `{{ 🦄 }}`,
+    range: [3, 3],
   });
 
-  t.is(
-    e.format({ ...defaults }),
-    `   ${errorMessage}
+  expect(e.format({ ...defaults })).toBe(`   ${errorMessage}
 
- ${r} ${l} before ${red('{{')} after
- ${s} ${l}        ${red('^^')}`,
-  );
+ ${r} ${l} {{ ${red('🦄')} }}
+ ${s} ${l}    ${red('^')}`);
 });
 
-test('multi line', (t) => {
+test('single line - multiple character', () => {
+  const e = error(message, {
+    source: `before {{ after`,
+    range: [7, 8],
+  });
+
+  expect(e.format({ ...defaults })).toBe(`   ${errorMessage}
+
+ ${r} ${l} before ${red('{{')} after
+ ${s} ${l}        ${red('^^')}`);
+});
+
+test('multi line', () => {
   const e = error(message, {
     source: `1
 2
@@ -67,26 +67,20 @@ test('multi line', (t) => {
 6 error! after text
 7
 8`,
-    loc: {
-      start: { line: 6, column: 3 },
-      end: { line: 6, column: 8 },
-    },
+    range: [12, 17],
   });
 
-  t.is(
-    e.format({ ...defaults }),
-    `   ${errorMessage}
+  expect(e.format({ ...defaults })).toBe(`   ${errorMessage}
 
  ${s} ${l} 4
  ${s} ${l} 5
  ${r} ${l} 6 ${red('error!')} after text
  ${s} ${l}   ${red('^^^^^^')}
  ${s} ${l} 7
- ${s} ${l} 8`,
-  );
+ ${s} ${l} 8`);
 });
 
-test('multi line - cross line', (t) => {
+test('multi line - cross line', () => {
   const e = error(message, {
     source: `1
 2
@@ -96,15 +90,10 @@ test('multi line - cross line', (t) => {
 6 error! after text
 7
 8`,
-    loc: {
-      start: { line: 4, column: 3 },
-      end: { line: 6, column: 8 },
-    },
+    range: [8, 22],
   });
 
-  t.is(
-    e.format({ ...defaults }),
-    `   ${errorMessage}
+  expect(e.format({ ...defaults })).toBe(`   ${errorMessage}
 
  ${s} ${l} 2
  ${s} ${l} 3
@@ -115,11 +104,10 @@ test('multi line - cross line', (t) => {
  ${r} ${l} ${red('6 error!')} after text
  ${s} ${l} ${red('^^^^^^^^')}
  ${s} ${l} 7
- ${s} ${l} 8`,
-  );
+ ${s} ${l} 8`);
 });
 
-test('multi line - cross line - 2', (t) => {
+test('multi line - cross line - 2', () => {
   const e = error(message, {
     source: `1
 2
@@ -128,15 +116,12 @@ test('multi line - cross line - 2', (t) => {
 5
 6 error! after text
 7
-8`,
-    loc: {
-      start: { line: 4, column: 14 },
-      end: { line: 6, column: 8 },
-    },
+8
+9`,
+    range: [19, 33],
   });
 
-  t.is(
-    e.format({ ...defaults }),
+  expect(e.format({ ...defaults })).toBe(
     `   ${errorMessage}
 
  ${s} ${l} 2

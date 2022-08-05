@@ -1,6 +1,4 @@
-import type { Context } from '@scaffdog/types';
-import type { ExecutionContext } from 'ava';
-import test from 'ava';
+import { expect, test } from 'vitest';
 import { compile } from './compile';
 import { createContext } from './context';
 
@@ -20,171 +18,82 @@ line5
   ]),
 });
 
-const equals = (
-  t: ExecutionContext,
-  ctx: Context,
-  input: string,
-  expected: string,
-) => {
-  const output = compile(input, ctx);
-  t.is(output, expected);
-};
+test.each([
+  /**
+   * string utils
+   */
+  ['camel', `{{ "FooBar" | camel }}`, `fooBar`],
+  ['snake', `{{ "FooBar" | snake }}`, `foo_bar`],
+  ['pascal', `{{ "foo-bar" | pascal }}`, `FooBar`],
+  ['kebab', `{{ "FooBar" | kebab }}`, `foo-bar`],
+  ['constant', `{{ "FooBar" | constant }}`, `FOO_BAR`],
+  ['upper', `{{ "FooBar" | upper }}`, `FOOBAR`],
+  ['lower', `{{ "FooBar" | lower }}`, `foobar`],
+  ['replace - string', `{{ "FooBar" | replace "Bar" "Baz" }}`, `FooBaz`],
+  ['replace - regex', `{{ "FooBar" | replace "[oa]" "x" }}`, `FxxBxr`],
+  ['trim', `{{ "  foo " | trim }}`, `foo`],
+  ['ltrim', `{{ "  foo " | ltrim }}`, `foo `],
+  ['rtrim', `{{ "  foo " | rtrim }}`, `  foo`],
+  ['before - number', `{{ multiline | before 3 }}`, `line1\nline2`],
+  [
+    'before - number (offset)',
+    `{{ multiline | before 5 -1 }}`,
+    `line1\nline2\nline3`,
+  ],
+  [
+    'before - string',
+    `{{ multiline | before "line4" }}`,
+    `line1\nline2\nline3`,
+  ],
+  [
+    'before - string (offset)',
+    `{{ multiline | before "line2" 2 }}`,
+    `line1\nline2\nline3`,
+  ],
+  [
+    'before - string (no match)',
+    `{{ multiline | before "NOT_FOUND" }}`,
+    `line1\nline2\nline3\nline4\nline5`,
+  ],
+  ['after - number', `{{ multiline | after 2 }}`, `line3\nline4\nline5`],
+  ['after - number (offset)', `{{ multiline | after 4 -1 }}`, `line4\nline5`],
+  ['after - string', `{{ multiline | after "line4" }}`, `line5`],
+  [
+    'after - string (offset)',
+    `{{ multiline | after "line2" 1 }}`,
+    `line4\nline5`,
+  ],
+  [
+    'after - string (no match)',
+    `{{ multiline | after "NOT_FOUND" }}`,
+    `line1\nline2\nline3\nline4\nline5`,
+  ],
 
-/**
- * string utils
- */
-test('camel', equals, context, `{{ "FooBar" | camel }}`, `fooBar`);
+  /**
+   * language
+   */
+  [
+    'eval - basic',
+    `{{ eval "parseInt(count5, 10) > 4 ? 'true' : 'false'" }}`,
+    `true`,
+  ],
+  ['eval - chain', `{{ "foo" | eval "parseInt(count5, 10) + 5" }}`, `10`],
+  ['eval - chain', `{{ "foo" | eval "parseInt(count5, 10) + 5" }}`, `10`],
 
-test('snake', equals, context, `{{ "FooBar" | snake }}`, `foo_bar`);
-
-test('pascal', equals, context, `{{ "foo-bar" | pascal }}`, `FooBar`);
-
-test('kebab', equals, context, `{{ "FooBar" | kebab }}`, `foo-bar`);
-
-test('constant', equals, context, `{{ "FooBar" | constant }}`, `FOO_BAR`);
-
-test('upper', equals, context, `{{ "FooBar" | upper }}`, `FOOBAR`);
-
-test('lower', equals, context, `{{ "FooBar" | lower }}`, `foobar`);
-
-test(
-  'replace - string',
-  equals,
-  context,
-  `{{ "FooBar" | replace "Bar" "Baz" }}`,
-  `FooBaz`,
-);
-
-test(
-  'replace - regex',
-  equals,
-  context,
-  `{{ "FooBar" | replace "[oa]" "x" }}`,
-  `FxxBxr`,
-);
-
-test('trim', equals, context, `{{ "  foo " | trim }}`, `foo`);
-
-test('ltrim', equals, context, `{{ "  foo " | ltrim }}`, `foo `);
-
-test('rtrim', equals, context, `{{ "  foo " | rtrim }}`, `  foo`);
-
-test(
-  'before - number',
-  equals,
-  context,
-  `{{ multiline | before 3 }}`,
-  `line1\nline2`,
-);
-
-test(
-  'before - number (offset)',
-  equals,
-  context,
-  `{{ multiline | before 5 -1 }}`,
-  `line1\nline2\nline3`,
-);
-
-test(
-  'before - string',
-  equals,
-  context,
-  `{{ multiline | before "line4" }}`,
-  `line1\nline2\nline3`,
-);
-
-test(
-  'before - string (offset)',
-  equals,
-  context,
-  `{{ multiline | before "line2" 2 }}`,
-  `line1\nline2\nline3`,
-);
-
-test(
-  'before - string (no match)',
-  equals,
-  context,
-  `{{ multiline | before "NOT_FOUND" }}`,
-  `line1\nline2\nline3\nline4\nline5`,
-);
-
-test(
-  'after - number',
-  equals,
-  context,
-  `{{ multiline | after 2 }}`,
-  `line3\nline4\nline5`,
-);
-
-test(
-  'after - number (offset)',
-  equals,
-  context,
-  `{{ multiline | after 4 -1 }}`,
-  `line4\nline5`,
-);
-
-test(
-  'after - string',
-  equals,
-  context,
-  `{{ multiline | after "line4" }}`,
-  `line5`,
-);
-
-test(
-  'after - string (offset)',
-  equals,
-  context,
-  `{{ multiline | after "line2" 1 }}`,
-  `line4\nline5`,
-);
-
-test(
-  'after - string (no match)',
-  equals,
-  context,
-  `{{ multiline | after "NOT_FOUND" }}`,
-  `line1\nline2\nline3\nline4\nline5`,
-);
-
-/**
- * language
- */
-test(
-  'eval - basic',
-  equals,
-  context,
-  `{{ eval "parseInt(count5, 10) > 4 ? 'true' : 'false'" }}`,
-  `true`,
-);
-
-test(
-  'eval - chain',
-  equals,
-  context,
-  `{{ "foo" | eval "parseInt(count5, 10) + 5" }}`,
-  `10`,
-);
-
-/**
- * template helpers
- */
-test('noop', equals, context, `{{ "foo" | noop }}`, ``);
-
-test(
-  'define - basic',
-  equals,
-  context,
-  `{{ define "value" "key" -}} key = {{ key }}`,
-  `key = value`,
-);
-
-test(
-  'define - chain',
-  equals,
-  context,
-  `{{ "value" | define "key" -}} key = {{ key }}`,
-  `key = value`,
-);
+  /**
+   * template helpers
+   */
+  ['noop', `{{ "foo" | noop }}`, ``],
+  [
+    'define - basic',
+    `{{ define "value" "key" -}} key = {{ key }}`,
+    `key = value`,
+  ],
+  [
+    'define - chain',
+    `{{ "value" | define "key" -}} key = {{ key }}`,
+    `key = value`,
+  ],
+])('%s', (_, input, expected) => {
+  expect(compile(input, context)).toBe(expected);
+});

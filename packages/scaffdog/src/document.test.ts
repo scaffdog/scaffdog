@@ -1,4 +1,4 @@
-import test from 'ava';
+import { test, expect, describe } from 'vitest';
 import { parseDocument } from './document';
 
 const partial = `
@@ -18,10 +18,11 @@ const createPartialDocument = (path: string) => ({
   templates: [],
 });
 
-test('parseDocument - valid (partial)', (t) => {
-  const result = parseDocument(
-    'path',
-    `
+describe('parseDocument', () => {
+  test('valid (partial)', () => {
+    const result = parseDocument(
+      'path',
+      `
 ${partial}
 
 # title.txt
@@ -30,23 +31,23 @@ ${partial}
 content
 \`\`\`
 `.trim(),
-  );
+    );
 
-  t.deepEqual(result, {
-    ...createPartialDocument('path'),
-    templates: [
-      {
-        filename: 'title.txt',
-        content: 'content',
-      },
-    ],
+    expect(result).toEqual({
+      ...createPartialDocument('path'),
+      templates: [
+        {
+          filename: 'title.txt',
+          content: 'content',
+        },
+      ],
+    });
   });
-});
 
-test('parseDocument - valid (multiple output)', (t) => {
-  const result = parseDocument(
-    'path',
-    `
+  test('valid (multiple output)', () => {
+    const result = parseDocument(
+      'path',
+      `
 ---
 name: 'name'
 root: 'root'
@@ -59,24 +60,24 @@ output: ['a', 'b']
 content
 \`\`\`
 `.trim(),
-  );
+    );
 
-  t.deepEqual(result, {
-    ...createPartialDocument('path'),
-    output: ['a', 'b'],
-    templates: [
-      {
-        filename: 'title.txt',
-        content: 'content',
-      },
-    ],
+    expect(result).toEqual({
+      ...createPartialDocument('path'),
+      output: ['a', 'b'],
+      templates: [
+        {
+          filename: 'title.txt',
+          content: 'content',
+        },
+      ],
+    });
   });
-});
 
-test('parseDocument - valid (full)', (t) => {
-  const result = parseDocument(
-    'path',
-    `
+  test('valid (full)', () => {
+    const result = parseDocument(
+      'path',
+      `
 ---
 name: 'name'
 root: 'root'
@@ -94,37 +95,38 @@ questions:
     choices: ['1', '2']
 ---
 `.trim(),
-  );
+    );
 
-  t.deepEqual(result, {
-    ...createPartialDocument('path'),
-    ignore: ['ignore'],
-    questions: {
-      key1: 'message',
-      key2: {
-        message: 'message',
+    expect(result).toEqual({
+      ...createPartialDocument('path'),
+      ignore: ['ignore'],
+      questions: {
+        key1: 'message',
+        key2: {
+          message: 'message',
+        },
+        key3: {
+          message: 'message',
+          initial: 'initial',
+        },
+        key4: {
+          message: 'message',
+          choices: ['1', '2'],
+        },
       },
-      key3: {
-        message: 'message',
-        initial: 'initial',
-      },
-      key4: {
-        message: 'message',
-        choices: ['1', '2'],
-      },
-    },
+    });
   });
-});
 
-test('parseDocument - invalid', (t) => {
-  t.throws(() =>
-    parseDocument(
-      'path',
-      `
+  test('invalid', () => {
+    expect(() =>
+      parseDocument(
+        'path',
+        `
 ---
 key: 'value'
 ---
 `.trim(),
-    ),
-  );
+      ),
+    ).toThrowError();
+  });
 });

@@ -1,6 +1,6 @@
 import path from 'path';
 import { loadConfig } from '@scaffdog/config';
-import { createContext, Formatter, Parser, tokenize } from '@scaffdog/engine';
+import { createContext, createParser, format } from '@scaffdog/engine';
 import type { ResolvedConfig } from '@scaffdog/types';
 import minimatch from 'minimatch';
 import type { Parser as PrettierParser } from 'prettier';
@@ -50,10 +50,9 @@ const wrap = (parser: PrettierParser): PrettierParser => ({
       }
 
       const context = createContext({ tags: config.tags });
-      const tokens = tokenize(text, { tags: context.tags });
-      const parser = new Parser(tokens, text);
+      const parse = createParser({ tags: context.tags });
 
-      return new Formatter().format(parser.parse());
+      return format(parse(text));
     } catch (e) {
       return text;
     }

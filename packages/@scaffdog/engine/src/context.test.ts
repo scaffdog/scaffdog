@@ -1,9 +1,9 @@
 import type { Context } from '@scaffdog/types';
-import test from 'ava';
+import { test, expect } from 'vitest';
 import { createContext, extendContext } from './context';
 import { helpers } from './helpers';
 
-test('createContext', (t) => {
+test('createContext', () => {
   const expected: Context = {
     cwd: process.cwd(),
     helpers,
@@ -11,32 +11,30 @@ test('createContext', (t) => {
     tags: ['{{', '}}'],
   };
 
-  t.deepEqual(createContext({}), expected);
+  expect(createContext({})).toEqual(expected);
 
   const extendHelpers = new Map([['test', () => '']]);
 
-  t.deepEqual(
+  expect(
     createContext({
       helpers: extendHelpers,
     }),
-    {
-      ...expected,
-      helpers: new Map([...helpers, ...extendHelpers]),
-    },
-  );
+  ).toEqual({
+    ...expected,
+    helpers: new Map([...helpers, ...extendHelpers]),
+  });
 
-  t.deepEqual(
+  expect(
     createContext({
       cwd: undefined,
       helpers: undefined,
       variables: undefined,
       tags: undefined,
     }),
-    createContext({}),
-  );
+  ).toEqual(createContext({}));
 });
 
-test('extendContext', (t) => {
+test('extendContext', () => {
   const helpers1 = new Map([['test1', () => '']]);
   const helpers2 = new Map([['test2', () => '']]);
 
@@ -49,19 +47,18 @@ test('extendContext', (t) => {
     variables: variables1,
   });
 
-  t.deepEqual(extendContext(context, {}), context);
+  expect(extendContext(context, {})).toEqual(context);
 
-  t.deepEqual(
+  expect(
     extendContext(context, {
       cwd: 'extend',
       helpers: helpers2,
       variables: variables2,
     }),
-    {
-      ...context,
-      cwd: 'extend',
-      helpers: new Map([...helpers, ...helpers1, ...helpers2]),
-      variables: new Map([...variables1, ...variables2]),
-    },
-  );
+  ).toEqual({
+    ...context,
+    cwd: 'extend',
+    helpers: new Map([...helpers, ...helpers1, ...helpers2]),
+    variables: new Map([...variables1, ...variables2]),
+  });
 });

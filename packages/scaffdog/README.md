@@ -64,7 +64,7 @@ Multiple files can be output in a document, and flexible scaffolding is possible
 
 ## Requirements
 
-- Node.js v12.10 +
+- Node.js v14.16.0+
 
 ## Getting Started
 
@@ -652,7 +652,7 @@ Bugs, feature requests and comments are more than welcome in the [issues](https:
 
 #### `yarn test`
 
-Run Unit test with [ava](https://github.com/avajs/ava).
+Run Unit test with [vitest](https://vitest.dev).
 
 ```bash
 $ yarn test

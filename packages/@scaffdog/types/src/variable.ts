@@ -1,6 +1,10 @@
 export type Variable =
+  | undefined
+  | null
   | string
-  | { [key in string | number]: Variable }
+  | number
+  | boolean
+  | { [key in string]: Variable }
   | Variable[];
 
 export type VariableMap = Map<string, Variable>;

@@ -29,7 +29,8 @@
   ],
   "scripts": {
     "build": "tsc",
-    "test": "ava"
+    "test": "vitest run --dir src",
+    "test:watch": "vitest watch --dir src"
   },
   "dependencies": {
     "@scaffdog/config": "1.5.0",

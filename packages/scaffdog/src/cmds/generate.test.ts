@@ -1,9 +1,9 @@
 import path from 'path';
 import fs from 'fs';
-import test, { afterEach, before } from 'ava';
-import sinon from 'sinon';
+import { test, describe, expect, afterEach, beforeAll, vi } from 'vitest';
 import { cwd, runCommand } from '../mocks/command-test-utils';
 import * as prompt from '../prompt';
+import cmd from './generate';
 
 const defaults = {
   name: undefined,
@@ -13,7 +13,7 @@ const defaults = {
 
 const clear = () => {
   try {
-    fs.rmdirSync(path.resolve(cwd, 'tmp'), {
+    fs.rmSync(path.resolve(cwd, 'tmp'), {
       recursive: true,
     });
   } catch (e) {}
@@ -29,164 +29,143 @@ const mount = (files: Record<string, { path: string; content: string }>) => {
   }
 };
 
-before(clear);
-afterEach(clear);
+beforeAll(clear);
 
-test.serial('document - prompt', async (t) => {
-  const stub = sinon
-    .stub(prompt, 'prompt')
-    .onCall(0)
-    .resolves('a') // name
-    .rejects(new Error('unexpected'));
-
-  const { default: cmd } = await import('./generate');
-
-  const { code, stdout, stderr } = await runCommand(cmd, {
-    ...defaults,
-  });
-
-  stub.restore();
-
-  t.is(stderr, '');
-  t.snapshot(stdout);
-  t.is(code, 0);
-  t.snapshot(fs.readFileSync(path.resolve(cwd, 'tmp/nest/dump.txt'), 'utf8'));
+afterEach(() => {
+  clear();
+  vi.clearAllMocks();
 });
 
-test.serial('document - name options', async (t) => {
-  const { default: cmd } = await import('./generate');
+describe('document', () => {
+  test('prompt', async () => {
+    vi.spyOn(prompt, 'prompt').mockResolvedValueOnce('a'); // name
 
-  const { code, stdout, stderr } = await runCommand(cmd, {
-    ...defaults,
-    name: 'a',
+    const { code, stdout, stderr } = await runCommand(cmd, {
+      ...defaults,
+    });
+
+    expect(stderr).toBe('');
+    expect(stdout).toMatchSnapshot();
+    expect(code).toBe(0);
+    expect(
+      fs.readFileSync(path.resolve(cwd, 'tmp/nest/dump.txt'), 'utf8'),
+    ).toMatchSnapshot();
   });
 
-  t.is(code, 0);
-  t.is(stderr, '');
-  t.snapshot(stdout);
-});
+  test('name options', async () => {
+    const { code, stdout, stderr } = await runCommand(cmd, {
+      ...defaults,
+      name: 'a',
+    });
 
-test.serial('document - overwrite files', async (t) => {
-  const stub = sinon
-    .stub(prompt, 'confirm')
-    .onCall(0)
-    .resolves(true) // dump.txt
-    .onCall(1)
-    .resolves(false) // generate.txt (skipped)
-    .rejects(new Error('unexpected'));
-
-  const { default: cmd } = await import('./generate');
-  const file = {
-    dump: {
-      path: path.resolve(cwd, 'tmp/nest/dump.txt'),
-      content: 'dump',
-    },
-    generate: {
-      path: path.resolve(cwd, 'tmp/generate.txt'),
-      content: 'generate',
-    },
-  };
-
-  mount(file);
-
-  const { code, stdout, stderr } = await runCommand(cmd, {
-    ...defaults,
-    name: 'a',
+    expect(code).toBe(0);
+    expect(stderr).toBe('');
+    expect(stdout).toMatchSnapshot();
   });
 
-  stub.restore();
+  test('overwrite files', async () => {
+    vi.spyOn(prompt, 'confirm')
+      .mockResolvedValueOnce(true) // dump.txt
+      .mockResolvedValueOnce(false); // generate.txt (skipped)
 
-  t.is(stderr, '');
-  t.snapshot(stdout);
-  t.is(code, 0);
+    const file = {
+      dump: {
+        path: path.resolve(cwd, 'tmp/nest/dump.txt'),
+        content: 'dump',
+      },
+      generate: {
+        path: path.resolve(cwd, 'tmp/generate.txt'),
+        content: 'generate',
+      },
+    };
 
-  t.not(fs.readFileSync(file.dump.path, 'utf8'), file.dump.content);
-  t.is(fs.readFileSync(file.generate.path, 'utf8'), file.generate.content);
-});
+    mount(file);
 
-test.serial('document - force overwrite', async (t) => {
-  const stub = sinon.stub(prompt, 'confirm').rejects(new Error('unexpected'));
+    const { code, stdout, stderr } = await runCommand(cmd, {
+      ...defaults,
+      name: 'a',
+    });
 
-  const { default: cmd } = await import('./generate');
-  const file = {
-    dump: {
-      path: path.resolve(cwd, 'tmp/nest/dump.txt'),
-      content: 'dump',
-    },
-    generate: {
-      path: path.resolve(cwd, 'tmp/generate.txt'),
-      content: 'generate',
-    },
-  };
+    expect(stderr).toBe('');
+    expect(stdout).toMatchSnapshot();
+    expect(code).toBe(0);
 
-  mount(file);
-
-  const { code, stdout, stderr } = await runCommand(cmd, {
-    ...defaults,
-    name: 'a',
-    force: true,
+    expect(fs.readFileSync(file.dump.path, 'utf8')).not.toBe(file.dump.content);
+    expect(fs.readFileSync(file.generate.path, 'utf8')).toBe(
+      file.generate.content,
+    );
   });
 
-  stub.restore();
+  test('force overwrite', async () => {
+    vi.spyOn(prompt, 'confirm').mockRejectedValueOnce(new Error('unexpected'));
 
-  t.is(stderr, '');
-  t.snapshot(stdout);
-  t.is(code, 0);
+    const file = {
+      dump: {
+        path: path.resolve(cwd, 'tmp/nest/dump.txt'),
+        content: 'dump',
+      },
+      generate: {
+        path: path.resolve(cwd, 'tmp/generate.txt'),
+        content: 'generate',
+      },
+    };
 
-  t.not(fs.readFileSync(file.dump.path, 'utf8'), file.dump.content);
-  t.not(fs.readFileSync(file.generate.path, 'utf8'), file.generate.content);
-});
+    mount(file);
 
-test.serial('document - not found', async (t) => {
-  const { default: cmd } = await import('./generate');
+    const { code, stdout, stderr } = await runCommand(cmd, {
+      ...defaults,
+      name: 'a',
+      force: true,
+    });
 
-  const { code, stdout, stderr } = await runCommand(cmd, {
-    ...defaults,
-    name: 'not-found',
+    expect(stderr).toBe('');
+    expect(stdout).toMatchSnapshot();
+    expect(code).toBe(0);
+
+    expect(fs.readFileSync(file.dump.path, 'utf8')).not.toBe(file.dump.content);
+    expect(fs.readFileSync(file.generate.path, 'utf8')).not.toBe(
+      file.generate.content,
+    );
   });
 
-  t.snapshot(stderr);
-  t.is(stdout, '');
-  t.is(code, 1);
+  test('not found', async () => {
+    const { code, stdout, stderr } = await runCommand(cmd, {
+      ...defaults,
+      name: 'not-found',
+    });
+
+    expect(stderr).toMatchSnapshot();
+    expect(stdout).toBe('');
+    expect(code).toBe(1);
+  });
 });
 
-test.serial('has magic and question', async (t) => {
+test('has magic and question', async () => {
   fs.mkdirSync(path.resolve(cwd, 'tmp/root'), { recursive: true });
 
-  const stub1 = sinon.stub(prompt, 'autocomplete');
-  stub1.onCall(0).resolves('root');
-  stub1.rejects(new Error('unexpected (1)'));
-
-  const stub2 = sinon.stub(prompt, 'prompt');
-  stub2.onCall(0).resolves('value');
-  stub2.onCall(1).resolves('B');
-  stub2.rejects(new Error('unexpected (2)'));
-
-  const { default: cmd } = await import('./generate');
+  vi.spyOn(prompt, 'autocomplete').mockResolvedValueOnce('root');
+  vi.spyOn(prompt, 'prompt')
+    .mockResolvedValueOnce('value')
+    .mockResolvedValueOnce('B');
 
   const { code, stdout, stderr } = await runCommand(cmd, {
     ...defaults,
     name: 'b',
   });
 
-  stub1.restore();
-  stub2.restore();
-
-  t.is(stderr, '');
-  t.snapshot(stdout);
-  t.is(code, 0);
+  expect(stderr).toBe('');
+  expect(stdout).toMatchSnapshot();
+  expect(code).toBe(0);
 });
 
-test.serial('dry run', async (t) => {
-  const { default: cmd } = await import('./generate');
-
+test('dry run', async () => {
   const { code, stdout, stderr } = await runCommand(cmd, {
     ...defaults,
     name: 'a',
     'dry-run': true,
   });
 
-  t.is(stderr, '');
-  t.snapshot(stdout);
-  t.is(code, 0);
+  expect(stderr).toBe('');
+  expect(stdout).toMatchSnapshot();
+  expect(code).toBe(0);
 });

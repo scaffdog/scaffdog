@@ -1,5 +1,4 @@
-/// <reference types="./types/safe-eval" />
-import eval from 'safe-eval';
+import safeEval from 'safe-eval';
 import * as cc from 'change-case';
 import dayjs from 'dayjs';
 import type { Context, HelperMap } from '@scaffdog/types';
@@ -100,7 +99,7 @@ helpers.set('eval', (ctx: Context, v: string, code?: string) => {
     context[key] = value;
   }
 
-  return eval(evalCode, context);
+  return safeEval(evalCode, context);
 });
 
 /**
