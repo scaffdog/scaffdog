@@ -1,104 +1,94 @@
-import type { ExecutionContext } from 'ava';
-import test from 'ava';
-import { Formatter } from './formatter';
-import { Parser } from './parser';
-import { tokenize } from './tokenize';
+import { test, expect } from 'vitest';
+import { format } from './formatter';
+import { createParser } from './parser';
 
-const format = (input: string) => {
-  const parser = new Parser(tokenize(input), input);
-
-  return new Formatter().format(parser.parse());
-};
-
-const valid = (t: ExecutionContext, input: string, expected: string) => {
-  t.is(format(input), expected);
-};
-
-test('raw', valid, `no change`, `no change`);
-
-test('null', valid, `foo {{null     }} baz`, `foo {{ null }} baz`);
-
-test(
-  'undefined',
-  valid,
-  `foo {{     undefined}} baz`,
-  `foo {{ undefined }} baz`,
-);
-
-test('true', valid, `foo {{true}} baz`, `foo {{ true }} baz`);
-
-test('false', valid, `foo {{false}} baz`, `foo {{ false }} baz`);
-
-test(
-  'string (single quote)',
-  valid,
-  `foo {{ 'string' }} baz`,
-  `foo {{ 'string' }} baz`,
-);
-
-test(
-  'string (double quote)',
-  valid,
-  `foo {{ "string" }} baz`,
-  `foo {{ "string" }} baz`,
-);
-
-test('number', valid, `foo {{       123}} baz`, `foo {{ 123 }} baz`);
-
-test('trimed tag', valid, `{{-"string"       -}}`, `{{- "string" -}}`);
-
-test(
-  'comment out (single line)',
-  valid,
-  `{{/*a comment        */ }}`,
-  `{{ /* a comment */ }}`,
-);
-
-test(
-  'comment out (multi line)',
-  valid,
-  `{{   /*
-
-comment 1
-  comment 2  
-comment 3   
-  
-*/      }}`,
-  `{{/*
-
-comment 1
-  comment 2  
-comment 3   
-  
-*/}}`,
-);
-
-test('identifier', valid, '{{identifier  }}', '{{ identifier }}');
-
-test(
-  'identifier - dot notation',
-  valid,
-  `{{ident.prop}} {{ident['prop']}} {{ident[0]}} {{ident["a-b"]}}`,
-  `{{ ident.prop }} {{ ident.prop }} {{ ident[0] }} {{ ident["a-b"] }}`,
-);
-
-test(
-  'identifier - dot notation (nest)',
-  valid,
-  `{{ ident["nest1"]['nest2'].nest3["0"][1] }}`,
-  `{{ ident.nest1.nest2.nest3["0"][1] }}`,
-);
-
-test(
-  'call - no pipe',
-  valid,
-  `{{ fn   null   undefined false "str"   123 inputs["name"]}}`,
-  `{{ fn null undefined false "str" 123 inputs.name }}`,
-);
-
-test(
-  'call - pipe',
-  valid,
-  `{{arg   |fn1   |   fn2    "arg2"  123          }}`,
-  `{{ arg | fn1 | fn2 "arg2" 123 }}`,
-);
+test.each([
+  [`raw`, `raw`],
+  [`before {{       }} after`, `before {{ }} after`],
+  [`before {{-       -}} after`, `before {{- -}} after`],
+  [`before {{/*abc*/}} after`, `before {{ /* abc */ }} after`],
+  [`before {{/*abc*//*def*/}} after`, `before {{ /* abc */ /* def */ }} after`],
+  [
+    `
+  before {{  /**
+* ln1
+* ln2\t
+*/}} after
+      `.trim(),
+    `
+  before {{ /**
+* ln1
+* ln2
+*/ }} after
+      `.trim(),
+  ],
+  [`before {{null  }} after`, `before {{ null }} after`],
+  [`before {{-null  -}} after`, `before {{- null -}} after`],
+  [
+    `before {{/*a*/null  /*b*/}} after`,
+    `before {{ /* a */ null /* b */ }} after`,
+  ],
+  [`{{undefined}}`, `{{ undefined }}`],
+  [`{{true   }}`, `{{ true }}`],
+  [`{{ false}}`, `{{ false }}`],
+  [`{{ "abc"}}`, `{{ "abc" }}`],
+  [`{{ 'abc'}}`, `{{ 'abc' }}`],
+  [`{{123}}`, `{{ 123 }}`],
+  [`{{   ident   }}`, `{{ ident }}`],
+  [`{{ (v  )}}`, `{{ (v) }}`],
+  [`{{ ( /*a*/v  /*b*/)}}`, `{{ (/* a */ v /* b */) }}`],
+  [`{{ ((v)  )}}`, `{{ ((v)) }}`], // FIXME Remove unnecessary parentheses in the future.
+  [`{{ obj.0}}`, `{{ obj.0 }}`],
+  [`{{ obj.key}}`, `{{ obj.key }}`],
+  [`{{ obj["#key" ]}}`, `{{ obj["#key"] }}`],
+  [`{{ obj["key#"]}}`, `{{ obj["key#"] }}`],
+  [`{{ obj["else"]}}`, `{{ obj["else"] }}`],
+  [`{{ obj["key"]}}`, `{{ obj.key }}`],
+  [`{{ obj[0]}}`, `{{ obj.0 }}`],
+  [`{{ obj[key]}}`, `{{ obj[key] }}`],
+  [`{{ obj[/*a*/"key"/*b*/]}}`, `{{ obj[/* a */ "key" /* b */] }}`],
+  [`{{ obj.nest1.nest2}}`, `{{ obj.nest1.nest2 }}`],
+  [`{{fn()}}`, `{{ fn() }}`],
+  [`{{ /*a*/fn(/*b*/ )}}`, `{{ /* a */ fn(/* b */) }}`],
+  [`{{ fn1 "a" "b"}}`, `{{ fn1 "a" "b" }}`],
+  [`{{ fn1 "a"|fn2}}`, `{{ fn1 "a" | fn2 }}`],
+  [`{{ fn1 "a"|fn2 "b" }}`, `{{ fn1 "a" | fn2 "b" }}`],
+  [`{{ inputs.name|fn1 "a"|  fn2}}`, `{{ inputs.name | fn1 "a" | fn2 }}`],
+  [`{{ ++a}}`, `{{ ++a }}`],
+  [`{{a--}}`, `{{ a-- }}`],
+  [`{{  -+~!a}}`, `{{ -+~!a }}`],
+  [`{{+(/*a*/ a)}}`, `{{ +(/* a */ a) }}`],
+  [`{{ 5*10}}`, `{{ 5 * 10 }}`],
+  [`{{1 && 2&& 3}}`, `{{ 1 && 2 && 3 }}`],
+  [`{{ true ?"a":"b"        }}`, `{{ true ? "a" : "b" }}`],
+  [`{{ /* a */break}}`, `{{ /* a */ break }}`],
+  [`{{ v:= ident}}`, `{{ v := ident }}`],
+  [
+    `{{ /* a*/ v /*b*/:= /*c*/ident}}`,
+    `{{ /* a */ v /* b */ := /* c */ ident }}`,
+  ],
+  [`{{if true }}{{ end}}`, `{{ if true }}{{ end }}`],
+  [
+    `{{if true }}foo{{ else}}bar{{ end}}`,
+    `{{ if true }}foo{{ else }}bar{{ end }}`,
+  ],
+  [
+    `{{if true }}foo{{ else if 1 == 2}}bar{{ end}}`,
+    `{{ if true }}foo{{ else if 1 == 2 }}bar{{ end }}`,
+  ],
+  [
+    `{{if /* a*/ true /*b*/ }}{{ /* c*/end}}`,
+    `{{ if /* a */ true /* b */ }}{{ /* c */ end }}`,
+  ],
+  [
+    `{{for v in list}}loop{{v-}}{{break}}{{ end}}`,
+    `{{ for v in list }}loop{{ v -}}{{ break }}{{ end }}`,
+  ],
+  [
+    `{{for v,index in list  }}loop{{end}}`,
+    `{{ for v, index in list }}loop{{ end }}`,
+  ],
+])('%s -> %s', (input, expected) => {
+  const ast = createParser()(input);
+  expect(format(ast)).toBe(expected);
+});

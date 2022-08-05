@@ -26,19 +26,21 @@
   ],
   "scripts": {
     "build": "tsc",
-    "test": "ava"
+    "test": "vitest run --dir src",
+    "test:watch": "vitest watch --dir src",
+    "unicode-regex": "node ./scripts/unicode-regex-gen.js"
   },
   "dependencies": {
     "@scaffdog/error": "1.5.0",
     "@scaffdog/types": "1.5.0",
     "change-case": "^4.1.2",
     "dayjs": "^1.10.4",
-    "esprima": "^4.0.1",
     "is-plain-object": "^5.0.0",
     "safe-eval": "^0.4.1"
   },
   "devDependencies": {
-    "@types/esprima": "4.0.3"
+    "@unicode/unicode-15.0.0": "^1.2.2",
+    "regenerate": "^1.4.2"
   },
   "publishConfig": {
     "access": "public"
