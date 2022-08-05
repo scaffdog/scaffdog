@@ -14,13 +14,17 @@ jobs:
         node: [14, 16, 18]
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-          cache: 'yarn'
-      - name: Install depedencies
-        run: yarn --frozen-lockfile --check-files
-      - run: yarn build
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
       - uses: actions/upload-artifact@v3
         with:
           name: dist
@@ -37,16 +41,20 @@ jobs:
         node: [14, 16, 18]
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-          cache: 'yarn'
+          cache: 'pnpm'
       - uses: actions/download-artifact@v3
         with:
           name: dist
-      - name: Install depedencies
-        run: yarn --frozen-lockfile --check-files
-      - run: yarn lint
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
 
   test:
     runs-on: ubuntu-latest
@@ -56,17 +64,21 @@ jobs:
         node: [14, 16, 18]
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-          cache: 'yarn'
+          cache: 'pnpm'
       - uses: actions/download-artifact@v3
         with:
           name: dist
-      - name: Install depedencies
-        run: yarn --frozen-lockfile --check-files
-      - run: yarn lerna link
-      - run: yarn test
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lerna link
+      - run: pnpm test
 
   pass:
     runs-on: ubuntu-latest
@@ -81,15 +93,17 @@ jobs:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-          cache: 'yarn'
+          cache: 'pnpm'
       - uses: actions/download-artifact@v3
         with:
           name: dist
-      - name: Install depedencies
-        run: yarn --frozen-lockfile --check-files
+      - run: pnpm install --frozen-lockfile
       - name: Fetch all git tags
         run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
       - name: Configure git user

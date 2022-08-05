@@ -16,7 +16,7 @@ echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
 
 if [[ $(git describe --exact-match 2> /dev/null || :) =~ -canary ]]; then
   echo "Publishing canary"
-  yarn release:canary --yes
+  pnpm release:canary --yes
   if [[ ! $? -eq 0 ]]; then
     exit 1
   fi
@@ -26,7 +26,7 @@ fi
 
 if [[ ! $(git describe --exact-match 2> /dev/null || :) =~ -canary ]]; then
   echo "Publishing stable"
-  yarn release --yes
+  pnpm release --yes
   if [[ ! $? -eq 0 ]]; then
     exit 1
   fi
