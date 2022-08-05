@@ -1,6 +1,10 @@
 import type { Context } from './context';
+import type { Variable } from './variable';
 
-export type Helper = (context: Context, ...args: any[]) => string;
+export type Helper = (
+  context: Context,
+  ...args: any[]
+) => string | Helper | Variable;
 
 export type HelperMap = Map<string, Helper>;
 

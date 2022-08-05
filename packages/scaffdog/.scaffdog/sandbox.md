@@ -6,7 +6,7 @@ output: ['.', 'src/**/*']
 
 # Variables
 
-- name: `{{ inputs.name | kebab }}`
+- name: `{{ "foo_bar" | kebab }}`
 
 # `{{ name }}.ts`
 
