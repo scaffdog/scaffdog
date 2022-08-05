@@ -1,5 +1,5 @@
-import test from 'ava';
 import { LogLevel } from 'consola';
+import { describe, expect, test } from 'vitest';
 import { CLI } from './cli';
 import { createCommand } from './command';
 import { createLogger } from './mocks/logger';
@@ -9,59 +9,61 @@ const pkg = {
   version: '1.0.0',
 };
 
-test('run - 0 arguments', async (t) => {
-  const { logger, getStdout } = createLogger();
-  const cli = new CLI(pkg, logger, new Map());
+describe('run', () => {
+  test('0 arguments', async () => {
+    const { logger, getStdout } = createLogger();
+    const cli = new CLI(pkg, logger, new Map());
 
-  t.is(await cli.run([]), 0);
-  t.regex(getStdout(), /Options:/);
-});
-
-test('run - help', async (t) => {
-  const { logger, getStdout } = createLogger();
-  const cli = new CLI(pkg, logger, new Map());
-
-  t.is(await cli.run(['--help']), 0);
-  t.regex(getStdout(), /Options:/);
-});
-
-test('run - version', async (t) => {
-  const { logger, getStdout } = createLogger();
-  const cli = new CLI(pkg, logger, new Map());
-
-  t.is(await cli.run(['--version']), 0);
-  t.regex(getStdout(), /1\.0\.0/);
-});
-
-test('run - verbose', async (t) => {
-  const { logger } = createLogger();
-  const cli = new CLI(pkg, logger, new Map());
-
-  t.is(await cli.run(['--verbose']), 0);
-  t.is(logger.level, LogLevel.Verbose);
-});
-
-test('run - command (valid)', async (t) => {
-  const { logger, getStdout } = createLogger();
-  const cmd = createCommand({
-    name: 'cmd',
-    key: 'cmd',
-    description: '',
-    build: (yargs) => yargs,
-  })(async ({ logger }) => {
-    logger.log('CALL CMD');
-    return 1234;
+    expect(await cli.run([])).toBe(0);
+    expect(getStdout()).toEqual(expect.stringMatching(/Options:/));
   });
 
-  const cli = new CLI(pkg, logger, new Map([['cmd', cmd]]));
+  test('help', async () => {
+    const { logger, getStdout } = createLogger();
+    const cli = new CLI(pkg, logger, new Map());
 
-  t.is(await cli.run(['cmd']), 1234);
-  t.regex(getStdout(), /CALL\sCMD/);
-});
+    expect(await cli.run(['--help'])).toBe(0);
+    expect(getStdout()).toEqual(expect.stringMatching(/Options:/));
+  });
 
-test('run - command (not found)', async (t) => {
-  const { logger } = createLogger();
-  const cli = new CLI(pkg, logger, new Map());
+  test('version', async () => {
+    const { logger, getStdout } = createLogger();
+    const cli = new CLI(pkg, logger, new Map());
 
-  t.is(await cli.run(['cmd']), 1);
+    expect(await cli.run(['--version'])).toBe(0);
+    expect(getStdout()).toEqual(expect.stringMatching(/1\.0\.0/));
+  });
+
+  test('verbose', async () => {
+    const { logger } = createLogger();
+    const cli = new CLI(pkg, logger, new Map());
+
+    expect(await cli.run(['--verbose'])).toBe(0);
+    expect(logger.level).toBe(LogLevel.Verbose);
+  });
+
+  test('command (valid)', async () => {
+    const { logger, getStdout } = createLogger();
+    const cmd = createCommand({
+      name: 'cmd',
+      key: 'cmd',
+      description: '',
+      build: (yargs) => yargs,
+    })(async ({ logger }) => {
+      logger.log('CALL CMD');
+      return 1234;
+    });
+
+    const cli = new CLI(pkg, logger, new Map([['cmd', cmd]]));
+
+    expect(await cli.run(['cmd'])).toBe(1234);
+    expect(getStdout()).toEqual(expect.stringMatching(/CALL\sCMD/));
+  });
+
+  test('command (not found)', async () => {
+    const { logger } = createLogger();
+    const cli = new CLI(pkg, logger, new Map());
+
+    expect(await cli.run(['cmd'])).toBe(1);
+  });
 });

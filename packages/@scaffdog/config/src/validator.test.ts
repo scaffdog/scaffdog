@@ -1,56 +1,60 @@
-import test from 'ava';
+import { test, expect, describe } from 'vitest';
 import { validateConfig } from './validator';
 
-test('valid - full', (t) => {
-  const config = {
-    files: ['string'],
-    variables: {
-      foo: 'bar',
-    },
-    helpers: [() => 'str', () => {}],
-    tags: ['{{', '}}'] as const,
-  };
+describe('valid', () => {
+  test('full', () => {
+    const config = {
+      files: ['string'],
+      variables: {
+        foo: 'bar',
+      },
+      helpers: [() => 'str', () => {}],
+      tags: ['{{', '}}'] as const,
+    };
 
-  const result = validateConfig(config);
+    const result = validateConfig(config);
 
-  t.deepEqual(result.files, config.files);
-  t.deepEqual(result.variables, config.variables);
-  t.is(result.helpers?.length, 2); // deep clone
-  t.deepEqual(result.tags, config.tags);
-});
+    expect(result.files).toEqual(config.files);
+    expect(result.variables).toEqual(config.variables);
+    expect(result.helpers?.length).toBe(2); // deep clone
+    expect(result.tags).toEqual(config.tags);
+  });
 
-test('valid - partial', (t) => {
-  const config = {
-    files: ['string'],
-  };
+  test('partial', () => {
+    const config = {
+      files: ['string'],
+    };
 
-  t.deepEqual(validateConfig(config), config);
-});
-
-test('invalid - empty', (t) => {
-  const config = {};
-
-  t.throws(() => {
-    validateConfig(config);
+    expect(validateConfig(config)).toEqual(config);
   });
 });
 
-test('invalid - types - files', (t) => {
-  const config = {
-    files: null,
-  };
+describe('invalid', () => {
+  test('empty', () => {
+    const config = {};
 
-  t.throws(() => {
-    validateConfig(config);
+    expect(() => {
+      validateConfig(config);
+    }).toThrowError();
   });
-});
 
-test('invalid - types - tags', (t) => {
-  const config = {
-    tags: [],
-  };
+  test('types - files', () => {
+    const config = {
+      files: null,
+    };
 
-  t.throws(() => {
-    validateConfig(config);
+    expect(() => {
+      validateConfig(config);
+    }).toThrowError();
+  });
+
+  test('types - tags', () => {
+    const config = {
+      tags: [],
+    };
+
+    expect(() => {
+      validateConfig(config);
+    }).toThrowError();
   });
 });

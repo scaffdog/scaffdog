@@ -1,4 +1,4 @@
-import test from 'ava';
+import { test, expect } from 'vitest';
 import { formatFile } from './format';
 
 const defaults = {
@@ -6,7 +6,7 @@ const defaults = {
   color: false,
 };
 
-test('short', (t) => {
+test('short', () => {
   const output = formatFile(
     {
       filename: 'FILENAME',
@@ -16,10 +16,10 @@ test('short', (t) => {
     { ...defaults },
   );
 
-  t.snapshot(output);
+  expect(output).toMatchSnapshot();
 });
 
-test('long content', (t) => {
+test('long content', () => {
   const output = formatFile(
     {
       filename: 'FILENAME',
@@ -29,10 +29,10 @@ test('long content', (t) => {
     { ...defaults },
   );
 
-  t.snapshot(output);
+  expect(output).toMatchSnapshot();
 });
 
-test('long filename', (t) => {
+test('long filename', () => {
   const output = formatFile(
     {
       filename: 'X'.repeat(110),
@@ -42,10 +42,10 @@ test('long filename', (t) => {
     { ...defaults },
   );
 
-  t.snapshot(output);
+  expect(output).toMatchSnapshot();
 });
 
-test('wrap', (t) => {
+test('wrap', () => {
   const output = formatFile(
     {
       filename: 'FILENAME',
@@ -61,10 +61,10 @@ test('wrap', (t) => {
     { ...defaults },
   );
 
-  t.snapshot(output);
+  expect(output).toMatchSnapshot();
 });
 
-test('empty content', (t) => {
+test('empty content', () => {
   const output = formatFile(
     {
       filename: 'FILENAME',
@@ -74,5 +74,5 @@ test('empty content', (t) => {
     { ...defaults },
   );
 
-  t.snapshot(output);
+  expect(output).toMatchSnapshot();
 });

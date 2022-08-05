@@ -1,5 +1,5 @@
 import path from 'path';
-import test from 'ava';
+import { test, expect } from 'vitest';
 import prettier from 'prettier';
 
 const format = (
@@ -26,39 +26,36 @@ const format = (
   return prettier.format(code, opts).trim();
 };
 
-test('format', (t) => {
-  const source = '{{ident  }}';
-  const expect = '{{ ident }}';
+test('format', () => {
+  const input = '{{ident  }}';
+  const output = '{{ ident }}';
 
-  t.is(
-    format(source, {
+  expect(
+    format(input, {
       filepath: '.scaffdog/template.md',
     }),
-    expect,
-  );
+  ).toBe(output);
 });
 
-test('without target file', (t) => {
-  const source = '{{ident  }}';
-  const expect = source;
+test('without target file', () => {
+  const input = '{{ident  }}';
+  const output = input;
 
-  t.is(
-    format(source, {
+  expect(
+    format(input, {
       filepath: 'README.md',
     }),
-    expect,
-  );
+  ).toBe(output);
 });
 
-test('custom project', (t) => {
-  const source = '{{ident  }}';
-  const expect = '{{ ident }}';
+test('custom project', () => {
+  const input = '{{ident  }}';
+  const output = '{{ ident }}';
 
-  t.is(
-    format(source, {
+  expect(
+    format(input, {
       project: '.templates',
       filepath: '.templates/template.md',
     }),
-    expect,
-  );
+  ).toBe(output);
 });

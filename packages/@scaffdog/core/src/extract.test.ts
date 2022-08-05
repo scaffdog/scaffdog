@@ -1,8 +1,8 @@
-import test from 'ava';
+import { expect, test } from 'vitest';
 import { extract } from './extract';
 
-test('basic', (t) => {
-  t.deepEqual(
+test('basic', () => {
+  expect(
     extract(`
 # Variables
 
@@ -44,33 +44,32 @@ ignore paragraph.
 // code block...
 \`\`\`
 `),
-    {
-      variables: new Map([
-        ['key', 'value0'],
-        ['key1', 'value1'],
-        ['key2', '{{ value2 }}'],
-        ['key3', 'Hello {{ value3 }} !'],
-        ['$key', 'value4'],
-        ['_key', 'value5'],
-      ]),
-      templates: [
-        {
-          filename: 'basic.txt',
-          content: `// line 1`,
-        },
-        {
-          filename: '{{ using.variable }}.txt',
-          content: `// line 1
+  ).toEqual({
+    variables: new Map([
+      ['key', 'value0'],
+      ['key1', 'value1'],
+      ['key2', '{{ value2 }}'],
+      ['key3', 'Hello {{ value3 }} !'],
+      ['$key', 'value4'],
+      ['_key', 'value5'],
+    ]),
+    templates: [
+      {
+        filename: 'basic.txt',
+        content: `// line 1`,
+      },
+      {
+        filename: '{{ using.variable }}.txt',
+        content: `// line 1
 // line 2
 // line 3`,
-        },
-      ],
-    },
-  );
+      },
+    ],
+  });
 });
 
-test('without variables', (t) => {
-  t.deepEqual(
+test('without variables', () => {
+  expect(
     extract(`
 # filename
 
@@ -78,14 +77,13 @@ test('without variables', (t) => {
 // code block
 \`\`\`
 `),
-    {
-      variables: new Map(),
-      templates: [
-        {
-          filename: 'filename',
-          content: `// code block`,
-        },
-      ],
-    },
-  );
+  ).toEqual({
+    variables: new Map(),
+    templates: [
+      {
+        filename: 'filename',
+        content: `// code block`,
+      },
+    ],
+  });
 });

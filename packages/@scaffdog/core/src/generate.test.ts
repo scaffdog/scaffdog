@@ -1,17 +1,17 @@
 import path from 'path';
-import test from 'ava';
+import { expect, test } from 'vitest';
 import { generate } from './generate';
 
 const cwd = process.cwd();
 const root = path.join(cwd, 'path', 'to');
 
-test('basic', (t) => {
+test('basic', () => {
   const opts = {
     cwd,
     root,
   };
 
-  t.deepEqual(
+  expect(
     generate(
       [
         {
@@ -38,11 +38,11 @@ output.dir: {{ output.dir }}
       new Map([['inputs', { name: 'value' }]]),
       opts,
     ),
-    [
-      {
-        output: path.resolve(root, 'plain.txt'),
-        filename: 'plain.txt',
-        content: `
+  ).toEqual([
+    {
+      output: path.resolve(root, 'plain.txt'),
+      filename: 'plain.txt',
+      content: `
 inputs.name: value
 cwd: ${cwd}
 output.root: path/to
@@ -53,24 +53,23 @@ output.base: plain.txt
 output.ext: .txt
 output.dir: path/to
 `.trim(),
-      },
-      {
-        output: path.resolve(root, 'value.js'),
-        filename: 'value.js',
-        content: 'path/to/value.js',
-      },
-    ],
-  );
+    },
+    {
+      output: path.resolve(root, 'value.js'),
+      filename: 'value.js',
+      content: 'path/to/value.js',
+    },
+  ]);
 });
 
-test('custom', (t) => {
+test('custom', () => {
   const opts = {
     cwd,
     root,
     tags: ['<%=', '=%>'] as const,
   };
 
-  t.deepEqual(
+  expect(
     generate(
       [
         {
@@ -81,12 +80,11 @@ test('custom', (t) => {
       new Map(),
       opts,
     ),
-    [
-      {
-        output: path.resolve(opts.root, 'plain.txt'),
-        filename: 'plain.txt',
-        content: `cwd: ${cwd}`,
-      },
-    ],
-  );
+  ).toEqual([
+    {
+      output: path.resolve(opts.root, 'plain.txt'),
+      filename: 'plain.txt',
+      content: `cwd: ${cwd}`,
+    },
+  ]);
 });

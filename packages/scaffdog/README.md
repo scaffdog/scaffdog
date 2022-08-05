@@ -652,7 +652,7 @@ Bugs, feature requests and comments are more than welcome in the [issues](https:
 
 #### `yarn test`
 
-Run Unit test with [ava](https://github.com/avajs/ava).
+Run Unit test with [vitest](https://vitest.dev).
 
 ```bash
 $ yarn test

@@ -2,7 +2,7 @@ import path from 'path';
 import type { Command } from '../command';
 import { createLogger } from './logger';
 
-export const cwd = path.resolve(__dirname, '../../test');
+export const cwd = path.resolve(__dirname, '../../');
 
 export const runCommand = async <T>(
   cmd: Command<T>,
