@@ -34,7 +34,7 @@
     "@scaffdog/config": "1.5.0",
     "@scaffdog/engine": "1.5.0",
     "@scaffdog/types": "1.5.0",
-    "minimatch": "^3.0.4",
+    "minimatch": "^5.0.0",
     "prettier": "2.7.1"
   },
   "devDependencies": {
