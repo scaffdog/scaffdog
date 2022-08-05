@@ -1,0 +1,21 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "baseBranch": "origin/canary",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["lib/**"],
+      "inputs": ["src/**/*.ts", "build.config.js"]
+    },
+    "test": {
+      "dependsOn": ["build"],
+      "outputs": ["src/**/*.snap"],
+      "inputs": ["src/**/*.ts", "src/**/*.snap"]
+    },
+    "typecheck": {
+      "dependsOn": ["build"],
+      "outputs": [],
+      "inputs": ["src/**/*.ts", "tsconfig.json"]
+    }
+  }
+}

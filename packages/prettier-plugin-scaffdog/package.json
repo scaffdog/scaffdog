@@ -21,14 +21,12 @@
   },
   "license": "MIT",
   "author": "wadackel <wadackel@gmail.com>",
-  "main": "lib/index.js",
+  "main": "lib/index.cjs",
+  "module": "lib/index.mjs",
   "types": "lib/index.d.ts",
-  "files": [
-    "lib",
-    "!lib/**/*.test.js"
-  ],
   "scripts": {
-    "build": "tsc",
+    "typecheck": "tsc",
+    "build": "unbuild",
     "test": "vitest run --dir src",
     "test:watch": "vitest watch --dir src"
   },

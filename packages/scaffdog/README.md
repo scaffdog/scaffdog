@@ -641,7 +641,7 @@ We are always welcoming your contribution :clap:
 
 1. Fork (https://github.com/cats-oss/scaffdog) :tada:
 1. Create a feature branch :coffee:
-1. Run test suite with the `$ yarn test` command and confirm that it passes :zap:
+1. Run test suite with the `$ pnpm test` command and confirm that it passes :zap:
 1. Commit your changes :memo:
 1. Rebase your local changes against the `canary` branch :bulb:
 1. Create new Pull Request :love_letter:
@@ -650,28 +650,28 @@ Bugs, feature requests and comments are more than welcome in the [issues](https:
 
 ### Development scripts
 
-#### `yarn test`
+#### `pnpm test`
 
 Run Unit test with [vitest](https://vitest.dev).
 
 ```bash
-$ yarn test
+$ pnpm test
 ```
 
-#### `yarn lint`
+#### `pnpm lint`
 
 Run lint with [ESLint](https://github.com/eslint/eslint).
 
 ```bash
-$ yarn lint
+$ pnpm lint
 ```
 
-#### `yarn format`
+#### `pnpm format`
 
 Run formatting with [ESLint](https://github.com/eslint/eslint) (`--fix`) and [Prettier](https://github.com/prettier/prettier).
 
 ```bash
-$ yarn format
+$ pnpm format
 ```
 
 ## License

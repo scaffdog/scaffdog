@@ -1,5 +1,5 @@
 import type { Config, Variable } from '@scaffdog/types';
-import * as z from 'zod';
+import { z } from 'zod';
 
 const variableSchema: z.ZodSchema<Variable> = z.lazy(() =>
   z.union([z.string(), z.record(variableSchema), z.array(variableSchema)]),

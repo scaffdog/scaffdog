@@ -23,15 +23,15 @@
   "license": "MIT",
   "author": "wadackel <wadackel@gmail.com>",
   "bin": {
-    "scaffdog": "./lib/bin.js"
+    "scaffdog": "./lib/bin.mjs"
   },
   "files": [
     "lib",
-    "!lib/**/*.test.js",
-    "!lib/mocks"
+    "!lib/**/*.snap"
   ],
   "scripts": {
-    "build": "tsc",
+    "typecheck": "tsc",
+    "build": "unbuild",
     "scaffold": "ts-node src/bin.ts generate",
     "test": "vitest run --dir src",
     "test:watch": "vitest watch --dir src"
