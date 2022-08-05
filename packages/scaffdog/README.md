@@ -64,7 +64,7 @@ Multiple files can be output in a document, and flexible scaffolding is possible
 
 ## Requirements
 
-- Node.js v12.10 +
+- Node.js v14.16.0+
 
 ## Getting Started
 
