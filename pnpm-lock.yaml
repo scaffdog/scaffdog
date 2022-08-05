@@ -22,7 +22,7 @@ importers:
       husky: ^8.0.0
       lerna: 4.0.0
       lint-staged: 12.5.0
-      mock-fs: 5.1.2
+      mock-fs: 5.1.4
       npm-run-all: 4.1.5
       prettier: 2.7.1
       prettier-plugin-packagejson: 2.2.18
@@ -47,7 +47,7 @@ importers:
       husky: 8.0.1
       lerna: 4.0.0
       lint-staged: 12.5.0
-      mock-fs: 5.1.2
+      mock-fs: 5.1.4
       npm-run-all: 4.1.5
       prettier: 2.7.1
       prettier-plugin-packagejson: 2.2.18_prettier@2.7.1
@@ -5616,8 +5616,8 @@ packages:
       pkg-types: 0.3.3
     dev: true
 
-  /mock-fs/5.1.2:
-    resolution: {integrity: sha512-YkjQkdLulFrz0vD4BfNQdQRVmgycXTV7ykuHMlyv+C8WCHazpkiQRDthwa02kSyo8wKnY9wRptHfQLgmf0eR+A==}
+  /mock-fs/5.1.4:
+    resolution: {integrity: sha512-sudhLjCjX37qWIcAlIv1OnAxB2wI4EmXByVuUjILh1rKGNGpGU8GNnzw+EAbrhdpBe0TL/KONbK1y3RXZk8SxQ==}
     engines: {node: '>=12.0.0'}
     dev: true
 
