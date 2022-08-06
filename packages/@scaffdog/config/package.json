@@ -1,6 +1,6 @@
 {
   "name": "@scaffdog/config",
-  "version": "1.5.0",
+  "version": "2.0.0-canary.0",
   "description": "A module to manipulate configs of scaffdog.",
   "keywords": [
     "scaffdog",
@@ -28,7 +28,7 @@
     "test:watch": "vitest watch --dir src"
   },
   "dependencies": {
-    "@scaffdog/types": "1.5.0",
+    "@scaffdog/types": "2.0.0-canary.0",
     "zod": "^3.11.6"
   },
   "publishConfig": {

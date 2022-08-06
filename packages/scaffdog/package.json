@@ -1,6 +1,6 @@
 {
   "name": "scaffdog",
-  "version": "1.5.0",
+  "version": "2.0.0-canary.0",
   "description": "scaffdog is Markdown driven scaffolding tool.",
   "keywords": [
     "scaffdog",
@@ -37,11 +37,11 @@
     "test:watch": "vitest watch --dir src"
   },
   "dependencies": {
-    "@scaffdog/config": "1.5.0",
-    "@scaffdog/core": "1.5.0",
-    "@scaffdog/engine": "1.5.0",
-    "@scaffdog/error": "1.5.0",
-    "@scaffdog/types": "1.5.0",
+    "@scaffdog/config": "2.0.0-canary.0",
+    "@scaffdog/core": "2.0.0-canary.0",
+    "@scaffdog/engine": "2.0.0-canary.0",
+    "@scaffdog/error": "2.0.0-canary.0",
+    "@scaffdog/types": "2.0.0-canary.0",
     "ansi-escapes": "^4.3.2",
     "chalk": "^4.1.0",
     "cli-truncate": "^2.1.0",

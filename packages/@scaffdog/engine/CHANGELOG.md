@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-canary.0](https://github.com/cats-oss/scaffdog/compare/v1.5.0...v2.0.0-canary.0) (2022-08-06)
+
+
+### Features
+
+* **engine:** add `len` helper function ([9454a89](https://github.com/cats-oss/scaffdog/commit/9454a89de05714a1f17fcc4678345e8391b0ea4f))
+* **engine:** add `s2n` & `n2s` helper functions ([c9d16e4](https://github.com/cats-oss/scaffdog/commit/c9d16e44647648cc81d40309a26a656375c08219))
+* **engine:** add `seq` helper function ([829782d](https://github.com/cats-oss/scaffdog/commit/829782db12c0821aaca2c6826083dc580a70fd06))
+* **engine:** add `slice` helper function ([a1cc461](https://github.com/cats-oss/scaffdog/commit/a1cc4613ac65acd1982353409cd3d12d3f8c816f))
+* **engine:** add helper utils ([6875df4](https://github.com/cats-oss/scaffdog/commit/6875df45c53fd7af4ab34f8784aa49e84ef869e5))
+* **engine:** renew template engine ([4553a25](https://github.com/cats-oss/scaffdog/commit/4553a25bbae43c38dcaebb97cbe28fa4a24a16fa))
+
+
+
+
+
 # [1.5.0](https://github.com/cats-oss/scaffdog/compare/v1.4.0...v1.5.0) (2022-06-26)
 
 **Note:** Version bump only for package @scaffdog/engine
