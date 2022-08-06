@@ -24,7 +24,12 @@ line5
 describe('array', () => {
   test.each([
     ['split', `{{ "a/b/c" | split "/" }}`, `a,b,c`],
+
     ['join', `{{ "a/b/c" | split "/" | join " " }}`, `a b c`],
+
+    ['seq - first', `{{ seq 5 }}`, `1,2,3,4,5`],
+    ['seq - first x last', `{{ seq 0 4 }}`, `0,1,2,3,4`],
+    ['seq - first x increment x last', `{{ seq 0 3 9}}`, `0,3,6,9`],
   ])('%s', (_, input, expected) => {
     expect(compile(input, context)).toBe(expected);
   });

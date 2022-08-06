@@ -28,6 +28,40 @@ defineHelper<[v: string[], sep: string]>(
   },
 );
 
+defineHelper<[first: number, increment?: number, last?: number]>(
+  helpers,
+  'seq',
+  (_, first, increment, last) => {
+    const iter = {
+      start: first,
+      step: 1,
+      end: 0,
+    };
+
+    if (isNumber(increment) && isNumber(last)) {
+      iter.step = increment;
+      iter.end = last;
+    } else if (isNumber(increment)) {
+      iter.end = increment;
+    } else {
+      iter.start = 1;
+      iter.end = first;
+    }
+
+    const arr: number[] = [];
+    let n = iter.start;
+    while (n <= iter.end) {
+      arr.push(n);
+      n += iter.step;
+    }
+
+    return arr;
+  },
+  {
+    disableAutoLoop: true,
+  },
+);
+
 /**
  * language
  */

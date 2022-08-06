@@ -521,6 +521,7 @@ When invoked on a pipe, the previous processing result is passed to the first ar
 | `trim`     | `[value: string]`                                       | Alias for `String.prototype.trim`.                                                                                                        |
 | `ltrim`    | `[value: string]`                                       | Alias for `String.prototype.trimStart`.                                                                                                   |
 | `rtrim`    | `[value: string]`                                       | Alias for `String.prototype.trimEnd`.                                                                                                     |
+| `seq`      | `[first: number, increment?: number, last?: number]`    | Generates a numeric array for the specified range. Similar signature to the `seq` command.                                                |
 | `split`    | `[value: string, sep: string]`                          | Alias for `String.prototype.split`.                                                                                                       |
 | `join`     | `[value: string[], sep: string]`                        | Alias for `Array.prototype.join`.                                                                                                         |
 | `len`      | `[value: any]`                                          | Returns the length of the value. If the length cannot be determined, returns 0.                                                           |
