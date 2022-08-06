@@ -42,3 +42,9 @@ export default createCommand({
   throw new Error('unimplemented'); // TODO
 });
 ```
+
+# `{{ true ? "!" : "" }}test.md`
+
+```markdown
+{{ inputs.array } }
+```

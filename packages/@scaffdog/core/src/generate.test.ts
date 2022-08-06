@@ -32,7 +32,7 @@ output.dir: {{ output.dir }}
           filename: '{{ inputs.name }}.js',
           content: `
 {{ output.path }}
-`.trim(),
+          `.trim(),
         },
       ],
       new Map([['inputs', { name: 'value' }]]),
@@ -52,12 +52,14 @@ output.name: plain
 output.base: plain.txt
 output.ext: .txt
 output.dir: path/to
-`.trim(),
+      `.trim(),
+      skip: false,
     },
     {
       output: path.resolve(root, 'value.js'),
       filename: 'value.js',
       content: 'path/to/value.js',
+      skip: false,
     },
   ]);
 });
@@ -85,6 +87,54 @@ test('custom', () => {
       output: path.resolve(opts.root, 'plain.txt'),
       filename: 'plain.txt',
       content: `cwd: ${cwd}`,
+      skip: false,
+    },
+  ]);
+});
+
+test('conditional', () => {
+  const opts = {
+    cwd,
+    root,
+  };
+
+  expect(
+    generate(
+      [
+        {
+          filename: 'foo.txt',
+          content: 'foo: {{ inputs.value }}',
+        },
+        {
+          filename: '!bar.txt',
+          content: 'bar: {{ inputs.value }}',
+        },
+        {
+          filename: 'baz.txt',
+          content: 'baz: {{ inputs.value }}',
+        },
+      ],
+      new Map([['inputs', { value: 'generated' }]]),
+      opts,
+    ),
+  ).toEqual([
+    {
+      output: path.resolve(opts.root, 'foo.txt'),
+      filename: 'foo.txt',
+      content: 'foo: generated',
+      skip: false,
+    },
+    {
+      output: path.resolve(opts.root, 'bar.txt'),
+      filename: 'bar.txt',
+      content: 'bar: {{ inputs.value }}',
+      skip: true,
+    },
+    {
+      output: path.resolve(opts.root, 'baz.txt'),
+      filename: 'baz.txt',
+      content: 'baz: generated',
+      skip: false,
     },
   ]);
 });

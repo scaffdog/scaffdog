@@ -12,6 +12,7 @@ test('short', () => {
       filename: 'FILENAME',
       output: '',
       content: ['A'.repeat(5)].join('\n'),
+      skip: false,
     },
     { ...defaults },
   );
@@ -25,6 +26,7 @@ test('long content', () => {
       filename: 'FILENAME',
       output: '',
       content: Array.from(Array(100).fill('line...')).join('\n'),
+      skip: false,
     },
     { ...defaults },
   );
@@ -38,6 +40,7 @@ test('long filename', () => {
       filename: 'X'.repeat(110),
       output: '',
       content: 'line...',
+      skip: false,
     },
     { ...defaults },
   );
@@ -57,6 +60,7 @@ test('wrap', () => {
         'D'.repeat(65),
         'E'.repeat(125),
       ].join('\n'),
+      skip: false,
     },
     { ...defaults },
   );
@@ -70,6 +74,21 @@ test('empty content', () => {
       filename: 'FILENAME',
       output: '',
       content: '',
+      skip: false,
+    },
+    { ...defaults },
+  );
+
+  expect(output).toMatchSnapshot();
+});
+
+test('skip', () => {
+  const output = formatFile(
+    {
+      filename: 'FILENAME',
+      output: '',
+      content: ['A'.repeat(5)].join('\n'),
+      skip: true,
     },
     { ...defaults },
   );

@@ -40,6 +40,16 @@ export const generate = (
     });
 
     const name = compile(template.filename, context);
+    if (/^!/.test(name)) {
+      const raw = name.slice(1);
+      return {
+        output: path.resolve(opts.cwd, opts.root, raw),
+        filename: raw,
+        content: template.content,
+        skip: true,
+      };
+    }
+
     const absolute = path.resolve(opts.cwd, opts.root, name);
     const output = {
       absolute,
@@ -70,6 +80,7 @@ export const generate = (
       output: output.absolute,
       filename: name,
       content,
+      skip: false,
     };
   });
 };
