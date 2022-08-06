@@ -29,15 +29,17 @@ const mount = (files: Record<string, { path: string; content: string }>) => {
   }
 };
 
-beforeAll(clear);
+beforeAll(() => {
+  clear();
+});
 
 afterEach(() => {
   clear();
   vi.clearAllMocks();
 });
 
-describe('document', () => {
-  test('prompt', async () => {
+describe('prompt', () => {
+  test('name', async () => {
     vi.spyOn(prompt, 'prompt').mockResolvedValueOnce('a'); // name
 
     const { code, stdout, stderr } = await runCommand(cmd, {
@@ -50,17 +52,6 @@ describe('document', () => {
     expect(
       fs.readFileSync(path.resolve(cwd, 'tmp/nest/dump.txt'), 'utf8'),
     ).toMatchSnapshot();
-  });
-
-  test('name options', async () => {
-    const { code, stdout, stderr } = await runCommand(cmd, {
-      ...defaults,
-      name: 'a',
-    });
-
-    expect(code).toBe(0);
-    expect(stderr).toBe('');
-    expect(stdout).toMatchSnapshot();
   });
 
   test('overwrite files', async () => {
@@ -96,6 +87,64 @@ describe('document', () => {
     );
   });
 
+  test('has magic and question', async () => {
+    fs.mkdirSync(path.resolve(cwd, 'tmp/root'), { recursive: true });
+
+    vi.spyOn(prompt, 'autocomplete').mockResolvedValueOnce('root');
+    vi.spyOn(prompt, 'prompt')
+      .mockResolvedValueOnce('value')
+      .mockResolvedValueOnce('B');
+
+    const { code, stdout, stderr } = await runCommand(cmd, {
+      ...defaults,
+      name: 'b',
+    });
+
+    expect(stderr).toBe('');
+    expect(stdout).toMatchSnapshot();
+    expect(code).toBe(0);
+  });
+
+  test('all question types', async () => {
+    vi.spyOn(prompt, 'prompt')
+      .mockResolvedValueOnce('shorthand') // shorthand
+      .mockResolvedValueOnce('input') // input
+      .mockResolvedValueOnce('input_with_initial') // input_with_initial
+      .mockResolvedValueOnce('bool') // bool
+      .mockResolvedValueOnce('bool_with_true') // bool_with_true
+      .mockResolvedValueOnce('bool_with_false') // bool_with_false
+      .mockResolvedValueOnce('list') // list
+      .mockResolvedValueOnce('list_with_initial') // list_with_initial
+      .mockResolvedValueOnce('checkbox') // checkbox
+      .mockResolvedValueOnce('checkbox_with_initial'); // checkbox_with_initial
+
+    const { code, stdout, stderr } = await runCommand(cmd, {
+      ...defaults,
+      name: 'question',
+    });
+
+    expect(stderr).toBe('');
+    expect(stdout).toMatchSnapshot();
+    expect(code).toBe(0);
+
+    expect(
+      fs.readFileSync(path.resolve(cwd, 'tmp/result.txt'), 'utf8'),
+    ).toMatchSnapshot();
+  });
+});
+
+describe('options', () => {
+  test('options', async () => {
+    const { code, stdout, stderr } = await runCommand(cmd, {
+      ...defaults,
+      name: 'a',
+    });
+
+    expect(code).toBe(0);
+    expect(stderr).toBe('');
+    expect(stdout).toMatchSnapshot();
+  });
+
   test('force overwrite', async () => {
     vi.spyOn(prompt, 'confirm').mockRejectedValueOnce(new Error('unexpected'));
 
@@ -128,6 +177,18 @@ describe('document', () => {
     );
   });
 
+  test('dry run', async () => {
+    const { code, stdout, stderr } = await runCommand(cmd, {
+      ...defaults,
+      name: 'a',
+      'dry-run': true,
+    });
+
+    expect(stderr).toBe('');
+    expect(stdout).toMatchSnapshot();
+    expect(code).toBe(0);
+  });
+
   test('not found', async () => {
     const { code, stdout, stderr } = await runCommand(cmd, {
       ...defaults,
@@ -138,34 +199,4 @@ describe('document', () => {
     expect(stdout).toBe('');
     expect(code).toBe(1);
   });
-});
-
-test('has magic and question', async () => {
-  fs.mkdirSync(path.resolve(cwd, 'tmp/root'), { recursive: true });
-
-  vi.spyOn(prompt, 'autocomplete').mockResolvedValueOnce('root');
-  vi.spyOn(prompt, 'prompt')
-    .mockResolvedValueOnce('value')
-    .mockResolvedValueOnce('B');
-
-  const { code, stdout, stderr } = await runCommand(cmd, {
-    ...defaults,
-    name: 'b',
-  });
-
-  expect(stderr).toBe('');
-  expect(stdout).toMatchSnapshot();
-  expect(code).toBe(0);
-});
-
-test('dry run', async () => {
-  const { code, stdout, stderr } = await runCommand(cmd, {
-    ...defaults,
-    name: 'a',
-    'dry-run': true,
-  });
-
-  expect(stderr).toBe('');
-  expect(stdout).toMatchSnapshot();
-  expect(code).toBe(0);
 });

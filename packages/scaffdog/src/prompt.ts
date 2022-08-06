@@ -5,9 +5,9 @@ import inquirerAutocompletePrompt from 'inquirer-autocomplete-prompt';
 
 inquirer.registerPrompt('autocomplete', inquirerAutocompletePrompt);
 
-export const prompt = async <T>(
-  question: inquirer.DistinctQuestion,
-): Promise<T> => {
+export type PromptQuestion = inquirer.DistinctQuestion;
+
+export const prompt = async <T>(question: PromptQuestion): Promise<T> => {
   const { value } = await inquirer.prompt<{ value: T }>([
     {
       ...question,
@@ -22,10 +22,11 @@ export const prompt = async <T>(
   return value;
 };
 
+export type ConfirmArgs = Omit<PromptQuestion, 'type' | 'name' | 'default'>;
 export const confirm = async (
   message: string,
   initial: boolean,
-  args: Omit<inquirer.DistinctQuestion, 'type' | 'name' | 'default'> = {},
+  args: ConfirmArgs = {},
 ): Promise<boolean> => {
   return await prompt({
     ...args,
@@ -35,10 +36,11 @@ export const confirm = async (
   });
 };
 
+export type AutocompleteArgs = Omit<PromptQuestion, 'type' | 'name'>;
 export const autocomplete = async (
   message: string,
   list: string[],
-  args: Omit<inquirer.DistinctQuestion, 'type' | 'name'> = {},
+  args: AutocompleteArgs = {},
 ): Promise<string> => {
   const fuse = new Fuse(list, {});
 
