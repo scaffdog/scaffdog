@@ -118,9 +118,9 @@ importers:
 
   packages/@scaffdog/types:
     specifiers:
-      type-fest: 2.14.0
+      type-fest: 2.18.0
     devDependencies:
-      type-fest: 2.14.0
+      type-fest: 2.18.0
 
   packages/prettier-plugin-scaffdog:
     specifiers:
@@ -172,7 +172,7 @@ importers:
       plur: ^4.0.0
       strip-ansi: 6.0.0
       term-size: ^2.2.1
-      type-fest: 2.14.0
+      type-fest: 2.18.0
       update-notifier: ^5.1.0
       valid-filename: ^3.1.0
       wrap-ansi: ^7.0.0
@@ -214,7 +214,7 @@ importers:
       '@types/wrap-ansi': 3.0.0
       '@types/yargs': 17.0.11
       strip-ansi: 6.0.0
-      type-fest: 2.14.0
+      type-fest: 2.18.0
 
 packages:
 
@@ -7668,8 +7668,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /type-fest/2.14.0:
-    resolution: {integrity: sha512-hQnTQkFjL5ik6HF2fTAM8ycbr94UbQXK364wF930VHb0dfBJ5JBP8qwrR8TaK9zwUEk7meruo2JAUDMwvuxd/w==}
+  /type-fest/2.18.0:
+    resolution: {integrity: sha512-pRS+/yrW5TjPPHNOvxhbNZexr2bS63WjrMU8a+VzEBhUi9Tz1pZeD+vQz3ut0svZ46P+SRqMEPnJmk2XnvNzTw==}
     engines: {node: '>=12.20'}
     dev: true
 
