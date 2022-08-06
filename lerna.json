@@ -1,8 +1,11 @@
 {
-  "version": "2.0.0-canary.1",
+  "version": "2.0.0-canary.2",
   "npmClient": "pnpm",
   "useWorkspaces": true,
-  "packages": ["packages/@scaffdog/*", "packages/*"],
+  "packages": [
+    "packages/@scaffdog/*",
+    "packages/*"
+  ],
   "command": {
     "version": {
       "exact": true,
@@ -12,7 +15,10 @@
       "npmClient": "npm",
       "registry": "https://registry.npmjs.org/",
       "message": "chore: publish",
-      "allowBranch": ["main", "canary"]
+      "allowBranch": [
+        "main",
+        "canary"
+      ]
     }
   }
 }
