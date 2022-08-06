@@ -459,6 +459,21 @@ questions:
   key4:
     message: 'Message'
     choices: ['A', 'B', 'C']
+
+  # Using `checkbox` prompt.
+  key4:
+    message: 'Message'
+    multiple: true
+    choices: ['A', 'B', 'C']
+
+  # Using `confirm` prompt.
+  key5:
+    confirm: 'Message'
+
+  # Using `confirm` prompt, with default value.
+  key6:
+    confirm: 'Message'
+    initial: false
 ---
 ```
 

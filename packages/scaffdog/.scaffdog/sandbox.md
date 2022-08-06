@@ -2,6 +2,17 @@
 name: 'sandbox'
 root: '.'
 output: ['.', 'src/**/*']
+questions:
+  bool:
+    confirm: 'Yes of No'
+  array:
+    message: 'Please select elements'
+    multiple: true
+    choices:
+      - 'A'
+      - 'B'
+      - 'C'
+    initial: ['B', 'C']
 ---
 
 # Variables
@@ -13,10 +24,18 @@ output: ['.', 'src/**/*']
 ```typescript
 import { createCommand } from '{{ relative "../src/command" }}';
 
+{{ if inputs.bool -}}
+console.log('boolean: true');
+{{- else -}}
+console.log('boolean: false');
+{{- end }}
+{{ for v, i in inputs.array }}
+console.log('array: {{ i }} - {{ v }}');{{ end }}
+
 export default createCommand({
   name: '{{ name }}',
   key: '{{ name }}',
-  description: '{{ inputs.desc }}',
+  description: '{{ "TODO" }}',
   build: (yargs) => yargs,
 })(async ({ cwd, logger, options }) => {
   logger.debug(cwd, options);

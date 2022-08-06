@@ -1,65 +1,6 @@
 // Vitest Snapshot v1
 
-exports[`document > force overwrite 1`] = `
-"ℹ Output destination directory: \\".\\"
-
-🐶 Generated 2 files!
-
-     ✔ tmp/nest/dump.txt
-     ✔ tmp/generate.txt
-"
-`;
-
-exports[`document > name options 1`] = `
-"ℹ Output destination directory: \\".\\"
-
-🐶 Generated 2 files!
-
-     ✔ tmp/nest/dump.txt
-     ✔ tmp/generate.txt
-"
-`;
-
-exports[`document > not found 1`] = `
-"
- ERROR  Document \\"not-found\\" not found.
-
-"
-`;
-
-exports[`document > overwrite files 1`] = `
-"ℹ Output destination directory: \\".\\"
-
-🐶 Generated 1 file! (1 skipped)
-
-     ✔ tmp/nest/dump.txt
-     ⚠ tmp/generate.txt (skipped)
-"
-`;
-
-exports[`document > prompt 1`] = `
-"ℹ Output destination directory: \\".\\"
-
-🐶 Generated 2 files!
-
-     ✔ tmp/nest/dump.txt
-     ✔ tmp/generate.txt
-"
-`;
-
-exports[`document > prompt 2`] = `
-"a
-tmp/nest/dump.txt
-dump
-dump.txt
-.txt
-tmp/nest
-dump.txt
-
-../../snapshots/src"
-`;
-
-exports[`dry run 1`] = `
+exports[`options > dry run 1`] = `
 "ℹ Output destination directory: \\".\\"
 
 ───┬────────────────────────────────────────────────────────
@@ -87,11 +28,92 @@ exports[`dry run 1`] = `
 "
 `;
 
-exports[`has magic and question 1`] = `
+exports[`options > force overwrite 1`] = `
+"ℹ Output destination directory: \\".\\"
+
+🐶 Generated 2 files!
+
+     ✔ tmp/nest/dump.txt
+     ✔ tmp/generate.txt
+"
+`;
+
+exports[`options > not found 1`] = `
+"
+ ERROR  Document \\"not-found\\" not found.
+
+"
+`;
+
+exports[`options > options 1`] = `
+"ℹ Output destination directory: \\".\\"
+
+🐶 Generated 2 files!
+
+     ✔ tmp/nest/dump.txt
+     ✔ tmp/generate.txt
+"
+`;
+
+exports[`prompt > all question types 1`] = `
+"ℹ Output destination directory: \\"tmp\\"
+
+🐶 Generated 1 file!
+
+     ✔ tmp/result.txt
+"
+`;
+
+exports[`prompt > all question types 2`] = `
+"shorthand: shorthand
+input: input
+input_with_initial: input_with_initial
+bool: bool
+bool_with_true: bool_with_true
+bool_with_false: bool_with_false
+list: list
+list_with_initial: list_with_initial
+checkbox: checkbox
+checkbox_with_initial: checkbox_with_initial"
+`;
+
+exports[`prompt > has magic and question 1`] = `
 "ℹ Output destination directory: \\"tmp/root\\"
 
 🐶 Generated 1 file!
 
      ✔ tmp/root/b.txt
+"
+`;
+
+exports[`prompt > name 1`] = `
+"ℹ Output destination directory: \\".\\"
+
+🐶 Generated 2 files!
+
+     ✔ tmp/nest/dump.txt
+     ✔ tmp/generate.txt
+"
+`;
+
+exports[`prompt > name 2`] = `
+"a
+tmp/nest/dump.txt
+dump
+dump.txt
+.txt
+tmp/nest
+dump.txt
+
+../../snapshots/src"
+`;
+
+exports[`prompt > overwrite files 1`] = `
+"ℹ Output destination directory: \\".\\"
+
+🐶 Generated 1 file! (1 skipped)
+
+     ✔ tmp/nest/dump.txt
+     ⚠ tmp/generate.txt (skipped)
 "
 `;

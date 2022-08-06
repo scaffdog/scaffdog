@@ -1,6 +1,6 @@
 /// <reference types="../types/inquirer-autocomplete-prompt" />
 import path from 'path';
-import type { File } from '@scaffdog/types';
+import type { File, Variable, VariableRecord } from '@scaffdog/types';
 import { loadConfig } from '@scaffdog/config';
 import { generate } from '@scaffdog/core';
 import { ScaffdogError } from '@scaffdog/error';
@@ -14,11 +14,49 @@ import indent from 'indent-string';
 import plur from 'plur';
 import { compile, createContext } from '@scaffdog/engine';
 import { createCommand } from '../command';
+import type { Question } from '../document';
 import { resolveDocuments } from '../document';
 import { formatFile } from '../utils/format';
+import type { PromptQuestion } from '../prompt';
 import { autocomplete, confirm, prompt } from '../prompt';
 import { fileExists, mkdir, writeFile } from '../utils/fs';
 import { helpers } from '../helpers';
+
+const createPromptQuestion = (question: Question): PromptQuestion => {
+  const validate = (v: string) => (v !== '' ? true : 'required input!');
+
+  if (typeof question === 'string') {
+    return {
+      type: 'input',
+      message: question,
+      validate,
+    };
+  }
+
+  if ('confirm' in question) {
+    return {
+      type: 'confirm',
+      message: question.confirm,
+      default: question.initial,
+      validate,
+    };
+  }
+
+  if ('choices' in question) {
+    return {
+      type: question.multiple === true ? 'checkbox' : 'list',
+      choices: question.choices,
+      default: question.initial,
+      validate,
+    };
+  }
+
+  return {
+    ...question,
+    type: 'input',
+    default: question.initial,
+  };
+};
 
 export default createCommand({
   name: 'generate',
@@ -136,34 +174,10 @@ export default createCommand({
 
   // inputs
   if (doc.questions != null) {
-    const inputs: Record<string, string> = {};
+    const inputs: VariableRecord = {};
 
     for (const [name, q] of Object.entries(doc.questions)) {
-      const obj =
-        typeof q === 'string'
-          ? {
-              message: q,
-            }
-          : q;
-
-      const question = {
-        message: obj.message,
-        default: obj.initial,
-        validate: (v: string) => (v !== '' ? true : 'required input!'),
-      };
-
-      inputs[name] = await prompt(
-        obj.choices != null
-          ? {
-              ...question,
-              type: 'list',
-              choices: obj.choices,
-            }
-          : {
-              ...question,
-              type: 'input',
-            },
-      );
+      inputs[name] = await prompt<Variable>(createPromptQuestion(q));
     }
 
     config.variables.set('inputs', inputs);

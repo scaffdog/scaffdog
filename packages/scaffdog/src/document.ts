@@ -19,11 +19,24 @@ const MARKDOWN_EXTNAME = new Set([
 ]);
 
 const questionSchema = z.union([
+  // input syntax sugar
   z.string(),
+  // list, checkbox
+  z.object({
+    message: z.string(),
+    choices: z.array(z.string()),
+    multiple: z.boolean().optional(),
+    initial: z.array(z.string()).optional(),
+  }),
+  // confirm
+  z.object({
+    confirm: z.string(),
+    initial: z.boolean().optional(),
+  }),
+  // input
   z.object({
     message: z.string(),
     initial: z.string().optional(),
-    choices: z.array(z.string()).optional(),
   }),
 ]);
 
