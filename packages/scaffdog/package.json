@@ -23,7 +23,7 @@
   "license": "MIT",
   "author": "wadackel <wadackel@gmail.com>",
   "bin": {
-    "scaffdog": "./lib/bin.mjs"
+    "scaffdog": "./lib/bin.cjs"
   },
   "files": [
     "lib",
