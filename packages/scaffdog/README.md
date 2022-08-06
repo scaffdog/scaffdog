@@ -676,6 +676,6 @@ $ pnpm format
 
 ## License
 
-[MIT © Cyberagent, Inc](/LICENSE)
+[MIT © wadackel](/LICENSE)
 
 ![thank you for reading!](/packages/scaffdog/docs/assets/repo-footer.png)
