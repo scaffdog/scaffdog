@@ -523,6 +523,7 @@ When invoked on a pipe, the previous processing result is passed to the first ar
 | `rtrim`    | `[value: string]`                                       | Alias for `String.prototype.trimEnd`.                                                                                                     |
 | `split`    | `[value: string, sep: string]`                          | Alias for `String.prototype.split`.                                                                                                       |
 | `join`     | `[value: string[], sep: string]`                        | Alias for `Array.prototype.join`.                                                                                                         |
+| `len`      | `[value: any]`                                          | Returns the length of the value. If the length cannot be determined, returns 0.                                                           |
 | `s2n`      | `[value: string]`                                       | Converts a number to a string.                                                                                                            |
 | `n2s`      | `[value: number]`                                       | Converts a string to a number.                                                                                                            |
 | `before`   | `[value: string, n: string \| number, offset?: number]` | Returns string before the position by `n`. If `n` is a number, it is the specified line; if it is a string, it is the first matched line. |

@@ -17,6 +17,7 @@ line5
     `.trim(),
     ],
     ['array', ['str_a', 'str_b', 'str_c']],
+    ['object', { key1: 'value1', key2: 'value2' }],
   ]),
 });
 
@@ -48,6 +49,15 @@ describe('language', () => {
     ],
     ['n2s - empty', `{{ "" | n2s }}`, ``],
     ['n2s - non numeric', `{{ "foo" | n2s }}`, `foo`],
+
+    ['len - null', `{{ len(null) }}`, `0`],
+    ['len - undefined', `{{ len(undefined) }}`, `0`],
+    ['len - true', `{{ len(true) }}`, `0`],
+    ['len - false', `{{ len(false) }}`, `0`],
+    ['len - string', `{{ len("12345") }}`, `5`],
+    ['len - number', `{{ len(123) }}`, `3`],
+    ['len - array', `{{ len(array) }}`, `3`],
+    ['len - object', `{{ len(object) }}`, `2`],
 
     [
       'eval - basic',

@@ -3,6 +3,7 @@ import * as cc from 'change-case';
 import dayjs from 'dayjs';
 import safeEval from 'safe-eval';
 import { defineHelper } from './helper-utils';
+import { isArray, isString, isNumber, isObject } from './utils';
 
 export const helpers: HelperMap = new Map();
 
@@ -36,6 +37,26 @@ defineHelper<[v: string]>(helpers, 's2n', (_, v) => {
 });
 
 defineHelper<[v: number]>(helpers, 'n2s', (_, v) => String(v));
+
+defineHelper<[v: any]>(
+  helpers,
+  'len',
+  (_, v) => {
+    if (isString(v) || isArray(v)) {
+      return v.length;
+    }
+    if (isNumber(v)) {
+      return v.toString().length;
+    }
+    if (isObject(v)) {
+      return Object.keys(v).length;
+    }
+    return 0;
+  },
+  {
+    disableAutoLoop: true,
+  },
+);
 
 defineHelper<[v: string, code?: string]>(helpers, 'eval', (ctx, v, code) => {
   const evalCode = code != null ? code : v;
