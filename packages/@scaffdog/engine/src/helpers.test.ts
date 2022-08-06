@@ -64,6 +64,11 @@ describe('language', () => {
     ['len - array', `{{ len(array) }}`, `3`],
     ['len - object', `{{ len(object) }}`, `2`],
 
+    ['slice - string (start)', `{{ "12345" | slice 2 }}`, `345`],
+    ['slice - string (start x end)', `{{ "12345" | slice 1 3 }}`, `23`],
+    ['slice - array (start)', `{{ seq 1 5 | slice 2 }}`, `3,4,5`],
+    ['slice - array (start x end)', `{{ seq 1 5 | slice 1 3 }}`, `2,3`],
+
     [
       'eval - basic',
       `{{ eval "parseInt(count5, 10) > 4 ? 'true' : 'false'" }}`,

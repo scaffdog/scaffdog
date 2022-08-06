@@ -3,7 +3,7 @@ import * as cc from 'change-case';
 import dayjs from 'dayjs';
 import safeEval from 'safe-eval';
 import { defineHelper } from './helper-utils';
-import { isArray, isString, isNumber, isObject } from './utils';
+import { isArray, isString, isNumber, isObject, typeOf } from './utils';
 
 export const helpers: HelperMap = new Map();
 
@@ -86,6 +86,22 @@ defineHelper<[v: any]>(
       return Object.keys(v).length;
     }
     return 0;
+  },
+  {
+    disableAutoLoop: true,
+  },
+);
+
+defineHelper<[v: string | any[], start: number, end?: number]>(
+  helpers,
+  'slice',
+  (_, v, start, end) => {
+    if (isString(v) || isArray(v)) {
+      return v.slice(start, end);
+    }
+    throw new Error(
+      `slice helper expecting string or array value but got "${typeOf(v)}"`,
+    );
   },
   {
     disableAutoLoop: true,
