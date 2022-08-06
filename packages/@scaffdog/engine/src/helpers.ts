@@ -1,7 +1,8 @@
-import safeEval from 'safe-eval';
+import type { HelperMap } from '@scaffdog/types';
 import * as cc from 'change-case';
 import dayjs from 'dayjs';
-import type { Context, HelperMap } from '@scaffdog/types';
+import safeEval from 'safe-eval';
+import { defineHelper } from './helper-utils';
 
 export const helpers: HelperMap = new Map();
 
@@ -11,37 +12,47 @@ export const helpers: HelperMap = new Map();
 const splitLines = (v: string) => v.split(/\r?\n/);
 
 /**
+ * array utils
+ */
+defineHelper<[v: string, sep: string]>(helpers, 'split', (_, v, sep) =>
+  v.split(sep),
+);
+
+defineHelper<[v: string[], sep: string]>(
+  helpers,
+  'join',
+  (_, v, sep) => v.join(sep),
+  {
+    disableAutoLoop: true,
+  },
+);
+
+/**
  * string utils
  */
-helpers.set('camel', (_: Context, v: string) => cc.camelCase(v));
+defineHelper<[v: string]>(helpers, 'camel', (_, v) => cc.camelCase(v));
+defineHelper<[v: string]>(helpers, 'snake', (_, v) => cc.snakeCase(v));
+defineHelper<[v: string]>(helpers, 'pascal', (_, v) => cc.pascalCase(v));
+defineHelper<[v: string]>(helpers, 'kebab', (_, v) => cc.paramCase(v));
+defineHelper<[v: string]>(helpers, 'constant', (_, v) => cc.constantCase(v));
+defineHelper<[v: string]>(helpers, 'upper', (_, v) => v.toUpperCase());
+defineHelper<[v: string]>(helpers, 'lower', (_, v) => v.toLowerCase());
 
-helpers.set('snake', (_: Context, v: string) => cc.snakeCase(v));
-
-helpers.set('pascal', (_: Context, v: string) => cc.pascalCase(v));
-
-helpers.set('kebab', (_: Context, v: string) => cc.paramCase(v));
-
-helpers.set('constant', (_: Context, v: string) => cc.constantCase(v));
-
-helpers.set('upper', (_: Context, v: string) => v.toUpperCase());
-
-helpers.set('lower', (_: Context, v: string) => v.toLowerCase());
-
-helpers.set(
+defineHelper<[v: string, pattern: string, replacement: string]>(
+  helpers,
   'replace',
-  (_: Context, v: string, pattern: string, replacement: string) =>
+  (_, v, pattern, replacement) =>
     v.replace(new RegExp(pattern, 'g'), replacement),
 );
 
-helpers.set('trim', (_: Context, v: string) => v.trim());
+defineHelper<[v: string]>(helpers, 'trim', (_, v) => v.trim());
+defineHelper<[v: string]>(helpers, 'ltrim', (_, v) => v.trimStart());
+defineHelper<[v: string]>(helpers, 'rtrim', (_, v) => v.trimEnd());
 
-helpers.set('ltrim', (_: Context, v: string) => v.trimStart());
-
-helpers.set('rtrim', (_: Context, v: string) => v.trimEnd());
-
-helpers.set(
+defineHelper<[v: string, n: string | number, offset?: number]>(
+  helpers,
   'before',
-  (_: Context, v: string, n: string | number, offset?: number) => {
+  (_, v, n, offset) => {
     const lines = splitLines(v);
     const off = offset ?? 0;
 
@@ -59,9 +70,10 @@ helpers.set(
   },
 );
 
-helpers.set(
+defineHelper<[v: string, n: string | number, offset?: number]>(
+  helpers,
   'after',
-  (_: Context, v: string, n: string | number, offset?: number) => {
+  (_, v, n, offset) => {
     const lines = splitLines(v);
     const off = offset ?? 0;
 
@@ -82,18 +94,17 @@ helpers.set(
 /**
  * date
  */
-helpers.set('date', (_: Context, format?: string) => {
+defineHelper<[format?: string]>(helpers, 'date', (_, format) => {
   const d = dayjs();
-
   return format ? d.format(format) : d.toISOString();
 });
 
 /**
  * language
  */
-helpers.set('eval', (ctx: Context, v: string, code?: string) => {
+defineHelper<[v: string, code?: string]>(helpers, 'eval', (ctx, v, code) => {
   const evalCode = code != null ? code : v;
-  const context: { [key: string]: any } = {};
+  const context: { [key: string]: any } = Object.create(null);
 
   for (const [key, value] of ctx.variables.entries()) {
     context[key] = value;
@@ -105,9 +116,9 @@ helpers.set('eval', (ctx: Context, v: string, code?: string) => {
 /**
  * template helpers
  */
-helpers.set('noop', () => '');
+defineHelper(helpers, 'noop', () => '');
 
-helpers.set('define', (ctx: Context, v: string, key: string) => {
+defineHelper<[v: string, key: string]>(helpers, 'define', (ctx, v, key) => {
   ctx.variables.set(key, v);
   return '';
 });

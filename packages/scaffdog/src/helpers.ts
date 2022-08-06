@@ -1,8 +1,8 @@
-import path from 'path';
 import fs from 'fs';
+import path from 'path';
+import { compile, defineHelper, extendContext } from '@scaffdog/engine';
+import type { HelperMap, Variable } from '@scaffdog/types';
 import { isPlainObject } from 'is-plain-object';
-import type { Context, HelperMap, Variable } from '@scaffdog/types';
-import { compile, extendContext } from '@scaffdog/engine';
 import { fileExists } from './utils/fs';
 
 const isObjectVariable = (
@@ -13,52 +13,71 @@ const isObjectVariable = (
 
 export const helpers: HelperMap = new Map();
 
-helpers.set('resolve', (_: Context, ...args: string[]) =>
-  path.resolve(...args),
+defineHelper<string[]>(
+  helpers,
+  'resolve',
+  (_, ...args) => path.resolve(...args),
+  {
+    disableAutoLoop: true,
+  },
 );
 
-helpers.set('relative', (ctx: Context, to: string) => {
-  const output = ctx.variables.get('output');
-  const document = ctx.variables.get('document');
-  if (!isObjectVariable(output) || !isObjectVariable(document)) {
-    return '';
-  }
+defineHelper<[to: string]>(
+  helpers,
+  'relative',
+  (ctx, to) => {
+    const output = ctx.variables.get('output');
+    const document = ctx.variables.get('document');
+    if (!isObjectVariable(output) || !isObjectVariable(document)) {
+      return '';
+    }
 
-  if (typeof output.abs !== 'string' || typeof document.path !== 'string') {
-    return '';
-  }
+    if (typeof output.abs !== 'string' || typeof document.path !== 'string') {
+      return '';
+    }
 
-  return path.relative(
-    path.dirname(output.abs),
-    path.join(path.dirname(document.path), to),
-  );
-});
+    return path.relative(
+      path.dirname(output.abs),
+      path.join(path.dirname(document.path), to),
+    );
+  },
+  {
+    disableAutoLoop: true,
+  },
+);
 
-helpers.set('read', (ctx: Context, target: string) => {
-  const document = ctx.variables.get('document');
-  if (!isObjectVariable(document) || typeof document.path !== 'string') {
-    throw new Error('"document" is invalid variable.');
-  }
+defineHelper<[target: string]>(
+  helpers,
+  'read',
+  (ctx, target) => {
+    const document = ctx.variables.get('document');
+    if (!isObjectVariable(document) || typeof document.path !== 'string') {
+      throw new Error('"document" is invalid variable.');
+    }
 
-  const filepath = path.resolve(path.dirname(document.path), target);
-  if (!fileExists(filepath)) {
-    throw new Error(`"${filepath}" does not exists.`);
-  }
+    const filepath = path.resolve(path.dirname(document.path), target);
+    if (!fileExists(filepath)) {
+      throw new Error(`"${filepath}" does not exists.`);
+    }
 
-  const content = fs.readFileSync(filepath, 'utf8');
+    const content = fs.readFileSync(filepath, 'utf8');
 
-  return compile(
-    content,
-    extendContext(ctx, {
-      variables: new Map([
-        [
-          'document',
-          {
-            ...document,
-            path: filepath,
-          },
-        ],
-      ]),
-    }),
-  );
-});
+    return compile(
+      content,
+      extendContext(ctx, {
+        variables: new Map([
+          [
+            'document',
+            {
+              ...document,
+              path: filepath,
+            },
+          ],
+        ]),
+      }),
+    );
+  },
+  {
+    disableAutoLoop: true,
+  },
+);
