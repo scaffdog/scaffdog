@@ -1,6 +1,6 @@
 {
   "name": "@scaffdog/error",
-  "version": "2.0.0-canary.0",
+  "version": "2.0.0-canary.1",
   "description": "A utility module of scaffdog error.",
   "keywords": [
     "scaffdog",
@@ -28,7 +28,7 @@
     "test:watch": "vitest watch --dir src"
   },
   "dependencies": {
-    "@scaffdog/types": "2.0.0-canary.0",
+    "@scaffdog/types": "2.0.0-canary.1",
     "chalk": "^4.1.0",
     "string-length": "4.0.2"
   },
