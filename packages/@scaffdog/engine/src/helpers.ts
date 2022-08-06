@@ -28,6 +28,27 @@ defineHelper<[v: string[], sep: string]>(
 );
 
 /**
+ * language
+ */
+defineHelper<[v: string]>(helpers, 's2n', (_, v) => {
+  const n = Number(v);
+  return Number.isNaN(n) ? 0 : n;
+});
+
+defineHelper<[v: number]>(helpers, 'n2s', (_, v) => String(v));
+
+defineHelper<[v: string, code?: string]>(helpers, 'eval', (ctx, v, code) => {
+  const evalCode = code != null ? code : v;
+  const context: { [key: string]: any } = Object.create(null);
+
+  for (const [key, value] of ctx.variables.entries()) {
+    context[key] = value;
+  }
+
+  return safeEval(evalCode, context);
+});
+
+/**
  * string utils
  */
 defineHelper<[v: string]>(helpers, 'camel', (_, v) => cc.camelCase(v));
@@ -97,20 +118,6 @@ defineHelper<[v: string, n: string | number, offset?: number]>(
 defineHelper<[format?: string]>(helpers, 'date', (_, format) => {
   const d = dayjs();
   return format ? d.format(format) : d.toISOString();
-});
-
-/**
- * language
- */
-defineHelper<[v: string, code?: string]>(helpers, 'eval', (ctx, v, code) => {
-  const evalCode = code != null ? code : v;
-  const context: { [key: string]: any } = Object.create(null);
-
-  for (const [key, value] of ctx.variables.entries()) {
-    context[key] = value;
-  }
-
-  return safeEval(evalCode, context);
 });
 
 /**

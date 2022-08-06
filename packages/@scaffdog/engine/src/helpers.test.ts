@@ -29,6 +29,43 @@ describe('array', () => {
   });
 });
 
+describe('language', () => {
+  test.each([
+    ['s2n', `{{ 1 + ("4" | s2n) }}`, `5`],
+    [
+      's2n - array',
+      `{{ for v in ("1,2,3" | split "," | s2n) }}{{ v + 1 }}{{ end }}`,
+      `234`,
+    ],
+    ['s2n - empty', `{{ "" | s2n }}`, `0`],
+    ['s2n - non numeric', `{{ "str" | s2n }}`, `0`],
+
+    ['n2s', `{{ "5" + (5 | n2s) }}`, `55`],
+    [
+      'n2s - array',
+      `{{ for v in ("1,2,3" | split "," | n2s) }}{{ v + "0" }}{{ end }}`,
+      `102030`,
+    ],
+    ['n2s - empty', `{{ "" | n2s }}`, ``],
+    ['n2s - non numeric', `{{ "foo" | n2s }}`, `foo`],
+
+    [
+      'eval - basic',
+      `{{ eval "parseInt(count5, 10) > 4 ? 'true' : 'false'" }}`,
+      `true`,
+    ],
+    ['eval - chain', `{{ "foo" | eval "parseInt(count5, 10) + 5" }}`, `10`],
+    ['eval - chain', `{{ "foo" | eval "parseInt(count5, 10) + 5" }}`, `10`],
+    [
+      'eval - array',
+      `{{ eval ("parseInt(count5,10)+1 / parseInt(count5,10)+2 / parseInt(count5,10)+3" | split "/") }}`,
+      `6,7,8`,
+    ],
+  ])('%s', (_, input, expected) => {
+    expect(compile(input, context)).toBe(expected);
+  });
+});
+
 describe('string', () => {
   test.each([
     ['split', `{{ "a/b/c" | split "/" }}`, `a,b,c`],
@@ -112,25 +149,6 @@ describe('string', () => {
       'after - array',
       `{{ "line1\nline2\nline3,line4\nline5\nline6" | split "," | after 1 }}`,
       `line2\nline3,line5\nline6`,
-    ],
-  ])('%s', (_, input, expected) => {
-    expect(compile(input, context)).toBe(expected);
-  });
-});
-
-describe('language', () => {
-  test.each([
-    [
-      'eval - basic',
-      `{{ eval "parseInt(count5, 10) > 4 ? 'true' : 'false'" }}`,
-      `true`,
-    ],
-    ['eval - chain', `{{ "foo" | eval "parseInt(count5, 10) + 5" }}`, `10`],
-    ['eval - chain', `{{ "foo" | eval "parseInt(count5, 10) + 5" }}`, `10`],
-    [
-      'eval - array',
-      `{{ eval ("parseInt(count5,10)+1 / parseInt(count5,10)+2 / parseInt(count5,10)+3" | split "/") }}`,
-      `6,7,8`,
     ],
   ])('%s', (_, input, expected) => {
     expect(compile(input, context)).toBe(expected);
