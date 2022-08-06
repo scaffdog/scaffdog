@@ -1,26 +1,26 @@
 /// <reference types="../types/inquirer-autocomplete-prompt" />
 import path from 'path';
-import type { File, Variable, VariableRecord } from '@scaffdog/types';
 import { loadConfig } from '@scaffdog/config';
 import { generate } from '@scaffdog/core';
-import { ScaffdogError } from '@scaffdog/error';
-import globby from 'globby';
-import ansiEscapes from 'ansi-escapes';
-import micromatch from 'micromatch';
-import chalk from 'chalk';
-import symbols from 'log-symbols';
-import { emojify } from 'node-emoji';
-import indent from 'indent-string';
-import plur from 'plur';
 import { compile, createContext } from '@scaffdog/engine';
+import { ScaffdogError } from '@scaffdog/error';
+import type { File, Variable, VariableRecord } from '@scaffdog/types';
+import ansiEscapes from 'ansi-escapes';
+import chalk from 'chalk';
+import globby from 'globby';
+import indent from 'indent-string';
+import symbols from 'log-symbols';
+import micromatch from 'micromatch';
+import { emojify } from 'node-emoji';
+import plur from 'plur';
 import { createCommand } from '../command';
-import type { Question } from '../document';
+import type { Document, Question } from '../document';
 import { resolveDocuments } from '../document';
-import { formatFile } from '../utils/format';
+import { helpers } from '../helpers';
 import type { PromptQuestion } from '../prompt';
 import { autocomplete, confirm, prompt } from '../prompt';
+import { formatFile } from '../utils/format';
 import { fileExists, mkdir, writeFile } from '../utils/fs';
-import { helpers } from '../helpers';
 
 const createPromptQuestion = (question: Question): PromptQuestion => {
   const validate = (v: string) => (v !== '' ? true : 'required input!');
@@ -91,11 +91,17 @@ export default createCommand({
   logger.debug('load config: %O', config);
 
   const dirname = path.resolve(cwd, project);
-  const documents = await resolveDocuments(dirname, config.files);
-  if (documents.length === 0) {
-    logger.error(
-      'Document file not found. Please use `$ scaffdog create <name>` to create the document file.',
-    );
+  let documents: Document[];
+  try {
+    documents = await resolveDocuments(dirname, config.files);
+    if (documents.length === 0) {
+      logger.error(
+        'Document file not found. Please use `$ scaffdog create <name>` to create the document file.',
+      );
+      return 1;
+    }
+  } catch (e) {
+    logger.error(e);
     return 1;
   }
 
