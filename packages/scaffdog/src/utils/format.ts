@@ -33,6 +33,7 @@ export const formatFile = (
 
   // filename
   const body = chars.x.repeat(columns - gutter - 1);
+  const filename = file.skip ? `(skip) ${file.filename}` : file.filename;
 
   output.push(
     chk.gray([chars.x.repeat(gutter), chars.t, body].join('')),
@@ -41,7 +42,7 @@ export const formatFile = (
       chk.green(figures.tick),
       ' ',
       chk.gray(chars.y),
-      chk` File: {bold ${truncate(file.filename, columns - gutter - 8)}}`,
+      chk` File: {bold ${truncate(filename, columns - gutter - 8)}}`,
     ].join(''),
     chk.gray([chars.x.repeat(gutter), chars.c, body].join('')),
   );

@@ -248,10 +248,19 @@ export default createCommand({
         }),
       );
 
-      writes.add(file);
+      if (file.skip) {
+        skips.add(file);
+      } else {
+        writes.add(file);
+      }
     });
   } else {
     for (const file of files) {
+      if (file.skip) {
+        skips.add(file);
+        continue;
+      }
+
       try {
         await mkdir(path.dirname(file.output), { recursive: true });
 
