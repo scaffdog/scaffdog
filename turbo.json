@@ -13,9 +13,9 @@
       "inputs": ["src/**/*.ts", "src/**/*.snap"]
     },
     "typecheck": {
-      "dependsOn": ["build"],
-      "outputs": [],
-      "inputs": ["src/**/*.ts", "tsconfig.json"]
+      "cache": false,
+      "dependsOn": ["build"]
     }
-  }
+  },
+  "globalDependencies": ["tsconfig.json"]
 }

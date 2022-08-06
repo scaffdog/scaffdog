@@ -60,7 +60,7 @@ importers:
 
   packages/@scaffdog/config:
     specifiers:
-      '@scaffdog/types': 1.5.0
+      '@scaffdog/types': workspace:*
       zod: ^3.11.6
     dependencies:
       '@scaffdog/types': link:../types
@@ -68,8 +68,8 @@ importers:
 
   packages/@scaffdog/core:
     specifiers:
-      '@scaffdog/engine': 1.5.0
-      '@scaffdog/types': 1.5.0
+      '@scaffdog/engine': workspace:*
+      '@scaffdog/types': workspace:*
       '@types/unist': 2.0.6
       mdast-util-to-string: ^2.0.0
       remark-parse: ^9.0.0
@@ -87,8 +87,8 @@ importers:
 
   packages/@scaffdog/engine:
     specifiers:
-      '@scaffdog/error': 1.5.0
-      '@scaffdog/types': 1.5.0
+      '@scaffdog/error': workspace:*
+      '@scaffdog/types': workspace:*
       '@unicode/unicode-15.0.0': ^1.2.2
       change-case: ^4.1.2
       dayjs: ^1.10.4
@@ -108,7 +108,7 @@ importers:
 
   packages/@scaffdog/error:
     specifiers:
-      '@scaffdog/types': 1.5.0
+      '@scaffdog/types': workspace:*
       chalk: ^4.1.0
       string-length: 4.0.2
     dependencies:
@@ -124,9 +124,9 @@ importers:
 
   packages/prettier-plugin-scaffdog:
     specifiers:
-      '@scaffdog/config': 1.5.0
-      '@scaffdog/engine': 1.5.0
-      '@scaffdog/types': 1.5.0
+      '@scaffdog/config': workspace:*
+      '@scaffdog/engine': workspace:*
+      '@scaffdog/types': workspace:*
       '@types/minimatch': 3.0.5
       '@types/prettier': 2.7.0
       minimatch: ^5.0.0
@@ -143,11 +143,11 @@ importers:
 
   packages/scaffdog:
     specifiers:
-      '@scaffdog/config': 1.5.0
-      '@scaffdog/core': 1.5.0
-      '@scaffdog/engine': 1.5.0
-      '@scaffdog/error': 1.5.0
-      '@scaffdog/types': 1.5.0
+      '@scaffdog/config': workspace:*
+      '@scaffdog/core': workspace:*
+      '@scaffdog/engine': workspace:*
+      '@scaffdog/error': workspace:*
+      '@scaffdog/types': workspace:*
       '@types/inquirer': 8.2.1
       '@types/micromatch': 4.0.2
       '@types/node-emoji': 1.8.1

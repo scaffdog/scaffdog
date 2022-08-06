@@ -1,5 +1,9 @@
 {
   "private": true,
+  "workspaces": [
+    "packages/@scaffdog/*",
+    "packages/*"
+  ],
   "packageManager": "pnpm@7.8.0",
   "scripts": {
     "build": "turbo run build",

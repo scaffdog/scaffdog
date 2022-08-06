@@ -28,7 +28,7 @@
     "test:watch": "vitest watch --dir src"
   },
   "dependencies": {
-    "@scaffdog/types": "2.0.0-canary.1",
+    "@scaffdog/types": "workspace:*",
     "chalk": "^4.1.0",
     "string-length": "4.0.2"
   },

@@ -29,8 +29,8 @@
     "unicode-regex": "node ./scripts/unicode-regex-gen.js"
   },
   "dependencies": {
-    "@scaffdog/error": "2.0.0-canary.1",
-    "@scaffdog/types": "2.0.0-canary.1",
+    "@scaffdog/error": "workspace:*",
+    "@scaffdog/types": "workspace:*",
     "change-case": "^4.1.2",
     "dayjs": "^1.10.4",
     "is-plain-object": "^5.0.0",

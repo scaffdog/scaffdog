@@ -37,11 +37,11 @@
     "test:watch": "vitest watch --dir src"
   },
   "dependencies": {
-    "@scaffdog/config": "2.0.0-canary.1",
-    "@scaffdog/core": "2.0.0-canary.1",
-    "@scaffdog/engine": "2.0.0-canary.1",
-    "@scaffdog/error": "2.0.0-canary.1",
-    "@scaffdog/types": "2.0.0-canary.1",
+    "@scaffdog/config": "workspace:*",
+    "@scaffdog/core": "workspace:*",
+    "@scaffdog/engine": "workspace:*",
+    "@scaffdog/error": "workspace:*",
+    "@scaffdog/types": "workspace:*",
     "ansi-escapes": "^4.3.2",
     "chalk": "^4.1.0",
     "cli-truncate": "^2.1.0",
