@@ -125,7 +125,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: dist
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install
       - name: Fetch all git tags
         run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
       - name: Configure git user
