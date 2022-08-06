@@ -7,21 +7,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @scaffdog/types
 
-
-
-
-
 # [2.0.0-canary.0](https://github.com/cats-oss/scaffdog/compare/v1.5.0...v2.0.0-canary.0) (2022-08-06)
-
 
 ### Features
 
-* **engine:** add helper utils ([6875df4](https://github.com/cats-oss/scaffdog/commit/6875df45c53fd7af4ab34f8784aa49e84ef869e5))
-* **engine:** renew template engine ([4553a25](https://github.com/cats-oss/scaffdog/commit/4553a25bbae43c38dcaebb97cbe28fa4a24a16fa))
-
-
-
-
+- **engine:** add helper utils ([6875df4](https://github.com/cats-oss/scaffdog/commit/6875df45c53fd7af4ab34f8784aa49e84ef869e5))
+- **engine:** renew template engine ([4553a25](https://github.com/cats-oss/scaffdog/commit/4553a25bbae43c38dcaebb97cbe28fa4a24a16fa))
 
 # [1.5.0](https://github.com/cats-oss/scaffdog/compare/v1.4.0...v1.5.0) (2022-06-26)
 

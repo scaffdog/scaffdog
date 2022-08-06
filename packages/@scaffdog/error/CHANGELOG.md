@@ -7,20 +7,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @scaffdog/error
 
-
-
-
-
 # [2.0.0-canary.0](https://github.com/cats-oss/scaffdog/compare/v1.5.0...v2.0.0-canary.0) (2022-08-06)
-
 
 ### Features
 
-* **engine:** renew template engine ([4553a25](https://github.com/cats-oss/scaffdog/commit/4553a25bbae43c38dcaebb97cbe28fa4a24a16fa))
-
-
-
-
+- **engine:** renew template engine ([4553a25](https://github.com/cats-oss/scaffdog/commit/4553a25bbae43c38dcaebb97cbe28fa4a24a16fa))
 
 # [1.5.0](https://github.com/cats-oss/scaffdog/compare/v1.4.0...v1.5.0) (2022-06-26)
 

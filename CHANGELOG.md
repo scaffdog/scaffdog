@@ -7,28 +7,19 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package scaffdog
 
-
-
-
-
 # [2.0.0-canary.0](https://github.com/scaffdog/scaffdog/compare/v1.5.0...v2.0.0-canary.0) (2022-08-06)
-
 
 ### Features
 
-* **engine:** add `len` helper function ([9454a89](https://github.com/scaffdog/scaffdog/commit/9454a89de05714a1f17fcc4678345e8391b0ea4f))
-* **engine:** add `s2n` & `n2s` helper functions ([c9d16e4](https://github.com/scaffdog/scaffdog/commit/c9d16e44647648cc81d40309a26a656375c08219))
-* **engine:** add `seq` helper function ([829782d](https://github.com/scaffdog/scaffdog/commit/829782db12c0821aaca2c6826083dc580a70fd06))
-* **engine:** add `slice` helper function ([a1cc461](https://github.com/scaffdog/scaffdog/commit/a1cc4613ac65acd1982353409cd3d12d3f8c816f))
-* **engine:** add helper utils ([6875df4](https://github.com/scaffdog/scaffdog/commit/6875df45c53fd7af4ab34f8784aa49e84ef869e5))
-* **engine:** renew template engine ([4553a25](https://github.com/scaffdog/scaffdog/commit/4553a25bbae43c38dcaebb97cbe28fa4a24a16fa))
-* **prettier-plugin-scaffdog:** implement syntax v2 ([4155872](https://github.com/scaffdog/scaffdog/commit/41558728401ff6f383b5fe97a78dbf7719afaadb))
-* **scaffdog:** add confirm and checkbox question type ([512adfc](https://github.com/scaffdog/scaffdog/commit/512adfc0369a6dffe72fac43ed9c073de43dab3e))
-* **scaffdog:** improve document parsing error message ([9774dd7](https://github.com/scaffdog/scaffdog/commit/9774dd75229b9cfdd48f49e6bbedc80b73f3f74c))
-
-
-
-
+- **engine:** add `len` helper function ([9454a89](https://github.com/scaffdog/scaffdog/commit/9454a89de05714a1f17fcc4678345e8391b0ea4f))
+- **engine:** add `s2n` & `n2s` helper functions ([c9d16e4](https://github.com/scaffdog/scaffdog/commit/c9d16e44647648cc81d40309a26a656375c08219))
+- **engine:** add `seq` helper function ([829782d](https://github.com/scaffdog/scaffdog/commit/829782db12c0821aaca2c6826083dc580a70fd06))
+- **engine:** add `slice` helper function ([a1cc461](https://github.com/scaffdog/scaffdog/commit/a1cc4613ac65acd1982353409cd3d12d3f8c816f))
+- **engine:** add helper utils ([6875df4](https://github.com/scaffdog/scaffdog/commit/6875df45c53fd7af4ab34f8784aa49e84ef869e5))
+- **engine:** renew template engine ([4553a25](https://github.com/scaffdog/scaffdog/commit/4553a25bbae43c38dcaebb97cbe28fa4a24a16fa))
+- **prettier-plugin-scaffdog:** implement syntax v2 ([4155872](https://github.com/scaffdog/scaffdog/commit/41558728401ff6f383b5fe97a78dbf7719afaadb))
+- **scaffdog:** add confirm and checkbox question type ([512adfc](https://github.com/scaffdog/scaffdog/commit/512adfc0369a6dffe72fac43ed9c073de43dab3e))
+- **scaffdog:** improve document parsing error message ([9774dd7](https://github.com/scaffdog/scaffdog/commit/9774dd75229b9cfdd48f49e6bbedc80b73f3f74c))
 
 # [1.5.0](https://github.com/cats-oss/scaffdog/compare/v1.4.0...v1.5.0) (2022-06-26)
 
