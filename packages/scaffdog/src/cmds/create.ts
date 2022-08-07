@@ -115,7 +115,7 @@ ${attrs.join('\n')}
 
 \`\`\`markdown
 Let's make a document! See more detail scaffdog repository.
-https://github.com/cats-oss/scaffdog/#templates
+https://github.com/scaffdog/scaffdog/#templates
 \`\`\`
 `.trim(),
     'utf8',

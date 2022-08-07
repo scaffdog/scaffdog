@@ -7,13 +7,13 @@
     "markdown",
     "template"
   ],
-  "homepage": "https://github.com/cats-oss/scaffdog/tree/main/packages/@scaffdog/engine",
+  "homepage": "https://github.com/scaffdog/scaffdog/tree/main/packages/@scaffdog/engine",
   "bugs": {
-    "url": "https://github.com/cats-oss/scaffdog/issues"
+    "url": "https://github.com/scaffdog/scaffdog/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cats-oss/scaffdog.git",
+    "url": "https://github.com/scaffdog/scaffdog.git",
     "directory": "packages/@scaffdog/engine"
   },
   "license": "MIT",

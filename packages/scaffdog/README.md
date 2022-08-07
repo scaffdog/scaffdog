@@ -5,9 +5,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/cats-oss/scaffdog/actions?workflow=CI"><img src="https://img.shields.io/github/workflow/status/cats-oss/scaffdog/CI?logo=github&style=flat-square" alt="GitHub Workflow Status" /></a>
+  <a href="https://github.com/scaffdog/scaffdog/actions?workflow=CI"><img src="https://img.shields.io/github/workflow/status/scaffdog/scaffdog/CI?logo=github&style=flat-square" alt="GitHub Workflow Status" /></a>
   <a href="https://www.npmjs.com/package/scaffdog"><img src="https://img.shields.io/npm/v/scaffdog?style=flat-square" alt="npm" /></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/github/license/cats-oss/scaffdog?label=license&style=flat-square" alt="MIT LICENSE" /></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/github/license/scaffdog/scaffdog?label=license&style=flat-square" alt="MIT LICENSE" /></a>
 </p>
 
 # scaffdog
@@ -99,7 +99,7 @@ Setup of scaffdog 🐶 is complete!
 Now you can do scaffold by running `$ scaffdog generate`.
 
 Please refer to the following documents and customize it.
-https://github.com/cats-oss/scaffdog/#templates
+https://github.com/scaffdog/scaffdog/#templates
 ```
 
 After running the command, the `.scaffdog/hello.md` file should have been generated.
@@ -125,7 +125,7 @@ The first file was generated.
 $ cat pretty-dog.md
 
 Let's make a document! See more detail scaffdog repository.
-https://github.com/cats-oss/scaffdog/#templates
+https://github.com/scaffdog/scaffdog/#templates
 ```
 
 Please refer to this document and customize the document file :+1:

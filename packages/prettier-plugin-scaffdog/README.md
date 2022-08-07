@@ -19,7 +19,7 @@ This plugin is [automatically resolved by Prettier](https://prettier.io/docs/en/
 
 ## Resolving your scaffdog configuration
 
-This plugin reads the [scaffdog project configuration](https://github.com/cats-oss/scaffdog#configuration). This behavior is necessary to resolve custom tags and Markdown file paths. By default, it searches for `.scaffdog` in the same directory as the Prettier configuration file (e.g. `prettier.config.js`).
+This plugin reads the [scaffdog project configuration](https://github.com/scaffdog/scaffdog#configuration). This behavior is necessary to resolve custom tags and Markdown file paths. By default, it searches for `.scaffdog` in the same directory as the Prettier configuration file (e.g. `prettier.config.js`).
 
 If the project path cannot be resolved automatically, e.g. the scaffdog project exists in a different file path, use the `scaffdogProject` option to specify a path relative to the Prettier configuration file.
 

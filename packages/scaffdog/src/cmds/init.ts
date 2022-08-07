@@ -59,7 +59,7 @@ questions:
 
 \`\`\`markdown
 Let's make a document! See more detail scaffdog repository.
-https://github.com/cats-oss/scaffdog/#templates
+https://github.com/scaffdog/scaffdog/#templates
 \`\`\`
 \`\`\`\`
 `.trim(),
@@ -104,7 +104,7 @@ ${list}
 Now you can do scaffold by running \`{green $ scaffdog generate}\`.
 
 Please refer to the following documents and customize it.
-{underline https://github.com/cats-oss/scaffdog/#templates}
+{underline https://github.com/scaffdog/scaffdog/#templates}
 `.trim(),
     ),
   );
