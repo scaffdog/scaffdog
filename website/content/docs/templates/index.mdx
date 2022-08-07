@@ -1,0 +1,85 @@
+---
+title: 'Templates'
+description: 'This section provides an overview of scaffdog templates.'
+---
+
+Template documents are defined with `<h1>` and code blocks. `<h1>` is interpreted as the file name and code blocks as the template body. Meta information is defined using [Front Matter](https://jekyllrb.com/docs/front-matter/).
+
+## Structure
+
+scaffdog allows templates to be written in Markdown for superior integration with editors and reduced review load.
+
+The simplest structure is shown below.
+
+````markdown
+---
+name: 'template'
+root: '.'
+output: '**/*'
+---
+
+# `filename.txt`
+
+```
+template body
+```
+````
+
+A single markdown file consists of three blocks.
+
+- **Attributes**: Meta information about the template document described in Front Matter.
+- **Template title**: File name to be described by `<h1>`.
+- **Template body**: File content to be described in code blocks.
+
+Read our docs for [Attributes](/docs/templates/attributes) and [Template Engine](/docs/templates/template-engine) to learn more.
+
+## File-scope Variables
+
+The `Variables` section is special and is not output to a file. The key-value (`key: value`) list allows you to declare variables that can be used in common templates.
+
+This is useful for processing input values that are commonly used in templates.
+
+````markdown
+# Variables
+
+- constant_key: scaffdog
+- computed_key: `{{ inputs.name | upper }}`
+
+# `filename.txt`
+
+```
+{{ constant_key }}
+{{ computed_key }}
+```
+````
+
+If `scaffdog` is entered in `inputs.name`, the output is as follows:
+
+```
+scaffdog
+SCAFFDOG
+```
+
+## Conditional Generates
+
+Template title prefixed with `!` token to skip file generation.
+
+A common use case is to branch according to the content of the accepted input.
+
+````markdown
+---
+name: 'component'
+root: '.'
+output: '.'
+questions:
+  test:
+    confirm: 'Do you need a test?'
+    initial: true
+---
+
+# `{{ inputs.test && "!" }}index.test.ts`
+
+```typescript
+// ...
+```
+````

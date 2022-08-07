@@ -1,0 +1,180 @@
+---
+title: 'Template Engine'
+description: "This section describes scaffdog's template engine."
+---
+
+scaffdog uses the template engine inpired by [ECMAScript](https://tc39.es/ecma262/) and [Go text/template](https://pkg.go.dev/text/template).  
+It has its own syntax and runtime to enhance the readability and writing quality of the templates :dog:
+
+If you need a syntax specification, see the [Language Specification](https://github.com/scaffdog/scaffdog/tree/canary/packages/%40scaffdog/engine#language-specification) section.
+
+## Basic Syntax
+
+Between `{{` and `}}` is interpreted as a tag. Whitespace in tag contents is ignored.
+
+```
+{{ <statement> }}
+```
+
+**Example:**
+
+```
+{{ inputs.value }}
+{{ 1 + 2 }}
+{{ "string" }}
+```
+
+## Comments
+
+You can use comment out to keep the template readable. Of course, it is not deployed as a template.
+
+```
+{{ /* a comment */ }}
+```
+
+## Call Helper Function
+
+Execute the helper function with the specified name. Arguments are separated by whitespace.  
+When invoked on a pipe, the previous processing result is passed to the first argument.
+
+See the [Built-in Helpers](#helpers) section for the helpers that can be used.
+
+```
+{{ <helper> <argument> ... }}
+or
+{{ <helper>(<argument>, [...]) }}
+```
+
+**Example:**
+
+```
+{{ relative "../" }}
+{{ len(inputs.value) }}
+{{ replace(inputs.value, "-", "") }}
+```
+
+## Pipelines
+
+You can chain output values or helper results with pipes.
+
+```
+{{ <expression> | <helper> }}
+{{ <expression> | <helper> <argument> ... }}
+```
+
+**Example:**
+
+```
+{{ inputs.value | upper }}
+{{ inputs.value | replace ".ts$" ".js" | pascal }}
+{{ output.base | replace output.ext ".js" | pascal }}
+```
+
+## Grouping Operator
+
+The grouping operator `(` `)` controls the precedence of evaluation in expressions.
+
+```
+{{ (<expression>) }}
+```
+
+**Example:**
+
+```
+{{ 2 * (2 + 2) }}
+{{ 5 + (inputs.value | camel | len) }}
+```
+
+## Local Variables
+
+You can define local variables in your templates.  
+The left and right sides are connected by a `:=` token, which assigns to the left side the value of the right side evaluation. Also, variable assignment statements do not produce output.
+
+```
+{{ <identifier> := <expression> }}
+```
+
+**Example:**
+
+```
+{{ name := "scaffdog" }}
+{{ name := inputs.name | camel }}
+```
+
+## Conditional Branch
+
+An if statement can be used to perform conditional branching. The if statement must always be closed with `end`.  
+Cases where the condition does not apply can be written in the statement following `else`.
+
+```
+{{ if <expression> }}body{{ end }}
+{{ if <expression> }}body{{ else }}body{{ end }}
+{{ if <expression> }}body{{ else if <expression> }}body{{ end }}
+{{ if <expression> }}body{{ else if <expression> }}body{{ else }}body{{ end }}
+```
+
+**Example:**
+
+```
+{{ if len(inputs.value) > 5 }}Long{{ end }}
+{{ if len(inputs.value) > 5 }}Long{{ else }}Not long{{ end }}
+{{ if len(inputs.value) > 5 }}Long{{ else if len(inputs.value) > 2 }}Medium{{ end }}
+{{ if len(inputs.value) > 5 }}Long{{ else if len(inputs.value) > 2 }}Medium{{ else }}Short{{ end }}
+```
+
+## For-loop
+
+Supports for statements to output repeated array values. The for statement must always be closed with `end`.  
+Use `continue` to skip iterations based on conditions, or `break` to skip the entire iteration.
+
+You can also refer to an `index` by following the array value with a `,` token.
+
+```
+{{ for <identifier> in <expression> }}body{{ end }}
+{{ for <identifier>, <identifier> in <expression> }}body{{ end }}
+```
+
+**Example:**
+
+```
+{{ for v in seq 1 5 }}{{ v }}{{ end }}
+{{ for v, i in seq 1 5 }}{{ v + i }}{{ end }}
+
+{{- /* continue and break */ }}
+{{ for v in seq 1 5 }}{{ if v == 2 }}{{ continue }}{{ end }}{{ v }}{{ end }}
+{{ for v in seq 1 5 }}{{ if v == 2 }}{{ break }}{{ end }}{{ v }}{{ end }}
+```
+
+**Output:**
+
+```
+12345
+13579
+1345
+1
+```
+
+## Whitespace Control
+
+Trim the expression to be expanded and the space and line feed around it.  
+Use `{{-` to trim before the tag, and `-}}` to trim after the tag.
+
+```
+{{- <statement> -}}
+```
+
+**Example:**
+
+```
+before {{- "text" }} after
+before {{ "text" -}} after
+before {{- "text" -}} after
+```
+
+**Output:**
+
+```
+beforetext after
+before textafter
+beforetextafter
+```

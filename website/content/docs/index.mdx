@@ -1,0 +1,168 @@
+---
+title: 'Getting Started'
+description: 'Install scaffdog and create your first template.'
+---
+
+Getting started with scaffdog is easy. We will show you how to install and start using scaffdog.
+
+## Requirements
+
+- Node.js v14.16.0+
+
+## Installation
+
+`scaffdog` can be installed globally, but we recommend installing it locally on the project.
+
+```bash
+$ npm install --save-dev scaffdog
+```
+
+## Setup
+
+scaffdog reads the documentation and configuration files in the `.scaffdog` directory by default. There are two ways to set these up.
+
+### Automate
+
+The `init` subcommand is the easiest way to set up.
+
+```bash
+$ npx scaffdog init
+
+? Please enter a document name. hello
+
+Setup of scaffdog 🐶 is complete!
+
+  ✔ .scaffdog/config.js
+  ✔ .scaffdog/hello.md
+
+Now you can do scaffold by running `$ scaffdog generate`.
+
+Please refer to the following documents and customize it.
+https://github.com/scaffdog/scaffdog/#templates
+```
+
+This completes the minimal setup. Easy!
+
+### Manual
+
+In some cases, depending on the project, you may want to perform the setup manually. No need to worry, however. Manual setup is not a difficult task.
+
+First, create a `.scaffdog` directory and a configuration file.
+
+```bash
+$ mkdir .scaffdog
+$ touch .scaffdog/config.js
+```
+
+Open `.scaffdog/config.js` with an editor and write the following:
+
+```javascript
+module.exports = {
+  files: ['./*'],
+};
+```
+
+Documentation does not yet exist, but this completes the minimal setup.
+
+## Basic Usage
+
+In the previous section, we have the environment we need to use scaffdog!  
+Let's define a little practical documentation and actually generate the files.
+
+### Write your first template
+
+Let's take a [React](https://reactjs.org) project as an example for documentation.
+
+Create the `.scaffdog/component.md` file and edit it as follows:
+
+````markdown
+---
+name: 'component'
+root: '.'
+output: '.'
+questions:
+  name: 'Please enter a component name.'
+  story:
+    confirm: 'Do you need a story?'
+    initial: true
+---
+
+# `{{ inputs.name | pascal }}/index.ts`
+
+```typescript
+export * from './{{ inputs.name }}';
+```
+
+# `{{ inputs.name | pascal }}/{{ inputs.name | pascal }}.tsx`
+
+```typescript
+export type Props = {
+  children: React.ReactNode;
+};
+
+export const {{ inputs.name | pascal }}: React.FC<Props> = ({ children }) => {
+  return <div>{children}</div>;
+};
+```
+
+# `{{ !inputs.story && '!' }}{{ inputs.name | pascal }}/{{ inputs.name | pascal }}.stories.tsx`
+
+```typescript
+import { {{ inputs.name | pascal }} } from './{{ inputs.name | pascal }}';
+
+export default { component: {{ inputs.name | pascal }} };
+export const Overview = { args: {} };
+```
+````
+
+Several sections appeared in the Markdown file. The title of `<h1 />` corresponds to the file name, and the code block that follows corresponds to the contents of the file.
+
+In this example, three files would be generated!
+
+### Run generate subcommand
+
+Now let's actually generate a file from this document. Run the `generate` subcommand.
+
+```bash
+$ npx scaffdog generate
+
+? Please select a document. component
+ℹ Output destination directory: "."
+? Please enter a component name. Button
+? Do you need a story? Yes
+
+🐶 Generated 3 files!
+
+     ✔ Button/index.ts
+     ✔ Button/Button.tsx
+     ✔ Button/Button.stories.tsx
+
+```
+
+Entering the value `Button` in interactive prompt resulted in three files being generated :tada:
+
+The contents of each generated file are as follows:
+
+```typescript
+// Button/index.ts
+export * from './Button';
+
+// Button/Button.ts
+export type Props = {
+  children: React.ReactNode;
+};
+
+export const Button: React.FC<Props> = ({ children }) => {
+  return <div>{children}</div>;
+};
+
+// Button/Button.stories.ts
+import { Button } from './Button';
+
+export default { component: Button };
+export const Overview = { args: {} };
+```
+
+We were able to scaffold with only one Markdown file :dog2:
+
+Next, read the template documentation and feel free to build whatever template you need for your project.
