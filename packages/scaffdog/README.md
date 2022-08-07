@@ -1,4 +1,4 @@
-![scaffdog](/packages/scaffdog/docs/assets/repo-banner.png)
+![scaffdog](https://github.com/scaffdog/artwork/raw/main/repo-banner.png)
 
 <p align="center">
   scaffdog is Markdown driven scaffolding tool.
@@ -659,45 +659,10 @@ If you want to create a custom workflow using scaffdog, consider using [@scaffdo
 
 ## Contributing
 
-We are always welcoming your contribution :clap:
-
-1. Fork (https://github.com/cats-oss/scaffdog) :tada:
-1. Create a feature branch :coffee:
-1. Run test suite with the `$ pnpm test` command and confirm that it passes :zap:
-1. Commit your changes :memo:
-1. Rebase your local changes against the `canary` branch :bulb:
-1. Create new Pull Request :love_letter:
-
-Bugs, feature requests and comments are more than welcome in the [issues](https://github.com/cats-oss/scaffdog/issues).
-
-### Development scripts
-
-#### `pnpm test`
-
-Run Unit test with [vitest](https://vitest.dev).
-
-```bash
-$ pnpm test
-```
-
-#### `pnpm lint`
-
-Run lint with [ESLint](https://github.com/eslint/eslint).
-
-```bash
-$ pnpm lint
-```
-
-#### `pnpm format`
-
-Run formatting with [ESLint](https://github.com/eslint/eslint) (`--fix`) and [Prettier](https://github.com/prettier/prettier).
-
-```bash
-$ pnpm format
-```
+See [CONTRIBUTING.md](/CONTRIBUTING.md).
 
 ## License
 
 [MIT © wadackel](/LICENSE)
 
-![thank you for reading!](/packages/scaffdog/docs/assets/repo-footer.png)
+![Thank you for reading!](https://github.com/scaffdog/artwork/raw/main/repo-footer.png)
