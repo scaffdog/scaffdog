@@ -61,7 +61,7 @@
     "term-size": "^2.2.1",
     "update-notifier": "^5.1.0",
     "valid-filename": "^3.1.0",
-    "wrap-ansi": "^7.0.0",
+    "wrap-ansi": "^8.0.1",
     "yargs": "^17.0.0",
     "zod": "^3.11.6"
   },
