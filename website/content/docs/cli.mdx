@@ -1,0 +1,65 @@
+---
+title: 'CLI'
+description: 'This section describes the CLI provided by scaffdog.'
+---
+
+The `scaffdog` command provides several subcommands.
+
+## Commands
+
+### `scaffdog init`
+
+Prepare to use scaffdog. Create a `.scaffdog` directory by default, and create a first document file.
+
+```bash
+Options:
+  -p, --project  Directory to load the scaffdog project.        [string] [default: ".scaffdog"]
+  -v, --verbose  Enable logging.                                                      [boolean]
+      --help     Show help                                                            [boolean]
+      --version  Output the version number                                            [boolean]
+```
+
+### `scaffdog generate`
+
+Build a scaffold using the specified template. If you do not specify the template name and execute it, interactively select the template.
+
+```bash
+Positionals:
+  name                                                                                 [string]
+
+Options:
+  -p, --project  Directory to load the scaffdog project.        [string] [default: ".scaffdog"]
+  -v, --verbose  Enable logging.                                                      [boolean]
+      --help     Show help                                                            [boolean]
+      --version  Output the version number                                            [boolean]
+  -n, --dry-run  Output the result to stdout.                                         [boolean]
+  -f, --force    Attempt to write the files without prompting for confirmation.       [boolean]
+```
+
+### `scaffdog create`
+
+Create a document file with the specified name.
+
+```bash
+Positionals:
+  name  Specify a document file name.                                                  [string]
+
+Options:
+  -p, --project  Directory to load the scaffdog project.        [string] [default: ".scaffdog"]
+  -v, --verbose  Enable logging.                                                      [boolean]
+      --help     Show help                                                            [boolean]
+      --version  Output the version number                                            [boolean]
+  -y, --yes      Use default options.                                                 [boolean]
+```
+
+### `scaffdog list`
+
+Print a list of available documents.
+
+```bash
+Options:
+  -p, --project  Directory to load the scaffdog project.        [string] [default: ".scaffdog"]
+  -v, --verbose  Enable logging.                                                      [boolean]
+      --help     Show help                                                            [boolean]
+      --version  Output the version number                                            [boolean]
+```

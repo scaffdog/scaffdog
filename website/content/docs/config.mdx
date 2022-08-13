@@ -1,0 +1,104 @@
+---
+title: 'Config'
+description: 'This section describes the configuration file.'
+---
+
+scaffdog uses the object exported in `.scaffdog/config.js` as the configuration.
+
+## Simple Configuration
+
+In the `files` field, specify the path pattern of the document used by scaffdog. The `files` field is required.
+
+```javascript
+module.exports = {
+  files: ['./*'],
+};
+```
+
+## Global Variables
+
+You can define the global variables available in the template in the `variables` field.
+
+```javascript
+module.exports = {
+  files: ['./*'],
+  variables: {
+    key: 'value',
+  },
+};
+```
+
+## Custom Helpers
+
+You can define the custom helpers available in the template in the `helpers` field.
+
+```javascript
+module.exports = {
+  files: ['./*'],
+  helpers: [
+    // Using Key-Value
+    {
+      trim: (context, value) => value.trim(),
+    },
+
+    // Using Helper Registry
+    (registry) => {
+      registry.set('padstart', (context, value, size, str) =>
+        value.padStart(size, str || ' '),
+      );
+      registry.set('padend', (context, value, size, str) =>
+        value.padEnd(size, str || ' '),
+      );
+    },
+  ],
+};
+```
+
+The `context` passed to the first argument of the helper function has the following structure.
+
+```typescript
+type Variable =
+  | undefined
+  | null
+  | string
+  | number
+  | boolean
+  | { [key in string]: Variable }
+  | Variable[];
+
+type VariableMap = Map<string, Variable>;
+
+type Helper<T extends any[] = any[]> = (
+  context: Context,
+  ...args: T
+) => string | Helper | Variable;
+
+type HelperMap = Map<string, Helper>;
+
+type TagPair = Readonly<[open: string, close: string]>;
+
+type Context = {
+  cwd: string;
+  variables: VariableMap;
+  helpers: HelperMap;
+  tags: TagPair;
+};
+```
+
+## Custom Tags
+
+The default tag delimiter available in templates is `{{` and `}}`.  
+You can change it with `tags`.
+
+```javascript
+module.exports = {
+  files: ['./*'],
+  tags: ['<%', '%>'],
+};
+```
+
+By setting the above config, `<%` and `%>` will be the tag delimiters in the template.
+
+```
+<% inputs.name %>
+```
