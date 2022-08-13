@@ -44,7 +44,8 @@ export const Footer: React.FC<Props> = () => {
             textAlign={{ base: 'center', md: 'left' }}
           >
             <Text fontSize={{ base: 'sm', md: 'md' }} fontWeight="bold">
-              Copyright © 2022 wadackel
+              Copyright © 2022{' '}
+              <Link href="https://github.com/wadackel">wadackel</Link>
             </Text>
 
             <Text fontSize="xs">Released under the MIT License</Text>
