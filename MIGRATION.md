@@ -1,6 +1,33 @@
 # Migration Guide
 
+- [To v2 from v1](#to-v2-from-v1)
 - [To v1 from v0](#to-v1-from-v0)
+
+## To v2 from v1
+
+This Major update is hardly disruptive :clap:
+
+### Node.js version
+
+Support has been changed to `v14.16.0` or later to match the Node.js release cycle. This is the only breaking change.
+
+### Variable Declaration
+
+Syntax support has been added, whereas previously only variable definitions using the `define` helper function were supported.
+
+**Before:**
+
+```
+{{ inputs.value | camel | define "name" }}
+```
+
+**After:**
+
+```
+{{ name := inputs.value | camel }}
+```
+
+You can still use `define` for some use cases.
 
 ## To v1 from v0
 
