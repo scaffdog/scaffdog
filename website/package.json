@@ -6,7 +6,6 @@
     "dev": "next dev",
     "build": "next build",
     "export": "next export",
-    "start": "next start",
     "typecheck": "tsc",
     "scaffold": "ts-node-transpile-only ../packages/scaffdog/src/bin.ts generate"
   },

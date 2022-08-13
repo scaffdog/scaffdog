@@ -10,7 +10,7 @@ import type { DocumentGen } from 'contentlayer/core';
 import type { Heading } from './types/content';
 
 const Repository = {
-  EDIT_URL: 'https://github.com/scaffdog/scaffdog/tree/main/website',
+  EDIT_URL: 'https://github.com/scaffdog/scaffdog/edit/canary/website/content',
 };
 
 const getLastEditedDate = async (doc: DocumentGen): Promise<Date> => {

@@ -22,6 +22,7 @@
     "release:canary": "pnpm release --dist-tag canary",
     "scaffold": "pnpm -C packages/scaffdog scaffold",
     "test": "turbo run test",
+    "docs:dev": "pnpm -C website dev",
     "docs:export": "pnpm -C website export",
     "linkall": "pnpm -r --no-bail exec npm link",
     "unlinkall": "pnpm -r --no-bail exec npm unlink",
