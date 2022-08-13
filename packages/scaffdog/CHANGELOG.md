@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/scaffdog/scaffdog/compare/v2.0.0...v2.0.1) (2022-08-13)
+
+### Bug Fixes
+
+* update initial template url ([f055ae3](https://github.com/scaffdog/scaffdog/commit/f055ae37e36eaaab2cd470d8911e5dd7709f416c))
+
 # [2.0.0](https://github.com/scaffdog/scaffdog/compare/v2.0.0-canary.7...v2.0.0) (2022-08-13)
 
 ### Bug Fixes
