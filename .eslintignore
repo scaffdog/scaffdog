@@ -1,4 +1,5 @@
 node_modules
 lib
-website/.contentlayer
+website/out
 website/.next
+website/.contentlayer
