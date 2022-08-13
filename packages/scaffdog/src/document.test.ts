@@ -93,6 +93,15 @@ questions:
   key4:
     message: 'message'
     choices: ['1', '2']
+  key5:
+    message: 'message'
+    choices: ['1', '2']
+    initial: '2'
+  key6:
+    message: 'message'
+    choices: ['1', '2']
+    multiple: true
+    initial: ['2']
 ---
 `.trim(),
     );
@@ -112,6 +121,17 @@ questions:
         key4: {
           message: 'message',
           choices: ['1', '2'],
+        },
+        key5: {
+          message: 'message',
+          choices: ['1', '2'],
+          initial: '2',
+        },
+        key6: {
+          message: 'message',
+          choices: ['1', '2'],
+          multiple: true,
+          initial: ['2'],
         },
       },
     });
