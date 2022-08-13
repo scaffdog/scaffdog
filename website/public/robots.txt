@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://scaff.dog
+
+# Sitemaps
+Sitemap: https://scaff.dog/sitemap.xml

@@ -159,6 +159,11 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
             },
           ],
         }}
+        twitter={{
+          handle: '@wadackel',
+          site: '@scaffdog',
+          cardType: 'summary_large_image',
+        }}
       />
 
       <ChakraProvider theme={theme}>

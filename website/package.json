@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next-sitemap",
     "export": "next export",
     "typecheck": "tsc",
     "scaffold": "ts-node-transpile-only ../packages/scaffdog/src/bin.ts generate"
@@ -51,6 +51,7 @@
     "eslint": "8.21.0",
     "eslint-config-next": "12.2.4",
     "github-slugger": "^1.4.0",
+    "next-sitemap": "^3.1.17",
     "type-fest": "2.18.0",
     "typescript": "4.7.4"
   }
