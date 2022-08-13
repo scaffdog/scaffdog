@@ -58,8 +58,9 @@ questions:
 # \`{{ placeholder }}.md\`
 
 \`\`\`markdown
-Let's make a document! See more detail scaffdog repository.
-https://github.com/scaffdog/scaffdog/#templates
+Let's make a document!
+See scaffdog documentation for details.
+https://scaff.dog/docs/templates
 \`\`\`
 \`\`\`\`
 `.trim(),
@@ -104,7 +105,7 @@ ${list}
 Now you can do scaffold by running \`{green $ scaffdog generate}\`.
 
 Please refer to the following documents and customize it.
-{underline https://github.com/scaffdog/scaffdog/#templates}
+{underline https://scaff.dog/docs/templates}
 `.trim(),
     ),
   );
