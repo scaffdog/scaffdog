@@ -73,7 +73,7 @@ Setup of scaffdog 🐶 is complete!
 Now you can do scaffold by running `$ scaffdog generate`.
 
 Please refer to the following documents and customize it.
-https://github.com/scaffdog/scaffdog/#templates
+https://scaff.dog/docs/templates
 ```
 
 After running the command, the `.scaffdog/hello.md` file should have been generated.
@@ -98,8 +98,9 @@ The first file was generated.
 ```bash
 $ cat pretty-dog.md
 
-Let's make a document! See more detail scaffdog repository.
-https://github.com/scaffdog/scaffdog/#templates
+Let's make a document!
+See scaffdog documentation for details.
+https://scaff.dog/docs/templates
 ```
 
 Please refer to this document and customize the document file :+1:
