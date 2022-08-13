@@ -36,9 +36,6 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     needs: [build]
-    strategy:
-      matrix:
-        node: [14, 16, 18]
     steps:
       - uses: actions/checkout@v3
         with:
@@ -48,7 +45,7 @@ jobs:
           version: 7
       - uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node }}
+          node-version: '16'
           cache: 'pnpm'
       - uses: actions/download-artifact@v3
         with:
