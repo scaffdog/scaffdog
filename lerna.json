@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0-canary.6",
+  "version": "2.0.0-canary.7",
   "npmClient": "pnpm",
   "useWorkspaces": true,
   "packages": [

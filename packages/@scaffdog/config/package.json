@@ -1,6 +1,6 @@
 {
   "name": "@scaffdog/config",
-  "version": "2.0.0-canary.6",
+  "version": "2.0.0-canary.7",
   "description": "A module to manipulate configs of scaffdog.",
   "keywords": [
     "scaffdog",
