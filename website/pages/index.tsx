@@ -216,9 +216,7 @@ export * from './{{ inputs.name }}';
 # \`{{ inputs.name | pascal }}/{{ inputs.name | pascal }}.tsx\`
 
 \`\`\`typescript
-export type Props = {
-  children: React.ReactNode;
-};
+export type Props = React.PropsWithChildren<{}>;
 
 export const {{ inputs.name | pascal }}: React.FC<Props> = ({ children }) => {
   return (
@@ -268,9 +266,7 @@ export const {{ inputs.name | pascal }}: React.FC<Props> = ({ children }) => {
 export * from './PrettyDog';
 
 // PrettyDog/PrettyDog.tsx
-export type Props = {
-  children: React.ReactNode;
-};
+export type Props = React.PropsWithChildren<{}>;
 
 export const PrettyDog: React.FC<Props> = ({ children }) => {
   return (

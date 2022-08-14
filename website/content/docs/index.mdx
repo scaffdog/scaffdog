@@ -96,9 +96,7 @@ export * from './{{ inputs.name }}';
 # `{{ inputs.name | pascal }}/{{ inputs.name | pascal }}.tsx`
 
 ```typescript
-export type Props = {
-  children: React.ReactNode;
-};
+export type Props = React.PropsWithChildren<{}>;
 
 export const {{ inputs.name | pascal }}: React.FC<Props> = ({ children }) => {
   return <div>{children}</div>;
@@ -148,9 +146,7 @@ The contents of each generated file are as follows:
 export * from './Button';
 
 // Button/Button.ts
-export type Props = {
-  children: React.ReactNode;
-};
+export type Props = React.PropsWithChildren<{}>;
 
 export const Button: React.FC<Props> = ({ children }) => {
   return <div>{children}</div>;
