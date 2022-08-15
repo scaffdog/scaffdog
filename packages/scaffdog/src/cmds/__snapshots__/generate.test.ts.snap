@@ -68,13 +68,24 @@ exports[`prompt > all question types 2`] = `
 "shorthand: shorthand
 input: input
 input_with_initial: input_with_initial
-bool: bool
-bool_with_true: bool_with_true
-bool_with_false: bool_with_false
-list: list
-list_with_initial: list_with_initial
-checkbox: checkbox
-checkbox_with_initial: checkbox_with_initial"
+input_if: input_if
+input_if_with_initial: default
+input_if_without_initial: 
+bool: true
+bool_with_true: true
+bool_with_false: false
+bool_if: true
+bool_if_with_initial: true
+bool_if_without_initial: false
+list: C
+list_with_initial: B
+list_if: A
+list_if_with_initial: B
+list_if_without_initial: 
+checkbox: A,C
+checkbox_with_initial: B,C
+checkbox_if_with_initial: B,C
+checkbox_if_without_initial: "
 `;
 
 exports[`prompt > has magic and question 1`] = `

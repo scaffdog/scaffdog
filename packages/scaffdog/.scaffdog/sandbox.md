@@ -1,7 +1,7 @@
 ---
 name: 'sandbox'
 root: '.'
-output: ['.', 'src/**/*']
+output: '.'
 questions:
   bool:
     confirm: 'Yes of No'
@@ -13,6 +13,9 @@ questions:
       - 'B'
       - 'C'
     initial: ['B', 'C']
+  foo:
+    if: contains(inputs.array, 'C')
+    confirm: 'message'
 ---
 
 # Variables
@@ -43,8 +46,14 @@ export default createCommand({
 });
 ```
 
-# `{{ true ? "!" : "" }}test.md`
+# `{{ true && "!" /* always skip */ }}test.md`
 
 ```markdown
-{{ inputs.array } }
+{{ inputs.array }}
+```
+
+# `{{ !inputs.foo && "!" }}foo.md`
+
+```markdown
+foo
 ```
