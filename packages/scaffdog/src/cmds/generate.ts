@@ -2,11 +2,17 @@
 import path from 'path';
 import { loadConfig } from '@scaffdog/config';
 import { generate } from '@scaffdog/core';
-import { compile, createContext } from '@scaffdog/engine';
+import {
+  compile,
+  createContext,
+  createHelper,
+  extendContext,
+} from '@scaffdog/engine';
 import { ScaffdogError } from '@scaffdog/error';
-import type { File, Variable, VariableRecord } from '@scaffdog/types';
+import type { Context, File, Variable, VariableRecord } from '@scaffdog/types';
 import ansiEscapes from 'ansi-escapes';
 import chalk from 'chalk';
+import type { Consola } from 'consola';
 import globby from 'globby';
 import indent from 'indent-string';
 import symbols from 'log-symbols';
@@ -14,13 +20,54 @@ import micromatch from 'micromatch';
 import { emojify } from 'node-emoji';
 import plur from 'plur';
 import { createCommand } from '../command';
-import type { Document, Question } from '../document';
+import type { Question } from '../document';
 import { resolveDocuments } from '../document';
 import { helpers } from '../helpers';
 import type { PromptQuestion } from '../prompt';
 import { autocomplete, confirm, prompt } from '../prompt';
 import { formatFile } from '../utils/format';
 import { fileExists, mkdir, writeFile } from '../utils/fs';
+
+const handleCompileError = (e: unknown, logger: Consola): number => {
+  if (e instanceof ScaffdogError) {
+    logger.error('Compile error');
+    logger.log(indent(e.format({ color: true }), 4));
+    logger.log('');
+  } else {
+    logger.error(e);
+  }
+  return 1;
+};
+
+const questionIf = createHelper<[any]>((_, result) => {
+  if (typeof result === 'boolean') {
+    return result ? 'true' : 'false';
+  }
+  throw new Error(
+    'evaluation value of "question.*.if" must be a boolean value',
+  );
+});
+
+const confirmQuestionIf = (question: Question, context: Context) => {
+  if (typeof question === 'string') {
+    return true;
+  }
+
+  if ('if' in question && question.if != null) {
+    if (typeof question.if === 'boolean') {
+      return question.if;
+    }
+
+    const fn = '__internal_question_if__';
+    const ctx = extendContext(context, {
+      helpers: new Map([[fn, questionIf]]),
+    });
+
+    return compile(`{{ ${fn}(${question.if}) }}`, ctx) === 'true';
+  }
+
+  return true;
+};
 
 const createPromptQuestion = (question: Question): PromptQuestion => {
   const validate = (v: string) => (v !== '' ? true : 'required input!');
@@ -58,6 +105,22 @@ const createPromptQuestion = (question: Question): PromptQuestion => {
   };
 };
 
+const questionFallbackValue = (question: Question): Variable => {
+  if (typeof question === 'string') {
+    return '';
+  }
+
+  if ('confirm' in question) {
+    return question.initial ?? false;
+  }
+
+  if ('choices' in question) {
+    return question.multiple ? question.initial ?? [] : question.initial ?? '';
+  }
+
+  return question.initial ?? '';
+};
+
 export default createCommand({
   name: 'generate',
   key: 'generate [name]',
@@ -91,19 +154,22 @@ export default createCommand({
   logger.debug('load config: %O', config);
 
   const dirname = path.resolve(cwd, project);
-  let documents: Document[];
-  try {
-    documents = await resolveDocuments(dirname, config.files);
-    if (documents.length === 0) {
-      logger.error(
-        'Document file not found. Please use `$ scaffdog create <name>` to create the document file.',
-      );
-      return 1;
-    }
-  } catch (e) {
-    logger.error(e);
+
+  const documents = await resolveDocuments(dirname, config.files);
+  if (documents.length === 0) {
+    logger.error(
+      'Document file not found. Please use `$ scaffdog create <name>` to create the document file.',
+    );
     return 1;
   }
+
+  // base context
+  const context = createContext({
+    cwd,
+    variables: config.variables,
+    helpers: new Map([...config.helpers, ...helpers]),
+    tags: config.tags,
+  });
 
   // clear
   if (!options.verbose) {
@@ -111,16 +177,14 @@ export default createCommand({
   }
 
   // resolve document
-  let name: string;
-  if (options.name == null) {
-    name = await prompt({
-      type: 'list',
-      message: 'Please select a document.',
-      choices: documents.map((d) => d.name),
-    });
-  } else {
-    name = options.name;
-  }
+  const name =
+    options.name == null
+      ? await prompt({
+          type: 'list',
+          message: 'Please select a document.',
+          choices: documents.map((d) => d.name),
+        })
+      : options.name;
 
   logger.debug('using name: %s', name);
 
@@ -178,12 +242,32 @@ export default createCommand({
   dist = path.resolve(cwd, dist);
   logger.debug('normalized dist: %s', dist);
 
+  // set variables
+  config.variables.set('cwd', cwd);
+  config.variables.set('document', {
+    name: doc.name,
+    dir: path.dirname(doc.path),
+    path: doc.path,
+  });
+
   // inputs
   if (doc.questions != null) {
-    const inputs: VariableRecord = {};
+    const inputs: VariableRecord = Object.create(null);
 
     for (const [name, q] of Object.entries(doc.questions)) {
-      inputs[name] = await prompt<Variable>(createPromptQuestion(q));
+      const ctx = extendContext(context, {
+        variables: new Map([['inputs', inputs]]),
+      });
+
+      try {
+        if (confirmQuestionIf(q, ctx)) {
+          inputs[name] = await prompt<Variable>(createPromptQuestion(q));
+        } else {
+          inputs[name] = questionFallbackValue(q);
+        }
+      } catch (e) {
+        return handleCompileError(e, logger);
+      }
     }
 
     config.variables.set('inputs', inputs);
@@ -191,26 +275,11 @@ export default createCommand({
     config.variables.set('inputs', {});
   }
 
-  config.variables.set('cwd', cwd);
-
-  config.variables.set('document', {
-    name: doc.name,
-    dir: path.dirname(doc.path),
-    path: doc.path,
-  });
-
   logger.debug('variables: %O', config.variables);
 
   // generate
   let files: File[];
   try {
-    const context = createContext({
-      cwd,
-      variables: config.variables,
-      helpers: new Map([...config.helpers, ...helpers]),
-      tags: config.tags,
-    });
-
     for (const [key, value] of doc.variables) {
       config.variables.set(key, compile(value, context));
     }
@@ -222,15 +291,7 @@ export default createCommand({
       tags: context.tags,
     });
   } catch (e) {
-    if (e instanceof ScaffdogError) {
-      logger.error('Compile error');
-      logger.log(indent(e.format({ color: true }), 4));
-      logger.log('');
-      return 1;
-    } else {
-      logger.error(e);
-      return 1;
-    }
+    return handleCompileError(e, logger);
   }
 
   logger.debug('files: %O', files);
@@ -261,33 +322,28 @@ export default createCommand({
         continue;
       }
 
-      try {
-        await mkdir(path.dirname(file.output), { recursive: true });
+      await mkdir(path.dirname(file.output), { recursive: true });
 
-        if (!options.force && fileExists(file.output)) {
-          const relative = path.relative(cwd, file.output);
+      if (!options.force && fileExists(file.output)) {
+        const relative = path.relative(cwd, file.output);
 
-          const ok = await confirm(
-            chalk`Would you like to overwrite it? ("{bold.yellow ${relative}}")`,
-            false,
-            {
-              prefix: symbols.warning,
-            },
-          );
+        const ok = await confirm(
+          chalk`Would you like to overwrite it? ("{bold.yellow ${relative}}")`,
+          false,
+          {
+            prefix: symbols.warning,
+          },
+        );
 
-          if (!ok) {
-            skips.add(file);
-            continue;
-          }
+        if (!ok) {
+          skips.add(file);
+          continue;
         }
-
-        await writeFile(file.output, file.content, 'utf8');
-
-        writes.add(file);
-      } catch (e) {
-        logger.error(e);
-        return 1;
       }
+
+      await writeFile(file.output, file.content, 'utf8');
+
+      writes.add(file);
     }
   }
 

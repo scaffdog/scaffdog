@@ -19,6 +19,8 @@ const MARKDOWN_EXTNAME = new Set([
   '.mkdn',
 ]);
 
+const questionIfSchema = z.union([z.boolean(), z.string()]);
+
 const questionSchema = z.union([
   // input syntax sugar
   z.string(),
@@ -29,6 +31,7 @@ const questionSchema = z.union([
       choices: z.array(z.string()),
       multiple: z.boolean().optional(),
       initial: z.array(z.string()).optional(),
+      if: questionIfSchema.optional(),
     })
     .strict(),
   // list
@@ -38,6 +41,7 @@ const questionSchema = z.union([
       choices: z.array(z.string()),
       multiple: z.boolean().optional(),
       initial: z.string().optional(),
+      if: questionIfSchema.optional(),
     })
     .strict(),
   // confirm
@@ -45,6 +49,7 @@ const questionSchema = z.union([
     .object({
       confirm: z.string(),
       initial: z.boolean().optional(),
+      if: questionIfSchema.optional(),
     })
     .strict(),
   // input
@@ -52,6 +57,7 @@ const questionSchema = z.union([
     .object({
       message: z.string(),
       initial: z.string().optional(),
+      if: questionIfSchema.optional(),
     })
     .strict(),
 ]);

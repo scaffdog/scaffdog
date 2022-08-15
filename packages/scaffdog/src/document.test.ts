@@ -102,6 +102,12 @@ questions:
     choices: ['1', '2']
     multiple: true
     initial: ['2']
+  key7:
+    message: 'message'
+    if: true
+  key8:
+    message: 'message'
+    if: len(inputs.key1) > 3
 ---
 `.trim(),
     );
@@ -132,6 +138,14 @@ questions:
           choices: ['1', '2'],
           multiple: true,
           initial: ['2'],
+        },
+        key7: {
+          message: 'message',
+          if: true,
+        },
+        key8: {
+          message: 'message',
+          if: 'len(inputs.key1) > 3',
         },
       },
     });

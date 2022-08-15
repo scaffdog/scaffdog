@@ -108,6 +108,24 @@ defineHelper<[v: string | any[], start: number, end?: number]>(
   },
 );
 
+defineHelper<[search: string | any[], item: any]>(
+  helpers,
+  'contains',
+  (_, search, item) => {
+    if (isString(search) || isArray(search)) {
+      return search.includes(item);
+    }
+    throw new Error(
+      `contains helper expecting string or array value but got "${typeOf(
+        search,
+      )}"`,
+    );
+  },
+  {
+    disableAutoLoop: true,
+  },
+);
+
 defineHelper<[v: string, code?: string]>(helpers, 'eval', (ctx, v, code) => {
   const evalCode = code != null ? code : v;
   const context: { [key: string]: any } = Object.create(null);

@@ -115,3 +115,20 @@ questions:
 ```
 
 <Image src="/docs/templates/attributes/array.png" alt="array prompt" />
+
+### Conditional Prompt
+
+If the result of the expression in the `if` field is `true`, Prompt is invoked. If it `false`, skip Prompt and assign initial values. The initial value is assigned to the `initial` field if it exists. If not, a zero value is assigned according to the Prompt type.
+
+```yaml
+questions:
+  name:
+    message: 'Please enter a component name.'
+
+  # Invokes confirm prompt only when input includes "Form".
+  test:
+    if: contains(inputs.name, 'Form')
+    confirm: 'Do you need a test?'
+```
+
+This is useful when you want to use a Prompt that is only needed for some use cases in the target file.

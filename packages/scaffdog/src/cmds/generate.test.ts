@@ -110,13 +110,17 @@ describe('prompt', () => {
       .mockResolvedValueOnce('shorthand') // shorthand
       .mockResolvedValueOnce('input') // input
       .mockResolvedValueOnce('input_with_initial') // input_with_initial
-      .mockResolvedValueOnce('bool') // bool
-      .mockResolvedValueOnce('bool_with_true') // bool_with_true
-      .mockResolvedValueOnce('bool_with_false') // bool_with_false
-      .mockResolvedValueOnce('list') // list
-      .mockResolvedValueOnce('list_with_initial') // list_with_initial
-      .mockResolvedValueOnce('checkbox') // checkbox
-      .mockResolvedValueOnce('checkbox_with_initial'); // checkbox_with_initial
+      .mockResolvedValueOnce('input_if') // input_if
+      .mockResolvedValueOnce(true) // bool
+      .mockResolvedValueOnce(true) // bool_with_true
+      .mockResolvedValueOnce(false) // bool_with_false
+      .mockResolvedValueOnce(true) // bool_if
+      .mockResolvedValueOnce('C') // list
+      .mockResolvedValueOnce('B') // list_with_initial
+      .mockResolvedValueOnce('A') // list_if
+      .mockResolvedValueOnce(['A', 'C']) // checkbox
+      .mockResolvedValueOnce(['B', 'C']) // checkbox_with_initial
+      .mockResolvedValueOnce(['A']); // checkbox_if
 
     const { code, stdout, stderr } = await runCommand(cmd, {
       ...defaults,
