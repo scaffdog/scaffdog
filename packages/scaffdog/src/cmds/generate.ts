@@ -14,7 +14,7 @@ import micromatch from 'micromatch';
 import { emojify } from 'node-emoji';
 import plur from 'plur';
 import { createCommand } from '../command';
-import type { Document, Question } from '../document';
+import type { Question } from '../document';
 import { resolveDocuments } from '../document';
 import { helpers } from '../helpers';
 import type { PromptQuestion } from '../prompt';
@@ -91,17 +91,12 @@ export default createCommand({
   logger.debug('load config: %O', config);
 
   const dirname = path.resolve(cwd, project);
-  let documents: Document[];
-  try {
-    documents = await resolveDocuments(dirname, config.files);
-    if (documents.length === 0) {
-      logger.error(
-        'Document file not found. Please use `$ scaffdog create <name>` to create the document file.',
-      );
-      return 1;
-    }
-  } catch (e) {
-    logger.error(e);
+
+  const documents = await resolveDocuments(dirname, config.files);
+  if (documents.length === 0) {
+    logger.error(
+      'Document file not found. Please use `$ scaffdog create <name>` to create the document file.',
+    );
     return 1;
   }
 
@@ -111,16 +106,14 @@ export default createCommand({
   }
 
   // resolve document
-  let name: string;
-  if (options.name == null) {
-    name = await prompt({
-      type: 'list',
-      message: 'Please select a document.',
-      choices: documents.map((d) => d.name),
-    });
-  } else {
-    name = options.name;
-  }
+  const name =
+    options.name == null
+      ? await prompt({
+          type: 'list',
+          message: 'Please select a document.',
+          choices: documents.map((d) => d.name),
+        })
+      : options.name;
 
   logger.debug('using name: %s', name);
 
@@ -261,33 +254,28 @@ export default createCommand({
         continue;
       }
 
-      try {
-        await mkdir(path.dirname(file.output), { recursive: true });
+      await mkdir(path.dirname(file.output), { recursive: true });
 
-        if (!options.force && fileExists(file.output)) {
-          const relative = path.relative(cwd, file.output);
+      if (!options.force && fileExists(file.output)) {
+        const relative = path.relative(cwd, file.output);
 
-          const ok = await confirm(
-            chalk`Would you like to overwrite it? ("{bold.yellow ${relative}}")`,
-            false,
-            {
-              prefix: symbols.warning,
-            },
-          );
+        const ok = await confirm(
+          chalk`Would you like to overwrite it? ("{bold.yellow ${relative}}")`,
+          false,
+          {
+            prefix: symbols.warning,
+          },
+        );
 
-          if (!ok) {
-            skips.add(file);
-            continue;
-          }
+        if (!ok) {
+          skips.add(file);
+          continue;
         }
-
-        await writeFile(file.output, file.content, 'utf8');
-
-        writes.add(file);
-      } catch (e) {
-        logger.error(e);
-        return 1;
       }
+
+      await writeFile(file.output, file.content, 'utf8');
+
+      writes.add(file);
     }
   }
 
