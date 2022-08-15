@@ -70,6 +70,27 @@ describe('language', () => {
     ['slice - array (start x end)', `{{ seq 1 5 | slice 1 3 }}`, `2,3`],
 
     [
+      'contains - string (found)',
+      `{{ contains("foobar", "ob") ? "true" : "false" }}`,
+      `true`,
+    ],
+    [
+      'contains - string (not found)',
+      `{{ contains("foobar", "dog") ? "true" : "false" }}`,
+      `false`,
+    ],
+    [
+      'contains - array (found)',
+      `{{ contains((seq(3)), 2) ? "true" : "false" }}`,
+      `true`,
+    ],
+    [
+      'contains - array (not found)',
+      `{{ contains((seq(3)), 4) ? "true" : "false" }}`,
+      `false`,
+    ],
+
+    [
       'eval - basic',
       `{{ eval "parseInt(count5, 10) > 4 ? 'true' : 'false'" }}`,
       `true`,

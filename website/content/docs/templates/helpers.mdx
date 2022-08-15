@@ -392,6 +392,39 @@ slice(value, start, end?)
 --> 23
 ```
 
+### `contains`
+
+Searches for an item in a string or array and returns a boolean value.
+
+**Signature:**
+
+```
+contains(search, item)
+```
+
+**Paramters:**
+
+| Parameter | Type              | Description                      |
+| :-------- | :---------------- | :------------------------------- |
+| `search`  | `string \| any[]` | A string or array to search for. |
+| `item`    | `any`             | Item to search for.              |
+
+**Example:**
+
+```
+{{ contains("foo", "o") ? "true" : "false" }}
+--> true
+
+{{ contains("foo", "b") ? "true" : "false" }}
+--> false
+
+{{ contains(seq(3), 2) ? "true" : "false" }}
+--> true
+
+{{ contains(seq(3), 4) ? "true" : "false" }}
+--> false
+```
+
 ### `s2n`
 
 Converts a string to a number.
