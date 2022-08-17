@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/scaffdog/scaffdog/compare/v2.0.1...v2.0.2) (2022-08-17)
+
+### Features
+
+* **scaffdog:** add `if` field to `questions` attribute ([2baea63](https://github.com/scaffdog/scaffdog/commit/2baea63dc4e89b6709a9752d666df7374daeb3c5))
+
 ## [2.0.1](https://github.com/scaffdog/scaffdog/compare/v2.0.0...v2.0.1) (2022-08-13)
 
 ### Bug Fixes
