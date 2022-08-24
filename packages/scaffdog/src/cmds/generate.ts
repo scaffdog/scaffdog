@@ -243,8 +243,8 @@ export default createCommand({
   logger.debug('normalized dist: %s', dist);
 
   // set variables
-  config.variables.set('cwd', cwd);
-  config.variables.set('document', {
+  context.variables.set('cwd', cwd);
+  context.variables.set('document', {
     name: doc.name,
     dir: path.dirname(doc.path),
     path: doc.path,
@@ -270,21 +270,21 @@ export default createCommand({
       }
     }
 
-    config.variables.set('inputs', inputs);
+    context.variables.set('inputs', inputs);
   } else {
-    config.variables.set('inputs', {});
+    context.variables.set('inputs', {});
   }
 
-  logger.debug('variables: %O', config.variables);
+  logger.debug('variables: %O', context.variables);
 
   // generate
   let files: File[];
   try {
     for (const [key, value] of doc.variables) {
-      config.variables.set(key, compile(value, context));
+      context.variables.set(key, compile(value, context));
     }
 
-    files = generate(doc.templates, config.variables, {
+    files = generate(doc.templates, context.variables, {
       cwd,
       root: dist,
       helpers: context.helpers,

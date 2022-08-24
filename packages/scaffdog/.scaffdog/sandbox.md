@@ -20,6 +20,7 @@ questions:
 
 # Variables
 
+- foo: `{{ inputs.bool ? "true" : "false" }}`
 - name: `{{ "foo_bar" | kebab }}`
 
 # `{{ name }}.ts`

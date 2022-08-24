@@ -135,6 +135,22 @@ describe('prompt', () => {
       fs.readFileSync(path.resolve(cwd, 'tmp/result.txt'), 'utf8'),
     ).toMatchSnapshot();
   });
+
+  test('variables section', async () => {
+    vi.spyOn(prompt, 'prompt').mockResolvedValueOnce('success'); // foo
+
+    const { code, stdout, stderr } = await runCommand(cmd, {
+      ...defaults,
+      name: 'vars',
+    });
+
+    expect(stderr).toBe('');
+    expect(stdout).toMatchSnapshot();
+    expect(code).toBe(0);
+    expect(
+      fs.readFileSync(path.resolve(cwd, 'tmp/index.txt'), 'utf8'),
+    ).toMatchSnapshot();
+  });
 });
 
 describe('options', () => {
