@@ -128,3 +128,14 @@ exports[`prompt > overwrite files 1`] = `
      ⚠ tmp/generate.txt (skipped)
 "
 `;
+
+exports[`prompt > variables section 1`] = `
+"ℹ Output destination directory: \\".\\"
+
+🐶 Generated 1 file!
+
+     ✔ tmp/index.txt
+"
+`;
+
+exports[`prompt > variables section 2`] = `"foo: success"`;
