@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/scaffdog/scaffdog/compare/v2.0.2...v2.0.3) (2022-08-24)
+
+### Bug Fixes
+
+* **scaffdog:** fix a bug that `inputs` could not be referenced in the variables section ([40531e3](https://github.com/scaffdog/scaffdog/commit/40531e39be50e77799b012f9a9c67ba95dc576af))
+
 ## [2.0.2](https://github.com/scaffdog/scaffdog/compare/v2.0.1...v2.0.2) (2022-08-17)
 
 ### Features
