@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/scaffdog/scaffdog/compare/v2.1.0...v2.1.1) (2022-09-04)
+
+### Bug Fixes
+
+* **core:** remove unnecessary trimming ([7d37811](https://github.com/scaffdog/scaffdog/commit/7d37811dd3b557405cec26b80aaeb290aa3babed))
+
 # [2.1.0](https://github.com/scaffdog/scaffdog/compare/v2.0.3...v2.1.0) (2022-09-04)
 
 **Note:** Version bump only for package @scaffdog/core

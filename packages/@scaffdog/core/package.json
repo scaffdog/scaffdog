@@ -1,6 +1,6 @@
 {
   "name": "@scaffdog/core",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "@scaffdog/core is a low layer of scaffdog.",
   "keywords": [
     "scaffdog",
