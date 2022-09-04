@@ -7,7 +7,7 @@
     "build": "next build && next-sitemap",
     "export": "next export",
     "typecheck": "tsc",
-    "scaffold": "ts-node-transpile-only ../packages/scaffdog/src/bin.ts generate"
+    "scaffold": "tsx ../packages/scaffdog/src/bin.ts generate"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.2.6",
