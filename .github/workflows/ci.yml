@@ -17,8 +17,6 @@ jobs:
         with:
           fetch-depth: 2
       - uses: pnpm/action-setup@v2.2.2
-        with:
-          version: 7
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
@@ -41,8 +39,6 @@ jobs:
         with:
           fetch-depth: 2
       - uses: pnpm/action-setup@v2.2.2
-        with:
-          version: 7
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
@@ -64,8 +60,6 @@ jobs:
         with:
           fetch-depth: 2
       - uses: pnpm/action-setup@v2.2.2
-        with:
-          version: 7
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
@@ -87,8 +81,6 @@ jobs:
         with:
           fetch-depth: 2
       - uses: pnpm/action-setup@v2.2.2
-        with:
-          version: 7
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
@@ -113,8 +105,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2.2.2
-        with:
-          version: 7
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
