@@ -30,7 +30,7 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.34.0",
     "react-hotkeys-hook": "^3.4.7",
-    "react-simple-code-editor": "^0.11.3",
+    "react-simple-code-editor": "^0.13.0",
     "recoil": "^0.7.4",
     "remark-emoji": "^3.0.2",
     "remark-gfm": "^3.0.1",
