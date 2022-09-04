@@ -82,7 +82,6 @@ const formatComment: Formatter<Comment> = (node) => {
   const lines = node.body.split('\n');
 
   if (lines.length > 1) {
-    // const body = lines.map((ln) => ln.replace(/[ \t]*$/, '')).join('\n');
     const body = lines.map((ln) => ln.trimEnd()).join('\n');
     return `/*${body}*/`;
   }
