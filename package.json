@@ -15,7 +15,7 @@
     "format": "run-s format:prettier format:script",
     "format:prettier": "prettier --write .",
     "format:script": "pnpm lint:script --fix",
-    "lint": "run-p lint:*",
+    "lint": "run-s lint:*",
     "lint:prettier": "prettier --check .",
     "lint:script": "eslint . --ext \".js,.jsx,.cjs,.ts,.tsx\"",
     "release": "lerna publish from-package",
