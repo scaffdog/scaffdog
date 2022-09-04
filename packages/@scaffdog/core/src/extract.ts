@@ -60,7 +60,7 @@ export const extract = (input: string): ExtractResult => {
         if (filename != null) {
           templates.push({
             filename,
-            content: toString(node).trim(),
+            content: toString(node),
           });
 
           filename = null;
