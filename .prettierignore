@@ -6,3 +6,4 @@ CHANGELOG.md
 website/out
 website/.next
 website/.contentlayer
+website/public/*.xml
