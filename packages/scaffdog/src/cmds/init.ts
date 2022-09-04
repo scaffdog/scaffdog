@@ -38,7 +38,7 @@ export default createCommand({
 # \`config.js\`
 
 \`\`\`javascript
-module.exports = {
+export default {
   files: ['./*'],
 };
 \`\`\`

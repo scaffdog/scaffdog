@@ -94,7 +94,23 @@ export const mdxComponents: Record<string, React.FC<any>> = {
       {...props}
     />
   ),
-  ol: (props) => <chakra.ol {...props} />,
+  ol: (props) => (
+    <chakra.ol
+      mt="1.5"
+      pl="3"
+      lineHeight="taller"
+      sx={{
+        '> li': {
+          my: '1',
+          pl: '0.5',
+        },
+        '> li::marker': {
+          color: 'gray.400',
+        },
+      }}
+      {...props}
+    />
+  ),
   li: (props) => <chakra.li {...props} />,
   table: (props) => (
     <chakra.div my="3" overflowX="auto">

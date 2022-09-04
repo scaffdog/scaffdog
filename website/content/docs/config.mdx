@@ -5,12 +5,40 @@ description: 'This section describes the configuration file.'
 
 scaffdog uses the object exported in `.scaffdog/config.js` as the configuration.
 
+## Configuration File Formats
+
+scaffdog supports CommonJS, ESM and TypeScript configuration file formats.  
+The names of configuration files are searched in the following order:
+
+1. `config.js`
+1. `config.cjs`
+1. `config.mjs`
+1. `config.ts`
+
+An example of a configuration file definition is as follows:
+
+**CommonJS:**
+
+```javascript
+module.exports = {
+  /* ... */
+};
+```
+
+**ESM/TypeScript:**
+
+```javascript
+export default {
+  /* ... */
+};
+```
+
 ## Simple Configuration
 
 In the `files` field, specify the path pattern of the document used by scaffdog. The `files` field is required.
 
 ```javascript
-module.exports = {
+export default {
   files: ['./*'],
 };
 ```
@@ -20,7 +48,7 @@ module.exports = {
 You can define the global variables available in the template in the `variables` field.
 
 ```javascript
-module.exports = {
+export default {
   files: ['./*'],
   variables: {
     key: 'value',
@@ -33,7 +61,7 @@ module.exports = {
 You can define the custom helpers available in the template in the `helpers` field.
 
 ```javascript
-module.exports = {
+export default {
   files: ['./*'],
   helpers: [
     // Using Key-Value
@@ -91,7 +119,7 @@ The default tag delimiter available in templates is `{{` and `}}`.
 You can change it with `tags`.
 
 ```javascript
-module.exports = {
+export default {
   files: ['./*'],
   tags: ['<%', '%>'],
 };
