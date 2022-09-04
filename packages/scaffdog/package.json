@@ -32,7 +32,7 @@
   "scripts": {
     "typecheck": "tsc",
     "build": "unbuild",
-    "scaffold": "ts-node src/bin.ts generate",
+    "scaffold": "tsx src/bin.ts generate",
     "test": "vitest run --dir src",
     "test:watch": "vitest watch --dir src"
   },
