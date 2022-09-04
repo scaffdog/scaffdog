@@ -33,7 +33,7 @@ export const Highlight: React.FC<Props> = ({ code, language }) => {
             className={className}
             style={style}
             overflowX="auto"
-            p="2"
+            p="3"
             lineHeight="tall"
             sx={{ WebkitOverflowScrolling: 'touch' }}
           >
@@ -41,7 +41,11 @@ export const Highlight: React.FC<Props> = ({ code, language }) => {
               <chakra.div key={i} display="table-row" px="2">
                 <chakra.span display="table-cell">
                   {line.map((token, key) => (
-                    <span key={key} {...getTokenProps({ token, key })} />
+                    <chakra.span
+                      key={key}
+                      {...getTokenProps({ token, key })}
+                      fontStyle="normal !important"
+                    />
                   ))}
                 </chakra.span>
               </chakra.div>

@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@scaffdog/types": "workspace:*",
+    "jiti": "^1.14.0",
     "zod": "^3.11.6"
   },
   "publishConfig": {

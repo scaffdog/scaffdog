@@ -3,6 +3,7 @@ tmp
 pnpm-lock.yaml
 lerna.json
 CHANGELOG.md
+**/.contentlayer/**/*
 website/out
 website/.next
-website/.contentlayer
+website/public/*.xml

@@ -4,8 +4,7 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["lib/**"],
-      "inputs": ["src/**/*.ts", "build.config.js"]
+      "outputs": ["lib/**"]
     },
     "test": {
       "dependsOn": ["build"],
