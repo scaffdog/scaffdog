@@ -38,7 +38,7 @@
     "prettier": "2.7.1"
   },
   "devDependencies": {
-    "@types/minimatch": "3.0.5",
+    "@types/minimatch": "5.1.2",
     "@types/prettier": "2.7.0"
   },
   "gitHead": "14824585829ad0b2093ef44b30f36fce3f4fd682"
