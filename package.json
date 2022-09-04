@@ -49,8 +49,8 @@
     }
   },
   "devDependencies": {
-    "@commitlint/cli": "17.0.3",
-    "@commitlint/config-conventional": "17.0.3",
+    "@commitlint/cli": "17.1.2",
+    "@commitlint/config-conventional": "17.1.0",
     "@commitlint/config-lerna-scopes": "17.0.2",
     "@lerna-lite/cli": "1.11.2",
     "@types/mock-fs": "4.13.1",
