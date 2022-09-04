@@ -120,9 +120,9 @@ importers:
 
   packages/@scaffdog/types:
     specifiers:
-      type-fest: 2.18.0
+      type-fest: 2.19.0
     devDependencies:
-      type-fest: 2.18.0
+      type-fest: 2.19.0
 
   packages/prettier-plugin-scaffdog:
     specifiers:
@@ -174,7 +174,7 @@ importers:
       plur: ^4.0.0
       strip-ansi: 6.0.0
       term-size: ^2.2.1
-      type-fest: 2.18.0
+      type-fest: 2.19.0
       update-notifier: ^5.1.0
       valid-filename: ^3.1.0
       wrap-ansi: ^7.0.0
@@ -216,7 +216,7 @@ importers:
       '@types/wrap-ansi': 3.0.0
       '@types/yargs': 17.0.11
       strip-ansi: 6.0.0
-      type-fest: 2.18.0
+      type-fest: 2.19.0
 
   website:
     specifiers:
@@ -257,7 +257,7 @@ importers:
       remark-gfm: ^3.0.1
       remark-parse: ^9.0.0
       remark-slug: ^7.0.1
-      type-fest: 2.18.0
+      type-fest: 2.19.0
       typescript: 4.7.4
       unified: ^9.2.1
       unist-util-visit-parents: ^3.1.1
@@ -304,7 +304,7 @@ importers:
       eslint-config-next: 12.2.5_sorwav4hsh5vncerguqybud76i
       github-slugger: 1.4.0
       next-sitemap: 3.1.21_next@12.2.5
-      type-fest: 2.18.0
+      type-fest: 2.19.0
       typescript: 4.7.4
 
 packages:
@@ -1548,7 +1548,7 @@ packages:
       remark-parse: 10.0.1
       remark-rehype: 10.1.0
       source-map-support: 0.5.21
-      type-fest: 2.18.0
+      type-fest: 2.19.0
       unified: 10.1.2
     transitivePeerDependencies:
       - '@effect-ts/otel-node'
@@ -1603,7 +1603,7 @@ packages:
       inflection: 1.13.2
       oo-ascii-tree: 1.63.2
       ts-pattern: 4.0.5
-      type-fest: 2.18.0
+      type-fest: 2.19.0
     dev: false
 
   /@corex/deepmerge/4.0.29:
@@ -3694,7 +3694,7 @@ packages:
       chalk: 5.0.1
       cli-boxes: 3.0.0
       string-width: 5.1.2
-      type-fest: 2.18.0
+      type-fest: 2.19.0
       widest-line: 4.0.1
       wrap-ansi: 8.0.1
     dev: true
@@ -10516,8 +10516,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /type-fest/2.18.0:
-    resolution: {integrity: sha512-pRS+/yrW5TjPPHNOvxhbNZexr2bS63WjrMU8a+VzEBhUi9Tz1pZeD+vQz3ut0svZ46P+SRqMEPnJmk2XnvNzTw==}
+  /type-fest/2.19.0:
+    resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
     engines: {node: '>=12.20'}
 
   /typedarray-to-buffer/3.1.5:
