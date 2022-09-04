@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/scaffdog/scaffdog/compare/v2.0.3...v2.1.0) (2022-09-04)
+
+### Features
+
+* **scaffdog:** add support for Fake ESM and TypeScript config file ([49e4427](https://github.com/scaffdog/scaffdog/commit/49e442739f68dbf7795c65fb94fc47572e8df454))
+
 ## [2.0.3](https://github.com/scaffdog/scaffdog/compare/v2.0.2...v2.0.3) (2022-08-24)
 
 **Note:** Version bump only for package @scaffdog/config
