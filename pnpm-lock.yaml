@@ -11,7 +11,7 @@ importers:
       '@commitlint/cli': 17.0.3
       '@commitlint/config-conventional': 17.0.3
       '@commitlint/config-lerna-scopes': 17.0.2
-      '@lerna-lite/cli': 1.11.1
+      '@lerna-lite/cli': 1.11.2
       '@types/mock-fs': 4.13.1
       '@types/node': 18.6.4
       '@typescript-eslint/eslint-plugin': 5.35.1
@@ -36,7 +36,7 @@ importers:
       '@commitlint/cli': 17.0.3
       '@commitlint/config-conventional': 17.0.3
       '@commitlint/config-lerna-scopes': 17.0.2
-      '@lerna-lite/cli': 1.11.1
+      '@lerna-lite/cli': 1.11.2
       '@types/mock-fs': 4.13.1
       '@types/node': 18.6.4
       '@typescript-eslint/eslint-plugin': 5.35.1_ktjxjibzrfqejavile4bhmzhjq
@@ -2054,17 +2054,17 @@ packages:
       tslib: 2.4.0
     dev: false
 
-  /@lerna-lite/cli/1.11.1:
-    resolution: {integrity: sha512-gzu+OkTMOAaTKW7KZKLo/1mQ1yNgAnAn8vizwVumomFVUkLpBc5fnrtoL+sD1ExTM+GoDP4U7ZwQxA9KjEGH4Q==}
+  /@lerna-lite/cli/1.11.2:
+    resolution: {integrity: sha512-hz18M+yyEDlJmJoTDN3Lxej9TkHGDwMk+xMjzTCj7QbXKLEwXDhif3mMyJCSe23+nBHDV0d7uOm6mkAYw8/j+A==}
     engines: {node: '>=14.15.0', npm: '>=8.0.0'}
     hasBin: true
     dependencies:
-      '@lerna-lite/core': 1.11.1
-      '@lerna-lite/info': 1.11.1
-      '@lerna-lite/init': 1.11.1
-      '@lerna-lite/listable': 1.11.1
-      '@lerna-lite/publish': 1.11.1
-      '@lerna-lite/version': 1.11.1
+      '@lerna-lite/core': 1.11.2
+      '@lerna-lite/info': 1.11.2
+      '@lerna-lite/init': 1.11.2
+      '@lerna-lite/listable': 1.11.2
+      '@lerna-lite/publish': 1.11.2
+      '@lerna-lite/version': 1.11.2
       dedent: 0.7.0
       dotenv: 16.0.1
       import-local: 3.1.0
@@ -2078,8 +2078,8 @@ packages:
       - supports-color
     dev: true
 
-  /@lerna-lite/core/1.11.1:
-    resolution: {integrity: sha512-wquCKOH0CsmRgcjvZ6BbnM6fuJ8WBSF0dzDn5PdcKMVhDL7D4lbaWLwsrI4G6X1XEpkm8RFQSgMtJx3OwE7H1w==}
+  /@lerna-lite/core/1.11.2:
+    resolution: {integrity: sha512-kyecCQclc6VhX+9JsTCsntSaN6veLVP1Yk7FvInP2xuUtQo8nC412iEaG2WDcgb9nuEM9reAE/qnsIbZ5mRwFw==}
     engines: {node: '>=14.15.0', npm: '>=8.0.0'}
     dependencies:
       os: 0.1.2
@@ -2114,7 +2114,7 @@ packages:
       minimatch: 5.1.0
       node-fetch: 2.6.7
       npm-package-arg: 9.1.0
-      npm-packlist: 5.1.2
+      npm-packlist: 5.1.3
       npm-registry-fetch: 13.3.1
       npmlog: 6.0.2
       p-map: 4.0.0
@@ -2142,11 +2142,11 @@ packages:
       - supports-color
     dev: true
 
-  /@lerna-lite/info/1.11.1:
-    resolution: {integrity: sha512-o+vWt0Rb4e6rj0Uvn+r5OYaLqZQVavKcFRgr1ssbpWPt6KvfBlwfxDBuIpqmf0d0qZqAJWZx0QOepbvnj9wn9g==}
+  /@lerna-lite/info/1.11.2:
+    resolution: {integrity: sha512-MkwpYFhn5uPL4z1YJzY9/3JpN+RKzLtB/HoLhwLGVYiG/q19XQUboeCIJWKdRFdjxeZ1f1R3euC57PtA5reDEw==}
     engines: {node: '>=14.15.0', npm: '>=8.0.0'}
     dependencies:
-      '@lerna-lite/core': 1.11.1
+      '@lerna-lite/core': 1.11.2
       dedent: 0.7.0
       envinfo: 7.8.1
       yargs: 17.5.1
@@ -2156,11 +2156,11 @@ packages:
       - supports-color
     dev: true
 
-  /@lerna-lite/init/1.11.1:
-    resolution: {integrity: sha512-F8E7DG76hBG4QXYV2Aw/Tkz4C9WKW2UWxul6JOGI5dAUYNx6AYwLQAuEkCuOwIsryLYKQxLQ4Ocuh+zz8wOm0Q==}
+  /@lerna-lite/init/1.11.2:
+    resolution: {integrity: sha512-qnoBuBMyTmqdw8+tL/r5yuqxFUnebDkrqUj5zgCZzR2b83lNSGM1c1eu2WlhxJovICjgLztNUCiPuZJdsS7E2Q==}
     engines: {node: '>=14.15.0', npm: '>=8.0.0'}
     dependencies:
-      '@lerna-lite/core': 1.11.1
+      '@lerna-lite/core': 1.11.2
       fs-extra: 10.1.0
       p-map: 4.0.0
       write-json-file: 4.3.0
@@ -2170,11 +2170,11 @@ packages:
       - supports-color
     dev: true
 
-  /@lerna-lite/listable/1.11.1:
-    resolution: {integrity: sha512-SNUdVe5MSuI97NL4erwP6Yh0ptlidGb/7p7y8uHeDrDwy7pJMu7fs3aGc8G5SxN8c8XmwqBXur1g9hwO0vi5KQ==}
+  /@lerna-lite/listable/1.11.2:
+    resolution: {integrity: sha512-GuvCgcJOthOlQWPSGTjS1oNDgG96ZIQlRpK+XNl4ZNNA2sapnrCFvJMZUHiDtLtQO5moe4Kt1FDWzbEr18bCRQ==}
     engines: {node: '>=14.15.0', npm: '>=8.0.0'}
     dependencies:
-      '@lerna-lite/core': 1.11.1
+      '@lerna-lite/core': 1.11.2
       chalk: 4.1.2
       columnify: 1.6.0
     transitivePeerDependencies:
@@ -2183,13 +2183,13 @@ packages:
       - supports-color
     dev: true
 
-  /@lerna-lite/publish/1.11.1:
-    resolution: {integrity: sha512-1iC201Kyy6JVlf13AP4KgiOz/19Vh65/OYZlUDGysPIKI7zqeT5NII8qlFA/S0dO13X+b2GOYZBnoUMGYCyP9g==}
+  /@lerna-lite/publish/1.11.2:
+    resolution: {integrity: sha512-TUOX5yMwYzVl28Q+pk8lAALt+9e4vBflo8T3fgU6bYfe3ON33InKs+QdkjbzqiAHU0fena8XVbsv579uhK1jLw==}
     engines: {node: '>=14.15.0', npm: '>=8.0.0'}
     dependencies:
       os: 0.1.2
-      '@lerna-lite/core': 1.11.1
-      '@lerna-lite/version': 1.11.1
+      '@lerna-lite/core': 1.11.2
+      '@lerna-lite/version': 1.11.2
       byte-size: 7.0.1
       columnify: 1.6.0
       fs-extra: 10.1.0
@@ -2197,7 +2197,7 @@ packages:
       libnpmaccess: 6.0.3
       libnpmpublish: 6.0.4
       npm-package-arg: 9.1.0
-      npm-packlist: 5.1.2
+      npm-packlist: 5.1.3
       npm-registry-fetch: 13.3.1
       npmlog: 6.0.2
       p-map: 4.0.0
@@ -2222,12 +2222,12 @@ packages:
       - supports-color
     dev: true
 
-  /@lerna-lite/version/1.11.1:
-    resolution: {integrity: sha512-osPh2wEYcvN9SzkUaF01vy6MbHW+U1AIHfxVphMLwC2hbXMOdnVAvPvyAHfCka9mV1YtIWiBfADZyYyXzIlr7g==}
+  /@lerna-lite/version/1.11.2:
+    resolution: {integrity: sha512-Iz4jHlBfu1k19M3kUkYdAsfhJqUIxHeVyVg3nk+/zooS7nysy7lg9Okc/Lte0ODC1xLJmeWWWuWErw4QsnrAQQ==}
     engines: {node: '>=14.15.0', npm: '>=8.0.0'}
     dependencies:
       os: 0.1.2
-      '@lerna-lite/core': 1.11.1
+      '@lerna-lite/core': 1.11.2
       chalk: 4.1.2
       dedent: 0.7.0
       load-json-file: 6.2.0
@@ -8333,6 +8333,13 @@ packages:
       npm-normalize-package-bin: 1.0.1
     dev: true
 
+  /npm-bundled/2.0.1:
+    resolution: {integrity: sha512-gZLxXdjEzE/+mOstGDqR6b0EkhJ+kM6fxM6vUuckuctuVPh80Q6pw/rSZj9s4Gex9GxWtIicO1pc8DB9KZWudw==}
+    engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
+    dependencies:
+      npm-normalize-package-bin: 2.0.0
+    dev: true
+
   /npm-install-checks/5.0.0:
     resolution: {integrity: sha512-65lUsMI8ztHCxFz5ckCEC44DRvEGdZX5usQFriauxHEwt7upv1FKaQEmAtU0YnOAdwuNWCmk64xYiQABNrEyLA==}
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
@@ -8359,14 +8366,14 @@ packages:
       validate-npm-package-name: 4.0.0
     dev: true
 
-  /npm-packlist/5.1.2:
-    resolution: {integrity: sha512-rQiBDNmt1H1jNhFEo9ilTD7ZJXd6cvHSmBK+waIBu886v6OyLWjZqb1RD9viR7rgG0AAe29FYnOXcO26TRxT/Q==}
+  /npm-packlist/5.1.3:
+    resolution: {integrity: sha512-263/0NGrn32YFYi4J533qzrQ/krmmrWwhKkzwTuM4f/07ug51odoaNjUexxO4vxlzURHcmYMH1QjvHjsNDKLVg==}
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
     hasBin: true
     dependencies:
       glob: 8.0.3
       ignore-walk: 5.0.1
-      npm-bundled: 1.1.2
+      npm-bundled: 2.0.1
       npm-normalize-package-bin: 2.0.0
     dev: true
 
@@ -8687,7 +8694,7 @@ packages:
       minipass: 3.3.4
       mkdirp: 1.0.4
       npm-package-arg: 9.1.0
-      npm-packlist: 5.1.2
+      npm-packlist: 5.1.3
       npm-pick-manifest: 7.0.1
       npm-registry-fetch: 13.3.1
       proc-log: 2.0.1
