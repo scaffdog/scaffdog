@@ -17,7 +17,7 @@ jobs:
           node-version: '16'
           cache: 'pnpm'
       - run: pnpm install --frozen-lockfile
-      - run: pnpm build
+      - run: pnpm docs:build
       - run: pnpm docs:export
       - run: touch website/out/.nojekyll
       - uses: actions/upload-pages-artifact@v1

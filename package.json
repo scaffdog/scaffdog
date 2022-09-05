@@ -6,7 +6,7 @@
   ],
   "packageManager": "pnpm@7.10.0",
   "scripts": {
-    "build": "turbo run build",
+    "build": "turbo run build --filter \"./packages/**/*\"",
     "typecheck": "turbo run typecheck",
     "clean": "pnpm clean:cache",
     "clean:all": "run-s clean:cache clean:deps",
@@ -22,6 +22,7 @@
     "release:canary": "pnpm release --dist-tag canary",
     "scaffold": "pnpm -C packages/scaffdog scaffold",
     "test": "turbo run test",
+    "docs:build": "turbo run build",
     "docs:dev": "pnpm -C website dev",
     "docs:export": "pnpm -C website export",
     "linkall": "pnpm -r --no-bail exec npm link",
