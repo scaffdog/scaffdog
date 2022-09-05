@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/scaffdog/scaffdog/compare/v2.1.1...v2.2.0) (2022-09-05)
+
+### Features
+
+* **engine:** add `append` helper function ([5c0dcc4](https://github.com/scaffdog/scaffdog/commit/5c0dcc4bb5818f596553b61e0d98caa3f793bfbe))
+* **engine:** add `uniq` helper function ([4229d61](https://github.com/scaffdog/scaffdog/commit/4229d6128afdb1b018a6d05a1a68ea7950f2ae3d))
+
 ## [2.1.1](https://github.com/scaffdog/scaffdog/compare/v2.1.0...v2.1.1) (2022-09-04)
 
 ### Bug Fixes
