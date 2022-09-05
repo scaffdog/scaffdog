@@ -293,6 +293,60 @@ seq(first, increment?, last?)
 --> 1,3,5,7,9
 ```
 
+### `append`
+
+Appends elements to an array and returns the resulting array. The array received as an argument is not modified, and immutable operations are performed.
+
+**Signature:**
+
+```
+append(value, ...args)
+```
+
+**Paramters:**
+
+| Parameter | Type    | Description                        |
+| :-------- | :------ | :--------------------------------- |
+| `value`   | `any[]` | Input value.                       |
+| `args`    | `any[]` | Elements to be added to the array. |
+
+**Example:**
+
+```
+{{ seq 3 | append 10 }}
+--> 1,2,3,10
+
+{{ seq 3 | append 4 | append 5 }}
+--> 1,2,3,4,5
+```
+
+### `uniq`
+
+Takes duplicates from array elements and returns the resulting array. The array received as an argument is not modified, and immutable operations are performed.
+
+**Signature:**
+
+```
+uniq(value)
+```
+
+**Paramters:**
+
+| Parameter | Type    | Description  |
+| :-------- | :------ | :----------- |
+| `value`   | `any[]` | Input value. |
+
+**Example:**
+
+```
+{{ arr := seq 2 | append 1 | append 2 | append 3 }}
+{{ arr }}
+--> 1,2,1,2,3
+
+{{ arr | uniq }}
+--> 1,2,3
+```
+
 ### `split`
 
 Alias for `String.prototype.split`.

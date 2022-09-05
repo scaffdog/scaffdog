@@ -1,4 +1,4 @@
-import type { HelperMap } from '@scaffdog/types';
+import type { HelperMap, Variable } from '@scaffdog/types';
 import * as cc from 'change-case';
 import dayjs from 'dayjs';
 import safeEval from 'safe-eval';
@@ -57,6 +57,24 @@ defineHelper<[first: number, increment?: number, last?: number]>(
 
     return arr;
   },
+  {
+    disableAutoLoop: true,
+  },
+);
+
+defineHelper<[v: Variable[], ...args: Variable[]]>(
+  helpers,
+  'append',
+  (_, v, ...args) => [...v, ...args],
+  {
+    disableAutoLoop: true,
+  },
+);
+
+defineHelper<[v: Variable[]]>(
+  helpers,
+  'uniq',
+  (_, v) => Array.from(new Set(v)),
   {
     disableAutoLoop: true,
   },

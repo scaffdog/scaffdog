@@ -30,6 +30,16 @@ describe('array', () => {
     ['seq - first', `{{ seq 5 }}`, `1,2,3,4,5`],
     ['seq - first x last', `{{ seq 0 4 }}`, `0,1,2,3,4`],
     ['seq - first x increment x last', `{{ seq 0 3 9}}`, `0,3,6,9`],
+
+    ['append - pipeline', `{{ seq 3 | append 10 }}`, `1,2,3,10`],
+    ['append - multiple', `{{ seq 3 | append 4 | append 5 }}`, `1,2,3,4,5`],
+    [
+      'append - immutable',
+      `{{ arr1 := seq 1 }}{{ arr2 := arr1 | append 2  }}{{ arr1 }}`,
+      `1`,
+    ],
+
+    ['uniq', `{{ seq 1 | append 1 | append 2 | append "2" | uniq }}`, `1,2,2`],
   ])('%s', (_, input, expected) => {
     expect(compile(input, context)).toBe(expected);
   });
