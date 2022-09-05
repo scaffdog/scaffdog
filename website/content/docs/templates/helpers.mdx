@@ -320,6 +320,33 @@ append(value, ...args)
 --> 1,2,3,4,5
 ```
 
+### `uniq`
+
+Takes duplicates from array elements and returns the resulting array. The array received as an argument is not modified, and immutable operations are performed.
+
+**Signature:**
+
+```
+uniq(value)
+```
+
+**Paramters:**
+
+| Parameter | Type    | Description  |
+| :-------- | :------ | :----------- |
+| `value`   | `any[]` | Input value. |
+
+**Example:**
+
+```
+{{ arr := seq 2 | append 1 | append 2 | append 3 }}
+{{ arr }}
+--> 1,2,1,2,3
+
+{{ arr | uniq }}
+--> 1,2,3
+```
+
 ### `split`
 
 Alias for `String.prototype.split`.

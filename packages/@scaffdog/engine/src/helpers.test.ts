@@ -38,6 +38,8 @@ describe('array', () => {
       `{{ arr1 := seq 1 }}{{ arr2 := arr1 | append 2  }}{{ arr1 }}`,
       `1`,
     ],
+
+    ['uniq', `{{ seq 1 | append 1 | append 2 | append "2" | uniq }}`, `1,2,2`],
   ])('%s', (_, input, expected) => {
     expect(compile(input, context)).toBe(expected);
   });

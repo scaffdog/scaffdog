@@ -71,6 +71,15 @@ defineHelper<[v: Variable[], ...args: Variable[]]>(
   },
 );
 
+defineHelper<[v: Variable[]]>(
+  helpers,
+  'uniq',
+  (_, v) => Array.from(new Set(v)),
+  {
+    disableAutoLoop: true,
+  },
+);
+
 /**
  * language
  */
