@@ -1,12 +1,17 @@
+import { ScaffdogError } from '@scaffdog/error';
+import type { File } from '@scaffdog/types';
 import {
   atom,
   useRecoilCallback,
   useRecoilState,
   useRecoilValue,
 } from 'recoil';
-import type { File } from '@scaffdog/types';
-import { ScaffdogError } from '@scaffdog/error';
+import { recoilPersist } from 'recoil-persist';
 import { generate } from '../utils/scaffdog';
+
+const { persistAtom } = recoilPersist({
+  key: 'playground',
+});
 
 /**
  * input
@@ -24,6 +29,7 @@ const playgroundInputState = atom<PlaygroundInputEntry[]>({
       value: 'scaffdog',
     },
   ],
+  effects: [persistAtom],
 });
 
 export const usePlaygroundInputState = () => {
@@ -53,6 +59,7 @@ test('todo', () => {
 const playgroundSourceState = atom({
   key: 'playground.source',
   default: defaultSource,
+  effects: [persistAtom],
 });
 
 export const usePlaygroundSourceState = () => {
