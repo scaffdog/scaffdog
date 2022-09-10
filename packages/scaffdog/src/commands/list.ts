@@ -1,7 +1,7 @@
 import path from 'path';
 import { loadConfig } from '@scaffdog/config';
-import plur from 'plur';
 import chalk from 'chalk';
+import plur from 'plur';
 import { createCommand } from '../command';
 import { resolveDocuments } from '../document';
 
@@ -9,11 +9,11 @@ const count = (word: string, cnt: number) => `${cnt} ${plur(word, cnt)}`;
 
 export default createCommand({
   name: 'list',
-  key: 'list',
-  description: 'Print a list of available documents.',
-  build: (yargs) => yargs,
-})(async ({ cwd, logger, options }) => {
-  const { project } = options;
+  summary: 'Print a list of available documents.',
+  args: {},
+  flags: {},
+})(async ({ cwd, logger, flags }) => {
+  const { project } = flags;
   const config = loadConfig(cwd, { project });
   const dirname = path.resolve(cwd, project);
   const documents = await resolveDocuments(dirname, config.files);

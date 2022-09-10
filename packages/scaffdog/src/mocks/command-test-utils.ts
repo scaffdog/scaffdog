@@ -1,12 +1,19 @@
 import path from 'path';
-import type { Command } from '../command';
+import type yargs from 'yargs';
+import type { CommandModule, CommandOption } from '../command';
+import { CommandContainer } from '../command-container';
 import { createLogger } from './logger';
 
 export const cwd = path.resolve(__dirname, '../../');
 
-export const runCommand = async <T>(
-  cmd: Command<T>,
-  options: T,
+export const runCommand = async <
+  A extends CommandOption,
+  F extends CommandOption,
+>(
+  cmd: CommandModule<A, F>,
+  args: yargs.InferredOptionTypes<A>,
+  flags: yargs.InferredOptionTypes<F>,
+  container: CommandContainer | null = null,
 ): Promise<{
   code: number;
   stdout: string;
@@ -14,23 +21,26 @@ export const runCommand = async <T>(
 }> => {
   const { logger, getStdout, getStderr } = createLogger();
 
-  const code = await cmd.handle({
+  const code = await cmd.run({
     cwd,
     pkg: {
       name: 'scaffdog',
       version: '1.0.0',
+      description: 'scaffdog is Markdown driven scaffolding tool.',
     },
     size: {
       rows: 120,
       columns: 60,
     },
     logger,
-    options: {
+    container: container ?? new CommandContainer([]),
+    args,
+    flags: {
       project: 'fixtures',
       help: false,
       version: false,
       verbose: true,
-      ...options,
+      ...flags,
     },
   });
 

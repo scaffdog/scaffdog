@@ -1,14 +1,18 @@
-import path from 'path';
 import fs from 'fs';
-import { test, describe, expect, afterEach, beforeAll, vi } from 'vitest';
+import path from 'path';
+import { afterEach, beforeAll, describe, expect, test, vi } from 'vitest';
 import { cwd, runCommand } from '../mocks/command-test-utils';
 import * as prompt from '../prompt';
 import cmd from './generate';
 
 const defaults = {
-  name: undefined,
-  'dry-run': false,
-  force: false,
+  args: {
+    name: undefined,
+  },
+  flags: {
+    'dry-run': false,
+    force: false,
+  },
 };
 
 const clear = () => {
@@ -42,9 +46,15 @@ describe('prompt', () => {
   test('name', async () => {
     vi.spyOn(prompt, 'prompt').mockResolvedValueOnce('a'); // name
 
-    const { code, stdout, stderr } = await runCommand(cmd, {
-      ...defaults,
-    });
+    const { code, stdout, stderr } = await runCommand(
+      cmd,
+      {
+        ...defaults.args,
+      },
+      {
+        ...defaults.flags,
+      },
+    );
 
     expect(stderr).toBe('');
     expect(stdout).toMatchSnapshot();
@@ -72,10 +82,16 @@ describe('prompt', () => {
 
     mount(file);
 
-    const { code, stdout, stderr } = await runCommand(cmd, {
-      ...defaults,
-      name: 'a',
-    });
+    const { code, stdout, stderr } = await runCommand(
+      cmd,
+      {
+        ...defaults.args,
+        name: 'a',
+      },
+      {
+        ...defaults.flags,
+      },
+    );
 
     expect(stderr).toBe('');
     expect(stdout).toMatchSnapshot();
@@ -95,10 +111,16 @@ describe('prompt', () => {
       .mockResolvedValueOnce('value')
       .mockResolvedValueOnce('B');
 
-    const { code, stdout, stderr } = await runCommand(cmd, {
-      ...defaults,
-      name: 'b',
-    });
+    const { code, stdout, stderr } = await runCommand(
+      cmd,
+      {
+        ...defaults.args,
+        name: 'b',
+      },
+      {
+        ...defaults.flags,
+      },
+    );
 
     expect(stderr).toBe('');
     expect(stdout).toMatchSnapshot();
@@ -122,10 +144,16 @@ describe('prompt', () => {
       .mockResolvedValueOnce(['B', 'C']) // checkbox_with_initial
       .mockResolvedValueOnce(['A']); // checkbox_if
 
-    const { code, stdout, stderr } = await runCommand(cmd, {
-      ...defaults,
-      name: 'question',
-    });
+    const { code, stdout, stderr } = await runCommand(
+      cmd,
+      {
+        ...defaults.args,
+        name: 'question',
+      },
+      {
+        ...defaults.flags,
+      },
+    );
 
     expect(stderr).toBe('');
     expect(stdout).toMatchSnapshot();
@@ -139,10 +167,16 @@ describe('prompt', () => {
   test('variables section', async () => {
     vi.spyOn(prompt, 'prompt').mockResolvedValueOnce('success'); // foo
 
-    const { code, stdout, stderr } = await runCommand(cmd, {
-      ...defaults,
-      name: 'vars',
-    });
+    const { code, stdout, stderr } = await runCommand(
+      cmd,
+      {
+        ...defaults.args,
+        name: 'vars',
+      },
+      {
+        ...defaults.flags,
+      },
+    );
 
     expect(stderr).toBe('');
     expect(stdout).toMatchSnapshot();
@@ -153,12 +187,18 @@ describe('prompt', () => {
   });
 });
 
-describe('options', () => {
-  test('options', async () => {
-    const { code, stdout, stderr } = await runCommand(cmd, {
-      ...defaults,
-      name: 'a',
-    });
+describe('flags', () => {
+  test('flags', async () => {
+    const { code, stdout, stderr } = await runCommand(
+      cmd,
+      {
+        ...defaults.args,
+        name: 'a',
+      },
+      {
+        ...defaults.flags,
+      },
+    );
 
     expect(code).toBe(0);
     expect(stderr).toBe('');
@@ -181,11 +221,17 @@ describe('options', () => {
 
     mount(file);
 
-    const { code, stdout, stderr } = await runCommand(cmd, {
-      ...defaults,
-      name: 'a',
-      force: true,
-    });
+    const { code, stdout, stderr } = await runCommand(
+      cmd,
+      {
+        ...defaults.args,
+        name: 'a',
+      },
+      {
+        ...defaults.flags,
+        force: true,
+      },
+    );
 
     expect(stderr).toBe('');
     expect(stdout).toMatchSnapshot();
@@ -198,11 +244,17 @@ describe('options', () => {
   });
 
   test('dry run', async () => {
-    const { code, stdout, stderr } = await runCommand(cmd, {
-      ...defaults,
-      name: 'a',
-      'dry-run': true,
-    });
+    const { code, stdout, stderr } = await runCommand(
+      cmd,
+      {
+        ...defaults.args,
+        name: 'a',
+      },
+      {
+        ...defaults.flags,
+        'dry-run': true,
+      },
+    );
 
     expect(stderr).toBe('');
     expect(stdout).toMatchSnapshot();
@@ -210,10 +262,16 @@ describe('options', () => {
   });
 
   test('not found', async () => {
-    const { code, stdout, stderr } = await runCommand(cmd, {
-      ...defaults,
-      name: 'not-found',
-    });
+    const { code, stdout, stderr } = await runCommand(
+      cmd,
+      {
+        ...defaults.args,
+        name: 'not-found',
+      },
+      {
+        ...defaults.flags,
+      },
+    );
 
     expect(stderr).toMatchSnapshot();
     expect(stdout).toBe('');

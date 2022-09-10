@@ -1,13 +1,10 @@
 #!/usr/bin/env node
-import type { PackageJson } from 'type-fest';
 import consola, { FancyReporter } from 'consola';
+import type { PackageJson } from 'type-fest';
 import updateNotifier from 'update-notifier';
 import { CLI } from './cli';
-import type { CommandContainer } from './command';
-import initCmd from './cmds/init';
-import listCmd from './cmds/list';
-import generateCmd from './cmds/generate';
-import createCmd from './cmds/create';
+import { CommandContainer } from './command-container';
+import { commands } from './commands';
 
 (async () => {
   const logger = consola.create({
@@ -20,11 +17,15 @@ import createCmd from './cmds/create';
     ],
   });
 
-  const container: CommandContainer = new Map();
-  container.set(initCmd.name, initCmd);
-  container.set(listCmd.name, listCmd);
-  container.set(generateCmd.name, generateCmd);
-  container.set(createCmd.name, createCmd);
+  process.on('uncaughtException', (e: null | undefined | Partial<Error>) => {
+    logger.error(e);
+    process.exit(1);
+  });
+
+  process.on('unhandledRejection', (e: null | undefined | Partial<Error>) => {
+    logger.error(e);
+    process.exit(1);
+  });
 
   try {
     const pkg = require('../package.json') as PackageJson;
@@ -34,6 +35,7 @@ import createCmd from './cmds/create';
       distTag: pkg.version?.includes('canary') ? 'canary' : 'latest',
     }).notify();
 
+    const container = new CommandContainer(commands);
     const cli = new CLI(pkg, logger, container);
     const code = await cli.run(process.argv.slice(2));
 

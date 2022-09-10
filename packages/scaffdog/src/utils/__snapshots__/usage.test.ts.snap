@@ -1,0 +1,15 @@
+// Vitest Snapshot v1
+
+exports[`buildUsage > sections 1`] = `
+"  This is simple content.
+
+Raw content
+One
+Two
+
+Title line
+  This is simple content.
+
+  -f, --force  Summary 1
+      --flag   Summary 2"
+`;

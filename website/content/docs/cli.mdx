@@ -12,11 +12,14 @@ The `scaffdog` command provides several subcommands.
 Prepare to use scaffdog. Create a `.scaffdog` directory by default, and create a first document file.
 
 ```bash
-Options:
-  -p, --project  Directory to load the scaffdog project.        [string] [default: ".scaffdog"]
-  -v, --verbose  Enable logging.                                                      [boolean]
-      --help     Show help                                                            [boolean]
-      --version  Output the version number                                            [boolean]
+USAGE
+  scaffdog init
+
+GLOBAL FLAGS
+  -p, --project  Directory to load the scaffdog project.
+  -v, --verbose  Enable logging.
+      --help     Show help.
+      --version  Output the version number.
 ```
 
 ### `scaffdog generate`
@@ -24,16 +27,18 @@ Options:
 Build a scaffold using the specified template. If you do not specify the template name and execute it, interactively select the template.
 
 ```bash
-Positionals:
-  name                                                                                 [string]
+USAGE
+  scaffdog generate <name> [flags]
 
-Options:
-  -p, --project  Directory to load the scaffdog project.        [string] [default: ".scaffdog"]
-  -v, --verbose  Enable logging.                                                      [boolean]
-      --help     Show help                                                            [boolean]
-      --version  Output the version number                                            [boolean]
-  -n, --dry-run  Output the result to stdout.                                         [boolean]
-  -f, --force    Attempt to write the files without prompting for confirmation.       [boolean]
+COMMAND FLAGS
+  -n, --dry-run  Output the result to stdout.
+  -f, --force    Attempt to write the files without prompting for confirmation.
+
+GLOBAL FLAGS
+  -p, --project  Directory to load the scaffdog project.
+  -v, --verbose  Enable logging.
+      --help     Show help.
+      --version  Output the version number.
 ```
 
 ### `scaffdog create`
@@ -41,15 +46,17 @@ Options:
 Create a document file with the specified name.
 
 ```bash
-Positionals:
-  name  Specify a document file name.                                                  [string]
+USAGE
+  scaffdog create <name> [flags]
 
-Options:
-  -p, --project  Directory to load the scaffdog project.        [string] [default: ".scaffdog"]
-  -v, --verbose  Enable logging.                                                      [boolean]
-      --help     Show help                                                            [boolean]
-      --version  Output the version number                                            [boolean]
-  -y, --yes      Use default options.                                                 [boolean]
+COMMAND FLAGS
+  -y, --yes      Use default options.
+
+GLOBAL FLAGS
+  -p, --project  Directory to load the scaffdog project.
+  -v, --verbose  Enable logging.
+      --help     Show help.
+      --version  Output the version number.
 ```
 
 ### `scaffdog list`
@@ -57,9 +64,12 @@ Options:
 Print a list of available documents.
 
 ```bash
-Options:
-  -p, --project  Directory to load the scaffdog project.        [string] [default: ".scaffdog"]
-  -v, --verbose  Enable logging.                                                      [boolean]
-      --help     Show help                                                            [boolean]
-      --version  Output the version number                                            [boolean]
+USAGE
+  scaffdog list
+
+GLOBAL FLAGS
+  -p, --project  Directory to load the scaffdog project.
+  -v, --verbose  Enable logging.
+      --help     Show help.
+      --version  Output the version number.
 ```
