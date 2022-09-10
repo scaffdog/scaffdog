@@ -831,11 +831,13 @@ export const isRawTemplate = nodeGuard('RawTemplate');
 export type Program = Omit<BaseNode, 'type'> & {
   type: 'Program';
   body: Template;
+  source: string;
 };
 
-export const createProgram = (body: Template): Program => ({
+export const createProgram = (body: Template, source: string): Program => ({
   type: 'Program',
   body,
+  source,
   range: [body[0]?.range[0] ?? 0, body[body.length - 1]?.range[0] ?? 0],
 });
 

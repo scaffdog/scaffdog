@@ -2,6 +2,7 @@ import type { Variable } from '@scaffdog/types';
 import { describe, expect, test } from 'vitest';
 import { compile } from './compile';
 import { createContext } from './context';
+import { parse } from './parser';
 
 const context = createContext({
   variables: new Map<string, Variable>([
@@ -40,8 +41,10 @@ describe('array', () => {
     ],
 
     ['uniq', `{{ seq 1 | append 1 | append 2 | append "2" | uniq }}`, `1,2,2`],
-  ])('%s', (_, input, expected) => {
-    expect(compile(input, context)).toBe(expected);
+  ])('%s', (_, source, expected) => {
+    expect(compile(parse(source, { tags: context.tags }), context)).toBe(
+      expected,
+    );
   });
 });
 
@@ -112,8 +115,10 @@ describe('language', () => {
       `{{ eval ("parseInt(count5,10)+1 / parseInt(count5,10)+2 / parseInt(count5,10)+3" | split "/") }}`,
       `6,7,8`,
     ],
-  ])('%s', (_, input, expected) => {
-    expect(compile(input, context)).toBe(expected);
+  ])('%s', (_, source, expected) => {
+    expect(compile(parse(source, { tags: context.tags }), context)).toBe(
+      expected,
+    );
   });
 });
 
@@ -201,8 +206,10 @@ describe('string', () => {
       `{{ "line1\nline2\nline3,line4\nline5\nline6" | split "," | after 1 }}`,
       `line2\nline3,line5\nline6`,
     ],
-  ])('%s', (_, input, expected) => {
-    expect(compile(input, context)).toBe(expected);
+  ])('%s', (_, source, expected) => {
+    expect(compile(parse(source, { tags: context.tags }), context)).toBe(
+      expected,
+    );
   });
 });
 
@@ -226,7 +233,9 @@ describe('template', () => {
       `{{ array | define "key" -}} key = {{ key }}`,
       `,,key = str_c`,
     ],
-  ])('%s', (_, input, expected) => {
-    expect(compile(input, context)).toBe(expected);
+  ])('%s', (_, source, expected) => {
+    expect(compile(parse(source, { tags: context.tags }), context)).toBe(
+      expected,
+    );
   });
 });
