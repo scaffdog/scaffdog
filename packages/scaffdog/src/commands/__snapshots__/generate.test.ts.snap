@@ -1,6 +1,6 @@
 // Vitest Snapshot v1
 
-exports[`options > dry run 1`] = `
+exports[`flags > dry run 1`] = `
 "ℹ Output destination directory: \\".\\"
 
 ───┬────────────────────────────────────────────────────────
@@ -28,7 +28,7 @@ exports[`options > dry run 1`] = `
 "
 `;
 
-exports[`options > force overwrite 1`] = `
+exports[`flags > flags 1`] = `
 "ℹ Output destination directory: \\".\\"
 
 🐶 Generated 2 files!
@@ -38,20 +38,20 @@ exports[`options > force overwrite 1`] = `
 "
 `;
 
-exports[`options > not found 1`] = `
+exports[`flags > force overwrite 1`] = `
+"ℹ Output destination directory: \\".\\"
+
+🐶 Generated 2 files!
+
+     ✔ tmp/nest/dump.txt
+     ✔ tmp/generate.txt
+"
+`;
+
+exports[`flags > not found 1`] = `
 "
  ERROR  Document \\"not-found\\" not found.
 
-"
-`;
-
-exports[`options > options 1`] = `
-"ℹ Output destination directory: \\".\\"
-
-🐶 Generated 2 files!
-
-     ✔ tmp/nest/dump.txt
-     ✔ tmp/generate.txt
 "
 `;
 

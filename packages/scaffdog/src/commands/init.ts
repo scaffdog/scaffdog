@@ -1,7 +1,7 @@
 import path from 'path';
+import { extract, generate } from '@scaffdog/core';
 import chalk from 'chalk';
 import symbols from 'log-symbols';
-import { generate, extract } from '@scaffdog/core';
 import { emojify } from 'node-emoji';
 import { createCommand } from '../command';
 import { confirm, prompt } from '../prompt';
@@ -9,12 +9,12 @@ import { directoryExists, mkdir, writeFile } from '../utils/fs';
 
 export default createCommand({
   name: 'init',
-  key: 'init',
-  description:
+  summary:
     'Prepare to use scaffdog. Create a `.scaffdog` directory by default, and create a first document file.',
-  build: (yargs) => yargs,
-})(async ({ cwd, logger, options }) => {
-  const { project } = options;
+  args: {},
+  flags: {},
+})(async ({ cwd, logger, flags }) => {
+  const { project } = flags;
   const dirname = path.resolve(cwd, project);
 
   // create project directory

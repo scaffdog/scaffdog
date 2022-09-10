@@ -1,10 +1,12 @@
-import yargs from 'yargs/yargs';
-import type { PackageJson } from 'type-fest';
 import type { Consola } from 'consola';
+import termSize from 'term-size';
 import { LogLevel } from 'consola';
-import terminalSize from 'term-size';
-import { globalOptions } from './global-options';
-import type { CommandContainer } from './command';
+import type { PackageJson } from 'type-fest';
+import yargs from 'yargs/yargs';
+import type { CommandOption } from './command';
+import { buildCommand } from './command';
+import type { CommandContainer } from './command-container';
+import { globalFlags } from './global-flags';
 
 export class CLI {
   private _pkg: PackageJson;
@@ -19,16 +21,6 @@ export class CLI {
     this._pkg = pkg;
     this._logger = logger;
     this._container = container;
-
-    process.on('uncaughtException', (e: null | undefined | Partial<Error>) => {
-      this._logger.error(e);
-      process.exit(1);
-    });
-
-    process.on('unhandledRejection', (e: null | undefined | Partial<Error>) => {
-      this._logger.error(e);
-      process.exit(1);
-    });
   }
 
   public async run(argv: string[]): Promise<number> {
@@ -36,7 +28,6 @@ export class CLI {
       .help(false)
       .version(false)
       .detectLocale(false)
-      .wrap(terminalSize().columns)
       .parserConfiguration({
         'set-placeholder-key': true,
         'boolean-negation': false,
@@ -44,13 +35,13 @@ export class CLI {
       .fail((msg, err) => {
         throw err != null ? err : new Error(msg);
       })
-      .options(globalOptions)
+      .options(globalFlags)
       .strict()
       .exitProcess(false);
 
-    for (const cmd of this._container.values()) {
-      parser.command(cmd.key, cmd.description, cmd.build);
-    }
+    this._container.all().forEach((module) => {
+      buildCommand(parser, module);
+    });
 
     const parsed = await (async () => {
       try {
@@ -65,55 +56,93 @@ export class CLI {
       return 1;
     }
 
+    const { _, $0, ...rest } = parsed;
+
+    const context = {
+      cwd: process.cwd(),
+      pkg: this._pkg,
+      logger: this._logger,
+      container: this._container,
+      size: Object.defineProperties(
+        {
+          rows: 0,
+          columns: 0,
+        },
+        {
+          rows: {
+            enumerable: true,
+            get: () => termSize().rows,
+          },
+          columns: {
+            enumerable: true,
+            get: () => termSize().columns,
+          },
+        },
+      ),
+    };
+
+    this._logger.debug('parsed arguments: %O', parsed);
+
     if (parsed.verbose) {
       this._logger.level = LogLevel.Verbose;
     }
 
     if (parsed.version) {
-      this._logger.log(`v${this._pkg.version}`);
-      return 0;
-    }
-
-    if (parsed.help || parsed._.length === 0) {
-      parser.showHelp((s) => {
-        this._logger.log(s);
+      return await this._container.mustGet('version').run({
+        ...context,
+        args: {},
+        flags: rest,
       });
-      return 0;
     }
 
-    this._logger.debug('parsed arguments: %O', parsed);
-
-    const key = `${parsed._[0]}`;
-    this._logger.debug('command key: %s', key);
-
-    const cmd = this._container.get(key);
-    if (cmd == null) {
-      this._logger.error(new Error(`"${key}" command does not exists`));
-      return 1;
+    if (parsed.help || _.length === 0) {
+      return await this._container.mustGet('help').run({
+        ...context,
+        args: {
+          command: _,
+        },
+        flags: rest,
+      });
     }
+
+    const command = _.join('.') || 'help';
+
+    this._logger.debug(`command "${command}"`);
+    this._logger.debug('running command...');
 
     try {
-      return await cmd.handle({
-        cwd: process.cwd(),
-        pkg: this._pkg,
-        logger: this._logger,
-        size: Object.defineProperties(
-          {
-            rows: 0,
-            columns: 0,
-          },
-          {
-            rows: {
-              enumerable: true,
-              get: () => terminalSize().rows,
-            },
-            columns: {
-              enumerable: true,
-              get: () => terminalSize().columns,
-            },
-          },
-        ),
-        options: parsed,
+      const cmd = this._container.mustGet(command);
+
+      const key = {
+        args: new Set(Object.keys(cmd.args)),
+        flags: new Set(Object.keys(cmd.flags)),
+      };
+
+      const { args, flags } = Object.entries(rest).reduce<{
+        args: CommandOption;
+        flags: CommandOption;
+      }>(
+        (acc, [k, v]) => {
+          if (key.args.has(k)) {
+            acc.args[k] = v as any;
+          } else if (key.flags.has(k)) {
+            acc.flags[k] = v as any;
+          }
+          return acc;
+        },
+        {
+          args: {},
+          flags: {},
+        },
+      );
+
+      return await cmd.run({
+        ...context,
+        args,
+        flags: {
+          ...rest,
+          ...flags,
+        },
       });
     } catch (e) {
       this._logger.error(e);

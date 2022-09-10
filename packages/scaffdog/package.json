@@ -32,7 +32,8 @@
   "scripts": {
     "typecheck": "tsc",
     "build": "unbuild",
-    "scaffold": "tsx src/bin.ts generate",
+    "scaffdog": "tsx src/bin.ts",
+    "scaffold": "pnpm scaffdog generate -f",
     "test": "vitest run --dir src",
     "test:watch": "vitest watch --dir src"
   },
@@ -60,6 +61,7 @@
     "plur": "^4.0.0",
     "term-size": "^2.2.1",
     "update-notifier": "^5.1.0",
+    "strip-ansi": "6.0.0",
     "valid-filename": "^3.1.0",
     "wrap-ansi": "^7.0.0",
     "yargs": "^17.0.0",
@@ -72,7 +74,6 @@
     "@types/update-notifier": "6.0.1",
     "@types/wrap-ansi": "3.0.0",
     "@types/yargs": "17.0.11",
-    "strip-ansi": "6.0.0",
     "type-fest": "2.19.0"
   },
   "publishConfig": {

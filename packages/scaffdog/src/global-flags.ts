@@ -1,4 +1,4 @@
-export const globalOptions = {
+export const globalFlags = {
   project: {
     type: 'string',
     alias: 'p',
@@ -14,12 +14,12 @@ export const globalOptions = {
   },
   help: {
     type: 'boolean',
-    description: 'Show help',
+    description: 'Show help.',
     global: true,
   },
   version: {
     type: 'boolean',
-    description: 'Output the version number',
+    description: 'Output the version number.',
     global: true,
   },
 } as const;

@@ -1,0 +1,36 @@
+// Vitest Snapshot v1
+
+exports[`command 1`] = `
+"foo summary.
+
+USAGE
+  scaffdog foo <name> [flags]
+
+COMMAND FLAGS
+      --key1     key1.description.
+      --key2     key2.description.
+  -k, --key3     key3.description.
+
+GLOBAL FLAGS
+  -p, --project  Directory to load the scaffdog project.
+  -v, --verbose  Enable logging.
+      --help     Show help.
+      --version  Output the version number.
+"
+`;
+
+exports[`global 1`] = `
+"scaffdog is Markdown driven scaffolding tool.
+
+USAGE
+  scaffdog <command> [flags]
+
+GLOBAL FLAGS
+  -p, --project  Directory to load the scaffdog project.
+  -v, --verbose  Enable logging.
+      --help     Show help.
+      --version  Output the version number.
+
+Run \`scaffdog help [command..]\` for help with a specific command.
+"
+`;

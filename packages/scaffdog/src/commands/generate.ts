@@ -123,33 +123,31 @@ const questionFallbackValue = (question: Question): Variable => {
 
 export default createCommand({
   name: 'generate',
-  key: 'generate [name]',
-  description:
+  summary:
     'Build a scaffold using the specified template. If you do not specify the template name and execute it, interactively select the template.',
-  build: (yargs) =>
-    yargs
-      .positional('name', {
-        type: 'string',
-      })
-      .options({
-        'dry-run': {
-          type: 'boolean',
-          alias: 'n',
-          description: 'Output the result to stdout.',
-        },
-      })
-      .options({
-        force: {
-          type: 'boolean',
-          alias: 'f',
-          default: false,
-          description:
-            'Attempt to write the files without prompting for confirmation.',
-        },
-      }),
-})(async ({ cwd, size, logger, options }) => {
+  args: {
+    name: {
+      type: 'string',
+      description: 'Template document name.',
+    },
+  },
+  flags: {
+    'dry-run': {
+      type: 'boolean',
+      alias: 'n',
+      description: 'Output the result to stdout.',
+    },
+    force: {
+      type: 'boolean',
+      alias: 'f',
+      default: false,
+      description:
+        'Attempt to write the files without prompting for confirmation.',
+    },
+  },
+})(async ({ cwd, logger, size, args, flags }) => {
   // configuration
-  const { project } = options;
+  const { project } = flags;
   const config = loadConfig(cwd, { project });
   logger.debug('load config: %O', config);
 
@@ -172,19 +170,19 @@ export default createCommand({
   });
 
   // clear
-  if (!options.verbose) {
+  if (!flags.verbose) {
     logger.log(ansiEscapes.clearScreen);
   }
 
   // resolve document
   const name =
-    options.name == null
+    args.name == null
       ? await prompt({
           type: 'list',
           message: 'Please select a document.',
           choices: documents.map((d) => d.name),
         })
-      : options.name;
+      : args.name;
 
   logger.debug('using name: %s', name);
 
@@ -299,7 +297,7 @@ export default createCommand({
   const writes: Set<File> = new Set();
   const skips: Set<File> = new Set();
 
-  if (options['dry-run']) {
+  if (flags['dry-run']) {
     files.forEach((file) => {
       logger.log('');
       logger.log(
@@ -324,7 +322,7 @@ export default createCommand({
 
       await mkdir(path.dirname(file.output), { recursive: true });
 
-      if (!options.force && fileExists(file.output)) {
+      if (!flags.force && fileExists(file.output)) {
         const relative = path.relative(cwd, file.output);
 
         const ok = await confirm(

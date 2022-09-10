@@ -1,31 +1,30 @@
 import path from 'path';
-import globby from 'globby';
-import validFilename from 'valid-filename';
-import { emojify } from 'node-emoji';
 import chalk from 'chalk';
+import globby from 'globby';
+import { emojify } from 'node-emoji';
+import validFilename from 'valid-filename';
 import { createCommand } from '../command';
 import { autocomplete, prompt } from '../prompt';
 import { directoryExists, fileExists, writeFile } from '../utils/fs';
 
 export default createCommand({
   name: 'create',
-  key: 'create [name]',
-  description: 'Create a document file with the specified name.',
-  build: (yargs) =>
-    yargs
-      .positional('name', {
-        type: 'string',
-        description: 'Specify a document file name.',
-      })
-      .options({
-        yes: {
-          type: 'boolean',
-          alias: 'y',
-          description: 'Use default options.',
-        },
-      }),
-})(async ({ cwd, logger, options }) => {
-  const { project } = options;
+  summary: 'Create a document file with the specified name.',
+  args: {
+    name: {
+      type: 'string',
+      description: 'Template document file name.',
+    },
+  },
+  flags: {
+    yes: {
+      type: 'boolean',
+      alias: 'y',
+      description: 'Use default options.',
+    },
+  },
+})(async ({ cwd, logger, args, flags }) => {
+  const { project } = flags;
   const dirname = path.resolve(cwd, project);
   if (!directoryExists(dirname)) {
     logger.error(
@@ -36,12 +35,12 @@ export default createCommand({
 
   // name
   let name: string;
-  if (options.name) {
-    if (!validFilename(options.name)) {
+  if (args.name) {
+    if (!validFilename(args.name)) {
       logger.error('Should be a valid filename!');
       return 1;
     }
-    name = options.name;
+    name = args.name;
   } else {
     name = await prompt({
       type: 'input',
@@ -82,7 +81,7 @@ export default createCommand({
 
   const root = await autocomplete('Please select a root directory.', dirs, {
     default: '.',
-    when: !options.yes,
+    when: !flags.yes,
   });
 
   attrs.push(`root: '${root}'`);
@@ -91,7 +90,7 @@ export default createCommand({
     type: 'input',
     message: 'Please enter a output pattern.',
     default: '**/*',
-    when: !options.yes,
+    when: !flags.yes,
   });
 
   attrs.push(`output: '${output}'`);
