@@ -9,9 +9,13 @@ List of variables available in the template. You need to be aware that the file 
 
 The variables available in the template title are as follows:
 
-| key      | description                              | example |
-| :------- | :--------------------------------------- | :------ |
-| `inputs` | The object value received at the prompt. |         |
+| key             | description                              | example                       |
+| :-------------- | :--------------------------------------- | :---------------------------- |
+| `cwd`           | Current working directory.               | `/path/to/`                   |
+| `inputs`        | The object value received at the prompt. |                               |
+| `document.name` | The document name.                       | `hello`                       |
+| `document.dir`  | The directory name of the document file. | `/path/to/.scaffdog`          |
+| `document.path` | The path of the document file.           | `/path/to/.scaffdog/hello.md` |
 
 ## Template body
 
