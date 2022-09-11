@@ -16,11 +16,11 @@
     "@hookform/resolvers": "^2.9.7",
     "@scaffdog/engine": "workspace:*",
     "@scaffdog/error": "workspace:*",
+    "@scaffdog/core": "workspace:*",
     "@scaffdog/types": "workspace:*",
     "contentlayer": "^0.2.7",
     "date-fns": "^2.29.1",
     "framer-motion": "^7.0.0",
-    "mdast-util-to-string": "^2.0.0",
     "next": "12.3.0",
     "next-contentlayer": "^0.2.7",
     "next-seo": "^5.5.0",
@@ -35,10 +35,7 @@
     "recoil-persist": "^4.2.0",
     "remark-emoji": "^3.0.2",
     "remark-gfm": "^3.0.1",
-    "remark-parse": "^9.0.0",
     "remark-slug": "^7.0.1",
-    "unified": "^9.2.1",
-    "unist-util-visit-parents": "^3.1.1",
     "yup": "^0.32.11"
   },
   "devDependencies": {
