@@ -74,9 +74,9 @@ export const PlaygroundPreview: React.FC<Props> = () => {
 
       {files.state === 'success' &&
         files.value.map((file) => (
-          <Box key={file.filename} mb="2">
+          <Box key={file.path} mb="2">
             <Heading as="div" p="2" fontSize="lg" color="gray.700">
-              {file.filename}
+              {file.path}
               {file.skip && (
                 <Text as="span" ml="1" color="gray.400" fontSize="0.85em">
                   (skip)
@@ -84,7 +84,7 @@ export const PlaygroundPreview: React.FC<Props> = () => {
               )}
             </Heading>
             <_Highlight
-              language={detectPrismLanguage(file.filename)}
+              language={detectPrismLanguage(file.path)}
               code={file.content}
             />
           </Box>

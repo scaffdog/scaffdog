@@ -1,5 +1,7 @@
+import path from 'path';
+import { extract } from '@scaffdog/core';
+import { compile, createContext, extendContext } from '@scaffdog/engine';
 import { ScaffdogError } from '@scaffdog/error';
-import type { File } from '@scaffdog/types';
 import {
   atom,
   useRecoilCallback,
@@ -7,7 +9,12 @@ import {
   useRecoilValue,
 } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
-import { generate } from '../utils/scaffdog';
+
+export type File = {
+  skip: boolean;
+  path: string;
+  content: string;
+};
 
 const { persistAtom } = recoilPersist({
   key: 'playground',
@@ -93,14 +100,72 @@ export const usePlaygroundCompileState = () => {
 };
 
 export const usePlaygroundCompile = () => {
-  const compile = useRecoilCallback(
+  const fn = useRecoilCallback(
     ({ snapshot, set }) =>
       () => {
         try {
           const source = snapshot.getLoadable(playgroundSourceState).getValue();
           const inputs = snapshot.getLoadable(playgroundInputState).getValue();
-          const vars = inputs.map(({ key, value }) => [key, value] as const);
-          const files = generate(source, new Map(vars));
+          const vars = inputs.reduce(
+            (acc, { key, value }) => Object.assign(acc, { [key]: value }),
+            Object.create(null),
+          );
+
+          const { variables, templates } = extract(source, {});
+          const cwd = '/workspace';
+          const context = createContext({
+            cwd,
+          });
+
+          context.variables.set('cwd', cwd);
+          context.variables.set('inputs', vars);
+          context.variables.set('document', {
+            name: 'playground.md',
+            dir: '.scaffdog',
+            path: path.join(cwd, '.scaffdog'),
+          });
+
+          for (const [key, ast] of variables) {
+            context.variables.set(key, compile(ast, context));
+          }
+
+          const files = templates.map((tpl) => {
+            const filename = compile(tpl.filename, context);
+            if (/^!/.test(filename)) {
+              return {
+                skip: true,
+                path: path.resolve(cwd, filename.slice(1)),
+                content: '',
+              };
+            }
+
+            const absolute = path.resolve(cwd, filename);
+            const relative = path.relative(cwd, absolute);
+            const info = path.parse(relative);
+
+            const ctx = extendContext(context, {
+              variables: new Map([
+                [
+                  'output',
+                  {
+                    root: '.',
+                    path: filename,
+                    abs: absolute,
+                    name: info.name,
+                    base: info.base,
+                    ext: info.ext,
+                    dir: info.dir,
+                  },
+                ],
+              ]),
+            });
+
+            return {
+              skip: false,
+              path: filename,
+              content: compile(tpl.content, ctx),
+            };
+          });
 
           set(playgroundCompileState, {
             state: 'success',
@@ -122,5 +187,5 @@ export const usePlaygroundCompile = () => {
     [],
   );
 
-  return compile;
+  return fn;
 };

@@ -16,10 +16,12 @@ export default createCommand({
   const { project } = flags;
   const config = loadConfig(cwd, { project });
   const dirname = path.resolve(cwd, project);
-  const documents = await resolveDocuments(dirname, config.files);
+  const documents = await resolveDocuments(dirname, config.files, {
+    tags: config.tags,
+  });
 
   if (documents.length === 0) {
-    logger.log('File not found.');
+    logger.log('Document file not found.');
     return 0;
   }
 

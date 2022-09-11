@@ -1,9 +1,14 @@
+import type { ParseOptions } from '@scaffdog/engine';
+import { parse } from '@scaffdog/engine';
 import { expect, test } from 'vitest';
 import { extract } from './extract';
 
+const options: Partial<ParseOptions> = {};
+
 test('basic', () => {
   expect(
-    extract(`
+    extract(
+      `
 # Variables
 
 - key: value0
@@ -43,26 +48,31 @@ ignore paragraph.
 \`\`\`typescript
 // code block...
 \`\`\`
-`),
+`,
+      options,
+    ),
   ).toEqual({
     variables: new Map([
-      ['key', 'value0'],
-      ['key1', 'value1'],
-      ['key2', '{{ value2 }}'],
-      ['key3', 'Hello {{ value3 }} !'],
-      ['$key', 'value4'],
-      ['_key', 'value5'],
+      ['key', parse('value0', options)],
+      ['key1', parse('value1', options)],
+      ['key2', parse('{{ value2 }}', options)],
+      ['key3', parse('Hello {{ value3 }} !', options)],
+      ['$key', parse('value4', options)],
+      ['_key', parse('value5', options)],
     ]),
     templates: [
       {
-        filename: 'basic.txt',
-        content: `// line 1`,
+        filename: parse('basic.txt', options),
+        content: parse('// line 1', options),
       },
       {
-        filename: '{{ using.variable }}.txt',
-        content: `// line 1
+        filename: parse('{{ using.variable }}.txt', options),
+        content: parse(
+          `// line 1
 // line 2
 // line 3`,
+          options,
+        ),
       },
     ],
   });
@@ -70,19 +80,22 @@ ignore paragraph.
 
 test('without variables', () => {
   expect(
-    extract(`
+    extract(
+      `
 # filename
 
 \`\`\`typescript
 // code block
 \`\`\`
-`),
+`,
+      options,
+    ),
   ).toEqual({
     variables: new Map(),
     templates: [
       {
-        filename: 'filename',
-        content: `// code block`,
+        filename: parse('filename', options),
+        content: parse(`// code block`, options),
       },
     ],
   });

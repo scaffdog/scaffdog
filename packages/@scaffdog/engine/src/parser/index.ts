@@ -10,35 +10,35 @@ import type { Parser } from './types';
 
 export type ProgramParser = (input: string) => Program;
 
-const program: Parser<Program> = map(concat([template, eof]), ([body]) =>
-  createProgram(body),
-);
+const program: Parser<Program> = (state) => {
+  return map(concat([template, eof]), ([body]) =>
+    createProgram(body, state.input.join('')),
+  )(state);
+};
 
-export type CreateParserOptions = {
+export type ParseOptions = {
   tags: TagPair;
 };
 
-export const createParser =
-  (options?: Partial<CreateParserOptions>): ProgramParser =>
-  (input) => {
-    const result = program({
-      input: [...input],
-      rest: [],
-      offset: 0,
-      errors: ParseErrorStack.from([]),
-      tags: options?.tags ?? defaults.tags,
+export const parse = (source: string, options?: Partial<ParseOptions>) => {
+  const result = program({
+    input: [...source],
+    rest: [],
+    offset: 0,
+    errors: ParseErrorStack.from([]),
+    tags: options?.tags ?? defaults.tags,
+  });
+
+  if (result.type === 'error') {
+    const err = result.state.errors.latest();
+    const msg = err?.message ?? 'Unexpected end of input';
+    const range = err?.range ?? [result.state.offset, result.state.offset];
+
+    throw error(`SyntaxError: ${msg}`, {
+      source,
+      range,
     });
+  }
 
-    if (result.type === 'error') {
-      const err = result.state.errors.latest();
-      const msg = err?.message ?? 'Unexpected end of input';
-      const range = err?.range ?? [result.state.offset, result.state.offset];
-
-      throw error(`SyntaxError: ${msg}`, {
-        source: input,
-        range,
-      });
-    }
-
-    return result.data;
-  };
+  return result.data;
+};

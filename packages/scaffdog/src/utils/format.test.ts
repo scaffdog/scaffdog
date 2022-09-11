@@ -9,8 +9,8 @@ const defaults = {
 test('short', () => {
   const output = formatFile(
     {
-      filename: 'FILENAME',
-      output: '',
+      name: 'FILENAME',
+      path: '',
       content: ['A'.repeat(5)].join('\n'),
       skip: false,
     },
@@ -23,8 +23,8 @@ test('short', () => {
 test('long content', () => {
   const output = formatFile(
     {
-      filename: 'FILENAME',
-      output: '',
+      name: 'FILENAME',
+      path: '',
       content: Array.from(Array(100).fill('line...')).join('\n'),
       skip: false,
     },
@@ -37,8 +37,8 @@ test('long content', () => {
 test('long filename', () => {
   const output = formatFile(
     {
-      filename: 'X'.repeat(110),
-      output: '',
+      name: 'X'.repeat(110),
+      path: '',
       content: 'line...',
       skip: false,
     },
@@ -51,8 +51,8 @@ test('long filename', () => {
 test('wrap', () => {
   const output = formatFile(
     {
-      filename: 'FILENAME',
-      output: '',
+      name: 'FILENAME',
+      path: '',
       content: [
         'A'.repeat(30),
         'B'.repeat(20),
@@ -71,8 +71,8 @@ test('wrap', () => {
 test('empty content', () => {
   const output = formatFile(
     {
-      filename: 'FILENAME',
-      output: '',
+      name: 'FILENAME',
+      path: '',
       content: '',
       skip: false,
     },
@@ -85,8 +85,8 @@ test('empty content', () => {
 test('skip', () => {
   const output = formatFile(
     {
-      filename: 'FILENAME',
-      output: '',
+      name: 'FILENAME',
+      path: '',
       content: ['A'.repeat(5)].join('\n'),
       skip: true,
     },

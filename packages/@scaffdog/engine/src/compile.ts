@@ -39,7 +39,6 @@ import {
   isParenthesizedExpression,
   isPrimaryExpression,
 } from './ast';
-import { createParser } from './parser';
 import {
   isArray,
   isBoolean,
@@ -930,18 +929,15 @@ const compileProgram: Compiler<Program> = (node, state) => {
   return compileTemplate(node.body, state);
 };
 
-export const compile = (input: string, context: Context): string => {
-  const parse = createParser({ tags: context.tags });
-  const ast = parse(input);
-
+export const compile = (ast: Program, context: Context): string => {
   return toString(
     compileProgram(ast, {
-      source: input,
+      source: ast.source,
       iterate: new IterateState(),
       context,
     }),
     {
-      source: input,
+      source: ast.source,
       range: ast.range,
     },
   );

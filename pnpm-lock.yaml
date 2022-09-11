@@ -226,6 +226,7 @@ importers:
       '@emotion/react': ^11.10.0
       '@emotion/styled': ^11.10.0
       '@hookform/resolvers': ^2.9.7
+      '@scaffdog/core': workspace:*
       '@scaffdog/engine': workspace:*
       '@scaffdog/error': workspace:*
       '@scaffdog/types': workspace:*
@@ -240,7 +241,6 @@ importers:
       eslint-config-next: 12.3.0
       framer-motion: ^7.0.0
       github-slugger: 1.4.0
-      mdast-util-to-string: ^2.0.0
       next: 12.3.0
       next-contentlayer: ^0.2.7
       next-seo: ^5.5.0
@@ -256,25 +256,22 @@ importers:
       recoil-persist: ^4.2.0
       remark-emoji: ^3.0.2
       remark-gfm: ^3.0.1
-      remark-parse: ^9.0.0
       remark-slug: ^7.0.1
       type-fest: 2.19.0
       typescript: 4.7.4
-      unified: ^9.2.1
-      unist-util-visit-parents: ^3.1.1
       yup: ^0.32.11
     dependencies:
       '@chakra-ui/react': 2.2.6_hfdt4q6jyuwfeqo77jwxyx2v4a
       '@emotion/react': 11.10.0_p6fq7jdyqwnykllwwkx4b6uid4
       '@emotion/styled': 11.10.0_uf7iw2silqtx4sz3ag3mgrbdgy
       '@hookform/resolvers': 2.9.7_react-hook-form@7.34.0
+      '@scaffdog/core': link:../packages/@scaffdog/core
       '@scaffdog/engine': link:../packages/@scaffdog/engine
       '@scaffdog/error': link:../packages/@scaffdog/error
       '@scaffdog/types': link:../packages/@scaffdog/types
       contentlayer: 0.2.7
       date-fns: 2.29.1
       framer-motion: 7.0.0_biqbaboplfbrettd7655fr4n2y
-      mdast-util-to-string: 2.0.0
       next: 12.3.0_vyk55zyolcaieh7zfm7nf7uva4
       next-contentlayer: 0.2.7_c3hne4hwj64hb7tofigd3bvkji
       next-seo: 5.5.0_c3hne4hwj64hb7tofigd3bvkji
@@ -289,10 +286,7 @@ importers:
       recoil-persist: 4.2.0_recoil@0.7.4
       remark-emoji: 3.0.2
       remark-gfm: 3.0.1
-      remark-parse: 9.0.0
       remark-slug: 7.0.1
-      unified: 9.2.2
-      unist-util-visit-parents: 3.1.1
       yup: 0.32.11
     devDependencies:
       '@babel/core': 7.19.0

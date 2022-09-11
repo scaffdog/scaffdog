@@ -1,6 +1,6 @@
 import { test, expect } from 'vitest';
 import { format } from './formatter';
-import { createParser } from './parser';
+import { parse } from './parser';
 
 test.each([
   [`raw`, `raw`],
@@ -88,7 +88,7 @@ test.each([
     `{{for v,index in list  }}loop{{end}}`,
     `{{ for v, index in list }}loop{{ end }}`,
   ],
-])('%s -> %s', (input, expected) => {
-  const ast = createParser()(input);
+])('%s -> %s', (source, expected) => {
+  const ast = parse(source);
   expect(format(ast)).toBe(expected);
 });

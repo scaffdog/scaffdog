@@ -2,6 +2,7 @@ import type { HelperRecord, VariableRecord } from '@scaffdog/types';
 import { test, expect } from 'vitest';
 import { compile } from './compile';
 import { createContext, extendContext } from './context';
+import { parse } from './parser';
 
 type TestContext = {
   variables?: VariableRecord;
@@ -402,10 +403,10 @@ test.each<[string, string, TestContext | null]>([
       },
     },
   ],
-])('compile - %s', (input, expected, extend) => {
+])('compile - %s', (source, expected, extend) => {
   expect(
     compile(
-      input,
+      parse(source, { tags: context.tags }),
       extendContext(context, {
         variables: obj2map(extend?.variables ?? {}),
         helpers: obj2map(extend?.helpers ?? {}),
@@ -530,10 +531,10 @@ test.each<[string, RegExp, TestContext | null]>([
   [`{{ 1 <= null }}`, /same data type.*left: "number", right: "null"/, null],
   [`{{ null <= 1 }}`, /same data type.*left: "null", right: "number"/, null],
   [`{{ null <= null }}`, /Operator "<=" cannot be.*"null" and "null"/, null],
-])('compile error - %s', (input, expected, extend) => {
+])('compile error - %s', (source, expected, extend) => {
   expect(() =>
     compile(
-      input,
+      parse(source, { tags: context.tags }),
       extendContext(context, {
         variables: obj2map(extend?.variables ?? {}),
         helpers: obj2map(extend?.helpers ?? {}),

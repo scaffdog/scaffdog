@@ -1,8 +1,10 @@
-import type { Template } from '@scaffdog/types';
-import unified from 'unified';
-import markdown from 'remark-parse';
-import visit from 'unist-util-visit-parents';
+import type { ParseOptions } from '@scaffdog/engine';
+import { parse } from '@scaffdog/engine';
 import toString from 'mdast-util-to-string';
+import markdown from 'remark-parse';
+import unified from 'unified';
+import visit from 'unist-util-visit-parents';
+import type { Template, VariableSourceMap } from './types';
 
 const VARIABLES_SECTION_TITLE_REGEX = /^variables/i;
 const VARIABLE_REGEX = /^([_$a-z][0-9a-z_$]*)\s*:\s*(.*)\s*$/i;
@@ -16,14 +18,17 @@ const parseVariable = (input: string): [key: string, value: string] => {
   return [m[1], m[2]];
 };
 
-export type VariableSourceMap = Map<string, string>;
+export type ExtractOptions = Partial<ParseOptions>;
 
 export type ExtractResult = {
   variables: VariableSourceMap;
   templates: Template[];
 };
 
-export const extract = (input: string): ExtractResult => {
+export const extract = (
+  input: string,
+  options: ExtractOptions,
+): ExtractResult => {
   const variables: VariableSourceMap = new Map();
   const templates: Template[] = [];
   const ast = unified().use(markdown).parse(input);
@@ -59,8 +64,8 @@ export const extract = (input: string): ExtractResult => {
       case 'code': {
         if (filename != null) {
           templates.push({
-            filename,
-            content: toString(node),
+            filename: parse(filename, options),
+            content: parse(toString(node), options),
           });
 
           filename = null;
@@ -74,7 +79,7 @@ export const extract = (input: string): ExtractResult => {
             if (child.type === 'listItem') {
               const [key, value] = parseVariable(toString(child).trim());
               if (key && value) {
-                variables.set(key, value);
+                variables.set(key, parse(value, options));
               }
             }
           });

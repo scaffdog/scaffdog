@@ -1,2 +1,2 @@
-export * from './generate';
 export * from './extract';
+export * from './types';
