@@ -1,8 +1,8 @@
-import type { File } from '@scaffdog/types';
-import wrap from 'wrap-ansi';
+import chalk from 'chalk';
 import truncate from 'cli-truncate';
 import figures from 'figures';
-import chalk from 'chalk';
+import wrap from 'wrap-ansi';
+import type { File } from '../file';
 
 const NEWLINE = /\r\n|[\n\r\u2028\u2029]/;
 
@@ -33,7 +33,7 @@ export const formatFile = (
 
   // filename
   const body = chars.x.repeat(columns - gutter - 1);
-  const filename = file.skip ? `(skip) ${file.filename}` : file.filename;
+  const filename = file.skip ? `(skip) ${file.name}` : file.name;
 
   output.push(
     chk.gray([chars.x.repeat(gutter), chars.t, body].join('')),

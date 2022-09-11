@@ -1,9 +1,12 @@
 import path from 'path';
-import type { VariableSourceMap } from '@scaffdog/core';
+import type {
+  ExtractOptions,
+  Template,
+  VariableSourceMap,
+} from '@scaffdog/core';
 import { extract } from '@scaffdog/core';
 import { ScaffdogError } from '@scaffdog/error';
-import type { Template } from '@scaffdog/types';
-import fm from 'front-matter';
+import frontmatter from 'front-matter';
 import globby from 'globby';
 import * as z from 'zod';
 import { readFile } from './utils/fs';
@@ -79,8 +82,12 @@ export type Document = DocumentAttributes & {
   variables: VariableSourceMap;
 };
 
-export const parseDocument = (path: string, input: string): Document => {
-  const { attributes, body } = fm<DocumentAttributes>(input);
+export const parseDocument = (
+  path: string,
+  input: string,
+  options: ExtractOptions,
+): Document => {
+  const { attributes, body } = frontmatter<DocumentAttributes>(input);
   const attrs = attrSchema.safeParse(attributes);
   if (!attrs.success) {
     const [issue] = attrs.error.issues;
@@ -91,7 +98,7 @@ export const parseDocument = (path: string, input: string): Document => {
     });
   }
 
-  const { variables, templates } = extract(body);
+  const { variables, templates } = extract(body, options);
 
   return {
     ...attrs.data,
@@ -104,6 +111,7 @@ export const parseDocument = (path: string, input: string): Document => {
 export const resolveDocuments = async (
   dirname: string,
   patterns: string[],
+  options: ExtractOptions,
 ): Promise<Document[]> => {
   const paths = await globby(patterns, {
     cwd: dirname,
@@ -118,7 +126,7 @@ export const resolveDocuments = async (
       .filter((filepath) => MARKDOWN_EXTNAME.has(path.extname(filepath)))
       .map(async (filepath) => {
         const content = await readFile(filepath, 'utf8');
-        return parseDocument(filepath, content);
+        return parseDocument(filepath, content, options);
       }),
   );
 };

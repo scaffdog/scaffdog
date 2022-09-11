@@ -1,4 +1,6 @@
-import { test, expect, describe } from 'vitest';
+import type { ExtractOptions } from '@scaffdog/core';
+import { parse } from '@scaffdog/engine';
+import { describe, expect, test } from 'vitest';
 import { parseDocument } from './document';
 
 const partial = `
@@ -18,6 +20,8 @@ const createPartialDocument = (path: string) => ({
   templates: [],
 });
 
+const options: ExtractOptions = {};
+
 describe('parseDocument', () => {
   test('valid (partial)', () => {
     const result = parseDocument(
@@ -31,14 +35,15 @@ ${partial}
 content
 \`\`\`
 `.trim(),
+      options,
     );
 
     expect(result).toEqual({
       ...createPartialDocument('path'),
       templates: [
         {
-          filename: 'title.txt',
-          content: 'content',
+          filename: parse('title.txt', options),
+          content: parse('content', options),
         },
       ],
     });
@@ -60,6 +65,7 @@ output: ['a', 'b']
 content
 \`\`\`
 `.trim(),
+      options,
     );
 
     expect(result).toEqual({
@@ -67,8 +73,8 @@ content
       output: ['a', 'b'],
       templates: [
         {
-          filename: 'title.txt',
-          content: 'content',
+          filename: parse('title.txt', options),
+          content: parse('content', options),
         },
       ],
     });
@@ -110,6 +116,7 @@ questions:
     if: len(inputs.key1) > 3
 ---
 `.trim(),
+      options,
     );
 
     expect(result).toEqual({
@@ -160,6 +167,7 @@ questions:
 key: 'value'
 ---
 `.trim(),
+        options,
       ),
     ).toThrowError();
   });

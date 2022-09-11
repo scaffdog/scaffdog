@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { compile, defineHelper, extendContext } from '@scaffdog/engine';
+import { defineHelper, extendContext, render } from '@scaffdog/engine';
 import type { HelperMap, Variable } from '@scaffdog/types';
 import { isPlainObject } from 'is-plain-object';
 import { fileExists } from './utils/fs';
@@ -62,7 +62,7 @@ defineHelper<[target: string]>(
 
     const content = fs.readFileSync(filepath, 'utf8');
 
-    return compile(
+    return render(
       content,
       extendContext(ctx, {
         variables: new Map([

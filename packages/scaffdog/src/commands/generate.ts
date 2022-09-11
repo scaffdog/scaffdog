@@ -1,15 +1,15 @@
 /// <reference types="../types/inquirer-autocomplete-prompt" />
 import path from 'path';
 import { loadConfig } from '@scaffdog/config';
-import { generate } from '@scaffdog/core';
 import {
   compile,
   createContext,
   createHelper,
   extendContext,
+  render,
 } from '@scaffdog/engine';
 import { ScaffdogError } from '@scaffdog/error';
-import type { Context, File, Variable, VariableRecord } from '@scaffdog/types';
+import type { Context, Variable, VariableRecord } from '@scaffdog/types';
 import ansiEscapes from 'ansi-escapes';
 import chalk from 'chalk';
 import type { Consola } from 'consola';
@@ -20,13 +20,15 @@ import micromatch from 'micromatch';
 import { emojify } from 'node-emoji';
 import plur from 'plur';
 import { createCommand } from '../command';
-import type { Question } from '../document';
+import type { Document, Question } from '../document';
 import { resolveDocuments } from '../document';
+import type { File } from '../file';
 import { helpers } from '../helpers';
 import type { PromptQuestion } from '../prompt';
 import { autocomplete, confirm, prompt } from '../prompt';
 import { formatFile } from '../utils/format';
 import { fileExists, mkdir, writeFile } from '../utils/fs';
+import { assignGlobalVariables, createTemplateVariables } from '../variables';
 
 const handleCompileError = (e: unknown, logger: Consola): number => {
   if (e instanceof ScaffdogError) {
@@ -63,7 +65,7 @@ const confirmQuestionIf = (question: Question, context: Context) => {
       helpers: new Map([[fn, questionIf]]),
     });
 
-    return compile(`{{ ${fn}(${question.if}) }}`, ctx) === 'true';
+    return render(`{{ ${fn}(${question.if}) }}`, ctx) === 'true';
   }
 
   return true;
@@ -153,14 +155,6 @@ export default createCommand({
 
   const dirname = path.resolve(cwd, project);
 
-  const documents = await resolveDocuments(dirname, config.files);
-  if (documents.length === 0) {
-    logger.error(
-      'Document file not found. Please use `$ scaffdog create <name>` to create the document file.',
-    );
-    return 1;
-  }
-
   // base context
   const context = createContext({
     cwd,
@@ -175,6 +169,22 @@ export default createCommand({
   }
 
   // resolve document
+  let documents: Document[];
+  try {
+    documents = await resolveDocuments(dirname, config.files, {
+      tags: context.tags,
+    });
+  } catch (e) {
+    return handleCompileError(e, logger);
+  }
+
+  if (documents.length === 0) {
+    logger.error(
+      'Document file not found. Please use `$ scaffdog create <name>` to create the document file.',
+    );
+    return 1;
+  }
+
   const name =
     args.name == null
       ? await prompt({
@@ -241,11 +251,9 @@ export default createCommand({
   logger.debug('normalized dist: %s', dist);
 
   // set variables
-  context.variables.set('cwd', cwd);
-  context.variables.set('document', {
-    name: doc.name,
-    dir: path.dirname(doc.path),
-    path: doc.path,
+  assignGlobalVariables(context, {
+    cwd,
+    document: doc,
   });
 
   // inputs
@@ -276,18 +284,40 @@ export default createCommand({
   logger.debug('variables: %O', context.variables);
 
   // generate
-  let files: File[];
+  const files: File[] = [];
   try {
-    for (const [key, value] of doc.variables) {
-      context.variables.set(key, compile(value, context));
+    for (const [key, ast] of doc.variables) {
+      context.variables.set(key, compile(ast, context));
     }
 
-    files = generate(doc.templates, context.variables, {
-      cwd,
-      root: dist,
-      helpers: context.helpers,
-      tags: context.tags,
-    });
+    for (const tpl of doc.templates) {
+      const filename = compile(tpl.filename, context);
+      if (/^!/.test(filename)) {
+        const name = filename.slice(1);
+        files.push({
+          skip: true,
+          path: path.resolve(cwd, dist, name),
+          name,
+          content: '',
+        });
+        continue;
+      }
+
+      const ctx = extendContext(context, {
+        variables: createTemplateVariables({
+          cwd,
+          root: dist,
+          name: filename,
+        }),
+      });
+
+      files.push({
+        skip: false,
+        path: path.resolve(cwd, dist, filename),
+        name: filename,
+        content: compile(tpl.content, ctx),
+      });
+    }
   } catch (e) {
     return handleCompileError(e, logger);
   }
@@ -299,13 +329,15 @@ export default createCommand({
 
   if (flags['dry-run']) {
     files.forEach((file) => {
-      logger.log('');
-      logger.log(
-        formatFile(file, {
-          columns: size.columns,
-          color: true,
-        }),
-      );
+      if (!file.skip) {
+        logger.log('');
+        logger.log(
+          formatFile(file, {
+            columns: size.columns,
+            color: true,
+          }),
+        );
+      }
 
       if (file.skip) {
         skips.add(file);
@@ -320,10 +352,10 @@ export default createCommand({
         continue;
       }
 
-      await mkdir(path.dirname(file.output), { recursive: true });
+      await mkdir(path.dirname(file.path), { recursive: true });
 
-      if (!flags.force && fileExists(file.output)) {
-        const relative = path.relative(cwd, file.output);
+      if (!flags.force && fileExists(file.path)) {
+        const relative = path.relative(cwd, file.path);
 
         const ok = await confirm(
           chalk`Would you like to overwrite it? ("{bold.yellow ${relative}}")`,
@@ -339,7 +371,7 @@ export default createCommand({
         }
       }
 
-      await writeFile(file.output, file.content, 'utf8');
+      await writeFile(file.path, file.content, 'utf8');
 
       writes.add(file);
     }
@@ -357,7 +389,7 @@ export default createCommand({
   [...writes, ...skips].forEach((file) => {
     const skipped = skips.has(file);
     const prefix = ' '.repeat(4);
-    const relative = path.relative(cwd, file.output);
+    const relative = path.relative(cwd, file.path);
     const output = [
       prefix,
       skipped ? symbols.warning : symbols.success,

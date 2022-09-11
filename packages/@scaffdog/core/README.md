@@ -12,34 +12,56 @@ $ npm install @scaffdog/core
 
 ## Usage
 
-```typescript
-import fs from 'fs';
-import { extract, generate } from '@scaffdog/core';
+**template.md:**
 
-const { variables, templates } = extract(
-  `
+````markdown
 # Variables
 
-- key: \`{{ input | upper }}\`
+- key: `{{ input | upper }}`
 
-# \`{{ input }}.txt\`
+# `{{ input }}.txt`
 
-\`\`\`
+```
 {{ output.path }}
-\`\`\`
-`.trim(),
-);
+```
+````
 
-variables.set('input', 'scaffdog');
+**index.ts:**
 
-const files = generate(templates, variables, {
-  root: 'path/to',
-  helpers: new Map(),
-});
+```typescript
+import fs from 'fs';
+import path from 'path';
+import { createContext, compile } from '@scaffdog/engine';
+import { extract, generate } from '@scaffdog/core';
 
-files.forEach((file) => {
-  fs.writeFileSync(file.output, file.content);
-});
+const source = fs.readFileSync('template.md', 'utf8');
+const context = createContext({});
+
+const { variables, templates } = extract(source, context);
+
+for (const [key, ast] of variables) {
+  context.variables.set(key, compile(ast, context));
+}
+
+for (const template of templates) {
+  const filename = compile(template.filename, context);
+
+  const data = compile(
+    template.content,
+    extendContext({
+      variables: new Map([
+        [
+          'output',
+          {
+            path: filename,
+          },
+        ],
+      ]),
+    }),
+  );
+
+  fs.writeFileSync(filename, data);
+}
 
 // --> Generated "path/to/scaffdog.txt"
 ```

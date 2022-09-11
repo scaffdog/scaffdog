@@ -1,9 +1,11 @@
 import path from 'path';
-import { extract, generate } from '@scaffdog/core';
+import { extract } from '@scaffdog/core';
+import { compile, createContext } from '@scaffdog/engine';
 import chalk from 'chalk';
 import symbols from 'log-symbols';
 import { emojify } from 'node-emoji';
 import { createCommand } from '../command';
+import type { File } from '../file';
 import { confirm, prompt } from '../prompt';
 import { directoryExists, mkdir, writeFile } from '../utils/fs';
 
@@ -33,7 +35,7 @@ export default createCommand({
   await mkdir(dirname, { recursive: true });
 
   // create first document file
-  const { templates, variables } = extract(
+  const { templates } = extract(
     `
 # \`config.js\`
 
@@ -64,6 +66,7 @@ https://scaff.dog/docs/templates
 \`\`\`
 \`\`\`\`
 `.trim(),
+    {},
   );
 
   const name = await prompt<string>({
@@ -72,24 +75,30 @@ https://scaff.dog/docs/templates
     validate: (v: string) => (v !== '' ? true : 'required input!'),
   });
 
-  variables.set('name', name);
-  variables.set('placeholder', `{{ inputs.value }}`);
+  const context = createContext({});
+  context.variables.set('name', name);
+  context.variables.set('placeholder', `{{ inputs.value }}`);
 
-  const files = generate(templates, variables, {
-    cwd,
-    root: project,
-  });
+  const files = await Promise.all(
+    templates.map(async (tpl) => {
+      const name = compile(tpl.filename, context);
+      const file: File = {
+        skip: false,
+        path: path.resolve(dirname, name),
+        name,
+        content: compile(tpl.content, context),
+      };
 
-  await Promise.all(
-    files.map(async (file) => {
-      await writeFile(file.output, file.content, 'utf8');
+      await writeFile(file.path, file.content, 'utf8');
+
+      return file;
     }),
   );
 
   // success message
   const list = files
     .map((file) => {
-      const relative = path.relative(cwd, file.output);
+      const relative = path.relative(cwd, file.path);
       return chalk`  ${symbols.success} {bold ${relative}}`;
     })
     .join('\n');
