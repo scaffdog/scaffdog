@@ -10,7 +10,7 @@
     "typecheck": "turbo run typecheck",
     "clean": "pnpm clean:cache",
     "clean:all": "run-s clean:cache clean:deps",
-    "clean:cache": "rimraf \".turbo\" \"**/.turbo\" \"packages/*/lib\" \"packages/@scaffdog/*/lib\"",
+    "clean:cache": "rimraf \".turbo\" \"**/.turbo\" \"packages/*/dist\" \"packages/@scaffdog/*/dist\"",
     "clean:deps": "rimraf \"packages/*/node_modules\" \"packages/@scaffdog/*/node_modules\" node_modules",
     "format": "run-s format:prettier format:script",
     "format:prettier": "prettier --write .",

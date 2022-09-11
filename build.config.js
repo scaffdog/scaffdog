@@ -2,7 +2,7 @@ import { defineBuildConfig } from 'unbuild';
 
 export default defineBuildConfig({
   clean: true,
-  outDir: 'lib',
+  outDir: 'dist',
   declaration: true,
   rollup: {
     emitCJS: true,

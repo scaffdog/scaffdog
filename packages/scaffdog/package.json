@@ -23,11 +23,11 @@
   "license": "MIT",
   "author": "wadackel <wadackel@gmail.com>",
   "bin": {
-    "scaffdog": "./lib/bin.cjs"
+    "scaffdog": "./dist/bin.cjs"
   },
   "files": [
-    "lib",
-    "!lib/**/*.snap"
+    "dist",
+    "!dist/**/*.snap"
   ],
   "scripts": {
     "typecheck": "tsc",

@@ -18,9 +18,9 @@
   },
   "license": "MIT",
   "author": "wadackel <wadackel@gmail.com>",
-  "types": "lib/index.d.ts",
+  "types": "dist/index.d.ts",
   "files": [
-    "lib"
+    "dist"
   ],
   "scripts": {
     "typecheck": "tsc --noEmit",

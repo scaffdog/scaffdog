@@ -27,8 +27,8 @@ jobs:
         with:
           name: dist
           path: |
-            */*/lib
-            */*/*/lib
+            */*/dist
+            */*/*/dist
             !node_modules
 
   lint:

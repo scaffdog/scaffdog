@@ -18,9 +18,9 @@
   },
   "license": "MIT",
   "author": "wadackel <wadackel@gmail.com>",
-  "main": "lib/index.cjs",
-  "module": "lib/index.mjs",
-  "types": "lib/index.d.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "scripts": {
     "typecheck": "tsc",
     "build": "unbuild",
