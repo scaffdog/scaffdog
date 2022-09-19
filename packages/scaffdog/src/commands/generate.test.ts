@@ -1,280 +1,372 @@
-import fs from 'fs';
 import path from 'path';
-import { afterEach, beforeAll, describe, expect, test, vi } from 'vitest';
+import { parse } from '@scaffdog/engine';
+import { describe, expect, test, vi } from 'vitest';
+import type yargs from 'yargs';
+import type { Library } from '../lib';
+import { createDocument } from '../lib/document.factory';
+import { createDocumentLibraryMock } from '../lib/document.mock';
+import { createFsLibraryMock } from '../lib/fs.mock';
+import { createPromptLibraryMock } from '../lib/prompt.mock';
+import { createQuestionLibraryMock } from '../lib/question.mock';
 import { cwd, runCommand } from '../mocks/command-test-utils';
-import * as prompt from '../prompt';
+import { createLibraryMock } from '../mocks/lib';
 import cmd from './generate';
 
-const defaults = {
-  args: {
-    name: undefined,
-  },
-  flags: {
-    'dry-run': false,
-    force: false,
-  },
-};
+const run = (
+  args: Partial<yargs.InferredOptionTypes<typeof cmd['args']>>,
+  flags: Partial<yargs.InferredOptionTypes<typeof cmd['flags']>>,
+  lib: Library,
+) =>
+  runCommand(
+    cmd,
+    {
+      name: undefined,
+      ...args,
+    },
+    {
+      'dry-run': false,
+      force: false,
+      ...flags,
+    },
+    lib,
+  );
 
-const clear = () => {
-  try {
-    fs.rmSync(path.resolve(cwd, 'tmp'), {
-      recursive: true,
-    });
-  } catch (e) {}
-};
-
-const mount = (files: Record<string, { path: string; content: string }>) => {
-  for (const entry of Object.values(files)) {
-    const filepath = path.resolve(cwd, entry.path);
-    const dirname = path.dirname(filepath);
-
-    fs.mkdirSync(dirname, { recursive: true });
-    fs.writeFileSync(filepath, entry.content, 'utf8');
-  }
-};
-
-beforeAll(() => {
-  clear();
-});
-
-afterEach(() => {
-  clear();
-  vi.clearAllMocks();
-});
+const documents = [
+  createDocument({
+    name: 'basic',
+    root: '.',
+    output: '.',
+    templates: [
+      {
+        filename: parse('static.txt'),
+        content: parse('static content'),
+      },
+      {
+        filename: parse('dir/{{ inputs.value }}.txt'),
+        content: parse('{{ inputs.value }}'),
+      },
+    ],
+  }),
+  createDocument({
+    name: 'multiple',
+    root: '.',
+    output: '**/*',
+    templates: [
+      {
+        filename: parse('static.txt'),
+        content: parse('static content'),
+      },
+    ],
+  }),
+];
 
 describe('prompt', () => {
   test('name', async () => {
-    vi.spyOn(prompt, 'prompt').mockResolvedValueOnce('a'); // name
+    const lib = createLibraryMock()
+      .provideValue(
+        'prompt',
+        createPromptLibraryMock({
+          prompt: vi.fn().mockResolvedValueOnce('basic'),
+        }),
+      )
+      .provideValue(
+        'document',
+        createDocumentLibraryMock({
+          resolve: vi.fn().mockResolvedValueOnce(documents),
+        }),
+      )
+      .provideValue(
+        'question',
+        createQuestionLibraryMock({
+          resolve: vi.fn().mockResolvedValueOnce({
+            value: 'scaffdog',
+          }),
+        }),
+      )
+      .provideValue(
+        'fs',
+        createFsLibraryMock({
+          fileExists: vi.fn().mockReturnValue(false),
+          mkdir: vi.fn().mockReturnValue(Promise.resolve()),
+          writeFile: vi.fn().mockReturnValue(Promise.resolve()),
+        }),
+      );
 
-    const { code, stdout, stderr } = await runCommand(
-      cmd,
-      {
-        ...defaults.args,
-      },
-      {
-        ...defaults.flags,
-      },
-    );
+    const { code, stdout, stderr } = await run({}, {}, lib);
 
+    expect(code).toBe(0);
     expect(stderr).toBe('');
     expect(stdout).toMatchSnapshot();
-    expect(code).toBe(0);
-    expect(
-      fs.readFileSync(path.resolve(cwd, 'tmp/nest/dump.txt'), 'utf8'),
-    ).toMatchSnapshot();
+
+    const prompt = lib.resolve('prompt');
+    expect(prompt.prompt).toBeCalledWith(
+      expect.objectContaining({
+        type: 'list',
+        choices: documents.map((d) => d.name),
+      }),
+    );
+
+    const question = lib.resolve('question');
+    expect(question.resolve).toBeCalledWith(
+      expect.objectContaining({
+        questions: documents[0].questions,
+      }),
+    );
+
+    const fs = lib.resolve('fs');
+    expect(fs.mkdir).toBeCalledWith(cwd, {
+      recursive: true,
+    });
+    expect(fs.writeFile).toBeCalledWith(
+      path.join(cwd, 'static.txt'),
+      'static content',
+    );
+    expect(fs.mkdir).toBeCalledWith(path.join(cwd, 'dir'), {
+      recursive: true,
+    });
+    expect(fs.writeFile).toBeCalledWith(
+      path.join(cwd, 'dir/scaffdog.txt'),
+      'scaffdog',
+    );
   });
 
   test('overwrite files', async () => {
-    vi.spyOn(prompt, 'confirm')
-      .mockResolvedValueOnce(true) // dump.txt
-      .mockResolvedValueOnce(false); // generate.txt (skipped)
+    const lib = createLibraryMock()
+      .provideValue(
+        'prompt',
+        createPromptLibraryMock({
+          prompt: vi.fn().mockResolvedValueOnce('basic'),
+          confirm: vi
+            .fn()
+            .mockResolvedValueOnce(true) // static.txt
+            .mockResolvedValueOnce(false), // dir/scaffdog.txt (skipped)
+        }),
+      )
+      .provideValue(
+        'document',
+        createDocumentLibraryMock({
+          resolve: vi.fn().mockResolvedValueOnce(documents),
+        }),
+      )
+      .provideValue(
+        'question',
+        createQuestionLibraryMock({
+          resolve: vi.fn().mockResolvedValueOnce({
+            value: 'scaffdog',
+          }),
+        }),
+      )
+      .provideValue(
+        'fs',
+        createFsLibraryMock({
+          fileExists: vi.fn().mockReturnValue(true),
+          mkdir: vi.fn().mockReturnValue(Promise.resolve()),
+          writeFile: vi.fn().mockReturnValue(Promise.resolve()),
+        }),
+      );
 
-    const file = {
-      dump: {
-        path: path.resolve(cwd, 'tmp/nest/dump.txt'),
-        content: 'dump',
-      },
-      generate: {
-        path: path.resolve(cwd, 'tmp/generate.txt'),
-        content: 'generate',
-      },
-    };
+    const { code, stdout, stderr } = await run({}, {}, lib);
 
-    mount(file);
-
-    const { code, stdout, stderr } = await runCommand(
-      cmd,
-      {
-        ...defaults.args,
-        name: 'a',
-      },
-      {
-        ...defaults.flags,
-      },
-    );
-
+    expect(code).toBe(0);
     expect(stderr).toBe('');
     expect(stdout).toMatchSnapshot();
-    expect(code).toBe(0);
 
-    expect(fs.readFileSync(file.dump.path, 'utf8')).not.toBe(file.dump.content);
-    expect(fs.readFileSync(file.generate.path, 'utf8')).toBe(
-      file.generate.content,
+    const fs = lib.resolve('fs');
+    expect(fs.writeFile).toBeCalledWith(
+      path.join(cwd, 'static.txt'),
+      'static content',
     );
+    expect(fs.writeFile).toBeCalledTimes(1);
   });
 
-  test('has magic and question', async () => {
-    fs.mkdirSync(path.resolve(cwd, 'tmp/root'), { recursive: true });
+  test('magic pattern and destination autocomplete', async () => {
+    const lib = createLibraryMock()
+      .provideValue(
+        'document',
+        createDocumentLibraryMock({
+          resolve: vi.fn().mockResolvedValueOnce(documents),
+        }),
+      )
+      .provideValue(
+        'question',
+        createQuestionLibraryMock({
+          resolve: vi.fn().mockResolvedValueOnce({
+            value: 'scaffdog',
+          }),
+        }),
+      )
+      .provideValue(
+        'prompt',
+        createPromptLibraryMock({
+          autocomplete: vi.fn().mockResolvedValueOnce('dirB'),
+        }),
+      )
+      .provideValue(
+        'fs',
+        createFsLibraryMock({
+          glob: vi.fn().mockResolvedValueOnce(['dirA', 'dirB']),
+        }),
+      );
 
-    vi.spyOn(prompt, 'autocomplete').mockResolvedValueOnce('root');
-    vi.spyOn(prompt, 'prompt')
-      .mockResolvedValueOnce('value')
-      .mockResolvedValueOnce('B');
-
-    const { code, stdout, stderr } = await runCommand(
-      cmd,
+    const { code, stdout, stderr } = await run(
       {
-        ...defaults.args,
-        name: 'b',
+        name: 'multiple',
       },
-      {
-        ...defaults.flags,
-      },
+      {},
+      lib,
     );
 
+    expect(code).toBe(0);
     expect(stderr).toBe('');
     expect(stdout).toMatchSnapshot();
-    expect(code).toBe(0);
-  });
 
-  test('all question types', async () => {
-    vi.spyOn(prompt, 'prompt')
-      .mockResolvedValueOnce('shorthand') // shorthand
-      .mockResolvedValueOnce('input') // input
-      .mockResolvedValueOnce('input_with_initial') // input_with_initial
-      .mockResolvedValueOnce('input_if') // input_if
-      .mockResolvedValueOnce(true) // bool
-      .mockResolvedValueOnce(true) // bool_with_true
-      .mockResolvedValueOnce(false) // bool_with_false
-      .mockResolvedValueOnce(true) // bool_if
-      .mockResolvedValueOnce('C') // list
-      .mockResolvedValueOnce('B') // list_with_initial
-      .mockResolvedValueOnce('A') // list_if
-      .mockResolvedValueOnce(['A', 'C']) // checkbox
-      .mockResolvedValueOnce(['B', 'C']) // checkbox_with_initial
-      .mockResolvedValueOnce(['A']); // checkbox_if
-
-    const { code, stdout, stderr } = await runCommand(
-      cmd,
-      {
-        ...defaults.args,
-        name: 'question',
-      },
-      {
-        ...defaults.flags,
-      },
+    const fs = lib.resolve('fs');
+    expect(fs.glob).toBeCalledWith(
+      '**/*',
+      expect.objectContaining({
+        cwd,
+      }),
     );
 
-    expect(stderr).toBe('');
-    expect(stdout).toMatchSnapshot();
-    expect(code).toBe(0);
-
-    expect(
-      fs.readFileSync(path.resolve(cwd, 'tmp/result.txt'), 'utf8'),
-    ).toMatchSnapshot();
-  });
-
-  test('variables section', async () => {
-    vi.spyOn(prompt, 'prompt').mockResolvedValueOnce('success'); // foo
-
-    const { code, stdout, stderr } = await runCommand(
-      cmd,
-      {
-        ...defaults.args,
-        name: 'vars',
-      },
-      {
-        ...defaults.flags,
-      },
+    const prompt = lib.resolve('prompt');
+    expect(prompt.autocomplete).toBeCalledWith(
+      expect.stringContaining('output destination'),
+      ['.', 'dirA', 'dirB'],
+      {},
     );
-
-    expect(stderr).toBe('');
-    expect(stdout).toMatchSnapshot();
-    expect(code).toBe(0);
-    expect(
-      fs.readFileSync(path.resolve(cwd, 'tmp/index.txt'), 'utf8'),
-    ).toMatchSnapshot();
   });
 });
 
-describe('flags', () => {
-  test('flags', async () => {
-    const { code, stdout, stderr } = await runCommand(
-      cmd,
+describe('args and flags', () => {
+  test('force', async () => {
+    const lib = createLibraryMock()
+      .provideValue(
+        'document',
+        createDocumentLibraryMock({
+          resolve: vi.fn().mockResolvedValueOnce(documents),
+        }),
+      )
+      .provideValue(
+        'question',
+        createQuestionLibraryMock({
+          resolve: vi.fn().mockResolvedValueOnce({
+            value: 'scaffdog',
+          }),
+        }),
+      );
+
+    const { code, stdout, stderr } = await run(
       {
-        ...defaults.args,
-        name: 'a',
-      },
-      {
-        ...defaults.flags,
-      },
-    );
-
-    expect(code).toBe(0);
-    expect(stderr).toBe('');
-    expect(stdout).toMatchSnapshot();
-  });
-
-  test('force overwrite', async () => {
-    vi.spyOn(prompt, 'confirm').mockRejectedValueOnce(new Error('unexpected'));
-
-    const file = {
-      dump: {
-        path: path.resolve(cwd, 'tmp/nest/dump.txt'),
-        content: 'dump',
-      },
-      generate: {
-        path: path.resolve(cwd, 'tmp/generate.txt'),
-        content: 'generate',
-      },
-    };
-
-    mount(file);
-
-    const { code, stdout, stderr } = await runCommand(
-      cmd,
-      {
-        ...defaults.args,
-        name: 'a',
+        name: 'basic',
       },
       {
-        ...defaults.flags,
         force: true,
       },
+      lib,
     );
 
+    expect(code).toBe(0);
     expect(stderr).toBe('');
     expect(stdout).toMatchSnapshot();
-    expect(code).toBe(0);
 
-    expect(fs.readFileSync(file.dump.path, 'utf8')).not.toBe(file.dump.content);
-    expect(fs.readFileSync(file.generate.path, 'utf8')).not.toBe(
-      file.generate.content,
-    );
+    const fs = lib.resolve('fs');
+    expect(fs.fileExists).not.toBeCalled();
+    expect(fs.writeFile).toBeCalledTimes(2);
   });
 
-  test('dry run', async () => {
-    const { code, stdout, stderr } = await runCommand(
-      cmd,
+  test('dry-run', async () => {
+    const lib = createLibraryMock()
+      .provideValue(
+        'document',
+        createDocumentLibraryMock({
+          resolve: vi.fn().mockResolvedValueOnce(documents),
+        }),
+      )
+      .provideValue(
+        'question',
+        createQuestionLibraryMock({
+          resolve: vi.fn().mockResolvedValueOnce({
+            value: 'scaffdog',
+          }),
+        }),
+      );
+
+    const { code, stdout, stderr } = await run(
       {
-        ...defaults.args,
-        name: 'a',
+        name: 'basic',
       },
       {
-        ...defaults.flags,
         'dry-run': true,
       },
+      lib,
     );
 
+    expect(code).toBe(0);
     expect(stderr).toBe('');
     expect(stdout).toMatchSnapshot();
-    expect(code).toBe(0);
+
+    const fs = lib.resolve('fs');
+    expect(fs.fileExists).not.toBeCalled();
+    expect(fs.writeFile).not.toBeCalled();
+  });
+
+  test('no documents', async () => {
+    const lib = createLibraryMock()
+      .provideValue(
+        'document',
+        createDocumentLibraryMock({
+          resolve: vi.fn().mockResolvedValueOnce([]),
+        }),
+      )
+      .provideValue(
+        'question',
+        createQuestionLibraryMock({
+          resolve: vi.fn().mockResolvedValueOnce({
+            value: 'scaffdog',
+          }),
+        }),
+      );
+
+    const { code, stdout, stderr } = await run(
+      {
+        name: 'basic',
+      },
+      {},
+      lib,
+    );
+
+    expect(code).toBe(1);
+    expect(stderr).toMatchSnapshot();
+    expect(stdout).toBe('');
   });
 
   test('not found', async () => {
-    const { code, stdout, stderr } = await runCommand(
-      cmd,
+    const lib = createLibraryMock()
+      .provideValue(
+        'document',
+        createDocumentLibraryMock({
+          resolve: vi.fn().mockResolvedValueOnce(documents),
+        }),
+      )
+      .provideValue(
+        'question',
+        createQuestionLibraryMock({
+          resolve: vi.fn().mockResolvedValueOnce({
+            value: 'scaffdog',
+          }),
+        }),
+      );
+
+    const { code, stdout, stderr } = await run(
       {
-        ...defaults.args,
         name: 'not-found',
       },
-      {
-        ...defaults.flags,
-      },
+      {},
+      lib,
     );
 
+    expect(code).toBe(1);
     expect(stderr).toMatchSnapshot();
     expect(stdout).toBe('');
-    expect(code).toBe(1);
   });
 });

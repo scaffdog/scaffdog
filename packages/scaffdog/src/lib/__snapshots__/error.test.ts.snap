@@ -1,0 +1,61 @@
+// Vitest Snapshot v1
+
+exports[`handle > Error 1`] = `
+"
+ ERROR  General Error: title
+
+  at src/lib/error.test.ts:55:15
+  at ~/node_modules/.pnpm/vitest@0.23.1/node_modules/vitest/dist/chunk-runtime-chain.8bfc559b.mjs:2331:43
+  at runWithSuite (~/node_modules/.pnpm/vitest@0.23.1/node_modules/vitest/dist/chunk-runtime-chain.8bfc559b.mjs:2128:9)
+  at Object.collect (~/node_modules/.pnpm/vitest@0.23.1/node_modules/vitest/dist/chunk-runtime-chain.8bfc559b.mjs:2331:13)
+  at Object.collect (~/node_modules/.pnpm/vitest@0.23.1/node_modules/vitest/dist/chunk-runtime-chain.8bfc559b.mjs:2334:57)
+  at async collectTests (~/node_modules/.pnpm/vitest@0.23.1/node_modules/vitest/dist/chunk-runtime-error.252dd130.mjs:351:28)
+  at async startTestsNode (~/node_modules/.pnpm/vitest@0.23.1/node_modules/vitest/dist/chunk-runtime-error.252dd130.mjs:766:17)
+  at async ~/node_modules/.pnpm/vitest@0.23.1/node_modules/vitest/dist/entry.mjs:83:9
+  at async Module.withEnv (~/node_modules/.pnpm/vitest@0.23.1/node_modules/vitest/dist/chunk-runtime-error.252dd130.mjs:293:5)
+  at async run (~/node_modules/.pnpm/vitest@0.23.1/node_modules/vitest/dist/entry.mjs:76:5)
+  at async ~/node_modules/.pnpm/tinypool@0.2.4/node_modules/tinypool/dist/esm/worker.js:99:20
+
+
+"
+`;
+
+exports[`handle > ScaffdogError - with source 1`] = `
+"
+ ERROR  Compile Error
+
+       \\"foo\\" is not defined:
+
+     > │ {{ foo }}
+       │    ^^^
+
+"
+`;
+
+exports[`handle > ScaffdogError - without source 1`] = `
+"
+ ERROR  Compile Error
+
+    message
+
+"
+`;
+
+exports[`handle > ZodError 1`] = `
+"
+ ERROR  Parsing Error
+
+    2 issues found
+    - INVALID_TYPE: Expected string, received number (in \\"foo\\")
+    - INVALID_TYPE: Expected number, received string (in \\"bar.baz\\")
+
+"
+`;
+
+exports[`handle > unknown 1`] = `
+"
+ ERROR  Error null
+
+
+"
+`;

@@ -3,6 +3,8 @@ name: Docs
 on:
   push:
     branches: [canary]
+  pull_request:
+    types: [opened, synchronize]
 
 jobs:
   build:
@@ -18,6 +20,7 @@ jobs:
           cache: 'pnpm'
       - run: pnpm install --frozen-lockfile
       - run: pnpm docs:build
+      - run: pnpm docs:typecheck
       - run: pnpm docs:export
       - run: touch website/out/.nojekyll
       - uses: actions/upload-pages-artifact@v1
@@ -33,6 +36,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    if: github.ref == 'refs/heads/canary'
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

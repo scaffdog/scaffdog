@@ -2,9 +2,10 @@
 import consola, { FancyReporter } from 'consola';
 import type { PackageJson } from 'type-fest';
 import updateNotifier from 'update-notifier';
-import { CLI } from './cli';
-import { CommandContainer } from './command-container';
+import { createCLI } from './cli';
+import { createCommandContainer } from './command-container';
 import { commands } from './commands';
+import { createLibrary } from './lib';
 
 (async () => {
   const logger = consola.create({
@@ -35,8 +36,9 @@ import { commands } from './commands';
       distTag: pkg.version?.includes('canary') ? 'canary' : 'latest',
     }).notify();
 
-    const container = new CommandContainer(commands);
-    const cli = new CLI(pkg, logger, container);
+    const container = createCommandContainer(commands);
+    const lib = createLibrary(logger);
+    const cli = createCLI({ pkg, logger, container, lib });
     const code = await cli.run(process.argv.slice(2));
 
     logger.log('');

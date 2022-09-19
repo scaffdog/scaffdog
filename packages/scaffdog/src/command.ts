@@ -3,6 +3,7 @@ import type { Merge, PackageJson } from 'type-fest';
 import type yargs from 'yargs';
 import type { CommandContainer } from './command-container';
 import type { globalFlags } from './global-flags';
+import type { Library } from './lib';
 
 export type GlobalFlags = yargs.InferredOptionTypes<typeof globalFlags>;
 export type GlobalFlagsWith<T> = Merge<GlobalFlags, T>;
@@ -22,6 +23,7 @@ export type CommandContext<A extends CommandOption, F extends CommandOption> = {
     rows: number;
     columns: number;
   };
+  lib: Library;
   args: CommandArgs<A>;
   flags: GlobalFlagsWith<CommandArgs<F>>;
 };

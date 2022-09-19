@@ -1,7 +1,9 @@
 import path from 'path';
 import type yargs from 'yargs';
 import type { CommandModule, CommandOption } from '../command';
-import { CommandContainer } from '../command-container';
+import type { CommandContainer } from '../command-container';
+import { createCommandContainer } from '../command-container';
+import type { Library } from '../lib';
 import { createLogger } from './logger';
 
 export const cwd = path.resolve(__dirname, '../../');
@@ -13,6 +15,7 @@ export const runCommand = async <
   cmd: CommandModule<A, F>,
   args: yargs.InferredOptionTypes<A>,
   flags: yargs.InferredOptionTypes<F>,
+  lib: Library,
   container: CommandContainer | null = null,
 ): Promise<{
   code: number;
@@ -33,7 +36,8 @@ export const runCommand = async <
       columns: 60,
     },
     logger,
-    container: container ?? new CommandContainer([]),
+    container: container ?? createCommandContainer([]),
+    lib,
     args,
     flags: {
       project: 'fixtures',

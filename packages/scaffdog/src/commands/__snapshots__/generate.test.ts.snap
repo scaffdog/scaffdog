@@ -1,99 +1,54 @@
 // Vitest Snapshot v1
 
-exports[`flags > dry run 1`] = `
+exports[`args and flags > dry-run 1`] = `
 "ℹ Output destination directory: \\".\\"
 
 ───┬────────────────────────────────────────────────────────
- ✔ │ File: tmp/nest/dump.txt
+ ✔ │ File: static.txt
 ───┼────────────────────────────────────────────────────────
- 1 │ a
- 2 │ tmp/nest/dump.txt
- 3 │ dump
- 4 │ dump.txt
- 5 │ .txt
- 6 │ tmp/nest
- 7 │ dump.txt
- 8 │ 
- 9 │ ../../snapshots/src
+ 1 │ static content
 
 ───┬────────────────────────────────────────────────────────
- ✔ │ File: tmp/generate.txt
+ ✔ │ File: dir/scaffdog.txt
 ───┼────────────────────────────────────────────────────────
- 1 │ foo
+ 1 │ scaffdog
 
 🐶 Generated 2 files!
 
-     ✔ tmp/nest/dump.txt
-     ✔ tmp/generate.txt
+     ✔ static.txt
+     ✔ dir/scaffdog.txt
 "
 `;
 
-exports[`flags > flags 1`] = `
+exports[`args and flags > force 1`] = `
 "ℹ Output destination directory: \\".\\"
 
 🐶 Generated 2 files!
 
-     ✔ tmp/nest/dump.txt
-     ✔ tmp/generate.txt
+     ✔ static.txt
+     ✔ dir/scaffdog.txt
 "
 `;
 
-exports[`flags > force overwrite 1`] = `
-"ℹ Output destination directory: \\".\\"
+exports[`args and flags > no documents 1`] = `
+"
+ ERROR  Document file not found. Please use $ scaffdog create <name> to create the document file.
 
-🐶 Generated 2 files!
-
-     ✔ tmp/nest/dump.txt
-     ✔ tmp/generate.txt
 "
 `;
 
-exports[`flags > not found 1`] = `
+exports[`args and flags > not found 1`] = `
 "
  ERROR  Document \\"not-found\\" not found.
 
 "
 `;
 
-exports[`prompt > all question types 1`] = `
-"ℹ Output destination directory: \\"tmp\\"
-
-🐶 Generated 1 file!
-
-     ✔ tmp/result.txt
+exports[`prompt > magic pattern and destination autocomplete 1`] = `
 "
-`;
-
-exports[`prompt > all question types 2`] = `
-"shorthand: shorthand
-input: input
-input_with_initial: input_with_initial
-input_if: input_if
-input_if_with_initial: default
-input_if_without_initial: 
-bool: true
-bool_with_true: true
-bool_with_false: false
-bool_if: true
-bool_if_with_initial: true
-bool_if_without_initial: false
-list: C
-list_with_initial: B
-list_if: A
-list_if_with_initial: B
-list_if_without_initial: 
-checkbox: A,C
-checkbox_with_initial: B,C
-checkbox_if_with_initial: B,C
-checkbox_if_without_initial: "
-`;
-
-exports[`prompt > has magic and question 1`] = `
-"ℹ Output destination directory: \\"tmp/root\\"
-
 🐶 Generated 1 file!
 
-     ✔ tmp/root/b.txt
+     ✔ dirB/static.txt
 "
 `;
 
@@ -102,21 +57,9 @@ exports[`prompt > name 1`] = `
 
 🐶 Generated 2 files!
 
-     ✔ tmp/nest/dump.txt
-     ✔ tmp/generate.txt
+     ✔ static.txt
+     ✔ dir/scaffdog.txt
 "
-`;
-
-exports[`prompt > name 2`] = `
-"a
-tmp/nest/dump.txt
-dump
-dump.txt
-.txt
-tmp/nest
-dump.txt
-
-../../snapshots/src"
 `;
 
 exports[`prompt > overwrite files 1`] = `
@@ -124,18 +67,7 @@ exports[`prompt > overwrite files 1`] = `
 
 🐶 Generated 1 file! (1 skipped)
 
-     ✔ tmp/nest/dump.txt
-     ⚠ tmp/generate.txt (skipped)
+     ✔ static.txt
+     ⚠ dir/scaffdog.txt (skipped)
 "
 `;
-
-exports[`prompt > variables section 1`] = `
-"ℹ Output destination directory: \\".\\"
-
-🐶 Generated 1 file!
-
-     ✔ tmp/index.txt
-"
-`;
-
-exports[`prompt > variables section 2`] = `"foo: success"`;

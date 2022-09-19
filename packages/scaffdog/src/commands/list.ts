@@ -3,7 +3,6 @@ import { loadConfig } from '@scaffdog/config';
 import chalk from 'chalk';
 import plur from 'plur';
 import { createCommand } from '../command';
-import { resolveDocuments } from '../document';
 
 const count = (word: string, cnt: number) => `${cnt} ${plur(word, cnt)}`;
 
@@ -12,11 +11,13 @@ export default createCommand({
   summary: 'Print a list of available documents.',
   args: {},
   flags: {},
-})(async ({ cwd, logger, flags }) => {
+})(async ({ cwd, logger, lib, flags }) => {
+  const document = lib.resolve('document');
+
   const { project } = flags;
   const config = loadConfig(cwd, { project });
   const dirname = path.resolve(cwd, project);
-  const documents = await resolveDocuments(dirname, config.files, {
+  const documents = await document.resolve(dirname, config.files, {
     tags: config.tags,
   });
 

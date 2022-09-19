@@ -1,9 +1,10 @@
-import fs from 'fs';
 import path from 'path';
 import { defineHelper, extendContext, render } from '@scaffdog/engine';
 import type { HelperMap, Variable } from '@scaffdog/types';
 import { isPlainObject } from 'is-plain-object';
-import { fileExists } from './utils/fs';
+import { createFsLibrary } from './lib/fs';
+
+const fs = createFsLibrary();
 
 const isObjectVariable = (
   input: Variable | undefined,
@@ -56,11 +57,11 @@ defineHelper<[target: string]>(
     }
 
     const filepath = path.resolve(path.dirname(document.path), target);
-    if (!fileExists(filepath)) {
+    if (!fs.fileExists(filepath)) {
       throw new Error(`"${filepath}" does not exists.`);
     }
 
-    const content = fs.readFileSync(filepath, 'utf8');
+    const content = fs.readFileSync(filepath);
 
     return render(
       content,

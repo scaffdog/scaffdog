@@ -6,8 +6,6 @@ import symbols from 'log-symbols';
 import { emojify } from 'node-emoji';
 import { createCommand } from '../command';
 import type { File } from '../file';
-import { confirm, prompt } from '../prompt';
-import { directoryExists, mkdir, writeFile } from '../utils/fs';
 
 export default createCommand({
   name: 'init',
@@ -15,15 +13,19 @@ export default createCommand({
     'Prepare to use scaffdog. Create a `.scaffdog` directory by default, and create a first document file.',
   args: {},
   flags: {},
-})(async ({ cwd, logger, flags }) => {
+})(async ({ cwd, logger, lib, flags }) => {
+  const fs = lib.resolve('fs');
+  const prompt = lib.resolve('prompt');
+
   const { project } = flags;
   const dirname = path.resolve(cwd, project);
 
   // create project directory
-  if (directoryExists(dirname)) {
-    const ok = await confirm(
+  if (fs.directoryExists(dirname)) {
+    const ok = await prompt.confirm(
       chalk`"{bold.yellow ${project}}" already exist. Do you want to continue the setup?`,
       false,
+      {},
     );
 
     if (!ok) {
@@ -32,7 +34,7 @@ export default createCommand({
     }
   }
 
-  await mkdir(dirname, { recursive: true });
+  await fs.mkdir(dirname, { recursive: true });
 
   // create first document file
   const { templates } = extract(
@@ -69,7 +71,7 @@ https://scaff.dog/docs/templates
     {},
   );
 
-  const name = await prompt<string>({
+  const name = await prompt.prompt<string>({
     type: 'input',
     message: 'Please enter a document name.',
     validate: (v: string) => (v !== '' ? true : 'required input!'),
@@ -89,7 +91,7 @@ https://scaff.dog/docs/templates
         content: compile(tpl.content, context),
       };
 
-      await writeFile(file.path, file.content, 'utf8');
+      await fs.writeFile(file.path, file.content);
 
       return file;
     }),
