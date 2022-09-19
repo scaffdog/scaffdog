@@ -1,6 +1,6 @@
 ---
-name: 'b'
-root: 'tmp/root'
+name: 'inputs'
+root: 'output'
 output: '**/*'
 questions:
   value: 'Please enter a keyword.'
@@ -12,7 +12,7 @@ questions:
       - C
 ---
 
-# `b.txt`
+# `{{ inputs.value }}.txt`
 
 ```
 value: {{ inputs.value }}

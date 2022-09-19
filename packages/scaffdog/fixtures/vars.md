@@ -8,10 +8,11 @@ questions:
 
 # Variables
 
-- foo: `{{ inputs.foo }}`
+- foo: `{{ inputs.foo | pascal }}`
 
-# `tmp/index.txt`
+# `index.txt`
 
 ```
+raw: {{ inputs.foo }}
 foo: {{ foo }}
 ```
