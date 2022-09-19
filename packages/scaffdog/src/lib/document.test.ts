@@ -1,7 +1,7 @@
 import type { ExtractOptions } from '@scaffdog/core';
-import { parse } from '@scaffdog/engine';
+import { parse as sdParse } from '@scaffdog/engine';
 import { describe, expect, test } from 'vitest';
-import { parseDocument } from './document';
+import { parse } from './document';
 
 const partial = `
 ---
@@ -22,9 +22,9 @@ const createPartialDocument = (path: string) => ({
 
 const options: ExtractOptions = {};
 
-describe('parseDocument', () => {
+describe('parse', () => {
   test('valid (partial)', () => {
-    const result = parseDocument(
+    const result = parse(
       'path',
       `
 ${partial}
@@ -42,15 +42,15 @@ content
       ...createPartialDocument('path'),
       templates: [
         {
-          filename: parse('title.txt', options),
-          content: parse('content', options),
+          filename: sdParse('title.txt', options),
+          content: sdParse('content', options),
         },
       ],
     });
   });
 
   test('valid (multiple output)', () => {
-    const result = parseDocument(
+    const result = parse(
       'path',
       `
 ---
@@ -73,15 +73,15 @@ content
       output: ['a', 'b'],
       templates: [
         {
-          filename: parse('title.txt', options),
-          content: parse('content', options),
+          filename: sdParse('title.txt', options),
+          content: sdParse('content', options),
         },
       ],
     });
   });
 
   test('valid (full)', () => {
-    const result = parseDocument(
+    const result = parse(
       'path',
       `
 ---
@@ -160,7 +160,7 @@ questions:
 
   test('invalid', () => {
     expect(() =>
-      parseDocument(
+      parse(
         'path',
         `
 ---

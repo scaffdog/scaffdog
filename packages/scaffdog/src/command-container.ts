@@ -1,50 +1,53 @@
-import type { CommandModule, CommandList } from './command';
+import type { CommandModule } from './command';
 
-export class CommandContainer {
-  private _commands: CommandList;
+export type CommandContainer = {
+  all: () => CommandModule[];
+  main: () => CommandModule[];
+  get: (name: string) => CommandModule | null;
+  mustGet: (name: string) => CommandModule;
+};
 
-  public constructor(commands: CommandModule<any, any>[]) {
-    const map = new Map();
+export const createCommandContainer = (
+  commands: CommandModule<any, any>[],
+): CommandContainer => {
+  const map = new Map();
 
-    commands.forEach((module) => {
-      map.set(module.name, module);
-
-      if (module.commands != null) {
-        module.commands.forEach((child) => {
-          map.set(`${module.name}.${child.name}`, child);
-        });
-      }
-    });
-
-    this._commands = map;
-  }
-
-  public all(): CommandModule[] {
-    return Array.from(this._commands.values());
-  }
-
-  public main(): CommandModule[] {
-    const commands: CommandModule[] = [];
-
-    this._commands.forEach((module, key) => {
-      if (!key.includes('.')) {
-        commands.push(module);
-      }
-    });
-
-    return commands;
-  }
-
-  public get(name: string): CommandModule | undefined {
-    return this._commands.get(name);
-  }
-
-  public mustGet(name: string): CommandModule {
-    const module = this.get(name);
-    if (module == null) {
-      throw new ReferenceError(`"${name}" command does not exists`);
+  commands.forEach((mod) => {
+    map.set(mod.name, mod);
+    if (mod.commands != null) {
+      mod.commands.forEach((child) => {
+        map.set(`${mod.name}.${child.name}`, child);
+      });
     }
+  });
 
-    return module;
-  }
-}
+  return {
+    all: () => {
+      return Array.from(map.values());
+    },
+
+    main: () => {
+      const results: CommandModule[] = [];
+
+      map.forEach((module, key) => {
+        if (!key.includes('.')) {
+          results.push(module);
+        }
+      });
+
+      return results;
+    },
+
+    get: (name) => {
+      return map.get(name) ?? null;
+    },
+
+    mustGet: (name) => {
+      const mod = map.get(name);
+      if (mod == null) {
+        throw new ReferenceError(`"${name}" command does not exists`);
+      }
+      return mod;
+    },
+  };
+};

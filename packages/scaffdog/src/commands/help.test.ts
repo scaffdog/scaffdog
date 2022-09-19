@@ -1,7 +1,8 @@
 import { expect, test } from 'vitest';
 import { createCommand } from '../command';
-import { CommandContainer } from '../command-container';
+import { createCommandContainer } from '../command-container';
 import { runCommand } from '../mocks/command-test-utils';
+import { createLibraryMock } from '../mocks/lib';
 import cmd from './help';
 
 const defaults = {
@@ -38,7 +39,7 @@ test('command', async () => {
     },
   })(async () => 0);
 
-  const container = new CommandContainer([foo]);
+  const container = createCommandContainer([foo]);
 
   const { code, stdout } = await runCommand(
     cmd,
@@ -49,6 +50,7 @@ test('command', async () => {
     {
       ...defaults.flags,
     },
+    createLibraryMock(),
     container,
   );
 
@@ -58,7 +60,13 @@ test('command', async () => {
 });
 
 test('global', async () => {
-  const { code, stdout } = await runCommand(cmd, defaults.args, defaults.flags);
+  const { code, stdout } = await runCommand(
+    cmd,
+    defaults.args,
+    defaults.flags,
+    createLibraryMock(),
+    createCommandContainer([]),
+  );
 
   expect(code).toBe(0);
 

@@ -1,29 +1,32 @@
 import type { Consola } from 'consola';
-import termSize from 'term-size';
 import { LogLevel } from 'consola';
+import termSize from 'term-size';
 import type { PackageJson } from 'type-fest';
 import yargs from 'yargs/yargs';
 import type { CommandOption } from './command';
 import { buildCommand } from './command';
 import type { CommandContainer } from './command-container';
 import { globalFlags } from './global-flags';
+import type { Library } from './lib';
 
-export class CLI {
-  private _pkg: PackageJson;
-  private _logger: Consola;
-  private _container: CommandContainer;
+export type CLI = {
+  run: (argv: string[]) => Promise<number>;
+};
 
-  public constructor(
-    pkg: PackageJson,
-    logger: Consola,
-    container: CommandContainer,
-  ) {
-    this._pkg = pkg;
-    this._logger = logger;
-    this._container = container;
-  }
+export type CreateCLIOptions = {
+  pkg: PackageJson;
+  logger: Consola;
+  container: CommandContainer;
+  lib: Library;
+};
 
-  public async run(argv: string[]): Promise<number> {
+export const createCLI = ({
+  pkg,
+  logger,
+  container,
+  lib,
+}: CreateCLIOptions): CLI => ({
+  run: async (argv) => {
     const parser = yargs()
       .help(false)
       .version(false)
@@ -39,7 +42,7 @@ export class CLI {
       .strict()
       .exitProcess(false);
 
-    this._container.all().forEach((module) => {
+    container.all().forEach((module) => {
       buildCommand(parser, module);
     });
 
@@ -47,7 +50,7 @@ export class CLI {
       try {
         return await parser.parse(argv);
       } catch (e) {
-        this._logger.error(e);
+        logger.error(e);
         return null;
       }
     })();
@@ -60,9 +63,10 @@ export class CLI {
 
     const context = {
       cwd: process.cwd(),
-      pkg: this._pkg,
-      logger: this._logger,
-      container: this._container,
+      pkg,
+      logger,
+      container,
+      lib,
       size: Object.defineProperties(
         {
           rows: 0,
@@ -81,14 +85,14 @@ export class CLI {
       ),
     };
 
-    this._logger.debug('parsed arguments: %O', parsed);
+    logger.debug('parsed arguments: %O', parsed);
 
     if (parsed.verbose) {
-      this._logger.level = LogLevel.Verbose;
+      logger.level = LogLevel.Verbose;
     }
 
     if (parsed.version) {
-      return await this._container.mustGet('version').run({
+      return await container.mustGet('version').run({
         ...context,
         args: {},
         flags: rest,
@@ -96,7 +100,7 @@ export class CLI {
     }
 
     if (parsed.help || _.length === 0) {
-      return await this._container.mustGet('help').run({
+      return await container.mustGet('help').run({
         ...context,
         args: {
           command: _,
@@ -107,11 +111,11 @@ export class CLI {
 
     const command = _.join('.') || 'help';
 
-    this._logger.debug(`command "${command}"`);
-    this._logger.debug('running command...');
+    logger.debug(`command "${command}"`);
+    logger.debug('running command...');
 
     try {
-      const cmd = this._container.mustGet(command);
+      const cmd = container.mustGet(command);
 
       const key = {
         args: new Set(Object.keys(cmd.args)),
@@ -145,8 +149,8 @@ export class CLI {
         },
       });
     } catch (e) {
-      this._logger.error(e);
+      logger.error(e);
       return 1;
     }
-  }
-}
+  },
+});

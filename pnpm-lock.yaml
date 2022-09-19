@@ -27,6 +27,7 @@ importers:
       prettier: 2.7.1
       prettier-plugin-packagejson: 2.2.18
       rimraf: 3.0.2
+      ts-morph: ^16.0.0
       tsx: 3.9.0
       turbo: 1.4.6
       typescript: 4.7.4
@@ -52,6 +53,7 @@ importers:
       prettier: 2.7.1
       prettier-plugin-packagejson: 2.2.18_prettier@2.7.1
       rimraf: 3.0.2
+      ts-morph: 16.0.0
       tsx: 3.9.0
       turbo: 1.4.6
       typescript: 4.7.4
@@ -121,7 +123,7 @@ importers:
   packages/@scaffdog/types:
     specifiers:
       type-fest: 2.19.0
-    devDependencies:
+    dependencies:
       type-fest: 2.19.0
 
   packages/prettier-plugin-scaffdog:
@@ -160,6 +162,7 @@ importers:
       chalk: ^4.1.0
       cli-truncate: ^2.1.0
       consola: ^2.15.3
+      deepmerge: ^4.2.2
       figures: ^3.2.0
       front-matter: ^4.0.2
       fuse.js: ^6.4.6
@@ -175,6 +178,7 @@ importers:
       strip-ansi: 6.0.0
       term-size: ^2.2.1
       type-fest: 2.19.0
+      typed-inject: ^3.0.1
       update-notifier: ^5.1.0
       valid-filename: ^3.1.0
       wrap-ansi: ^7.0.0
@@ -190,6 +194,7 @@ importers:
       chalk: 4.1.2
       cli-truncate: 2.1.0
       consola: 2.15.3
+      deepmerge: 4.2.2
       figures: 3.2.0
       front-matter: 4.0.2
       fuse.js: 6.6.2
@@ -204,6 +209,7 @@ importers:
       plur: 4.0.0
       strip-ansi: 6.0.0
       term-size: 2.2.1
+      typed-inject: 3.0.1
       update-notifier: 5.1.0
       valid-filename: 3.1.0
       wrap-ansi: 7.0.0
@@ -2871,6 +2877,15 @@ packages:
     engines: {node: '>= 10'}
     dev: true
 
+  /@ts-morph/common/0.17.0:
+    resolution: {integrity: sha512-RMSSvSfs9kb0VzkvQ2NWobwnj7TxCA9vI/IjR9bDHqgAyVbu2T0DN4wiKVqomyDWqO7dPr/tErSfq7urQ1Q37g==}
+    dependencies:
+      fast-glob: 3.2.11
+      minimatch: 5.1.0
+      mkdirp: 1.0.4
+      path-browserify: 1.0.1
+    dev: true
+
   /@tsconfig/node10/1.0.9:
     resolution: {integrity: sha512-jNsYVVxU8v5g43Erja32laIDHXeoNvFEpX33OK4d6hljo3jDhCBDhx5dhCCTMWUojscpAagGiRkBKxpdl9fxqA==}
     dev: true
@@ -3984,6 +3999,10 @@ packages:
     resolution: {integrity: sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==}
     engines: {node: '>=0.8'}
 
+  /code-block-writer/11.0.3:
+    resolution: {integrity: sha512-NiujjUFB4SwScJq2bwbYUtXbZhBSlY6vYzm++3Q6oC+U+injTqfPYFK8wS9COOmb2lueqp0ZRB4nK1VYeHgNyw==}
+    dev: true
+
   /code-excerpt/3.0.0:
     resolution: {integrity: sha512-VHNTVhd7KsLGOqfX3SyeO8RyYPMp1GJOg194VITk04WMYCv4plV68YWe6TJZxd9MhobjtpMRnVky01gqZsalaw==}
     engines: {node: '>=10'}
@@ -4213,8 +4232,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
-      JSONStream: 1.3.5
       is-text-path: 1.0.1
+      JSONStream: 1.3.5
       lodash: 4.17.21
       meow: 8.1.2
       split2: 3.2.2
@@ -4443,7 +4462,6 @@ packages:
   /deepmerge/4.2.2:
     resolution: {integrity: sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg==}
     engines: {node: '>=0.10.0'}
-    dev: true
 
   /defaults/1.0.3:
     resolution: {integrity: sha512-s82itHOnYrN0Ib8r+z7laQz3sdE+4FP3d9Q7VLO7U+KRT+CR0GsWuyHxzdAY82I7cXv0G/twrqomTJLOssO5HA==}
@@ -8681,6 +8699,10 @@ packages:
       tslib: 2.4.0
     dev: false
 
+  /path-browserify/1.0.1:
+    resolution: {integrity: sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==}
+    dev: true
+
   /path-case/3.0.4:
     resolution: {integrity: sha512-qO4qCFjXqVTrcbPt/hQfhTQ+VhFsqNKOPtytgNKkKxSoEp3XPUQ8ObFuePylOIok5gjn69ry8XiULxCwot3Wfg==}
     dependencies:
@@ -10204,6 +10226,13 @@ packages:
     resolution: {integrity: sha512-AqTiAOLcj85xS7vQ8QkAV41hPDIJ71XJB4RCUrzo/1GM2CQwhkJGaf9Hgr7BOugMRpgGUrqRg/DrBDl4H40+8g==}
     dev: false
 
+  /ts-morph/16.0.0:
+    resolution: {integrity: sha512-jGNF0GVpFj0orFw55LTsQxVYEUOCWBAbR5Ls7fTYE5pQsbW18ssTb/6UXx/GYAEjS+DQTp8VoTw0vqYMiaaQuw==}
+    dependencies:
+      '@ts-morph/common': 0.17.0
+      code-block-writer: 11.0.3
+    dev: true
+
   /ts-node/10.9.1_ys5ibmf2vqsgufkwyky27zwkd4:
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
@@ -10465,6 +10494,11 @@ packages:
   /type-fest/2.19.0:
     resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
     engines: {node: '>=12.20'}
+
+  /typed-inject/3.0.1:
+    resolution: {integrity: sha512-5yr8inrNos7uo/irp5PZ7WNwmYGfoa0w1NiDdCWW6hhIxYH2NCqYwX9BUOXpZgxk964rb1ElEfvBtftuvIPpvw==}
+    engines: {node: '>=10'}
+    dev: false
 
   /typedarray-to-buffer/3.1.5:
     resolution: {integrity: sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==}

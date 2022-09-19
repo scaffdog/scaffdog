@@ -23,10 +23,10 @@
     "dist"
   ],
   "scripts": {
-    "typecheck": "tsc --noEmit",
-    "build": "tsc"
+    "typecheck": "tsc",
+    "build": "unbuild"
   },
-  "devDependencies": {
+  "dependencies": {
     "type-fest": "2.19.0"
   },
   "publishConfig": {

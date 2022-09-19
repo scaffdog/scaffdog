@@ -1,9 +1,10 @@
 import { LogLevel } from 'consola';
 import { describe, expect, test, vi } from 'vitest';
-import { CLI } from './cli';
+import { createCLI } from './cli';
 import type { CommandModule } from './command';
 import { createCommand } from './command';
-import { CommandContainer } from './command-container';
+import { createCommandContainer } from './command-container';
+import { createLibraryMock } from './mocks/lib';
 import { createLogger } from './mocks/logger';
 
 const pkg = {
@@ -12,8 +13,10 @@ const pkg = {
 };
 
 describe('run', () => {
+  const lib = createLibraryMock();
+
   const createContainer = (commands: CommandModule<any, any>[] = []) => {
-    return new CommandContainer([
+    return createCommandContainer([
       createCommand({
         name: 'help',
         summary: '',
@@ -33,7 +36,12 @@ describe('run', () => {
   test('0 arguments', async () => {
     const { logger } = createLogger();
     const container = createContainer();
-    const cli = new CLI(pkg, logger, container);
+    const cli = createCLI({
+      pkg,
+      logger,
+      container,
+      lib,
+    });
 
     expect(await cli.run([])).toBe(0);
     expect(container.mustGet('help').run).toBeCalledWith(
@@ -48,7 +56,12 @@ describe('run', () => {
   test('help', async () => {
     const { logger } = createLogger();
     const container = createContainer();
-    const cli = new CLI(pkg, logger, container);
+    const cli = createCLI({
+      pkg,
+      logger,
+      container,
+      lib,
+    });
 
     expect(await cli.run(['--help'])).toBe(0);
     expect(container.mustGet('help').run).toBeCalledWith(
@@ -69,7 +82,12 @@ describe('run', () => {
       flags: {},
     })(async () => 0);
     const container = createContainer([cmd]);
-    const cli = new CLI(pkg, logger, container);
+    const cli = createCLI({
+      pkg,
+      logger,
+      container,
+      lib,
+    });
 
     expect(await cli.run(['foo', '--help'])).toBe(0);
     expect(container.mustGet('help').run).toBeCalledWith(
@@ -84,7 +102,12 @@ describe('run', () => {
   test('version', async () => {
     const { logger } = createLogger();
     const container = createContainer();
-    const cli = new CLI(pkg, logger, container);
+    const cli = createCLI({
+      pkg,
+      logger,
+      container,
+      lib,
+    });
 
     expect(await cli.run(['--version'])).toBe(0);
     expect(container.mustGet('version').run).toBeCalled();
@@ -93,7 +116,12 @@ describe('run', () => {
   test('verbose', async () => {
     const { logger } = createLogger();
     const container = createContainer();
-    const cli = new CLI(pkg, logger, container);
+    const cli = createCLI({
+      pkg,
+      logger,
+      container,
+      lib,
+    });
 
     expect(await cli.run(['--verbose'])).toBe(0);
     expect(logger.level).toBe(LogLevel.Verbose);
@@ -112,7 +140,12 @@ describe('run', () => {
     });
     const container = createContainer([cmd]);
 
-    const cli = new CLI(pkg, logger, container);
+    const cli = createCLI({
+      pkg,
+      logger,
+      container,
+      lib,
+    });
 
     expect(await cli.run(['cmd'])).toBe(1234);
     expect(getStdout()).toEqual(expect.stringMatching(/CALL\sCMD/));
@@ -120,7 +153,12 @@ describe('run', () => {
 
   test('command (not found)', async () => {
     const { logger } = createLogger();
-    const cli = new CLI(pkg, logger, new CommandContainer([]));
+    const cli = createCLI({
+      pkg,
+      logger,
+      container: createCommandContainer([]),
+      lib,
+    });
 
     expect(await cli.run(['cmd'])).toBe(1);
   });

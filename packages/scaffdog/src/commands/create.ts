@@ -1,11 +1,8 @@
 import path from 'path';
 import chalk from 'chalk';
-import globby from 'globby';
 import { emojify } from 'node-emoji';
 import validFilename from 'valid-filename';
 import { createCommand } from '../command';
-import { autocomplete, prompt } from '../prompt';
-import { directoryExists, fileExists, writeFile } from '../utils/fs';
 
 export default createCommand({
   name: 'create',
@@ -23,10 +20,13 @@ export default createCommand({
       description: 'Use default options.',
     },
   },
-})(async ({ cwd, logger, args, flags }) => {
+})(async ({ cwd, logger, lib, args, flags }) => {
+  const fs = lib.resolve('fs');
+  const prompt = lib.resolve('prompt');
+
   const { project } = flags;
   const dirname = path.resolve(cwd, project);
-  if (!directoryExists(dirname)) {
+  if (!fs.directoryExists(dirname)) {
     logger.error(
       `"${project}" does not exists. Please use \`$ scaffdog init\` to setup the scaffdog project.`,
     );
@@ -42,7 +42,7 @@ export default createCommand({
     }
     name = args.name;
   } else {
-    name = await prompt({
+    name = await prompt.prompt({
       type: 'input',
       message: 'Please enter a filename.',
       validate: (v: string) => {
@@ -61,7 +61,7 @@ export default createCommand({
   }
 
   const filepath = path.resolve(cwd, project, `${name}.md`);
-  if (fileExists(filepath)) {
+  if (fs.fileExists(filepath)) {
     logger.error(`"${path.join(cwd, filepath)}" already exists.`);
     return 1;
   }
@@ -69,7 +69,7 @@ export default createCommand({
   // attributes
   const attrs = [`name: '${name}'`];
 
-  const dirs = await globby('.', {
+  const dirs = await fs.glob('.', {
     cwd,
     onlyDirectories: true,
     dot: true,
@@ -79,14 +79,18 @@ export default createCommand({
 
   dirs.unshift('.');
 
-  const root = await autocomplete('Please select a root directory.', dirs, {
-    default: '.',
-    when: !flags.yes,
-  });
+  const root = await prompt.autocomplete(
+    'Please select a root directory.',
+    dirs,
+    {
+      default: '.',
+      when: !flags.yes,
+    },
+  );
 
   attrs.push(`root: '${root}'`);
 
-  const output = await prompt({
+  const output = await prompt.prompt({
     type: 'input',
     message: 'Please enter a output pattern.',
     default: '**/*',
@@ -103,7 +107,7 @@ export default createCommand({
   attrs.push(`questions:\n${questions}`);
 
   // write
-  await writeFile(
+  await fs.writeFile(
     filepath,
     `
 ---
@@ -118,7 +122,6 @@ See scaffdog documentation for details.
 https://scaff.dog/docs/templates
 \`\`\`
 `.trim(),
-    'utf8',
   );
 
   // success message
