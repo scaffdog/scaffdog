@@ -26,6 +26,12 @@ export default createCommand({
     },
   },
   flags: {
+    output: {
+      type: 'string',
+      alias: 'o',
+      description:
+        'Output destination directory. (Relative path from the `root` option)',
+    },
     answer: {
       type: 'string',
       alias: 'a',
@@ -110,28 +116,35 @@ export default createCommand({
   logger.debug('found document: %O', doc);
 
   // dist
-  const directories = new Set([doc.root]);
-  const output = typeof doc.output === 'string' ? [doc.output] : doc.output;
-
-  for (const pattern of output) {
-    if (globby.hasMagic(pattern)) {
-      const found = await fs.glob(path.join(doc.root, pattern), {
-        cwd,
-        onlyDirectories: true,
-        dot: true,
-        unique: true,
-        gitignore: true,
-      });
-
-      found.forEach((dir) => {
-        directories.add(dir);
-      });
-    } else {
-      directories.add(path.join(doc.root, pattern));
+  let dirs = await (async () => {
+    if (flags.output != null) {
+      return [path.join(doc.root, flags.output)];
     }
-  }
 
-  let dirs = Array.from(directories);
+    const directories = new Set([doc.root]);
+    const output = typeof doc.output === 'string' ? [doc.output] : doc.output;
+
+    for (const pattern of output) {
+      if (globby.hasMagic(pattern)) {
+        const found = await fs.glob(path.join(doc.root, pattern), {
+          cwd,
+          onlyDirectories: true,
+          dot: true,
+          unique: true,
+          gitignore: true,
+        });
+
+        found.forEach((dir) => {
+          directories.add(dir);
+        });
+      } else {
+        directories.add(path.join(doc.root, pattern));
+      }
+    }
+
+    return Array.from(directories);
+  })();
+
   logger.debug('found directories: %O', dirs);
 
   if (doc.ignore != null && doc.ignore.length > 0) {

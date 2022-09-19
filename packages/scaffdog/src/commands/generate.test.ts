@@ -24,9 +24,10 @@ const run = (
       ...args,
     },
     {
+      output: undefined,
+      answer: undefined,
       'dry-run': false,
       force: false,
-      answer: [],
       ...flags,
     },
     lib,
@@ -56,6 +57,17 @@ const documents = [
       {
         filename: parse('static.txt'),
         content: parse('static content'),
+      },
+    ],
+  }),
+  createDocument({
+    name: 'root',
+    root: 'src',
+    output: '**/*',
+    templates: [
+      {
+        filename: parse('file.txt'),
+        content: parse('content'),
       },
     ],
   }),
@@ -309,6 +321,42 @@ describe('args and flags', () => {
     const fs = lib.resolve('fs');
     expect(fs.fileExists).not.toBeCalled();
     expect(fs.writeFile).not.toBeCalled();
+  });
+
+  test('output', async () => {
+    const lib = createLibraryMock()
+      .provideValue(
+        'document',
+        createDocumentLibraryMock({
+          resolve: vi.fn().mockResolvedValueOnce(documents),
+        }),
+      )
+      .provideValue(
+        'question',
+        createQuestionLibraryMock({
+          resolve: vi.fn().mockResolvedValueOnce({}),
+        }),
+      );
+
+    const { code, stdout, stderr } = await run(
+      {
+        name: 'root',
+      },
+      {
+        output: 'dir/nest',
+      },
+      lib,
+    );
+
+    expect(code).toBe(0);
+    expect(stderr).toBe('');
+    expect(stdout).toMatchSnapshot();
+
+    const fs = lib.resolve('fs');
+    expect(fs.writeFile).toBeCalledWith(
+      path.join(cwd, 'src/dir/nest/file.txt'),
+      'content',
+    );
   });
 
   test('answers', async () => {
