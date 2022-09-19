@@ -36,7 +36,9 @@
     "scaffdog": "tsx src/bin.ts",
     "scaffold": "pnpm scaffdog generate -f",
     "test": "vitest run --dir src",
-    "test:watch": "vitest watch --dir src"
+    "test:watch": "vitest watch --dir src",
+    "test:e2e": "vitest run --dir test",
+    "test:e2e:watch": "vitest watch --dir test"
   },
   "dependencies": {
     "@scaffdog/config": "workspace:*",
