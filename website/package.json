@@ -49,7 +49,7 @@
     "eslint": "8.23.0",
     "eslint-config-next": "12.3.0",
     "github-slugger": "1.4.0",
-    "next-sitemap": "3.1.21",
+    "next-sitemap": "3.1.22",
     "type-fest": "2.19.0",
     "typescript": "4.7.4"
   }
