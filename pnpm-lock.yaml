@@ -31,7 +31,7 @@ importers:
       tsx: 3.9.0
       turbo: 1.4.6
       typescript: 4.7.4
-      unbuild: 0.8.10
+      unbuild: 0.8.11
       vitest: 0.23.1
     devDependencies:
       '@commitlint/cli': 17.1.2
@@ -57,7 +57,7 @@ importers:
       tsx: 3.9.0
       turbo: 1.4.6
       typescript: 4.7.4
-      unbuild: 0.8.10
+      unbuild: 0.8.11
       vitest: 0.23.1
 
   packages/@scaffdog/config:
@@ -486,8 +486,8 @@ packages:
     dependencies:
       regenerator-runtime: 0.13.9
 
-  /@babel/standalone/7.18.13:
-    resolution: {integrity: sha512-5hjvvFkaXyfQri+s4CAZtx6FTKclfTNd2QN2RwgzCVJhnYYgKh4YFBCnNJSxurzvpSKD2NmpCkoWAkMc+j9y+g==}
+  /@babel/standalone/7.19.2:
+    resolution: {integrity: sha512-p+U+TYGevnPUemfHeQVFwABp9kWe5+h20MKxCzvyeAD1SIm7tlvo6lGRFz1WakAxmVZvLz7WDuWjwdC8FZKp+A==}
     engines: {node: '>=6.9.0'}
     dev: true
 
@@ -4232,8 +4232,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
-      is-text-path: 1.0.1
       JSONStream: 1.3.5
+      is-text-path: 1.0.1
       lodash: 4.17.21
       meow: 8.1.2
       split2: 3.2.2
@@ -10546,8 +10546,8 @@ packages:
       which-boxed-primitive: 1.0.2
     dev: true
 
-  /unbuild/0.8.10:
-    resolution: {integrity: sha512-i9VPStkM59dBLFNpeED1G2+EQuR8Tb35yErNxlo5WVDN0zAlE9PHgK5JilX/73sZD9381BTe28H8U/dgXsMvSA==}
+  /unbuild/0.8.11:
+    resolution: {integrity: sha512-q/oUXuqpJCoDKUk3qIkRjHPcgee5vvV1oiRJYpKwNkFSSRfzvYchQ+HxObwGrUubzDhnT+0qxO2wz5UunZtzog==}
     hasBin: true
     dependencies:
       '@rollup/plugin-alias': 3.1.9_rollup@2.79.0
@@ -10577,7 +10577,7 @@ packages:
       rollup-plugin-esbuild: 4.10.1_ajqsvouysgwbbwdvvze7lmgc4q
       scule: 0.3.2
       typescript: 4.8.2
-      untyped: 0.4.7
+      untyped: 0.5.0
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -10704,11 +10704,11 @@ packages:
     engines: {node: '>= 10.0.0'}
     dev: true
 
-  /untyped/0.4.7:
-    resolution: {integrity: sha512-hBgCv7fnqIRzAagn2cUZxxVmhTE7NcMAgI8CfQelFVacG4O55VrurigpK0G504ph4sQSqVsGEo52O5EKFCnJ9g==}
+  /untyped/0.5.0:
+    resolution: {integrity: sha512-2Sre5A1a7G61bjaAKZnSFaVgbJMwwbbYQpJFH69hAYcDfN7kIaktlSphS02XJilz4+/jR1tsJ5MHo1oMoCezxg==}
     dependencies:
       '@babel/core': 7.19.1
-      '@babel/standalone': 7.18.13
+      '@babel/standalone': 7.19.2
       '@babel/types': 7.19.0
       scule: 0.3.2
     transitivePeerDependencies:
