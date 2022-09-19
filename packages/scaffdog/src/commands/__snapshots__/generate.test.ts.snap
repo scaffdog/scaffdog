@@ -54,6 +54,15 @@ exports[`args and flags > not found 1`] = `
 "
 `;
 
+exports[`args and flags > output 1`] = `
+"ℹ Output destination directory: \\"src/dir/nest\\"
+
+🐶 Generated 1 file!
+
+     ✔ src/dir/nest/file.txt
+"
+`;
+
 exports[`prompt > magic pattern and destination autocomplete 1`] = `
 "
 🐶 Generated 1 file!
