@@ -26,6 +26,7 @@ const run = (
     {
       'dry-run': false,
       force: false,
+      answer: [],
       ...flags,
     },
     lib,
@@ -308,6 +309,43 @@ describe('args and flags', () => {
     const fs = lib.resolve('fs');
     expect(fs.fileExists).not.toBeCalled();
     expect(fs.writeFile).not.toBeCalled();
+  });
+
+  test('answers', async () => {
+    const lib = createLibraryMock()
+      .provideValue(
+        'document',
+        createDocumentLibraryMock({
+          resolve: vi.fn().mockResolvedValueOnce(documents),
+        }),
+      )
+      .provideValue(
+        'question',
+        createQuestionLibraryMock({
+          resolve: vi.fn().mockResolvedValueOnce({}),
+        }),
+      );
+
+    const { code, stdout, stderr } = await run(
+      {
+        name: 'basic',
+      },
+      {
+        answer: ['key1:value', 'key2:value'],
+      },
+      lib,
+    );
+
+    expect(code).toBe(0);
+    expect(stderr).toBe('');
+    expect(stdout).toMatchSnapshot();
+
+    const question = lib.resolve('question');
+    expect(question.resolve).toBeCalledWith(
+      expect.objectContaining({
+        answers: ['key1:value', 'key2:value'],
+      }),
+    );
   });
 
   test('no documents', async () => {

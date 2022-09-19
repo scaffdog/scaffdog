@@ -1,5 +1,15 @@
 // Vitest Snapshot v1
 
+exports[`args and flags > answers 1`] = `
+"ℹ Output destination directory: \\".\\"
+
+🐶 Generated 2 files!
+
+     ✔ static.txt
+     ✔ dir/.txt
+"
+`;
+
 exports[`args and flags > dry-run 1`] = `
 "ℹ Output destination directory: \\".\\"
 

@@ -26,6 +26,13 @@ export default createCommand({
     },
   },
   flags: {
+    answer: {
+      type: 'string',
+      alias: 'a',
+      array: true,
+      description:
+        'Answer to question. The answer value is the key/value separated by ":" and can be specified multiple times.',
+    },
     'dry-run': {
       type: 'boolean',
       alias: 'n',
@@ -159,7 +166,7 @@ export default createCommand({
     const inputs = await question.resolve({
       context,
       questions: doc.questions ?? {},
-      answers: [],
+      answers: flags.answer ?? [],
     });
 
     context.variables.set('inputs', inputs);
