@@ -1,6 +1,6 @@
 ---
 name: 'question'
-root: '.'
+root: 'tmp'
 output: '.'
 questions:
   shorthand: 'shorthand'

@@ -1,6 +1,6 @@
 ---
 name: 'conditional-generate'
-root: '.'
+root: 'tmp'
 output: '.'
 questions:
   bool:

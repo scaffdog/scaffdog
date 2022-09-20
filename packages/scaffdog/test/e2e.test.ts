@@ -1,13 +1,34 @@
+import fs from 'fs';
+import path from 'path';
+import globby from 'globby';
 import strip from 'strip-ansi';
-import { describe, expect, test } from 'vitest';
+import { afterEach, beforeAll, describe, expect, test } from 'vitest';
 import { $ } from 'zx';
 import pkg from '../package.json';
 
 $.verbose = false;
 
-const bin = pkg.bin.scaffdog;
+const paths = {
+  bin: pkg.bin.scaffdog,
+};
+
+const clear = () => {
+  try {
+    fs.rmSync(path.resolve(process.cwd(), 'tmp'), {
+      recursive: true,
+    });
+  } catch (e) {}
+};
 
 describe('generate', () => {
+  beforeAll(() => {
+    clear();
+  });
+
+  afterEach(() => {
+    clear();
+  });
+
   test.each([
     ['basic', '.', []],
     ['basic', 'override', []],
@@ -33,13 +54,12 @@ describe('generate', () => {
         'checkbox_if:C',
       ],
     ],
-    ['vars', '.', ['foo:scaff-dog']],
+    ['vars', '.', ['foo:bar-baz']],
     ['conditional-generate', 'true', ['bool:true']],
     ['conditional-generate', 'false', ['bool:false']],
   ])('%s - %s', async (name, output, answers) => {
     const flags = [
       name,
-      '-n',
       '-p',
       'fixtures',
       '-o',
@@ -47,9 +67,27 @@ describe('generate', () => {
       ...answers.flatMap((v) => ['-a', v]),
     ];
 
-    const p = await $`node ${bin} generate ${flags}`;
+    const p = await $`node ${paths.bin} generate ${flags}`;
     const out = strip(p.toString());
 
+    const files = await globby('tmp/**/*', {
+      onlyFiles: true,
+    });
+
+    const results = files.reduce<
+      {
+        path: string;
+        content: string;
+      }[]
+    >((acc, cur) => {
+      acc.push({
+        path: cur,
+        content: fs.readFileSync(cur, 'utf8'),
+      });
+      return acc;
+    }, []);
+
     expect(out).toMatchSnapshot();
+    expect(results).toMatchSnapshot();
   });
 });

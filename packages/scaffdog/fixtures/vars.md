@@ -1,6 +1,6 @@
 ---
 name: 'vars'
-root: '.'
+root: 'tmp'
 output: '.'
 questions:
   foo: 'message'
