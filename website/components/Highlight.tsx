@@ -2,6 +2,9 @@ import { Box, chakra } from '@chakra-ui/react';
 import type { Language as PrrLanguage } from 'prism-react-renderer';
 import PrrHighlight, { defaultProps } from 'prism-react-renderer';
 import base from 'prism-react-renderer/themes/palenight';
+// eslint-disable-next-line
+// @ts-ignore
+import Prism from 'prismjs/components/prism-core';
 
 const theme = {
   ...base,
@@ -24,6 +27,7 @@ export const Highlight: React.FC<Props> = ({ code, language }) => {
     <Box my="3" rounded="8px" bg="black" overflow="hidden" fontSize="sm">
       <PrrHighlight
         {...defaultProps}
+        Prism={Prism}
         language={language}
         code={code}
         theme={theme}
