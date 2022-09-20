@@ -12,7 +12,7 @@
 
 # scaffdog
 
-![DEMO](/packages/scaffdog/docs/assets/demo.gif)
+[![asciicast](https://asciinema.org/a/Az6hGIB1NWBZlKs3hhpYYu3XX.svg)](https://asciinema.org/a/Az6hGIB1NWBZlKs3hhpYYu3XX)
 
 Multiple files can be output in a document, and flexible scaffolding is possible with a simple but powerful template syntax :dog2:
 
@@ -63,12 +63,12 @@ Creating directories, configuration file and initial documents can be done with 
 ```bash
 $ npx scaffdog init
 
-? Please enter a document name. hello
+? Please enter a document name. component
 
 Setup of scaffdog 🐶 is complete!
 
   ✔ .scaffdog/config.js
-  ✔ .scaffdog/hello.md
+  ✔ .scaffdog/component.md
 
 Now you can do scaffold by running `$ scaffdog generate`.
 
@@ -76,19 +76,49 @@ Please refer to the following documents and customize it.
 https://scaff.dog/docs/templates
 ```
 
-After running the command, the `.scaffdog/hello.md` file should have been generated.
+After running the command, the `.scaffdog/component.md` file should have been generated. Rewrite that file as follows:
 
-Let's scaffold using the `hello` document!
+````markdown
+---
+name: 'component'
+root: '.'
+output: '.'
+questions:
+  name: 'Please enter a component name.'
+---
+
+# `{{ inputs.name | pascal }}/index.ts`
+
+```typescript
+export * from './{{ inputs.name }}';
+```
+
+# `{{ inputs.name | pascal }}/{{ inputs.name | pascal }}.tsx`
+
+```typescript
+export type Props = React.PropsWithChildren<{}>;
+
+export const {{ inputs.name | pascal }}: React.FC<Props> = ({ children }) => {
+  return (
+    <div>{children}</div>
+  );
+};
+```
+````
+
+Let's scaffold using the `component` document!
 
 ```bash
-$ npx scaffdog generate hello
+$ npx scaffdog generate
 
-? Please select the output destination directory. .
-? Please enter any text. pretty-dog
+? Please select a document. component
+ℹ Output destination directory: "."
+? Please enter a component name. PrettyDog
 
-🐶 Generated 1 file!
+🐶 Generated 2 files!
 
-     ✔ pretty-dog.md
+     ✔ PrettyDog/index.ts
+     ✔ PrettyDog/PrettyDog.tsx
 ```
 
 Congratulations :tada:
@@ -96,14 +126,20 @@ Congratulations :tada:
 The first file was generated.
 
 ```bash
-$ cat pretty-dog.md
+$ cat PrettyDog/index.ts
+export * from './PrettyDog';
 
-Let's make a document!
-See scaffdog documentation for details.
-https://scaff.dog/docs/templates
+$ cat PrettyDog/PrettyDog.tsx
+export type Props = React.PropsWithChildren<{}>;
+
+export const PrettyDog: React.FC<Props> = ({ children }) => {
+  return (
+    <div>{children}</div>
+  );
+};
 ```
 
-Please refer to this document and customize the document file :+1:
+Check out our [documentation site](https://scaff.dog/docs/templates) to customize your documentation :+1:
 
 ## Migration
 

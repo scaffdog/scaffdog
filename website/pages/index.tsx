@@ -236,7 +236,7 @@ export const {{ inputs.name | pascal }}: React.FC<Props> = ({ children }) => {
           <br />
           <br />
           <CodeGreen>?</CodeGreen> Please select a document.{' '}
-          <CodeCyan>ui-component</CodeCyan>
+          <CodeCyan>component</CodeCyan>
           <br />
           <CodeGreen>i</CodeGreen> Output destination directory:{' '}
           <CodeCyan>&quot;.&quot;</CodeCyan>
