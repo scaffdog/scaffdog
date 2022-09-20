@@ -58,7 +58,10 @@ export const PageContainer: React.FC<Props> = ({
 
           <Box
             flex="1 1 auto"
-            w="full"
+            w={{
+              base: 'full',
+              xl: `calc(${sizes.container.xl} - 2.5rem * 2 - ${sizes['2xs']} - ${sizes['3xs']})`,
+            }}
             maxW={{
               base: `calc(100vw - 1.5rem * 2)`,
               md: `calc(100vw - 1.5rem * 2 - ${sizes['2xs']})`,

@@ -43,6 +43,47 @@ GLOBAL FLAGS
       --version  Output the version number.
 ```
 
+#### Skip all interactions
+
+Basically, scaffdog resolves the following items at the interactive prompt:
+
+- Document name
+- Output directory
+- Answers to Questions
+
+If certain tasks need to be automated, you can flag them.
+
+The following is an example of running the command to completely skip the interactive prompt for the following template document.
+
+```markdown
+---
+name: 'component'
+root: 'src/components'
+output: '**/*'
+questions:
+  name: 'msg'
+  test:
+    confirm: 'msg'
+  type:
+    message: 'msg'
+    choices: ['A', 'B', 'C']
+    multiple: true
+---
+
+<!-- template definition -->
+```
+
+```bash
+$ scaffdog generate component \
+    --output "buttons" \
+    --answer "name:OutlinedButton" \
+    --answer "test:true" \
+    --answer "type:A" \
+    --answer "type:C"
+
+# output --> src/components/buttons/OutlinedButton
+```
+
 ### `scaffdog create`
 
 Create a document file with the specified name.
