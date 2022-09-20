@@ -1,6 +1,6 @@
 ---
 name: 'basic'
-root: '.'
+root: 'tmp'
 output: '.'
 ---
 

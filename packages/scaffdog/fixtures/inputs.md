@@ -1,6 +1,6 @@
 ---
 name: 'inputs'
-root: 'output'
+root: 'tmp'
 output: '**/*'
 questions:
   value: 'Please enter a keyword.'
