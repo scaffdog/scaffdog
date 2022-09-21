@@ -12,13 +12,13 @@ If you need a syntax specification, see the [Language Specification](https://git
 
 Between `{{` and `}}` is interpreted as a tag. Whitespace in tag contents is ignored.
 
-```
+```clike
 {{ <statement> }}
 ```
 
 **Example:**
 
-```
+```clike
 {{ inputs.value }}
 {{ null }}
 {{ undefined }}
@@ -46,7 +46,7 @@ string
 
 You can use comment out to keep the template readable. Of course, it is not deployed as a template.
 
-```
+```clike
 {{ /* a comment */ }}
 ```
 
@@ -57,7 +57,7 @@ When invoked on a pipe, the previous processing result is passed to the first ar
 
 See the [Built-in Helpers](#helpers) section for the helpers that can be used.
 
-```
+```clike
 {{ <helper> <argument> ... }}
 or
 {{ <helper>(<argument>, [...]) }}
@@ -65,7 +65,7 @@ or
 
 **Example:**
 
-```
+```clike
 {{ relative "../" }}
 {{ len(inputs.value) }}
 {{ replace(inputs.value, "-", "") }}
@@ -75,14 +75,14 @@ or
 
 You can chain output values or helper results with pipes.
 
-```
+```clike
 {{ <expression> | <helper> }}
 {{ <expression> | <helper> <argument> ... }}
 ```
 
 **Example:**
 
-```
+```clike
 {{ inputs.value | upper }}
 {{ inputs.value | replace ".ts$" ".js" | pascal }}
 {{ output.base | replace output.ext ".js" | pascal }}
@@ -92,13 +92,13 @@ You can chain output values or helper results with pipes.
 
 The grouping operator `(` `)` controls the precedence of evaluation in expressions.
 
-```
+```clike
 {{ (<expression>) }}
 ```
 
 **Example:**
 
-```
+```clike
 {{ 2 * (2 + 2) }}
 {{ 5 + (inputs.value | camel | len) }}
 ```
@@ -107,13 +107,13 @@ The grouping operator `(` `)` controls the precedence of evaluation in expressio
 
 Ternary operators are supported to branch the result based on the result of evaluation of boolean values.
 
-```
+```clike
 {{ <expression> ? <expression> : <expression> }}
 ```
 
 **Example:**
 
-```
+```clike
 {{ 1 != 2 ? "a" : "b" }}
 {{ 2 > 5 ? "a" : "b" }}
 ```
@@ -130,13 +130,13 @@ a
 You can define local variables in your templates.  
 The left and right sides are connected by a `:=` token, which assigns to the left side the value of the right side evaluation. Also, variable assignment statements do not produce output.
 
-```
+```clike
 {{ <identifier> := <expression> }}
 ```
 
 **Example:**
 
-```
+```clike
 {{ name := "scaffdog" }}
 {{ name := inputs.name | camel }}
 ```
@@ -146,7 +146,7 @@ The left and right sides are connected by a `:=` token, which assigns to the lef
 An if statement can be used to perform conditional branching. The if statement must always be closed with `end`.  
 Cases where the condition does not apply can be written in the statement following `else`.
 
-```
+```clike
 {{ if <expression> }}body{{ end }}
 {{ if <expression> }}body{{ else }}body{{ end }}
 {{ if <expression> }}body{{ else if <expression> }}body{{ end }}
@@ -155,7 +155,7 @@ Cases where the condition does not apply can be written in the statement followi
 
 **Example:**
 
-```
+```clike
 {{ if len(inputs.value) > 5 }}Long{{ end }}
 {{ if len(inputs.value) > 5 }}Long{{ else }}Not long{{ end }}
 {{ if len(inputs.value) > 5 }}Long{{ else if len(inputs.value) > 2 }}Medium{{ end }}
@@ -169,14 +169,14 @@ Use `continue` to skip iterations based on conditions, or `break` to skip the en
 
 You can also refer to an `index` by following the array value with a `,` token.
 
-```
+```clike
 {{ for <identifier> in <expression> }}body{{ end }}
 {{ for <identifier>, <identifier> in <expression> }}body{{ end }}
 ```
 
 **Example:**
 
-```
+```clike
 {{ for v in seq 1 5 }}{{ v }}{{ end }}
 {{ for v, i in seq 1 5 }}{{ v + i }}{{ end }}
 
@@ -199,13 +199,13 @@ You can also refer to an `index` by following the array value with a `,` token.
 Trim the expression to be expanded and the space and line feed around it.  
 Use `{{-` to trim before the tag, and `-}}` to trim after the tag.
 
-```
+```clike
 {{- <statement> -}}
 ```
 
 **Example:**
 
-```
+```clike
 before {{- "text" }} after
 before {{ "text" -}} after
 before {{- "text" -}} after

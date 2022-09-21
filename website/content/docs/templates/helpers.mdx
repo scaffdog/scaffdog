@@ -13,7 +13,7 @@ Conversion to a camel case.
 
 **Signature:**
 
-```
+```clike
 camel(value)
 ```
 
@@ -25,7 +25,7 @@ camel(value)
 
 **Example:**
 
-```
+```clike
 {{ "foo-bar" | camel }}
 --> fooBar
 ```
@@ -36,7 +36,7 @@ Conversion to a snake case.
 
 **Signature:**
 
-```
+```clike
 snake(value)
 ```
 
@@ -48,7 +48,7 @@ snake(value)
 
 **Example:**
 
-```
+```clike
 {{ "foo-bar" | snake }}
 --> foo_bar
 ```
@@ -59,7 +59,7 @@ Conversion to a pascal case.
 
 **Signature:**
 
-```
+```clike
 pascal(value)
 ```
 
@@ -71,7 +71,7 @@ pascal(value)
 
 **Example:**
 
-```
+```clike
 {{ "foo-bar" | pascal }}
 --> FooBar
 ```
@@ -82,7 +82,7 @@ Conversion to a kebab case.
 
 **Signature:**
 
-```
+```clike
 kebab(value)
 ```
 
@@ -94,7 +94,7 @@ kebab(value)
 
 **Example:**
 
-```
+```clike
 {{ "foo-bar" | kebab }}
 --> foo-bar
 ```
@@ -105,7 +105,7 @@ Conversion to a constant case.
 
 **Signature:**
 
-```
+```clike
 constant(value)
 ```
 
@@ -117,7 +117,7 @@ constant(value)
 
 **Example:**
 
-```
+```clike
 {{ "foo-bar" | constant }}
 --> FOO_BAR
 ```
@@ -128,7 +128,7 @@ Conversion to a upper case.
 
 **Signature:**
 
-```
+```clike
 upper(value)
 ```
 
@@ -140,7 +140,7 @@ upper(value)
 
 **Example:**
 
-```
+```clike
 {{ "foo-bar" | upper }}
 --> FOO-BAR
 ```
@@ -151,7 +151,7 @@ Conversion to a lower case.
 
 **Signature:**
 
-```
+```clike
 lower(value)
 ```
 
@@ -163,7 +163,7 @@ lower(value)
 
 **Example:**
 
-```
+```clike
 {{ "FOO-BAR" | lower }}
 --> foo-bar
 ```
@@ -174,7 +174,7 @@ Replace `pattern` with `replacement`. `pattern` is specified as a string, but it
 
 **Signature:**
 
-```
+```clike
 replace(value, pattern, replacement)
 ```
 
@@ -188,7 +188,7 @@ replace(value, pattern, replacement)
 
 **Example:**
 
-```
+```clike
 {{ "foo-bar" | replace "-" "/" }}
 --> foo/bar
 ```
@@ -199,7 +199,7 @@ Alias for `String.prototype.trim`.
 
 **Signature:**
 
-```
+```clike
 trim(value)
 ```
 
@@ -211,7 +211,7 @@ trim(value)
 
 **Example:**
 
-```
+```clike
 {{ " foo " | trim }}
 --> "foo"
 ```
@@ -222,7 +222,7 @@ Alias for `String.prototype.trimStart`.
 
 **Signature:**
 
-```
+```clike
 ltrim(value)
 ```
 
@@ -234,7 +234,7 @@ ltrim(value)
 
 **Example:**
 
-```
+```clike
 {{ " foo " | ltrim }}
 --> "foo "
 ```
@@ -245,7 +245,7 @@ Alias for `String.prototype.trimEnd`.
 
 **Signature:**
 
-```
+```clike
 rtrim(value)
 ```
 
@@ -257,7 +257,7 @@ rtrim(value)
 
 **Example:**
 
-```
+```clike
 {{ " foo " | rtrim }}
 --> " foo"
 ```
@@ -268,7 +268,7 @@ Generates a numeric array for the specified range. Similar signature to the `seq
 
 **Signature:**
 
-```
+```clike
 seq(first, increment?, last?)
 ```
 
@@ -282,7 +282,7 @@ seq(first, increment?, last?)
 
 **Example:**
 
-```
+```clike
 {{ seq 5 }}
 --> 1,2,3,4,5
 
@@ -299,7 +299,7 @@ Appends elements to an array and returns the resulting array. The array received
 
 **Signature:**
 
-```
+```clike
 append(value, ...args)
 ```
 
@@ -312,7 +312,7 @@ append(value, ...args)
 
 **Example:**
 
-```
+```clike
 {{ seq 3 | append 10 }}
 --> 1,2,3,10
 
@@ -326,7 +326,7 @@ Takes duplicates from array elements and returns the resulting array. The array 
 
 **Signature:**
 
-```
+```clike
 uniq(value)
 ```
 
@@ -338,7 +338,7 @@ uniq(value)
 
 **Example:**
 
-```
+```clike
 {{ arr := seq 2 | append 1 | append 2 | append 3 }}
 {{ arr }}
 --> 1,2,1,2,3
@@ -353,7 +353,7 @@ Alias for `String.prototype.split`.
 
 **Signature:**
 
-```
+```clike
 split(value, sep)
 ```
 
@@ -366,7 +366,7 @@ split(value, sep)
 
 **Example:**
 
-```
+```clike
 {{ "1/2/3" | split "/" }}
 --> 1,2,3
 ```
@@ -377,7 +377,7 @@ Alias for `Array.prototype.join`.
 
 **Signature:**
 
-```
+```clike
 join(value, sep)
 ```
 
@@ -390,7 +390,7 @@ join(value, sep)
 
 **Example:**
 
-```
+```clike
 {{ "1/2/3" | split "/" | join "_" }}
 --> 1_2_3
 ```
@@ -401,7 +401,7 @@ Returns the length of the value. If the length cannot be determined, returns 0.
 
 **Signature:**
 
-```
+```clike
 len(value)
 ```
 
@@ -413,7 +413,7 @@ len(value)
 
 **Example:**
 
-```
+```clike
 {{ "123" | len }}
 --> 3
 ```
@@ -424,7 +424,7 @@ Returns portion of an array. Similar signature to `String.prototype.slice`.
 
 **Signature:**
 
-```
+```clike
 slice(value, start, end?)
 ```
 
@@ -438,7 +438,7 @@ slice(value, start, end?)
 
 **Example:**
 
-```
+```clike
 {{ "12345" | slice 2 }}
 --> 345
 
@@ -452,7 +452,7 @@ Searches for an item in a string or array and returns a boolean value.
 
 **Signature:**
 
-```
+```clike
 contains(search, item)
 ```
 
@@ -465,7 +465,7 @@ contains(search, item)
 
 **Example:**
 
-```
+```clike
 {{ contains("foo", "o") ? "true" : "false" }}
 --> true
 
@@ -485,7 +485,7 @@ Converts a string to a number.
 
 **Signature:**
 
-```
+```clike
 s2n(value)
 ```
 
@@ -497,7 +497,7 @@ s2n(value)
 
 **Example:**
 
-```
+```clike
 {{ "123" | s2n }}
 --> 123
 ```
@@ -508,7 +508,7 @@ Converts a number to a string.
 
 **Signature:**
 
-```
+```clike
 n2s(value)
 ```
 
@@ -520,7 +520,7 @@ n2s(value)
 
 **Example:**
 
-```
+```clike
 {{ 123 | n2s }}
 --> "123"
 ```
@@ -533,7 +533,7 @@ See the [Injection](/docs/templates/injection) section for more information on h
 
 **Signature:**
 
-```
+```clike
 before(value, n, offset?)
 ```
 
@@ -547,7 +547,7 @@ before(value, n, offset?)
 
 **Example:**
 
-```
+```clike
 {{ "line1
 line2
 line3" | before "line2" }}
@@ -562,7 +562,7 @@ See the [Injection](/docs/templates/injection) section for more information on h
 
 **Signature:**
 
-```
+```clike
 after(value, n, offset?)
 ```
 
@@ -576,7 +576,7 @@ after(value, n, offset?)
 
 **Example:**
 
-```
+```clike
 {{ "line1
 line2
 line3" | after "line2" }}
@@ -589,7 +589,7 @@ Executes the specified code as JavaScript and returns the result.
 
 **Signature:**
 
-```
+```clike
 eval(code)
 ```
 
@@ -601,7 +601,7 @@ eval(code)
 
 **Example:**
 
-```
+```clike
 {{ eval "1 + 2" }}
 --> 3
 ```
@@ -612,7 +612,7 @@ See the [dayjs](https://day.js.org/docs/en/display/format) documentation for for
 
 **Signature:**
 
-```
+```clike
 date(format?)
 ```
 
@@ -624,7 +624,7 @@ date(format?)
 
 **Example:**
 
-```
+```clike
 {{ date "YYYY/MM/DD" }}
 --> 2019/01/06
 ```
@@ -635,13 +635,13 @@ Returns an empty string.
 
 **Signature:**
 
-```
+```clike
 noop()
 ```
 
 **Example:**
 
-```
+```clike
 {{ "foo" | upper | noop }}
 -->
 ```
@@ -652,7 +652,7 @@ Defines a local variable in the template scope.
 
 **Signature:**
 
-```
+```clike
 define(value, key)
 ```
 
@@ -665,7 +665,7 @@ define(value, key)
 
 **Example:**
 
-```
+```clike
 {{- "foo-bar" | camel | define "name" -}}
 {{ name }}
 --> fooBar
@@ -677,7 +677,7 @@ Convert the path from the template file to the path from the destination file.
 
 **Signature:**
 
-```
+```clike
 relative(path)
 ```
 
@@ -689,7 +689,7 @@ relative(path)
 
 **Example:**
 
-```
+```clike
 {{ relative "../src/utils" }}
 ```
 
@@ -699,7 +699,7 @@ Resolves a sequence of paths or path segments into an absolute path.
 
 **Signature:**
 
-```
+```clike
 resolve(...paths)
 ```
 
@@ -711,7 +711,7 @@ resolve(...paths)
 
 **Example:**
 
-```
+```clike
 {{ resolve "../src" "common" }}
 ```
 
@@ -721,7 +721,7 @@ Read the specified file. The contents of the loaded file are also expanded as a 
 
 **Signature:**
 
-```
+```clike
 read(path)
 ```
 
@@ -733,6 +733,6 @@ read(path)
 
 **Example:**
 
-```
+```clike
 {{ resolve "../src" "common" }}
 ```

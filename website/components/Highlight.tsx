@@ -2,6 +2,25 @@ import { Box, chakra } from '@chakra-ui/react';
 import type { Language as PrrLanguage } from 'prism-react-renderer';
 import PrrHighlight, { defaultProps } from 'prism-react-renderer';
 import base from 'prism-react-renderer/themes/palenight';
+import Prism from 'prismjs';
+
+require('prismjs/components/prism-markup');
+require('prismjs/components/prism-clike');
+require('prismjs/components/prism-css');
+require('prismjs/components/prism-css-extras');
+require('prismjs/components/prism-graphql');
+require('prismjs/components/prism-sql');
+require('prismjs/components/prism-markdown');
+require('prismjs/components/prism-javascript');
+require('prismjs/components/prism-js-extras');
+require('prismjs/components/prism-js-templates');
+require('prismjs/components/prism-typescript');
+require('prismjs/components/prism-jsx');
+require('prismjs/components/prism-tsx');
+require('prismjs/components/prism-yaml');
+require('prismjs/components/prism-json');
+require('prismjs/components/prism-bash');
+require('prismjs/components/prism-diff');
 
 const theme = {
   ...base,
@@ -24,6 +43,7 @@ export const Highlight: React.FC<Props> = ({ code, language }) => {
     <Box my="3" rounded="8px" bg="black" overflow="hidden" fontSize="sm">
       <PrrHighlight
         {...defaultProps}
+        Prism={Prism as any}
         language={language}
         code={code}
         theme={theme}

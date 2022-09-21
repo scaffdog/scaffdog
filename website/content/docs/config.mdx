@@ -39,7 +39,7 @@ In the `files` field, specify the path pattern of the document used by scaffdog.
 
 ```javascript
 export default {
-  files: ['./*'],
+  files: ['*'],
 };
 ```
 
@@ -49,7 +49,7 @@ You can define the global variables available in the template in the `variables`
 
 ```javascript
 export default {
-  files: ['./*'],
+  files: ['*'],
   variables: {
     key: 'value',
   },
@@ -62,7 +62,7 @@ You can define the custom helpers available in the template in the `helpers` fie
 
 ```javascript
 export default {
-  files: ['./*'],
+  files: ['*'],
   helpers: [
     // Using Key-Value
     {
@@ -120,7 +120,7 @@ You can change it with `tags`.
 
 ```javascript
 export default {
-  files: ['./*'],
+  files: ['*'],
   tags: ['<%', '%>'],
 };
 ```
