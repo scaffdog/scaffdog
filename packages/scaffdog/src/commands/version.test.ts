@@ -1,20 +1,14 @@
 import { expect, test } from 'vitest';
-import { runCommand } from '../mocks/command-test-utils';
-import { createLibraryMock } from '../mocks/lib';
+import { createCommandRunner } from '../mocks/command-test-utils';
 import cmd from './version';
 
-const defaults = {
+const run = createCommandRunner(cmd, {
   args: {},
   flags: {},
-};
+});
 
 test('version', async () => {
-  const { code, stdout } = await runCommand(
-    cmd,
-    defaults.args,
-    defaults.flags,
-    createLibraryMock(),
-  );
+  const { code, stdout } = await run({});
 
   expect(code).toBe(0);
 

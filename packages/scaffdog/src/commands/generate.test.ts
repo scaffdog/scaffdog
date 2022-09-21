@@ -1,39 +1,28 @@
 import path from 'path';
 import { parse } from '@scaffdog/engine';
 import { describe, expect, test, vi } from 'vitest';
-import type yargs from 'yargs';
-import type { Library } from '../lib';
+import { createResolvedConfig } from '../lib/config.factory';
+import { createConfigLibraryMock } from '../lib/config.mock';
 import { createDocument } from '../lib/document.factory';
 import { createDocumentLibraryMock } from '../lib/document.mock';
 import { createFsLibraryMock } from '../lib/fs.mock';
 import { createPromptLibraryMock } from '../lib/prompt.mock';
 import { createQuestionLibraryMock } from '../lib/question.mock';
-import { cwd, runCommand } from '../mocks/command-test-utils';
+import { createCommandRunner, cwd } from '../mocks/command-test-utils';
 import { createLibraryMock } from '../mocks/lib';
-import { createConfigLibraryMock } from '../lib/config.mock';
-import { createResolvedConfig } from '../lib/config.factory';
 import cmd from './generate';
 
-const run = (
-  args: Partial<yargs.InferredOptionTypes<typeof cmd['args']>>,
-  flags: Partial<yargs.InferredOptionTypes<typeof cmd['flags']>>,
-  lib: Library,
-) =>
-  runCommand(
-    cmd,
-    {
-      name: undefined,
-      ...args,
-    },
-    {
-      output: undefined,
-      answer: undefined,
-      'dry-run': false,
-      force: false,
-      ...flags,
-    },
-    lib,
-  );
+const run = createCommandRunner(cmd, {
+  args: {
+    name: undefined,
+  },
+  flags: {
+    output: undefined,
+    answer: undefined,
+    'dry-run': false,
+    force: false,
+  },
+});
 
 const config = createConfigLibraryMock({
   load: () => createResolvedConfig(),
@@ -101,7 +90,9 @@ describe('prompt', () => {
       }),
     });
 
-    const { code, stdout, stderr } = await run({}, {}, lib);
+    const { code, stdout, stderr } = await run({
+      lib,
+    });
 
     expect(code).toBe(0);
     expect(stderr).toBe('');
@@ -161,7 +152,9 @@ describe('prompt', () => {
       }),
     });
 
-    const { code, stdout, stderr } = await run({}, {}, lib);
+    const { code, stdout, stderr } = await run({
+      lib,
+    });
 
     expect(code).toBe(0);
     expect(stderr).toBe('');
@@ -193,13 +186,12 @@ describe('prompt', () => {
       }),
     });
 
-    const { code, stdout, stderr } = await run(
-      {
+    const { code, stdout, stderr } = await run({
+      args: {
         name: 'multiple',
       },
-      {},
       lib,
-    );
+    });
 
     expect(code).toBe(0);
     expect(stderr).toBe('');
@@ -234,15 +226,15 @@ describe('args and flags', () => {
       }),
     });
 
-    const { code, stdout, stderr } = await run(
-      {
+    const { code, stdout, stderr } = await run({
+      args: {
         name: 'basic',
       },
-      {
+      flags: {
         force: true,
       },
       lib,
-    );
+    });
 
     expect(code).toBe(0);
     expect(stderr).toBe('');
@@ -265,15 +257,15 @@ describe('args and flags', () => {
       }),
     });
 
-    const { code, stdout, stderr } = await run(
-      {
+    const { code, stdout, stderr } = await run({
+      args: {
         name: 'basic',
       },
-      {
+      flags: {
         'dry-run': true,
       },
       lib,
-    );
+    });
 
     expect(code).toBe(0);
     expect(stderr).toBe('');
@@ -294,15 +286,15 @@ describe('args and flags', () => {
       }),
     });
 
-    const { code, stdout, stderr } = await run(
-      {
+    const { code, stdout, stderr } = await run({
+      args: {
         name: 'root',
       },
-      {
+      flags: {
         output: 'dir/nest',
       },
       lib,
-    );
+    });
 
     expect(code).toBe(0);
     expect(stderr).toBe('');
@@ -325,15 +317,15 @@ describe('args and flags', () => {
       }),
     });
 
-    const { code, stdout, stderr } = await run(
-      {
+    const { code, stdout, stderr } = await run({
+      args: {
         name: 'basic',
       },
-      {
+      flags: {
         answer: ['key1:value', 'key2:value'],
       },
       lib,
-    );
+    });
 
     expect(code).toBe(0);
     expect(stderr).toBe('');
@@ -359,13 +351,12 @@ describe('args and flags', () => {
       }),
     });
 
-    const { code, stdout, stderr } = await run(
-      {
+    const { code, stdout, stderr } = await run({
+      args: {
         name: 'basic',
       },
-      {},
       lib,
-    );
+    });
 
     expect(code).toBe(1);
     expect(stderr).toMatchSnapshot();
@@ -385,13 +376,12 @@ describe('args and flags', () => {
       }),
     });
 
-    const { code, stdout, stderr } = await run(
-      {
+    const { code, stdout, stderr } = await run({
+      args: {
         name: 'not-found',
       },
-      {},
       lib,
-    );
+    });
 
     expect(code).toBe(1);
     expect(stderr).toMatchSnapshot();

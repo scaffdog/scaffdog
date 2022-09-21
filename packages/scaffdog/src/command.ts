@@ -5,14 +5,14 @@ import type { CommandContainer } from './command-container';
 import type { globalFlags } from './global-flags';
 import type { Library } from './lib';
 
-export type GlobalFlags = yargs.InferredOptionTypes<typeof globalFlags>;
-export type GlobalFlagsWith<T> = Merge<GlobalFlags, T>;
-
 export type CommandOption = {
   [key: string]: yargs.Options;
 };
 
 export type CommandArgs<T extends CommandOption> = yargs.InferredOptionTypes<T>;
+
+export type GlobalFlags = CommandArgs<typeof globalFlags>;
+export type GlobalFlagsWith<T> = Merge<GlobalFlags, T>;
 
 export type CommandContext<A extends CommandOption, F extends CommandOption> = {
   cwd: string;
@@ -40,7 +40,7 @@ export type CommandDefinition<
   summary: string;
   args: A;
   flags: F;
-  commands?: CommandModule<any, any>[];
+  commands?: AnyCommandModule[];
 };
 
 export type CommandModule<
@@ -51,7 +51,15 @@ export type CommandModule<
   build: yargs.BuilderCallback<any, any>;
 };
 
-export type CommandList = Map<string, CommandModule<any, any>>;
+export type AnyCommandModule = CommandModule<any, any>;
+
+export type InferredCommandModuleArgs<T extends AnyCommandModule> =
+  T extends CommandModule<infer R, any> ? R : never;
+
+export type InferredCommandModuleFlags<T extends AnyCommandModule> =
+  T extends CommandModule<any, infer R> ? R : never;
+
+export type CommandList = Map<string, AnyCommandModule>;
 
 export type CommandFactory<
   A extends CommandOption = CommandOption,
