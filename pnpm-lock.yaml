@@ -160,7 +160,7 @@ importers:
       '@types/update-notifier': 6.0.1
       '@types/wrap-ansi': 3.0.0
       '@types/yargs': 17.0.12
-      ansi-escapes: ^4.3.2
+      ansi-escapes: ^6.0.0
       chalk: ^4.1.0
       cli-truncate: ^2.1.0
       consola: ^2.15.3
@@ -191,7 +191,7 @@ importers:
       '@scaffdog/engine': link:../@scaffdog/engine
       '@scaffdog/error': link:../@scaffdog/error
       '@scaffdog/types': link:../@scaffdog/types
-      ansi-escapes: 4.3.2
+      ansi-escapes: 6.0.0
       chalk: 4.1.2
       cli-truncate: 2.1.0
       consola: 2.15.3
@@ -3366,6 +3366,13 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       type-fest: 0.21.3
+
+  /ansi-escapes/6.0.0:
+    resolution: {integrity: sha512-IG23inYII3dWlU2EyiAiGj6Bwal5GzsgPMwjYGvc1HPE2dgbj4ZB5ToWBKSquKw74nB3TIuOwaI6/jSULzfgrw==}
+    engines: {node: '>=14.16'}
+    dependencies:
+      type-fest: 3.0.0
+    dev: false
 
   /ansi-regex/5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
@@ -10615,6 +10622,11 @@ packages:
   /type-fest/2.19.0:
     resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
     engines: {node: '>=12.20'}
+
+  /type-fest/3.0.0:
+    resolution: {integrity: sha512-MINvUN5ug9u+0hJDzSZNSnuKXI8M4F5Yvb6SQZ2CYqe7SgKXKOosEcU5R7tRgo85I6eAVBbkVF7TCvB4AUK2xQ==}
+    engines: {node: '>=14.16'}
+    dev: false
 
   /typedarray-to-buffer/3.1.5:
     resolution: {integrity: sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==}
