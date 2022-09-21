@@ -1,0 +1,17 @@
+// Vitest Snapshot v1
+
+exports[`failure > document not found 1`] = `
+"
+ WARN  Document file not found.
+
+"
+`;
+
+exports[`success 1`] = `
+"- doc1 (.scaffdog/doc1.md, 1 template, 0 questions)
+- doc2 (.scaffdog/doc2.md, 2 templates, 1 question)
+- doc3 (.scaffdog/doc3.md, 1 template, 2 questions)
+
+3 files found.
+"
+`;

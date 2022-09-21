@@ -23,8 +23,8 @@ export default createCommand({
   });
 
   if (documents.length === 0) {
-    logger.log('Document file not found.');
-    return 0;
+    logger.warn('Document file not found.');
+    return 1;
   }
 
   documents.forEach((doc) => {

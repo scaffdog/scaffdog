@@ -62,7 +62,7 @@ export const createCommandRunner =
       },
       flags: {
         ...defaults.flags,
-        project: 'fixtures',
+        project: '.scaffdog',
         help: false,
         version: false,
         verbose: true,
