@@ -11,9 +11,7 @@ export default createCommand({
   summary: 'Print a list of available documents.',
   args: {},
   flags: {},
-})(async ({ cwd, logger, lib, flags }) => {
-  const document = lib.resolve('document');
-
+})(async ({ cwd, logger, lib: { document }, flags }) => {
   const { project } = flags;
   const config = loadConfig(cwd, { project });
   const dirname = path.resolve(cwd, project);

@@ -13,10 +13,7 @@ export default createCommand({
     'Prepare to use scaffdog. Create a `.scaffdog` directory by default, and create a first document file.',
   args: {},
   flags: {},
-})(async ({ cwd, logger, lib, flags }) => {
-  const fs = lib.resolve('fs');
-  const prompt = lib.resolve('prompt');
-
+})(async ({ cwd, logger, lib: { fs, prompt }, flags }) => {
   const { project } = flags;
   const dirname = path.resolve(cwd, project);
 

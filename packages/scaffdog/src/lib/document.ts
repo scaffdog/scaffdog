@@ -97,5 +97,3 @@ export const createDocumentLibrary = (fs: FsLibrary): DocumentLibrary => ({
     );
   },
 });
-
-createDocumentLibrary.inject = ['fs'] as const;

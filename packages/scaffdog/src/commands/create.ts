@@ -20,10 +20,7 @@ export default createCommand({
       description: 'Use default options.',
     },
   },
-})(async ({ cwd, logger, lib, args, flags }) => {
-  const fs = lib.resolve('fs');
-  const prompt = lib.resolve('prompt');
-
+})(async ({ cwd, logger, lib: { fs, prompt }, args, flags }) => {
   const { project } = flags;
   const dirname = path.resolve(cwd, project);
   if (!fs.directoryExists(dirname)) {

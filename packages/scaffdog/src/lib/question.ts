@@ -254,5 +254,3 @@ export const createQuestionLibrary = (
     return inputs;
   },
 });
-
-createQuestionLibrary.inject = ['prompt'] as const;
