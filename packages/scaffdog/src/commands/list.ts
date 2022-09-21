@@ -1,5 +1,4 @@
 import path from 'path';
-import { loadConfig } from '@scaffdog/config';
 import chalk from 'chalk';
 import plur from 'plur';
 import { createCommand } from '../command';
@@ -11,12 +10,16 @@ export default createCommand({
   summary: 'Print a list of available documents.',
   args: {},
   flags: {},
-})(async ({ cwd, logger, lib: { document }, flags }) => {
+})(async ({ cwd, logger, lib: { config, document }, flags }) => {
   const { project } = flags;
-  const config = loadConfig(cwd, { project });
+  const cfg = config.load(cwd, project);
+  if (cfg == null) {
+    return 1;
+  }
+
   const dirname = path.resolve(cwd, project);
-  const documents = await document.resolve(dirname, config.files, {
-    tags: config.tags,
+  const documents = await document.resolve(dirname, cfg.files, {
+    tags: cfg.tags,
   });
 
   if (documents.length === 0) {

@@ -1,4 +1,5 @@
 import type { Consola } from 'consola';
+import { createConfigLibrary } from './config';
 import { createDocumentLibrary } from './document';
 import { createErrorLibrary } from './error';
 import { createFsLibrary } from './fs';
@@ -9,6 +10,7 @@ export const createLibrary = (logger: Consola) => {
   const fs = createFsLibrary();
   const error = createErrorLibrary(logger);
   const prompt = createPromptLibrary();
+  const config = createConfigLibrary(logger, error);
   const question = createQuestionLibrary(prompt);
   const document = createDocumentLibrary(fs);
 
@@ -16,6 +18,7 @@ export const createLibrary = (logger: Consola) => {
     fs,
     error,
     prompt,
+    config,
     question,
     document,
   };

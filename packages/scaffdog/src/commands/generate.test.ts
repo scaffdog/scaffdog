@@ -10,6 +10,8 @@ import { createPromptLibraryMock } from '../lib/prompt.mock';
 import { createQuestionLibraryMock } from '../lib/question.mock';
 import { cwd, runCommand } from '../mocks/command-test-utils';
 import { createLibraryMock } from '../mocks/lib';
+import { createConfigLibraryMock } from '../lib/config.mock';
+import { createResolvedConfig } from '../lib/config.factory';
 import cmd from './generate';
 
 const run = (
@@ -32,6 +34,10 @@ const run = (
     },
     lib,
   );
+
+const config = createConfigLibraryMock({
+  load: () => createResolvedConfig(),
+});
 
 const documents = [
   createDocument({
@@ -76,6 +82,7 @@ const documents = [
 describe('prompt', () => {
   test('name', async () => {
     const lib = createLibraryMock({
+      config,
       prompt: createPromptLibraryMock({
         prompt: vi.fn().mockResolvedValueOnce('basic'),
       }),
@@ -131,6 +138,7 @@ describe('prompt', () => {
 
   test('overwrite files', async () => {
     const lib = createLibraryMock({
+      config,
       prompt: createPromptLibraryMock({
         prompt: vi.fn().mockResolvedValueOnce('basic'),
         confirm: vi
@@ -168,6 +176,7 @@ describe('prompt', () => {
 
   test('magic pattern and destination autocomplete', async () => {
     const lib = createLibraryMock({
+      config,
       document: createDocumentLibraryMock({
         resolve: vi.fn().mockResolvedValueOnce(documents),
       }),
@@ -214,6 +223,7 @@ describe('prompt', () => {
 describe('args and flags', () => {
   test('force', async () => {
     const lib = createLibraryMock({
+      config,
       document: createDocumentLibraryMock({
         resolve: vi.fn().mockResolvedValueOnce(documents),
       }),
@@ -244,6 +254,7 @@ describe('args and flags', () => {
 
   test('dry-run', async () => {
     const lib = createLibraryMock({
+      config,
       document: createDocumentLibraryMock({
         resolve: vi.fn().mockResolvedValueOnce(documents),
       }),
@@ -274,6 +285,7 @@ describe('args and flags', () => {
 
   test('output', async () => {
     const lib = createLibraryMock({
+      config,
       document: createDocumentLibraryMock({
         resolve: vi.fn().mockResolvedValueOnce(documents),
       }),
@@ -304,6 +316,7 @@ describe('args and flags', () => {
 
   test('answers', async () => {
     const lib = createLibraryMock({
+      config,
       document: createDocumentLibraryMock({
         resolve: vi.fn().mockResolvedValueOnce(documents),
       }),
@@ -335,6 +348,7 @@ describe('args and flags', () => {
 
   test('no documents', async () => {
     const lib = createLibraryMock({
+      config,
       document: createDocumentLibraryMock({
         resolve: vi.fn().mockResolvedValueOnce([]),
       }),
@@ -360,6 +374,7 @@ describe('args and flags', () => {
 
   test('not found', async () => {
     const lib = createLibraryMock({
+      config,
       document: createDocumentLibraryMock({
         resolve: vi.fn().mockResolvedValueOnce(documents),
       }),

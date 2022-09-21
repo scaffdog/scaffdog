@@ -1,5 +1,4 @@
 import path from 'path';
-import { loadConfig } from '@scaffdog/config';
 import { compile, createContext, extendContext } from '@scaffdog/engine';
 import ansiEscapes from 'ansi-escapes';
 import chalk from 'chalk';
@@ -56,24 +55,26 @@ export default createCommand({
   async ({
     cwd,
     logger,
-    lib: { fs, error, prompt, question, document },
+    lib: { fs, error, prompt, config, question, document },
     size,
     args,
     flags,
   }) => {
     // configuration
     const { project } = flags;
-    const config = loadConfig(cwd, { project });
-    logger.debug('load config: %O', config);
+    const cfg = config.load(cwd, project);
+    if (cfg == null) {
+      return 1;
+    }
 
     const dirname = path.resolve(cwd, project);
 
     // base context
     const context = createContext({
       cwd,
-      variables: config.variables,
-      helpers: new Map([...config.helpers, ...helpers]),
-      tags: config.tags,
+      variables: cfg.variables,
+      helpers: new Map([...cfg.helpers, ...helpers]),
+      tags: cfg.tags,
     });
 
     // clear
@@ -84,7 +85,7 @@ export default createCommand({
     // resolve document
     let documents: Document[];
     try {
-      documents = await document.resolve(dirname, config.files, {
+      documents = await document.resolve(dirname, cfg.files, {
         tags: context.tags,
       });
     } catch (e) {
