@@ -6,6 +6,7 @@
 
 <p align="center">
   <a href="https://github.com/scaffdog/scaffdog/actions?workflow=CI"><img src="https://img.shields.io/github/workflow/status/scaffdog/scaffdog/CI?logo=github&style=flat-square" alt="GitHub Workflow Status" /></a>
+  <a href="https://npmcharts.com/compare/scaffdog?minimal=true"><img alt="npm" src="https://img.shields.io/npm/dm/scaffdog?style=flat-square"></a>
   <a href="https://www.npmjs.com/package/scaffdog"><img src="https://img.shields.io/npm/v/scaffdog?style=flat-square" alt="npm" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/github/license/scaffdog/scaffdog?label=license&style=flat-square" alt="MIT LICENSE" /></a>
 </p>
