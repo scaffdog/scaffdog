@@ -254,7 +254,7 @@ importers:
       next-seo: ^5.5.0
       next-sitemap: 3.1.22
       prism-react-renderer: ^1.3.5
-      prismjs: 1.26.0
+      prismjs: 1.27.0
       react: 18.2.0
       react-dom: 18.2.0
       react-hook-form: ^7.34.0
@@ -284,7 +284,7 @@ importers:
       next-contentlayer: 0.2.7_c3hne4hwj64hb7tofigd3bvkji
       next-seo: 5.5.0_c3hne4hwj64hb7tofigd3bvkji
       prism-react-renderer: 1.3.5_react@18.2.0
-      prismjs: 1.26.0
+      prismjs: 1.27.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-hook-form: 7.34.0_react@18.2.0
@@ -4267,8 +4267,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
-      is-text-path: 1.0.1
       JSONStream: 1.3.5
+      is-text-path: 1.0.1
       lodash: 4.17.21
       meow: 8.1.2
       split2: 3.2.2
@@ -9011,8 +9011,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /prismjs/1.26.0:
-    resolution: {integrity: sha512-HUoH9C5Z3jKkl3UunCyiD5jwk0+Hz0fIgQ2nbwU2Oo/ceuTAQAg+pPVnfdt2TJWRVLcxKh9iuoYDUSc8clb5UQ==}
+  /prismjs/1.27.0:
+    resolution: {integrity: sha512-t13BGPUlFDR7wRB5kQDG4jjl7XeuH6jbJGt11JHPL96qwsEHNX2+68tFXqc1/k+/jALsbSWJKUOT/hcYAZ5LkA==}
     engines: {node: '>=6'}
     dev: false
 
