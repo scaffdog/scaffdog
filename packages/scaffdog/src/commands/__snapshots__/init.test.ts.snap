@@ -1,0 +1,61 @@
+// Vitest Snapshot v1
+
+exports[`failure > cancel 1`] = `
+"
+ WARN  Setup canceled!
+
+"
+`;
+
+exports[`success > .scaffdog already exist 1`] = `
+"
+Setup of scaffdog 🐶 is complete!
+
+  ✔ .scaffdog/config.js
+  ✔ .scaffdog/pretty-dog.md
+
+Now you can do scaffold by running \`$ scaffdog generate\`.
+
+Please refer to the following documents and customize it.
+https://scaff.dog/docs/templates
+"
+`;
+
+exports[`success > fresh 1`] = `
+"
+Setup of scaffdog 🐶 is complete!
+
+  ✔ .scaffdog/config.js
+  ✔ .scaffdog/pretty-dog.md
+
+Now you can do scaffold by running \`$ scaffdog generate\`.
+
+Please refer to the following documents and customize it.
+https://scaff.dog/docs/templates
+"
+`;
+
+exports[`success > fresh 2`] = `
+"export default {
+  files: ['./*'],
+};"
+`;
+
+exports[`success > fresh 3`] = `
+"---
+name: 'pretty-dog'
+root: '.'
+output: '**/*'
+ignore: []
+questions:
+  value: 'Please enter any text.'
+---
+
+# \`{{ inputs.value }}.md\`
+
+\`\`\`markdown
+Let's make a document!
+See scaffdog documentation for details.
+https:/scaff.dog/docs/templates
+\`\`\`"
+`;

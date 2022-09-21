@@ -31,5 +31,3 @@ export const createErrorLibrary = (logger: Consola): ErrorLibrary => ({
     return 1;
   },
 });
-
-createErrorLibrary.inject = ['logger'] as const;

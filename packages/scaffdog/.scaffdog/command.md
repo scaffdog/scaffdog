@@ -49,24 +49,16 @@ export default createCommand({
 
 ```typescript
 import { expect, test } from 'vitest';
-import { runCommand } from '{{ relative "../src/mocks/command-test-utils" }}';
+import { createCommandRunner } from '{{ relative "../src/mocks/command-test-utils" }}';
 import cmd from './{{ name }}';
 
-const defaults = {
+const run = createCommandRunner(cmd, {
   args: {},
   flags: {},
-};
+});
 
 test('TODO', async () => {
-  const { code } = await runCommand(
-    cmd,
-    {
-      ...defaults.args,
-    },
-    {
-      ...defaults.flags,
-    },
-  );
+  const { code } = await run({});
 
   expect(code).toBe(0);
 });

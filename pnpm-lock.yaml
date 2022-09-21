@@ -180,7 +180,6 @@ importers:
       strip-ansi: 6.0.0
       term-size: ^2.2.1
       type-fest: 2.19.0
-      typed-inject: ^3.0.1
       update-notifier: ^5.1.0
       valid-filename: ^3.1.0
       wrap-ansi: ^7.0.0
@@ -211,7 +210,6 @@ importers:
       plur: 4.0.0
       strip-ansi: 6.0.0
       term-size: 2.2.1
-      typed-inject: 3.0.1
       update-notifier: 5.1.0
       valid-filename: 3.1.0
       wrap-ansi: 7.0.0
@@ -10617,11 +10615,6 @@ packages:
   /type-fest/2.19.0:
     resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
     engines: {node: '>=12.20'}
-
-  /typed-inject/3.0.1:
-    resolution: {integrity: sha512-5yr8inrNos7uo/irp5PZ7WNwmYGfoa0w1NiDdCWW6hhIxYH2NCqYwX9BUOXpZgxk964rb1ElEfvBtftuvIPpvw==}
-    engines: {node: '>=10'}
-    dev: false
 
   /typedarray-to-buffer/3.1.5:
     resolution: {integrity: sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==}

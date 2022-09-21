@@ -14,8 +14,11 @@ const resolveConfig = (project: string) => {
   }
 
   const { dir, name } = path.parse(project);
+  const { config } = loadConfig(dir, { project: name });
 
-  return loadConfig(dir, { project: name });
+  configCache.set(project, config);
+
+  return config;
 };
 
 const resolveProject = (project: string, filepath: string) => {

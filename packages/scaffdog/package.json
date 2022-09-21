@@ -65,7 +65,6 @@
     "plur": "^4.0.0",
     "strip-ansi": "6.0.0",
     "term-size": "^2.2.1",
-    "typed-inject": "^3.0.1",
     "update-notifier": "^5.1.0",
     "valid-filename": "^3.1.0",
     "wrap-ansi": "^7.0.0",

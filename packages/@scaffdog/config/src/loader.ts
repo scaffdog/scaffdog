@@ -48,19 +48,24 @@ export type LoadConfigOptions = {
   project: string;
 };
 
+export type LoadConfigResult = {
+  filepath: string;
+  config: ResolvedConfig;
+};
+
 export const loadConfig = (
   cwd: string = process.cwd(),
   options: Partial<LoadConfigOptions> = {},
-): ResolvedConfig => {
+): LoadConfigResult => {
   const opts = {
     project: '.scaffdog',
     ...options,
   };
 
+  let filepath = '';
   let maybeConfig: unknown;
   for (const ext of extensions) {
-    const filename = `config.${ext}`;
-    const filepath = path.resolve(cwd, opts.project, filename);
+    filepath = path.resolve(cwd, opts.project, `config.${ext}`);
     if (!fileExists(filepath)) {
       continue;
     }
@@ -74,15 +79,18 @@ export const loadConfig = (
   if (maybeConfig == null) {
     const expected = `config.{${extensions.join(',')}}`;
     throw new Error(
-      `scaffdog configuration file not found (filename expected: "${expected}")`,
+      `scaffdog configuration file not found (filename expected: "${expected}" in "${opts.project}")`,
     );
   }
 
   const config = validateConfig(maybeConfig);
 
   return {
-    ...config,
-    variables: obj2map(config.variables ?? {}),
-    helpers: normalizeHelpers(config.helpers),
+    filepath,
+    config: {
+      ...config,
+      variables: obj2map(config.variables ?? {}),
+      helpers: normalizeHelpers(config.helpers),
+    },
   };
 };
