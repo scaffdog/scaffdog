@@ -50,6 +50,7 @@ Basically, scaffdog resolves the following items at the interactive prompt:
 - Document name
 - Output directory
 - Answers to Questions
+- Confirm file overwrite
 
 If certain tasks need to be automated, you can flag them.
 
@@ -75,6 +76,7 @@ questions:
 
 ```bash
 $ scaffdog generate component \
+    --force \
     --output "buttons" \
     --answer "name:OutlinedButton" \
     --answer "test:true" \
