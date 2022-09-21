@@ -40,7 +40,7 @@ export default createCommand({
 
 \`\`\`javascript
 export default {
-  files: ['./*'],
+  files: ['*'],
 };
 \`\`\`
 

@@ -12,7 +12,7 @@ import cmd from './list';
 const config = createConfigLibraryMock({
   load: () =>
     createResolvedConfig({
-      files: ['./*'],
+      files: ['*'],
       tags: ['{{', '}}'],
     }),
 });
@@ -84,7 +84,7 @@ test('success', async () => {
 
   expect(lib.document.resolve).toBeCalledWith(
     path.resolve(cwd, '.scaffdog'),
-    ['./*'],
+    ['*'],
     {
       tags: ['{{', '}}'],
     },

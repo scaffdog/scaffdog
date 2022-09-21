@@ -37,7 +37,7 @@ https://scaff.dog/docs/templates
 
 exports[`success > fresh 2`] = `
 "export default {
-  files: ['./*'],
+  files: ['*'],
 };"
 `;
 
