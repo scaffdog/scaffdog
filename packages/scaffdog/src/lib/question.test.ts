@@ -551,6 +551,7 @@ describe('resolve', () => {
       type: 'input',
       message: 'msg',
       default: undefined,
+      validate: expect.objectContaining({ name: 'validate' }),
     });
   });
 });

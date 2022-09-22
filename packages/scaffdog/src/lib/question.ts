@@ -153,6 +153,7 @@ export const transformPromptQuestion = (
     ...question,
     type: 'input',
     default: question.initial,
+    validate,
   };
 };
 

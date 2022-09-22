@@ -1,6 +1,40 @@
 // Vitest Snapshot v1
 
-exports[`generate > basic - . 1`] = `
+exports[`generate > failure - inputs (.) 1`] = `
+"
+ℹ Output destination directory: \\"tmp\\"
+
+ ERROR  Question Error: \\"value\\" is required but found empty value
+
+  {stacktrace}
+  {stacktrace}
+  {stacktrace}
+  {stacktrace}
+  {stacktrace}
+
+
+
+"
+`;
+
+exports[`generate > failure - inputs (.) 2`] = `
+"
+ℹ Output destination directory: \\"tmp\\"
+
+ ERROR  Question Error: \\"choice\\" must be one of \\"A, B, C\\"
+
+  {stacktrace}
+  {stacktrace}
+  {stacktrace}
+  {stacktrace}
+  {stacktrace}
+
+
+
+"
+`;
+
+exports[`generate > success - basic (.) 1`] = `
 "
 ℹ Output destination directory: \\"tmp\\"
 
@@ -12,7 +46,7 @@ exports[`generate > basic - . 1`] = `
 "
 `;
 
-exports[`generate > basic - . 2`] = `
+exports[`generate > success - basic (.) 2`] = `
 [
   {
     "content": "static content",
@@ -30,7 +64,7 @@ tmp/nest",
 ]
 `;
 
-exports[`generate > basic - override 1`] = `
+exports[`generate > success - basic (override) 1`] = `
 "
 ℹ Output destination directory: \\"tmp/override\\"
 
@@ -42,7 +76,7 @@ exports[`generate > basic - override 1`] = `
 "
 `;
 
-exports[`generate > basic - override 2`] = `
+exports[`generate > success - basic (override) 2`] = `
 [
   {
     "content": "static content",
@@ -60,7 +94,7 @@ tmp/override/nest",
 ]
 `;
 
-exports[`generate > conditional-generate - false 1`] = `
+exports[`generate > success - conditional-generate (false) 1`] = `
 "
 ℹ Output destination directory: \\"tmp/false\\"
 
@@ -72,7 +106,7 @@ exports[`generate > conditional-generate - false 1`] = `
 "
 `;
 
-exports[`generate > conditional-generate - false 2`] = `
+exports[`generate > success - conditional-generate (false) 2`] = `
 [
   {
     "content": "If bool is false, output.",
@@ -81,7 +115,7 @@ exports[`generate > conditional-generate - false 2`] = `
 ]
 `;
 
-exports[`generate > conditional-generate - true 1`] = `
+exports[`generate > success - conditional-generate (true) 1`] = `
 "
 ℹ Output destination directory: \\"tmp/true\\"
 
@@ -93,7 +127,7 @@ exports[`generate > conditional-generate - true 1`] = `
 "
 `;
 
-exports[`generate > conditional-generate - true 2`] = `
+exports[`generate > success - conditional-generate (true) 2`] = `
 [
   {
     "content": "If bool is true, output.",
@@ -102,7 +136,7 @@ exports[`generate > conditional-generate - true 2`] = `
 ]
 `;
 
-exports[`generate > inputs - . 1`] = `
+exports[`generate > success - inputs (.) 1`] = `
 "
 ℹ Output destination directory: \\"tmp\\"
 
@@ -113,7 +147,7 @@ exports[`generate > inputs - . 1`] = `
 "
 `;
 
-exports[`generate > inputs - . 2`] = `
+exports[`generate > success - inputs (.) 2`] = `
 [
   {
     "content": "value: scaffdog
@@ -124,7 +158,7 @@ path: tmp/scaffdog.txt",
 ]
 `;
 
-exports[`generate > inputs - deep/nest 1`] = `
+exports[`generate > success - inputs (deep/nest) 1`] = `
 "
 ℹ Output destination directory: \\"tmp/deep/nest\\"
 
@@ -135,7 +169,7 @@ exports[`generate > inputs - deep/nest 1`] = `
 "
 `;
 
-exports[`generate > inputs - deep/nest 2`] = `
+exports[`generate > success - inputs (deep/nest) 2`] = `
 [
   {
     "content": "value: e2e
@@ -146,7 +180,7 @@ path: tmp/deep/nest/e2e.txt",
 ]
 `;
 
-exports[`generate > question - dist 1`] = `
+exports[`generate > success - question (dist) 1`] = `
 "
 ℹ Output destination directory: \\"tmp/dist\\"
 
@@ -157,7 +191,7 @@ exports[`generate > question - dist 1`] = `
 "
 `;
 
-exports[`generate > question - dist 2`] = `
+exports[`generate > success - question (dist) 2`] = `
 [
   {
     "content": "shorthand: input_shorthand
@@ -186,7 +220,7 @@ checkbox_if_without_initial: ",
 ]
 `;
 
-exports[`generate > vars - . 1`] = `
+exports[`generate > success - vars (.) 1`] = `
 "
 ℹ Output destination directory: \\"tmp\\"
 
@@ -197,7 +231,7 @@ exports[`generate > vars - . 1`] = `
 "
 `;
 
-exports[`generate > vars - . 2`] = `
+exports[`generate > success - vars (.) 2`] = `
 [
   {
     "content": "raw: bar-baz

@@ -3,7 +3,7 @@ import path from 'path';
 import globby from 'globby';
 import strip from 'strip-ansi';
 import { afterEach, beforeAll, describe, expect, test } from 'vitest';
-import { $ } from 'zx';
+import { $, nothrow } from 'zx';
 import pkg from '../package.json';
 
 $.verbose = false;
@@ -28,6 +28,14 @@ describe('generate', () => {
   afterEach(() => {
     clear();
   });
+
+  const run = async (options: string[]) => {
+    const process = await nothrow($`node ${paths.bin} generate ${options}`);
+    return {
+      process,
+      output: strip(process.toString()),
+    };
+  };
 
   test.each([
     ['basic', '.', []],
@@ -57,7 +65,7 @@ describe('generate', () => {
     ['vars', '.', ['foo:bar-baz']],
     ['conditional-generate', 'true', ['bool:true']],
     ['conditional-generate', 'false', ['bool:false']],
-  ])('%s - %s', async (name, output, answers) => {
+  ])('success - %s (%s)', async (name, output, answers) => {
     const flags = [
       name,
       '-p',
@@ -67,8 +75,7 @@ describe('generate', () => {
       ...answers.flatMap((v) => ['-a', v]),
     ];
 
-    const p = await $`node ${paths.bin} generate ${flags}`;
-    const out = strip(p.toString());
+    const result = await run(flags);
 
     const files = await globby('tmp/**/*', {
       onlyFiles: true,
@@ -87,7 +94,38 @@ describe('generate', () => {
       return acc;
     }, []);
 
-    expect(out).toMatchSnapshot();
+    expect(result.process.exitCode).toBe(0);
+    expect(result.output).toMatchSnapshot();
     expect(results).toMatchSnapshot();
+  });
+
+  test.each([
+    ['inputs', '.', ['value:', 'choice:B']],
+    ['inputs', '.', ['value:scaffdog', 'choice:']],
+  ])('failure - %s (%s)', async (name, output, answers) => {
+    const flags = [
+      name,
+      '-p',
+      'fixtures',
+      '-o',
+      output,
+      ...answers.flatMap((v) => ['-a', v]),
+    ];
+
+    const result = await run(flags);
+
+    const files = await globby('tmp/**/*', {
+      onlyFiles: true,
+    });
+
+    const stderr = result.output.replace(
+      /(\s+)at\s.+\(?.+\d+:\d+\)?\n/g,
+      '$1{stacktrace}\n',
+    );
+
+    expect(files.length).toBe(0);
+
+    expect(result.process.exitCode).toBe(1);
+    expect(stderr).toMatchSnapshot();
   });
 });
