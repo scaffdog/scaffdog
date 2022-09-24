@@ -129,7 +129,7 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
-    if: github.repository == 'scaffdog/scaffdog'
+    if: github.repository == 'scaffdog/scaffdog' && github.ref == 'refs/heads/canary'
     needs: [pass]
     env:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -145,10 +145,15 @@ jobs:
           name: dist
           path: packages
       - run: pnpm install --frozen-lockfile
-      - name: Fetch all git tags
-        run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
-      - name: Configure git user
+      - name: Creating .npmrc
         run: |
-          git config --local user.email "${{ secrets.GIT_USER_EMAIL }}"
-          git config --local user.name "${{ secrets.GIT_USER_NAME }}"
-      - run: ./scripts/publish.sh
+          cat << EOF > ".npmrc"
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+      - name: Create Release Pull Request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: changesets/action@v1
+        with:
+          publish: pnpm release
+          commit: 'chore: version packages'

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@2.1.1/schema.json",
+  "changelog": [
+    "@changesets/changelog-github",
+    { "repo": "scaffdog/scaffdog" }
+  ],
+  "commit": false,
+  "fixed": [["scaffdog", "@scaffdog/*", "prettier-plugin-scaffdog"]],
+  "linked": [],
+  "access": "public",
+  "baseBranch": "canary",
+  "updateInternalDependencies": "patch",
+  "ignore": ["website"]
+}
