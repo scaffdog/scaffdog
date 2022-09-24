@@ -5,16 +5,16 @@ exports[`handle > Error 1`] = `
  ERROR  General Error: title
 
   at src/lib/error.test.ts:55:15
-  at ~/node_modules/.pnpm/vitest@0.23.1/node_modules/vitest/dist/chunk-runtime-chain.8bfc559b.mjs:2331:43
-  at runWithSuite (~/node_modules/.pnpm/vitest@0.23.1/node_modules/vitest/dist/chunk-runtime-chain.8bfc559b.mjs:2128:9)
-  at Object.collect (~/node_modules/.pnpm/vitest@0.23.1/node_modules/vitest/dist/chunk-runtime-chain.8bfc559b.mjs:2331:13)
-  at Object.collect (~/node_modules/.pnpm/vitest@0.23.1/node_modules/vitest/dist/chunk-runtime-chain.8bfc559b.mjs:2334:57)
-  at async collectTests (~/node_modules/.pnpm/vitest@0.23.1/node_modules/vitest/dist/chunk-runtime-error.252dd130.mjs:351:28)
-  at async startTestsNode (~/node_modules/.pnpm/vitest@0.23.1/node_modules/vitest/dist/chunk-runtime-error.252dd130.mjs:766:17)
-  at async ~/node_modules/.pnpm/vitest@0.23.1/node_modules/vitest/dist/entry.mjs:83:9
-  at async Module.withEnv (~/node_modules/.pnpm/vitest@0.23.1/node_modules/vitest/dist/chunk-runtime-error.252dd130.mjs:293:5)
-  at async run (~/node_modules/.pnpm/vitest@0.23.1/node_modules/vitest/dist/entry.mjs:76:5)
-  at async ~/node_modules/.pnpm/tinypool@0.2.4/node_modules/tinypool/dist/esm/worker.js:99:20
+  at ~/node_modules/.pnpm/vitest@0.23.4/node_modules/vitest/dist/chunk-runtime-chain.0ab05798.mjs:2319:43
+  at runWithSuite (~/node_modules/.pnpm/vitest@0.23.4/node_modules/vitest/dist/chunk-runtime-chain.0ab05798.mjs:2128:9)
+  at Object.collect (~/node_modules/.pnpm/vitest@0.23.4/node_modules/vitest/dist/chunk-runtime-chain.0ab05798.mjs:2319:13)
+  at Object.collect (~/node_modules/.pnpm/vitest@0.23.4/node_modules/vitest/dist/chunk-runtime-chain.0ab05798.mjs:2322:57)
+  at async collectTests (~/node_modules/.pnpm/vitest@0.23.4/node_modules/vitest/dist/chunk-runtime-error.f5506f40.mjs:351:28)
+  at async startTestsNode (~/node_modules/.pnpm/vitest@0.23.4/node_modules/vitest/dist/chunk-runtime-error.f5506f40.mjs:781:17)
+  at async ~/node_modules/.pnpm/vitest@0.23.4/node_modules/vitest/dist/entry.mjs:83:9
+  at async Module.withEnv (~/node_modules/.pnpm/vitest@0.23.4/node_modules/vitest/dist/chunk-runtime-error.f5506f40.mjs:293:5)
+  at async run (~/node_modules/.pnpm/vitest@0.23.4/node_modules/vitest/dist/entry.mjs:76:5)
+  at async ~/node_modules/.pnpm/tinypool@0.3.0/node_modules/tinypool/dist/esm/worker.js:109:20
 
 
 "
