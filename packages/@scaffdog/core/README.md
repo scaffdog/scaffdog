@@ -32,7 +32,7 @@ $ npm install @scaffdog/core
 import fs from 'fs';
 import path from 'path';
 import { createContext, compile } from '@scaffdog/engine';
-import { extract, generate } from '@scaffdog/core';
+import { extract } from '@scaffdog/core';
 
 const source = fs.readFileSync('template.md', 'utf8');
 const context = createContext({});

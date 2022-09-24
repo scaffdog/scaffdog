@@ -155,6 +155,10 @@ See [Migration Guide](/MIGRATION.md).
 
 See [CONTRIBUTING.md](/CONTRIBUTING.md).
 
+## CHANGELOG
+
+See [CHANGELOG.md](/packages/scaffdog/CHANGELOG.md).
+
 ## License
 
 [MIT © wadackel](/LICENSE)

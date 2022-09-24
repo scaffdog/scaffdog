@@ -15,14 +15,14 @@ $ npm install @scaffdog/engine
 The following code is a basic example:
 
 ```typescript
-import { compile, createContext } from '@scaffdog/engine';
+import { render, createContext } from '@scaffdog/engine';
 
 const context = createContext({
   variables: new Map([['name', 'scaffdog']]),
   helpers: new Map([['greet', (_, name: string) => `Hi ${name}!`]]),
 });
 
-const output = compile(`OUTPUT: {{ name | greet }}`, context);
+const output = render(`OUTPUT: {{ name | greet }}`, context);
 // --> "OUTPUT: Hi scaffdog!"
 ```
 
@@ -31,7 +31,7 @@ const output = compile(`OUTPUT: {{ name | greet }}`, context);
 You can change the tag delimiter with `context.tags`:
 
 ```typescript
-import { compile, createContext } from '@scaffdog/engine';
+import { render, createContext } from '@scaffdog/engine';
 
 const context = createContext({
   tags: ['<%=', '=%>'],
