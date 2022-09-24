@@ -1,5 +1,6 @@
 import type { HelperMap, Variable } from '@scaffdog/types';
 import * as cc from 'change-case';
+import plur from 'plur';
 import dayjs from 'dayjs';
 import safeEval from 'safe-eval';
 import { defineHelper } from './helper-utils';
@@ -165,6 +166,10 @@ defineHelper<[v: string]>(helpers, 'kebab', (_, v) => cc.paramCase(v));
 defineHelper<[v: string]>(helpers, 'constant', (_, v) => cc.constantCase(v));
 defineHelper<[v: string]>(helpers, 'upper', (_, v) => v.toUpperCase());
 defineHelper<[v: string]>(helpers, 'lower', (_, v) => v.toLowerCase());
+
+defineHelper<[v: string, count: number]>(helpers, 'plur', (_, v, count = 2) =>
+  plur(v, count),
+);
 
 defineHelper<[v: string, pattern: string, replacement: string]>(
   helpers,
