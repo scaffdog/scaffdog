@@ -1,0 +1,14 @@
+{
+  "mode": "pre",
+  "tag": "canary",
+  "initialVersions": {
+    "@scaffdog/config": "2.3.1",
+    "@scaffdog/core": "2.3.1",
+    "@scaffdog/engine": "2.3.1",
+    "@scaffdog/error": "2.3.1",
+    "@scaffdog/types": "2.3.1",
+    "prettier-plugin-scaffdog": "2.3.1",
+    "scaffdog": "2.3.1"
+  },
+  "changesets": []
+}

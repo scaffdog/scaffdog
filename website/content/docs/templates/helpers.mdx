@@ -168,6 +168,36 @@ lower(value)
 --> foo-bar
 ```
 
+### `plur`
+
+Pluralize a word. See the [plur](https://github.com/sindresorhus/plur) documentation for details.
+
+**Signature:**
+
+```clike
+plur(value, count?)
+```
+
+**Paramters:**
+
+| Parameter | Type     | Description                                                                               |
+| :-------- | :------- | :---------------------------------------------------------------------------------------- |
+| `value`   | `string` | Input value.                                                                              |
+| `count`   | `number` | The count to determine whether to use singular or plural. If omitted, defaults to plural. |
+
+**Example:**
+
+```clike
+{{ "dog" | plur }}
+--> dogs
+
+{{ "dog" | plur 1 }}
+--> dog
+
+{{ "dog" | plur 2 }}
+--> dogs
+```
+
 ### `replace`
 
 Replace `pattern` with `replacement`. `pattern` is specified as a string, but it is treated as a regular expression.

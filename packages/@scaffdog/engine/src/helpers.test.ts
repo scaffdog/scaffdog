@@ -145,6 +145,10 @@ describe('string', () => {
     ['upper', `{{ "FooBar" | upper }}`, `FOOBAR`],
     ['upper - array', `{{ array | camel | upper }}`, `STRA,STRB,STRC`],
 
+    ['plur - default', `{{ "dog" | plur }}`, `dogs`],
+    ['plur - singular', `{{ "dog" | plur 1 }}`, `dog`],
+    ['plur - plural', `{{ "dog" | plur 2 }}`, `dogs`],
+
     ['lower', `{{ "FooBar" | lower }}`, `foobar`],
     ['lower - array', `{{ array | camel | lower }}`, `stra,strb,strc`],
 
