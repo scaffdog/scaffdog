@@ -1,6 +1,6 @@
 {
   "name": "scaffdog",
-  "version": "2.3.1",
+  "version": "2.4.0-canary.0",
   "description": "scaffdog is Markdown driven scaffolding tool.",
   "keywords": [
     "scaffdog",
@@ -39,7 +39,6 @@
     "test:watch": "vitest watch --dir src",
     "test:approve": "pnpm run test -u",
     "test:e2e": "vitest run --dir test",
-    "test:e2e:watch": "vitest watch --dir test",
     "test:e2e:watch": "pnpm test:e2e -u"
   },
   "dependencies": {

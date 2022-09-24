@@ -1,18 +1,29 @@
 # Change Log
 
+## 2.4.0-canary.0
+
+### Patch Changes
+
+- Updated dependencies [[`f41a2b1`](https://github.com/scaffdog/scaffdog/commit/f41a2b1ab98e0ae2b55c47550b71c84eab759d40)]:
+  - @scaffdog/engine@2.4.0-canary.0
+  - @scaffdog/core@2.4.0-canary.0
+  - @scaffdog/config@2.4.0-canary.0
+  - @scaffdog/error@2.4.0-canary.0
+  - @scaffdog/types@2.4.0-canary.0
+
 ## [2.3.1](https://github.com/scaffdog/scaffdog/compare/v2.3.0...v2.3.1) (2022-09-22)
 
 ### Bug Fixes
 
-* **scaffdog:** fix a validation miss in input prompt ([ca11b67](https://github.com/scaffdog/scaffdog/commit/ca11b67b195f76c990e75e5d7c147da203ad7401))
+- **scaffdog:** fix a validation miss in input prompt ([ca11b67](https://github.com/scaffdog/scaffdog/commit/ca11b67b195f76c990e75e5d7c147da203ad7401))
 
 # [2.3.0](https://github.com/scaffdog/scaffdog/compare/v2.2.0...v2.3.0) (2022-09-20)
 
 ### Features
 
-* **scaffdog:** add `answer` flag ([4e726be](https://github.com/scaffdog/scaffdog/commit/4e726bea5fc7ed6c4a5d8e4501a122bd324c5125))
-* **scaffdog:** add `output` flag ([5d4e723](https://github.com/scaffdog/scaffdog/commit/5d4e723b0acf37465d87361668cc2ad222cb1968))
-* **scaffdog:** change to report syntax error earlier ([2778d28](https://github.com/scaffdog/scaffdog/commit/2778d282b1236ec70f6898dbe4924abeef78b208))
+- **scaffdog:** add `answer` flag ([4e726be](https://github.com/scaffdog/scaffdog/commit/4e726bea5fc7ed6c4a5d8e4501a122bd324c5125))
+- **scaffdog:** add `output` flag ([5d4e723](https://github.com/scaffdog/scaffdog/commit/5d4e723b0acf37465d87361668cc2ad222cb1968))
+- **scaffdog:** change to report syntax error earlier ([2778d28](https://github.com/scaffdog/scaffdog/commit/2778d282b1236ec70f6898dbe4924abeef78b208))
 
 # [2.2.0](https://github.com/scaffdog/scaffdog/compare/v2.1.1...v2.2.0) (2022-09-05)
 
@@ -26,31 +37,31 @@
 
 ### Features
 
-* **scaffdog:** add support for Fake ESM and TypeScript config file ([49e4427](https://github.com/scaffdog/scaffdog/commit/49e442739f68dbf7795c65fb94fc47572e8df454))
+- **scaffdog:** add support for Fake ESM and TypeScript config file ([49e4427](https://github.com/scaffdog/scaffdog/commit/49e442739f68dbf7795c65fb94fc47572e8df454))
 
 ## [2.0.3](https://github.com/scaffdog/scaffdog/compare/v2.0.2...v2.0.3) (2022-08-24)
 
 ### Bug Fixes
 
-* **scaffdog:** fix a bug that `inputs` could not be referenced in the variables section ([40531e3](https://github.com/scaffdog/scaffdog/commit/40531e39be50e77799b012f9a9c67ba95dc576af))
+- **scaffdog:** fix a bug that `inputs` could not be referenced in the variables section ([40531e3](https://github.com/scaffdog/scaffdog/commit/40531e39be50e77799b012f9a9c67ba95dc576af))
 
 ## [2.0.2](https://github.com/scaffdog/scaffdog/compare/v2.0.1...v2.0.2) (2022-08-17)
 
 ### Features
 
-* **scaffdog:** add `if` field to `questions` attribute ([2baea63](https://github.com/scaffdog/scaffdog/commit/2baea63dc4e89b6709a9752d666df7374daeb3c5))
+- **scaffdog:** add `if` field to `questions` attribute ([2baea63](https://github.com/scaffdog/scaffdog/commit/2baea63dc4e89b6709a9752d666df7374daeb3c5))
 
 ## [2.0.1](https://github.com/scaffdog/scaffdog/compare/v2.0.0...v2.0.1) (2022-08-13)
 
 ### Bug Fixes
 
-* update initial template url ([f055ae3](https://github.com/scaffdog/scaffdog/commit/f055ae37e36eaaab2cd470d8911e5dd7709f416c))
+- update initial template url ([f055ae3](https://github.com/scaffdog/scaffdog/commit/f055ae37e36eaaab2cd470d8911e5dd7709f416c))
 
 # [2.0.0](https://github.com/scaffdog/scaffdog/compare/v2.0.0-canary.7...v2.0.0) (2022-08-13)
 
 ### Bug Fixes
 
-* **scaffdog:** fix document parse bug ([77dcf67](https://github.com/scaffdog/scaffdog/commit/77dcf6767744f6272cbb9be32c81c73bbf8ef95a))
+- **scaffdog:** fix document parse bug ([77dcf67](https://github.com/scaffdog/scaffdog/commit/77dcf6767744f6272cbb9be32c81c73bbf8ef95a))
 
 # [2.0.0-canary.7](https://github.com/scaffdog/scaffdog/compare/v2.0.0-canary.6...v2.0.0-canary.7) (2022-08-13)
 
@@ -64,7 +75,7 @@
 
 ### Features
 
-* **scaffdog:** add file generation skip token ([e413dc9](https://github.com/scaffdog/scaffdog/commit/e413dc99e4f15bcf873ec677b95802c8ae952dfb))
+- **scaffdog:** add file generation skip token ([e413dc9](https://github.com/scaffdog/scaffdog/commit/e413dc99e4f15bcf873ec677b95802c8ae952dfb))
 
 # [2.0.0-canary.4](https://github.com/scaffdog/scaffdog/compare/v2.0.0-canary.3...v2.0.0-canary.4) (2022-08-06)
 
