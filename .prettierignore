@@ -1,7 +1,7 @@
 dist
 tmp
 pnpm-lock.yaml
-lerna.json
+.changeset/pre.json
 CHANGELOG.md
 **/.contentlayer/**/*
 website/out
