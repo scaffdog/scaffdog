@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.4.0-canary.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @scaffdog/types@2.4.0-canary.0
+
 ## [2.3.1](https://github.com/scaffdog/scaffdog/compare/v2.3.0...v2.3.1) (2022-09-22)
 
 **Note:** Version bump only for package @scaffdog/config
@@ -20,7 +27,7 @@
 
 ### Features
 
-* **scaffdog:** add support for Fake ESM and TypeScript config file ([49e4427](https://github.com/scaffdog/scaffdog/commit/49e442739f68dbf7795c65fb94fc47572e8df454))
+- **scaffdog:** add support for Fake ESM and TypeScript config file ([49e4427](https://github.com/scaffdog/scaffdog/commit/49e442739f68dbf7795c65fb94fc47572e8df454))
 
 ## [2.0.3](https://github.com/scaffdog/scaffdog/compare/v2.0.2...v2.0.3) (2022-08-24)
 
