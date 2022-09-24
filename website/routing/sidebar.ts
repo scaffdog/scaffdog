@@ -49,6 +49,6 @@ export const sidebar: RouteItem[] = [
   },
   {
     title: 'Changelog',
-    path: 'https://github.com/scaffdog/scaffdog/blob/canary/CHANGELOG.md',
+    path: 'https://github.com/scaffdog/scaffdog/blob/canary/packages/scaffdog/CHANGELOG.md',
   },
 ];
