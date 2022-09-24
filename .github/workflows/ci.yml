@@ -129,6 +129,7 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
+    if: github.repository == 'scaffdog/scaffdog'
     needs: [pass]
     env:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
