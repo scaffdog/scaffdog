@@ -10,5 +10,5 @@
   "access": "public",
   "baseBranch": "canary",
   "updateInternalDependencies": "patch",
-  "ignore": ["website"]
+  "ignore": []
 }
