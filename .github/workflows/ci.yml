@@ -151,9 +151,19 @@ jobs:
             //registry.npmjs.org/:_authToken=$NPM_TOKEN
           EOF
       - name: Create Release Pull Request
+        id: changesets
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         uses: changesets/action@v1
         with:
           publish: pnpm release
           commit: 'chore: version packages'
+      - name: Sync main branch with canary
+        if: steps.changesets.outputs.published == 'true'
+        run: |
+          if [[ ! -f '.changeset/pre.json' ]]; then
+            git fetch --depth=1 origin main
+            git switch main
+            git reset --hard canary
+            git push origin main -f
+          fi
