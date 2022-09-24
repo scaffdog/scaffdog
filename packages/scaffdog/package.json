@@ -37,8 +37,10 @@
     "scaffold": "pnpm scaffdog generate -f",
     "test": "vitest run --dir src",
     "test:watch": "vitest watch --dir src",
+    "test:approve": "pnpm run test -u",
     "test:e2e": "vitest run --dir test",
-    "test:e2e:watch": "vitest watch --dir test"
+    "test:e2e:watch": "vitest watch --dir test",
+    "test:e2e:watch": "pnpm test:e2e -u"
   },
   "dependencies": {
     "@scaffdog/config": "workspace:*",
