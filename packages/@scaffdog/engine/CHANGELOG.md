@@ -1,5 +1,28 @@
 # Change Log
 
+## 2.4.0-canary.0
+
+### Minor Changes
+
+- [#502](https://github.com/scaffdog/scaffdog/pull/502) [`f41a2b1`](https://github.com/scaffdog/scaffdog/commit/f41a2b1ab98e0ae2b55c47550b71c84eab759d40) Thanks [@wadackel](https://github.com/wadackel)! - Add `plur` helper function.
+
+  ```clike
+  {{ "dog" | plur }}
+  --> dogs
+
+  {{ "dog" | plur 1 }}
+  --> dog
+
+  {{ "dog" | plur 2 }}
+  --> dogs
+  ```
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @scaffdog/error@2.4.0-canary.0
+  - @scaffdog/types@2.4.0-canary.0
+
 ## [2.3.1](https://github.com/scaffdog/scaffdog/compare/v2.3.0...v2.3.1) (2022-09-22)
 
 **Note:** Version bump only for package @scaffdog/engine
@@ -8,14 +31,14 @@
 
 ### Features
 
-* **scaffdog:** change to report syntax error earlier ([2778d28](https://github.com/scaffdog/scaffdog/commit/2778d282b1236ec70f6898dbe4924abeef78b208))
+- **scaffdog:** change to report syntax error earlier ([2778d28](https://github.com/scaffdog/scaffdog/commit/2778d282b1236ec70f6898dbe4924abeef78b208))
 
 # [2.2.0](https://github.com/scaffdog/scaffdog/compare/v2.1.1...v2.2.0) (2022-09-05)
 
 ### Features
 
-* **engine:** add `append` helper function ([5c0dcc4](https://github.com/scaffdog/scaffdog/commit/5c0dcc4bb5818f596553b61e0d98caa3f793bfbe))
-* **engine:** add `uniq` helper function ([4229d61](https://github.com/scaffdog/scaffdog/commit/4229d6128afdb1b018a6d05a1a68ea7950f2ae3d))
+- **engine:** add `append` helper function ([5c0dcc4](https://github.com/scaffdog/scaffdog/commit/5c0dcc4bb5818f596553b61e0d98caa3f793bfbe))
+- **engine:** add `uniq` helper function ([4229d61](https://github.com/scaffdog/scaffdog/commit/4229d6128afdb1b018a6d05a1a68ea7950f2ae3d))
 
 ## [2.1.1](https://github.com/scaffdog/scaffdog/compare/v2.1.0...v2.1.1) (2022-09-04)
 
@@ -33,7 +56,7 @@
 
 ### Features
 
-* **engine:** add `contains` helper function ([5a5d534](https://github.com/scaffdog/scaffdog/commit/5a5d534788df7981a02bd4c285f78893ab5efe55))
+- **engine:** add `contains` helper function ([5a5d534](https://github.com/scaffdog/scaffdog/commit/5a5d534788df7981a02bd4c285f78893ab5efe55))
 
 ## [2.0.1](https://github.com/scaffdog/scaffdog/compare/v2.0.0...v2.0.1) (2022-08-13)
 

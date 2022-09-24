@@ -1,5 +1,7 @@
 # Change Log
 
+## 2.4.0-canary.0
+
 ## [2.3.1](https://github.com/scaffdog/scaffdog/compare/v2.3.0...v2.3.1) (2022-09-22)
 
 **Note:** Version bump only for package @scaffdog/types
@@ -8,7 +10,7 @@
 
 ### Features
 
-* **scaffdog:** change to report syntax error earlier ([2778d28](https://github.com/scaffdog/scaffdog/commit/2778d282b1236ec70f6898dbe4924abeef78b208))
+- **scaffdog:** change to report syntax error earlier ([2778d28](https://github.com/scaffdog/scaffdog/commit/2778d282b1236ec70f6898dbe4924abeef78b208))
 
 # [2.2.0](https://github.com/scaffdog/scaffdog/compare/v2.1.1...v2.2.0) (2022-09-05)
 
@@ -50,7 +52,7 @@
 
 ### Features
 
-* **scaffdog:** add file generation skip token ([e413dc9](https://github.com/scaffdog/scaffdog/commit/e413dc99e4f15bcf873ec677b95802c8ae952dfb))
+- **scaffdog:** add file generation skip token ([e413dc9](https://github.com/scaffdog/scaffdog/commit/e413dc99e4f15bcf873ec677b95802c8ae952dfb))
 
 # [2.0.0-canary.4](https://github.com/scaffdog/scaffdog/compare/v2.0.0-canary.3...v2.0.0-canary.4) (2022-08-06)
 
