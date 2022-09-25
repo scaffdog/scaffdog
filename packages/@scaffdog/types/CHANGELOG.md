@@ -1,5 +1,7 @@
 # Change Log
 
+## 2.4.0
+
 ## 2.4.0-canary.0
 
 ## [2.3.1](https://github.com/scaffdog/scaffdog/compare/v2.3.0...v2.3.1) (2022-09-22)

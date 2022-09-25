@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.4.0
+
+### Patch Changes
+
+- Updated dependencies [[`f41a2b1`](https://github.com/scaffdog/scaffdog/commit/f41a2b1ab98e0ae2b55c47550b71c84eab759d40)]:
+  - @scaffdog/engine@2.4.0
+  - @scaffdog/config@2.4.0
+  - @scaffdog/types@2.4.0
+
 ## 2.4.0-canary.0
 
 ### Patch Changes
