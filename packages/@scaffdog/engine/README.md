@@ -37,7 +37,7 @@ const context = createContext({
   tags: ['<%=', '=%>'],
 });
 
-compile(`<%= "custom tag" =%>`, context);
+render(`<%= "custom tag" =%>`, context);
 ```
 
 ## Language Specification
