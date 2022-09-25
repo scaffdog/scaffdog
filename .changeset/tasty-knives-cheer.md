@@ -1,4 +1,5 @@
 ---
+'scaffdog': minor
 '@scaffdog/engine': minor
 ---
 
