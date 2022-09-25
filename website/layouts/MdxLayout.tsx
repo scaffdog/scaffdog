@@ -5,12 +5,11 @@ import { sidebar } from '../routing/sidebar';
 import { findRouteByPath, getRouteContext } from '../routing/utils';
 import type { Frontmatter } from '../types/content';
 
-type Props = {
+export type Props = React.PropsWithChildren<{
   frontmatter: Frontmatter;
-  children: React.ReactNode;
-};
+}>;
 
-const MdxLayout: React.FC<Props> = ({ frontmatter, children }) => {
+export const MdxLayout: React.FC<Props> = ({ frontmatter, children }) => {
   const route = findRouteByPath(frontmatter.slug, sidebar);
   if (route == null) {
     throw new Error(`"${frontmatter.slug}" is not exists`);
@@ -30,5 +29,3 @@ const MdxLayout: React.FC<Props> = ({ frontmatter, children }) => {
     </PageContainer>
   );
 };
-
-export default MdxLayout;

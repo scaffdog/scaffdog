@@ -1,33 +1,32 @@
 import type { ButtonProps, HTMLChakraProps } from '@chakra-ui/react';
 import {
-  chakra,
-  useClipboard,
   Box,
   Button,
+  chakra,
   Container,
   Flex,
   Heading,
   Icon,
   SimpleGrid,
   Text,
+  useClipboard,
 } from '@chakra-ui/react';
-import type { NextPage } from 'next';
 import Image from 'next/image';
 import NextLink from 'next/link';
-import { Footer } from '../components/Footer';
-import { Header } from '../components/Header';
+import { Highlight } from '../components/Highlight';
+import { CheckIcon } from '../components/icons/CheckIcon';
+import { ChevronsDownIcon } from '../components/icons/ChevronsDownIcon';
+import { CopyIcon } from '../components/icons/CopyIcon';
 import { ScaffdogIcon } from '../components/icons/ScaffdogIcon';
 import { Terminal } from '../components/Terminal';
-import { CopyIcon } from '../components/icons/CopyIcon';
-import { CheckIcon } from '../components/icons/CheckIcon';
-import { Highlight } from '../components/Highlight';
-import { ChevronsDownIcon } from '../components/icons/ChevronsDownIcon';
-import heroSrc from '../public/top/hero.png';
+import { Layout } from '../layouts/Layout';
 import feature1src from '../public/top/feature1.png';
 import feature2src from '../public/top/feature2.png';
 import feature3src from '../public/top/feature3.png';
 import feature4src from '../public/top/feature4.png';
+import heroSrc from '../public/top/hero.png';
 import playgroundSrc from '../public/top/playground.png';
+import type { NextPageWithLayout } from './_app';
 
 const _LinkButton: React.FC<ButtonProps & { href: string }> = ({
   href,
@@ -169,6 +168,7 @@ const Hero: React.FC = () => {
           maxW="1650px"
         >
           <Image
+            priority
             src={heroSrc}
             alt=""
             layout="fill"
@@ -446,7 +446,8 @@ const Play: React.FC = () => {
           ml={{ base: '0', md: '5' }}
           mb={{ base: '5', md: '0' }}
           boxShadow="md"
-          borderRadius="26px"
+          borderRadius={{ base: '8px', md: '26px' }}
+          lineHeight="0"
         >
           <Image
             aria-hidden
@@ -462,11 +463,9 @@ const Play: React.FC = () => {
   );
 };
 
-const Home: NextPage = () => {
+const Home: NextPageWithLayout = () => {
   return (
     <>
-      <Header />
-
       <Hero />
 
       <Container
@@ -489,10 +488,10 @@ const Home: NextPage = () => {
       </Container>
 
       <Box mt="16" />
-
-      <Footer />
     </>
   );
 };
+
+Home.getLayout = (page) => <Layout>{page}</Layout>;
 
 export default Home;

@@ -1,23 +1,27 @@
-import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import type { GetStaticPaths, GetStaticProps } from 'next';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import type { Doc } from '../../.contentlayer/generated';
 import { allDocs } from '../../.contentlayer/generated';
 import { mdxComponents } from '../../components/mdx-components';
-import { Layout } from '../../layouts';
+import { Layout } from '../../layouts/Layout';
+import { MdxLayout } from '../../layouts/MdxLayout';
+import type { NextPageWithLayout } from '../_app';
 
 type Props = {
   doc: Doc;
 };
 
-const Page: NextPage<Props> = ({ doc }) => {
+const Page: NextPageWithLayout<Props> = ({ doc }) => {
   const Component = useMDXComponent(doc.body.code);
 
   return (
-    <Layout frontmatter={doc.frontmatter}>
+    <MdxLayout frontmatter={doc.frontmatter}>
       <Component components={mdxComponents} />
-    </Layout>
+    </MdxLayout>
   );
 };
+
+Page.getLayout = (page) => <Layout>{page}</Layout>;
 
 export default Page;
 

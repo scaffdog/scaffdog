@@ -1,7 +1,9 @@
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import type { NextPage } from 'next';
 import { DefaultSeo } from 'next-seo';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import type { ReactElement, ReactNode } from 'react';
 
 const space = {
   px: '1px',
@@ -125,7 +127,17 @@ const theme = extendTheme({
   },
 });
 
-const App: React.FC<AppProps> = ({ Component, pageProps }) => {
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type Props = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+const App: React.FC<Props> = ({ Component, pageProps }) => {
+  const getLayout = Component.getLayout ?? ((page) => page);
+
   return (
     <>
       <Head>
@@ -167,7 +179,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
       />
 
       <ChakraProvider theme={theme}>
-        <Component {...pageProps} />
+        {getLayout(<Component {...pageProps} />)}
       </ChakraProvider>
     </>
   );

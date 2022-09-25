@@ -10,8 +10,6 @@ import {
 import { format } from 'date-fns';
 import { useMemo } from 'react';
 import type { Frontmatter } from '../types/content';
-import { Footer } from './Footer';
-import { Header } from './Header';
 import { EditIcon } from './icons/EditIcon';
 import { Link } from './Link';
 import { Seo } from './Seo';
@@ -40,8 +38,6 @@ export const PageContainer: React.FC<Props> = ({
   return (
     <>
       <Seo title={frontmatter.title} description={frontmatter.description} />
-
-      <Header />
 
       <Container as="main" maxW="container.xl" mt="14">
         <Flex>
@@ -127,8 +123,6 @@ export const PageContainer: React.FC<Props> = ({
           </Box>
         </Flex>
       </Container>
-
-      <Footer />
     </>
   );
 };

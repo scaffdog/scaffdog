@@ -16,6 +16,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { useScroll } from 'framer-motion';
+import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from '../hooks/usePathname';
 import { sidebar } from '../routing/sidebar';
@@ -61,6 +62,7 @@ export type Props = {
 };
 
 export const Header: React.FC<Props> = ({ home }) => {
+  const router = useRouter();
   const pathname = usePathname();
 
   const ref = useRef<HTMLDivElement>(null);
@@ -71,6 +73,20 @@ export const Header: React.FC<Props> = ({ home }) => {
 
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  useEffect(() => {
+    const handler = () => {
+      onClose();
+    };
+
+    router.events.on('routeChangeComplete', handler);
+    router.events.on('routeChangeError', handler);
+
+    return () => {
+      router.events.off('routeChangeComplete', handler);
+      router.events.off('routeChangeError', handler);
+    };
+  }, [router, onClose]);
 
   useEffect(() => {
     return scrollY.onChange(() => {
@@ -131,7 +147,7 @@ export const Header: React.FC<Props> = ({ home }) => {
               <_NavLink href="/docs">Get Started</_NavLink>
               <_NavLink href="/docs/templates">Docs</_NavLink>
               <_NavLink href="/playground">Playground</_NavLink>
-              <Link isExternal href="https://github.com/scaffdog/scaffdog">
+              <Link href="https://github.com/scaffdog/scaffdog">
                 <Icon
                   as={GitHubIcon}
                   display="block"
