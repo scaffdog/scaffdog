@@ -6,6 +6,8 @@ on:
   pull_request:
     types: [opened, synchronize]
 
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
