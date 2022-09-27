@@ -181,7 +181,7 @@ importers:
       micromatch: ^4.0.4
       node-emoji: ^1.10.0
       plur: ^4.0.0
-      strip-ansi: 6.0.0
+      strip-ansi: 6.0.1
       term-size: ^2.2.1
       type-fest: 2.19.0
       update-notifier: ^5.1.0
@@ -212,7 +212,7 @@ importers:
       micromatch: 4.0.5
       node-emoji: 1.11.0
       plur: 4.0.0
-      strip-ansi: 6.0.0
+      strip-ansi: 6.0.1
       term-size: 2.2.1
       update-notifier: 5.1.0
       valid-filename: 3.1.0
@@ -9180,13 +9180,6 @@ packages:
     dependencies:
       character-entities-html4: 2.1.0
       character-entities-legacy: 3.0.0
-    dev: false
-
-  /strip-ansi/6.0.0:
-    resolution: {integrity: sha512-AuvKTrTfQNYNIctbR1K/YGTR1756GycPsg7b9bdV9Duqur4gv6aKqHXah67Z8ImS7WEz5QVcOtlfW2rZEugt6w==}
-    engines: {node: '>=8'}
-    dependencies:
-      ansi-regex: 5.0.1
     dev: false
 
   /strip-ansi/6.0.1:
