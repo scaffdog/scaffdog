@@ -58,7 +58,7 @@
     "globby": "^11.0.3",
     "indent-string": "^4.0.0",
     "inquirer": "^8.2.0",
-    "inquirer-autocomplete-prompt": "^2.0.0",
+    "inquirer-autocomplete-prompt": "^3.0.0",
     "is-plain-object": "^5.0.0",
     "log-symbols": "^4.1.0",
     "micromatch": "^4.0.4",
