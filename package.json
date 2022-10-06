@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@changesets/changelog-github": "0.4.7",
-    "@changesets/cli": "2.24.4",
+    "@changesets/cli": "2.25.0",
     "@commitlint/cli": "17.1.2",
     "@commitlint/config-conventional": "17.1.0",
     "@commitlint/config-lerna-scopes": "17.0.2",
