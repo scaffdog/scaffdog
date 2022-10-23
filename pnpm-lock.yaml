@@ -28,7 +28,7 @@ importers:
       prettier-plugin-packagejson: 2.3.0
       rimraf: 3.0.2
       ts-morph: 16.0.0
-      tsx: 3.10.3
+      tsx: 3.10.4
       turbo: 1.5.6
       typescript: 4.7.4
       unbuild: 0.9.4
@@ -55,7 +55,7 @@ importers:
       prettier-plugin-packagejson: 2.3.0_prettier@2.7.1
       rimraf: 3.0.2
       ts-morph: 16.0.0
-      tsx: 3.10.3
+      tsx: 3.10.4
       turbo: 1.5.6
       typescript: 4.7.4
       unbuild: 0.9.4
@@ -9195,8 +9195,8 @@ packages:
       typescript: 4.7.4
     dev: true
 
-  /tsx/3.10.3:
-    resolution: {integrity: sha512-yni2/n09VMOihGw6fCTKAowvQZ7BOWRVlpW9RnJPDakoHqHIlpxWieUUr5fnQa3zWoR1Jb902Un4Bv/JsKQ4RQ==}
+  /tsx/3.10.4:
+    resolution: {integrity: sha512-sBxeSgUAPVqRgBPk6TY0yFiNDUlva9rA+Nj46oYEd89FXVD2MFWChFhybTtq7Qh1Ies/O75mQNwpLuO7m8gToA==}
     hasBin: true
     dependencies:
       '@esbuild-kit/cjs-loader': 2.4.0
