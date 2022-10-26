@@ -248,7 +248,7 @@ importers:
       eslint: 8.26.0
       eslint-config-next: 12.3.1
       framer-motion: ^7.0.0
-      github-slugger: 1.4.0
+      github-slugger: 1.5.0
       next: 12.3.1
       next-contentlayer: ^0.2.7
       next-seo: ^5.5.0
@@ -306,7 +306,7 @@ importers:
       '@types/react-dom': 18.0.6
       eslint: 8.26.0
       eslint-config-next: 12.3.1_t7ph7dpvh7g5bfovntuojbuu4i
-      github-slugger: 1.4.0
+      github-slugger: 1.5.0
       next-sitemap: 3.1.29_next@12.3.1
       type-fest: 2.19.0
       typescript: 4.7.4
@@ -5460,8 +5460,8 @@ packages:
       through2: 4.0.2
     dev: true
 
-  /github-slugger/1.4.0:
-    resolution: {integrity: sha512-w0dzqw/nt51xMVmlaV1+JRzN+oCa1KfcgGEWhxUG16wbdA+Xnt/yoFO8Z8x/V82ZcZ0wy6ln9QDup5avbhiDhQ==}
+  /github-slugger/1.5.0:
+    resolution: {integrity: sha512-wIh+gKBI9Nshz2o46B0B3f5k/W+WI9ZAv6y5Dn5WJ5SK1t0TnDimB4WE5rmTD05ZAIn8HALCZVmCsvj0w0v0lw==}
 
   /glob-parent/5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
@@ -8437,7 +8437,7 @@ packages:
     dependencies:
       '@types/hast': 2.3.4
       '@types/mdast': 3.0.10
-      github-slugger: 1.4.0
+      github-slugger: 1.5.0
       mdast-util-to-string: 3.1.0
       unified: 10.1.2
       unist-util-visit: 4.1.0
