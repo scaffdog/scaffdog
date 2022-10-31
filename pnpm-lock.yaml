@@ -22,7 +22,7 @@ importers:
       eslint-plugin-import: 2.26.0
       husky: 8.0.1
       lint-staged: 13.0.3
-      mock-fs: 5.1.4
+      mock-fs: 5.2.0
       npm-run-all: 4.1.5
       prettier: 2.7.1
       prettier-plugin-packagejson: 2.3.0
@@ -49,7 +49,7 @@ importers:
       eslint-plugin-import: 2.26.0_c2flhriocdzler6lrwbyxxyoca
       husky: 8.0.1
       lint-staged: 13.0.3
-      mock-fs: 5.1.4
+      mock-fs: 5.2.0
       npm-run-all: 4.1.5
       prettier: 2.7.1
       prettier-plugin-packagejson: 2.3.0_prettier@2.7.1
@@ -7294,8 +7294,8 @@ packages:
       ufo: 0.8.5
     dev: true
 
-  /mock-fs/5.1.4:
-    resolution: {integrity: sha512-sudhLjCjX37qWIcAlIv1OnAxB2wI4EmXByVuUjILh1rKGNGpGU8GNnzw+EAbrhdpBe0TL/KONbK1y3RXZk8SxQ==}
+  /mock-fs/5.2.0:
+    resolution: {integrity: sha512-2dF2R6YMSZbpip1V1WHKGLNjr/k48uQClqMVb5H3MOvwc9qhYis3/IWbj02qIg/Y8MDXKFF4c5v0rxx2o6xTZw==}
     engines: {node: '>=12.0.0'}
     dev: true
 
