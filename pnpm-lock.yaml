@@ -252,7 +252,7 @@ importers:
       next: 12.3.2
       next-contentlayer: ^0.2.7
       next-seo: ^5.5.0
-      next-sitemap: 3.1.29
+      next-sitemap: 3.1.30
       prism-react-renderer: ^1.3.5
       prismjs: 1.29.0
       react: 18.2.0
@@ -307,7 +307,7 @@ importers:
       eslint: 8.26.0
       eslint-config-next: 12.3.2_t7ph7dpvh7g5bfovntuojbuu4i
       github-slugger: 1.5.0
-      next-sitemap: 3.1.29_next@12.3.2
+      next-sitemap: 3.1.30_next@12.3.2
       type-fest: 2.19.0
       typescript: 4.7.4
 
@@ -7356,8 +7356,8 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /next-sitemap/3.1.29_next@12.3.2:
-    resolution: {integrity: sha512-7UQyfpI7obOdB11aCswWYfqRn5CR0YSmWHo1r/uarrFfZD5PyyAWtQlgP6jNqDW0eX1ZJWERBwmJ2dLjl4nT8Q==}
+  /next-sitemap/3.1.30_next@12.3.2:
+    resolution: {integrity: sha512-mZqq9xWrTp/tgUM7+Oz/qxT6x2vnJhwQ3AGke2GjypRbUo44QaTb+4Cp1uX9GwXBaiuuuXDoWyS5VxJP3pJljw==}
     engines: {node: '>=14.18'}
     hasBin: true
     peerDependencies:
