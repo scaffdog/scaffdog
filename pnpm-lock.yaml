@@ -12,7 +12,7 @@ importers:
       '@changesets/cli': 2.25.2
       '@commitlint/cli': 17.2.0
       '@commitlint/config-conventional': 17.2.0
-      '@commitlint/config-lerna-scopes': 17.2.0
+      '@commitlint/config-lerna-scopes': 17.2.1
       '@types/mock-fs': 4.13.1
       '@types/node': 18.11.8
       '@typescript-eslint/eslint-plugin': 5.42.0
@@ -39,7 +39,7 @@ importers:
       '@changesets/cli': 2.25.2
       '@commitlint/cli': 17.2.0
       '@commitlint/config-conventional': 17.2.0
-      '@commitlint/config-lerna-scopes': 17.2.0
+      '@commitlint/config-lerna-scopes': 17.2.1
       '@types/mock-fs': 4.13.1
       '@types/node': 18.11.8
       '@typescript-eslint/eslint-plugin': 5.42.0_rnqigvs2sy7hjbduhyswa7hitq
@@ -1553,11 +1553,11 @@ packages:
       conventional-changelog-conventionalcommits: 5.0.0
     dev: true
 
-  /@commitlint/config-lerna-scopes/17.2.0:
-    resolution: {integrity: sha512-sg7F72DfhtoZfSV4Ln8k9MHjG81MD33wHI+6Lhpb2Yh/Lfc/7lOQU4G175bmAOqfKIILWlqwPoKI6llGpSP9lw==}
+  /@commitlint/config-lerna-scopes/17.2.1:
+    resolution: {integrity: sha512-9/dAR2NG16KZmGST1uMJoDIIsyjSxWLkeZ8f+nqt0B2Cg1COsN6d6l3N/0DYgqfDWMr7j9qTl62ES0aoy0lKZw==}
     engines: {node: '>=v14'}
     peerDependencies:
-      lerna: ^5.0.0
+      lerna: ^5.0.0 || ^6
     peerDependenciesMeta:
       lerna:
         optional: true
