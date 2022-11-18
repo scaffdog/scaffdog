@@ -242,7 +242,7 @@ importers:
       '@types/node': 18.11.9
       '@types/prismjs': 1.26.0
       '@types/react': 18.0.25
-      '@types/react-dom': 18.0.8
+      '@types/react-dom': 18.0.9
       contentlayer: ^0.2.7
       date-fns: ^2.29.1
       eslint: 8.27.0
@@ -303,7 +303,7 @@ importers:
       '@types/node': 18.11.9
       '@types/prismjs': 1.26.0
       '@types/react': 18.0.25
-      '@types/react-dom': 18.0.8
+      '@types/react-dom': 18.0.9
       eslint: 8.27.0
       eslint-config-next: 12.3.2_2uhzae5rel2qyw7fhfmxrmdt3q
       github-slugger: 1.5.0
@@ -2930,8 +2930,8 @@ packages:
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
 
-  /@types/react-dom/18.0.8:
-    resolution: {integrity: sha512-C3GYO0HLaOkk9dDAz3Dl4sbe4AKUGTCfFIZsz3n/82dPNN8Du533HzKatDxeUYWu24wJgMP1xICqkWk1YOLOIw==}
+  /@types/react-dom/18.0.9:
+    resolution: {integrity: sha512-qnVvHxASt/H7i+XG1U1xMiY5t+IHcPGUK7TDMDzom08xa7e86eCeKOiLZezwCKVxJn6NEiiy2ekgX8aQssjIKg==}
     dependencies:
       '@types/react': 18.0.25
     dev: true

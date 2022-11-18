@@ -45,7 +45,7 @@
     "@types/node": "18.11.9",
     "@types/prismjs": "1.26.0",
     "@types/react": "18.0.25",
-    "@types/react-dom": "18.0.8",
+    "@types/react-dom": "18.0.9",
     "eslint": "8.27.0",
     "eslint-config-next": "12.3.2",
     "github-slugger": "1.5.0",
