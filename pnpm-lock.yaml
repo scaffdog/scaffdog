@@ -21,7 +21,7 @@ importers:
       eslint-config-prettier: 8.5.0
       eslint-plugin-import: 2.26.0
       husky: 8.0.2
-      lint-staged: 13.0.4
+      lint-staged: 13.1.0
       mock-fs: 5.2.0
       npm-run-all: 4.1.5
       prettier: 2.7.1
@@ -48,7 +48,7 @@ importers:
       eslint-config-prettier: 8.5.0_eslint@8.29.0
       eslint-plugin-import: 2.26.0_f6fka7ofmojuuprdlm4mxs77xa
       husky: 8.0.2
-      lint-staged: 13.0.4
+      lint-staged: 13.1.0
       mock-fs: 5.2.0
       npm-run-all: 4.1.5
       prettier: 2.7.1
@@ -6354,8 +6354,8 @@ packages:
   /lines-and-columns/1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
 
-  /lint-staged/13.0.4:
-    resolution: {integrity: sha512-HxlHCXoYRsq9QCby5wFozmZW00hMs/9e3l+/dz6Qr8Kle4UH0kJTdABAbqhzG+3pcG6QjL9kz7NgGBfph+a5dw==}
+  /lint-staged/13.1.0:
+    resolution: {integrity: sha512-pn/sR8IrcF/T0vpWLilih8jmVouMlxqXxKuAojmbiGX5n/gDnz+abdPptlj0vYnbfE0SQNl3CY/HwtM0+yfOVQ==}
     engines: {node: ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
