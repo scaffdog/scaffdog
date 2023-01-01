@@ -19,12 +19,12 @@ export const PlaygroundHeader: React.FC<Props> = () => {
   const compile = usePlaygroundCompile();
 
   useHotkeys(
-    'command+enter, ctrl+enter',
+    'meta+enter, ctrl+enter',
     () => {
       compile();
     },
     {
-      enableOnTags: ['TEXTAREA'],
+      enableOnFormTags: ['input', 'textarea'],
     },
   );
 
