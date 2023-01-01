@@ -32,16 +32,15 @@ const _LinkButton: React.FC<ButtonProps & { href: string }> = ({
   href,
   ...rest
 }) => (
-  <NextLink href={href} passHref>
-    <Button
-      as="a"
-      bg="black"
-      color="white"
-      _hover={{ bg: 'gray.600' }}
-      _active={{ bg: 'gray.400' }}
-      {...rest}
-    />
-  </NextLink>
+  <Button
+    as={NextLink}
+    href={href}
+    bg="black"
+    color="white"
+    _hover={{ bg: 'gray.600' }}
+    _active={{ bg: 'gray.400' }}
+    {...rest}
+  />
 );
 
 const _Code: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -169,12 +168,12 @@ const Hero: React.FC = () => {
         >
           <Image
             priority
+            fill
             src={heroSrc}
             alt=""
-            layout="fill"
-            objectFit="cover"
             quality={100}
             style={{
+              objectFit: 'cover',
               userSelect: 'none',
             }}
           />
