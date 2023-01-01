@@ -258,7 +258,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0
       react-hook-form: ^7.34.0
-      react-hotkeys-hook: ^3.4.7
+      react-hotkeys-hook: ^4.0.0
       react-simple-code-editor: ^0.13.0
       recoil: ^0.7.4
       recoil-persist: ^4.2.0
@@ -288,7 +288,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-hook-form: 7.34.0_react@18.2.0
-      react-hotkeys-hook: 3.4.7_biqbaboplfbrettd7655fr4n2y
+      react-hotkeys-hook: 4.3.2_biqbaboplfbrettd7655fr4n2y
       react-simple-code-editor: 0.13.0_biqbaboplfbrettd7655fr4n2y
       recoil: 0.7.4_biqbaboplfbrettd7655fr4n2y
       recoil-persist: 4.2.0_recoil@0.7.4
@@ -5821,10 +5821,6 @@ packages:
       lru-cache: 6.0.0
     dev: true
 
-  /hotkeys-js/3.9.4:
-    resolution: {integrity: sha512-2zuLt85Ta+gIyvs4N88pCYskNrxf1TFv3LR9t5mdAZIX8BcgQQ48F2opUptvHa6m8zsy5v/a0i9mWzTrlNWU0Q==}
-    dev: false
-
   /html-void-elements/2.0.1:
     resolution: {integrity: sha512-0quDb7s97CfemeJAnW9wC0hw78MtW7NU3hqtCD75g2vFlDLt36llsYD7uB7SUzojLMP24N5IatXf7ylGXiGG9A==}
     dev: false
@@ -8267,13 +8263,12 @@ packages:
       react: 18.2.0
     dev: false
 
-  /react-hotkeys-hook/3.4.7_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-+bbPmhPAl6ns9VkXkNNyxlmCAIyDAcWbB76O4I0ntr3uWCRuIQf/aRLartUahe9chVMPj+OEzzfk3CQSjclUEQ==}
+  /react-hotkeys-hook/4.3.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-ZA/li3kBDHuRTtJIf7Td41UU87bPtnt9xV4r+PlEzpnFoYRDVspk3B+mlaX75zowyQygMVmoaWnM4B88lkyExQ==}
     peerDependencies:
       react: '>=16.8.1'
       react-dom: '>=16.8.1'
     dependencies:
-      hotkeys-js: 3.9.4
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
