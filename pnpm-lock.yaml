@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 overrides:
   ansi-regex: 5.0.1
+  type-fest: 3.5.0
   trim-newlines: 3.0.1
 
 importers:
@@ -126,9 +127,9 @@ importers:
 
   packages/@scaffdog/types:
     specifiers:
-      type-fest: 2.19.0
+      type-fest: 3.5.0
     dependencies:
-      type-fest: 2.19.0
+      type-fest: 3.5.0
 
   packages/prettier-plugin-scaffdog:
     specifiers:
@@ -161,7 +162,7 @@ importers:
       '@types/node-emoji': 1.8.2
       '@types/update-notifier': 6.0.1
       '@types/wrap-ansi': 3.0.0
-      '@types/yargs': 17.0.17
+      '@types/yargs': 17.0.18
       ansi-escapes: ^4.3.2
       chalk: ^4.1.0
       cli-truncate: ^2.1.0
@@ -181,7 +182,7 @@ importers:
       plur: ^4.0.0
       strip-ansi: 6.0.1
       term-size: ^2.2.1
-      type-fest: 2.19.0
+      type-fest: 3.5.0
       update-notifier: ^5.1.0
       valid-filename: ^3.1.0
       wrap-ansi: ^7.0.0
@@ -223,8 +224,8 @@ importers:
       '@types/node-emoji': 1.8.2
       '@types/update-notifier': 6.0.1
       '@types/wrap-ansi': 3.0.0
-      '@types/yargs': 17.0.17
-      type-fest: 2.19.0
+      '@types/yargs': 17.0.18
+      type-fest: 3.5.0
 
   website:
     specifiers:
@@ -265,7 +266,7 @@ importers:
       remark-emoji: ^3.0.2
       remark-gfm: ^3.0.1
       remark-slug: ^7.0.1
-      type-fest: 2.19.0
+      type-fest: 3.5.0
       typescript: 4.9.4
       yup: ^0.32.11
     dependencies:
@@ -308,7 +309,7 @@ importers:
       eslint-config-next: 13.1.1_lzzuuodtsqwxnvqeq4g4likcqa
       github-slugger: 1.5.0
       next-sitemap: 3.1.43_next@13.1.1
-      type-fest: 2.19.0
+      type-fest: 3.5.0
       typescript: 4.9.4
 
 packages:
@@ -1766,7 +1767,7 @@ packages:
       remark-parse: 10.0.1
       remark-rehype: 10.1.0
       source-map-support: 0.5.21
-      type-fest: 2.19.0
+      type-fest: 3.5.0
       unified: 10.1.2
     transitivePeerDependencies:
       - '@effect-ts/otel-node'
@@ -1821,7 +1822,7 @@ packages:
       inflection: 1.13.2
       oo-ascii-tree: 1.63.2
       ts-pattern: 4.0.5
-      type-fest: 2.19.0
+      type-fest: 3.5.0
     dev: false
 
   /@corex/deepmerge/4.0.29:
@@ -3018,8 +3019,8 @@ packages:
     resolution: {integrity: sha512-iO9ZQHkZxHn4mSakYV0vFHAVDyEOIJQrV2uZ06HxEPcx+mt8swXoZHIbaaJ2crJYFfErySgktuTZ3BeLz+XmFA==}
     dev: true
 
-  /@types/yargs/17.0.17:
-    resolution: {integrity: sha512-72bWxFKTK6uwWJAVT+3rF6Jo6RTojiJ27FQo8Rf60AL+VZbzoVPnMFhKsUnbjR8A3BTCYQ7Mv3hnl8T0A+CX9g==}
+  /@types/yargs/17.0.18:
+    resolution: {integrity: sha512-eIJR1UER6ur3EpKM3d+2Pgd+ET+k6Kn9B4ZItX0oPjjVI5PrfaRjKyLT5UYendDpLuoiJMNJvovLQbEXqhsPaw==}
     dependencies:
       '@types/yargs-parser': 21.0.0
     dev: true
@@ -3226,7 +3227,7 @@ packages:
     resolution: {integrity: sha512-gKXj5ALrKWQLsYG9jlTRmR/xKluxHV+Z9QEwNIgCfM1/uwPMCuzVVnh5mwTd+OuBZcwSIMbqssNWRm1lE51QaQ==}
     engines: {node: '>=8'}
     dependencies:
-      type-fest: 0.21.3
+      type-fest: 3.5.0
 
   /ansi-regex/5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
@@ -3420,7 +3421,7 @@ packages:
       chalk: 4.1.2
       cli-boxes: 2.2.1
       string-width: 4.2.3
-      type-fest: 0.20.2
+      type-fest: 3.5.0
       widest-line: 3.1.0
       wrap-ansi: 7.0.0
     dev: false
@@ -3434,7 +3435,7 @@ packages:
       chalk: 5.1.2
       cli-boxes: 3.0.0
       string-width: 5.1.2
-      type-fest: 2.19.0
+      type-fest: 3.5.0
       widest-line: 4.0.1
       wrap-ansi: 8.0.1
     dev: true
@@ -5587,7 +5588,7 @@ packages:
     resolution: {integrity: sha512-dkQ957uSRWHw7CFXLUtUHQI3g3aWApYhfNR2O6jn/907riyTYKVBmxYVROkBcY614FSSeSJh7Xm7SrUWCxvJMQ==}
     engines: {node: '>=8'}
     dependencies:
-      type-fest: 0.20.2
+      type-fest: 3.5.0
     dev: true
 
   /globalyzer/0.1.0:
@@ -6916,7 +6917,7 @@ packages:
       read-pkg-up: 7.0.1
       redent: 3.0.0
       trim-newlines: 3.0.1
-      type-fest: 0.13.1
+      type-fest: 3.5.0
       yargs-parser: 18.1.3
     dev: true
 
@@ -6933,7 +6934,7 @@ packages:
       read-pkg-up: 7.0.1
       redent: 3.0.0
       trim-newlines: 3.0.1
-      type-fest: 0.18.1
+      type-fest: 3.5.0
       yargs-parser: 20.2.9
     dev: true
 
@@ -8371,7 +8372,7 @@ packages:
     dependencies:
       find-up: 4.1.0
       read-pkg: 5.2.0
-      type-fest: 0.8.1
+      type-fest: 3.5.0
     dev: true
 
   /read-pkg/3.0.0:
@@ -8390,7 +8391,7 @@ packages:
       '@types/normalize-package-data': 2.4.1
       normalize-package-data: 2.5.0
       parse-json: 5.2.0
-      type-fest: 0.6.0
+      type-fest: 3.5.0
     dev: true
 
   /read-yaml-file/1.1.0:
@@ -9458,37 +9459,9 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /type-fest/0.13.1:
-    resolution: {integrity: sha512-34R7HTnG0XIJcBSn5XhDd7nNFPRcXYRZrBB2O2jdKqYODldSzBAqzsWoZYYvduky73toYS/ESqxPvkDf/F0XMg==}
-    engines: {node: '>=10'}
-    dev: true
-
-  /type-fest/0.18.1:
-    resolution: {integrity: sha512-OIAYXk8+ISY+qTOwkHtKqzAuxchoMiD9Udx+FSGQDuiRR+PJKJHc2NJAXlbhkGwTt/4/nKZxELY1w3ReWOL8mw==}
-    engines: {node: '>=10'}
-    dev: true
-
-  /type-fest/0.20.2:
-    resolution: {integrity: sha512-Ne+eE4r0/iWnpAxD852z3A+N0Bt5RN//NjJwRd2VFHEmrywxf5vsZlh4R6lixl6B+wz/8d+maTSAkN1FIkI3LQ==}
-    engines: {node: '>=10'}
-
-  /type-fest/0.21.3:
-    resolution: {integrity: sha512-t0rzBq87m3fVcduHDUFhKmyyX+9eo6WQjZvf51Ea/M0Q7+T374Jp1aUiyUl0GKxp8M/OETVHSDvmkyPgvX+X2w==}
-    engines: {node: '>=10'}
-
-  /type-fest/0.6.0:
-    resolution: {integrity: sha512-q+MB8nYR1KDLrgr4G5yemftpMC7/QLqVndBmEEdqzmNj5dcFOO4Oo8qlwZE3ULT3+Zim1F8Kq4cBnikNhlCMlg==}
-    engines: {node: '>=8'}
-    dev: true
-
-  /type-fest/0.8.1:
-    resolution: {integrity: sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==}
-    engines: {node: '>=8'}
-    dev: true
-
-  /type-fest/2.19.0:
-    resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
-    engines: {node: '>=12.20'}
+  /type-fest/3.5.0:
+    resolution: {integrity: sha512-bI3zRmZC8K0tUz1HjbIOAGQwR2CoPQG68N5IF7gm0LBl8QSNXzkmaWnkWccCUL5uG9mCsp4sBwC8SBrNSISWew==}
+    engines: {node: '>=14.16'}
 
   /typedarray-to-buffer/3.1.5:
     resolution: {integrity: sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==}
