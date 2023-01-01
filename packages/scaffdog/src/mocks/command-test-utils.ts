@@ -4,6 +4,7 @@ import type {
   CommandArgs,
   CommandModule,
   CommandOption,
+  GlobalFlags,
   GlobalFlagsWith,
   InferredCommandModuleArgs,
   InferredCommandModuleFlags,
@@ -42,6 +43,13 @@ export const createCommandRunner =
   async ({ args, flags, lib, container }) => {
     const { logger, getStdout, getStderr } = createLogger();
 
+    const globalFlags: GlobalFlags = {
+      project: '.scaffdog',
+      help: false,
+      version: false,
+      verbose: true,
+    };
+
     const code = await cmd.run({
       cwd,
       pkg: {
@@ -62,12 +70,9 @@ export const createCommandRunner =
       },
       flags: {
         ...defaults.flags,
-        project: '.scaffdog',
-        help: false,
-        version: false,
-        verbose: true,
-        ...flags,
-      },
+        ...globalFlags,
+        ...(flags ?? {}),
+      } as never,
     });
 
     return {
