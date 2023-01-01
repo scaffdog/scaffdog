@@ -62,10 +62,9 @@ describe('handle', () => {
   ])('%s', (_, e, title) => {
     const { lib, getStdout, getStderr } = createLib();
     const code = lib.handle(e, title);
-    const output = (getStderr() + getStdout()).replace(
-      new RegExp(ROOT_PATH, 'g'),
-      '~',
-    );
+    const output = (getStderr() + getStdout())
+      .replace(new RegExp(ROOT_PATH, 'g'), '~')
+      .replace(/\(?~\/node_modules\/.*\)?/g, '__locale__');
 
     expect(code).toBe(1);
     expect(output).toMatchSnapshot();
