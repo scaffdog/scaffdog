@@ -1,14 +1,8 @@
-import type { Merge } from 'type-fest';
-import NextLink from 'next/link';
 import type { LinkProps as ChakraLinkProps } from '@chakra-ui/react';
 import { Link as ChakraLink } from '@chakra-ui/react';
+import NextLink from 'next/link';
 
-export type Props = Merge<
-  ChakraLinkProps,
-  {
-    href: string;
-  }
->;
+export type Props = ChakraLinkProps;
 
 export const Link: React.FC<Props> = ({ href, children, ...rest }) => {
   return (
