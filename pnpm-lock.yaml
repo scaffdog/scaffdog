@@ -136,7 +136,7 @@ importers:
       '@scaffdog/engine': workspace:*
       '@scaffdog/types': workspace:*
       '@types/minimatch': 5.1.2
-      '@types/prettier': 2.7.1
+      '@types/prettier': 2.7.2
       minimatch: ^5.0.0
       prettier: 2.8.1
     dependencies:
@@ -147,7 +147,7 @@ importers:
       prettier: 2.8.1
     devDependencies:
       '@types/minimatch': 5.1.2
-      '@types/prettier': 2.7.1
+      '@types/prettier': 2.7.2
 
   packages/scaffdog:
     specifiers:
@@ -2937,8 +2937,8 @@ packages:
   /@types/parse-json/4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
 
-  /@types/prettier/2.7.1:
-    resolution: {integrity: sha512-ri0UmynRRvZiiUJdiz38MmIblKK+oH30MztdBVR95dv/Ubw6neWSb8u1XpRb72L4qsZOhz+L+z9JD40SJmfWow==}
+  /@types/prettier/2.7.2:
+    resolution: {integrity: sha512-KufADq8uQqo1pYKVIYzfKbJfBAc0sOeXqGbFaSpv8MRmC/zXgowNZmFcbngndGk922QDmOASEXUZCaY48gs4cg==}
     dev: true
 
   /@types/prismjs/1.26.0:
