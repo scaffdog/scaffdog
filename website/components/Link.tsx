@@ -12,8 +12,8 @@ export type Props = Merge<
 
 export const Link: React.FC<Props> = ({ href, children, ...rest }) => {
   return (
-    <NextLink passHref href={href}>
-      <ChakraLink {...rest}>{children}</ChakraLink>
-    </NextLink>
+    <ChakraLink as={NextLink} {...rest} href={href}>
+      {children}
+    </ChakraLink>
   );
 };
