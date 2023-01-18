@@ -138,13 +138,13 @@ importers:
       '@scaffdog/types': workspace:*
       '@types/minimatch': 5.1.2
       '@types/prettier': 2.7.2
-      minimatch: ^5.0.0
+      minimatch: ^6.0.0
       prettier: 2.8.3
     dependencies:
       '@scaffdog/config': link:../@scaffdog/config
       '@scaffdog/engine': link:../@scaffdog/engine
       '@scaffdog/types': link:../@scaffdog/types
-      minimatch: 5.1.0
+      minimatch: 6.1.5
       prettier: 2.8.3
     devDependencies:
       '@types/minimatch': 5.1.2
@@ -7465,6 +7465,14 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       brace-expansion: 2.0.1
+    dev: true
+
+  /minimatch/6.1.5:
+    resolution: {integrity: sha512-2/WxnHMkH7qFS+pG8ibLN5GZdx5Y0aLlgFSghaKRUpkeEmC85wZRb/xDvj9jv601KdNOS2G/nNqj2h6k42yxBQ==}
+    engines: {node: '>=10'}
+    dependencies:
+      brace-expansion: 2.0.1
+    dev: false
 
   /minimist-options/4.1.0:
     resolution: {integrity: sha512-Q4r8ghd80yhO/0j1O3B2BjweX3fiHg9cdOwjJd2J76Q135c+NDxGCqdYKQ1SKBuFfgWbAUzBfvYjPUEeNgqN1A==}
