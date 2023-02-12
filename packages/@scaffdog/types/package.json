@@ -27,7 +27,7 @@
     "build": "unbuild"
   },
   "dependencies": {
-    "type-fest": "3.5.2"
+    "type-fest": "3.5.7"
   },
   "publishConfig": {
     "access": "public"

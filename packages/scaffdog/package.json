@@ -79,7 +79,7 @@
     "@types/update-notifier": "6.0.1",
     "@types/wrap-ansi": "3.0.0",
     "@types/yargs": "17.0.20",
-    "type-fest": "3.5.2"
+    "type-fest": "3.5.7"
   },
   "publishConfig": {
     "access": "public"
