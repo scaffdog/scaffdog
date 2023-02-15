@@ -12,12 +12,12 @@ export default createCommand({
   flags: {},
 })(async ({ cwd, logger, lib: { config, document }, flags }) => {
   const { project } = flags;
-  const cfg = config.load(cwd, project);
+  const dirname = path.resolve(cwd, project);
+  const cfg = config.load(dirname);
   if (cfg == null) {
     return 1;
   }
 
-  const dirname = path.resolve(cwd, project);
   const documents = await document.resolve(dirname, cfg.files, {
     tags: cfg.tags,
   });

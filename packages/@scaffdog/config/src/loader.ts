@@ -44,28 +44,18 @@ const normalizeHelpers = (
   return map;
 };
 
-export type LoadConfigOptions = {
-  project: string;
-};
-
 export type LoadConfigResult = {
   filepath: string;
   config: ResolvedConfig;
 };
 
-export const loadConfig = (
-  cwd: string = process.cwd(),
-  options: Partial<LoadConfigOptions> = {},
-): LoadConfigResult => {
-  const opts = {
-    project: '.scaffdog',
-    ...options,
-  };
+export const loadConfig = (project?: string): LoadConfigResult => {
+  const dirname = project ?? path.resolve(process.cwd(), '.scaffdog');
 
   let filepath = '';
   let maybeConfig: unknown;
   for (const ext of extensions) {
-    filepath = path.resolve(cwd, opts.project, `config.${ext}`);
+    filepath = path.resolve(dirname, `config.${ext}`);
     if (!fileExists(filepath)) {
       continue;
     }
@@ -79,7 +69,7 @@ export const loadConfig = (
   if (maybeConfig == null) {
     const expected = `config.{${extensions.join(',')}}`;
     throw new Error(
-      `scaffdog configuration file not found (filename expected: "${expected}" in "${opts.project}")`,
+      `scaffdog configuration file not found (filename expected: "${expected}" in "${dirname}")`,
     );
   }
 

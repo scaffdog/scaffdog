@@ -4,16 +4,16 @@ import type { Consola } from 'consola';
 import type { ErrorLibrary } from './error';
 
 export type ConfigLibrary = {
-  load: (cwd: string, project: string) => ResolvedConfig | null;
+  load: (project: string) => ResolvedConfig | null;
 };
 
 export const createConfigLibrary = (
   logger: Consola,
   error: ErrorLibrary,
 ): ConfigLibrary => ({
-  load: (cwd, project) => {
+  load: (project) => {
     try {
-      const { filepath, config } = loadConfig(cwd, { project });
+      const { filepath, config } = loadConfig(project);
       logger.debug('loaded config path: %s', filepath);
       logger.debug('loaded config: %O', config);
       return config;

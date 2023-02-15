@@ -62,12 +62,11 @@ export default createCommand({
   }) => {
     // configuration
     const { project } = flags;
-    const cfg = config.load(cwd, project);
+    const dirname = path.resolve(cwd, project);
+    const cfg = config.load(dirname);
     if (cfg == null) {
       return 1;
     }
-
-    const dirname = path.resolve(cwd, project);
 
     // base context
     const context = createContext({
