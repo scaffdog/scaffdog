@@ -11,6 +11,8 @@ exports[`generate > failure - inputs (.) 1`] = `
   {stacktrace}
   {stacktrace}
   {stacktrace}
+  {stacktrace}
+  {stacktrace}
 
 
 
@@ -23,6 +25,8 @@ exports[`generate > failure - inputs (.) 2`] = `
 
  ERROR  Question Error: \\"choice\\" must be one of \\"A, B, C\\"
 
+  {stacktrace}
+  {stacktrace}
   {stacktrace}
   {stacktrace}
   {stacktrace}

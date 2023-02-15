@@ -1,6 +1,7 @@
 import type { Consola } from 'consola';
 import type { Merge, PackageJson } from 'type-fest';
 import type yargs from 'yargs';
+import type { ScaffdogFactory } from './api';
 import type { CommandContainer } from './command-container';
 import type { globalFlags } from './global-flags';
 import type { Library } from './lib';
@@ -24,6 +25,7 @@ export type CommandContext<A extends CommandOption, F extends CommandOption> = {
     columns: number;
   };
   lib: Library;
+  api: ScaffdogFactory;
   args: CommandArgs<A>;
   flags: GlobalFlagsWith<CommandArgs<F>>;
 };

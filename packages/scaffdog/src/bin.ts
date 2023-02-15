@@ -1,11 +1,15 @@
 #!/usr/bin/env node
+import { createRequire } from 'module';
 import consola, { FancyReporter } from 'consola';
 import type { PackageJson } from 'type-fest';
 import updateNotifier from 'update-notifier';
+import { createScaffdogInitializer } from './api';
 import { createCLI } from './cli';
 import { createCommandContainer } from './command-container';
 import { commands } from './commands';
 import { createLibrary } from './lib';
+
+const require = createRequire(import.meta.url);
 
 (async () => {
   const logger = consola.create({
@@ -38,7 +42,19 @@ import { createLibrary } from './lib';
 
     const container = createCommandContainer(commands);
     const lib = createLibrary(logger);
-    const cli = createCLI({ pkg, logger, container, lib });
+    const { createScaffdog: api } = createScaffdogInitializer({
+      version: pkg.version!,
+      lib,
+    });
+
+    const cli = createCLI({
+      pkg,
+      logger,
+      container,
+      lib,
+      api,
+    });
+
     const code = await cli.run(process.argv.slice(2));
 
     logger.log('');

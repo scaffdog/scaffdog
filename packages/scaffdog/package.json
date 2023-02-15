@@ -22,6 +22,9 @@
   },
   "license": "MIT",
   "author": "wadackel <wadackel@gmail.com>",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "bin": {
     "scaffdog": "./dist/bin.cjs"
   },

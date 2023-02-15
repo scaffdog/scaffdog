@@ -1,10 +1,10 @@
+import type { LoadConfigResult } from '@scaffdog/config';
 import { loadConfig } from '@scaffdog/config';
-import type { ResolvedConfig } from '@scaffdog/types';
 import type { Consola } from 'consola';
 import type { ErrorLibrary } from './error';
 
 export type ConfigLibrary = {
-  load: (project: string) => ResolvedConfig | null;
+  load: (project: string) => LoadConfigResult | null;
 };
 
 export const createConfigLibrary = (
@@ -13,10 +13,10 @@ export const createConfigLibrary = (
 ): ConfigLibrary => ({
   load: (project) => {
     try {
-      const { filepath, config } = loadConfig(project);
-      logger.debug('loaded config path: %s', filepath);
-      logger.debug('loaded config: %O', config);
-      return config;
+      const result = loadConfig(project);
+      logger.debug('loaded config path: %s', result.filepath);
+      logger.debug('loaded config: %O', result.config);
+      return result;
     } catch (e) {
       error.handle(e, 'Load Config Error');
       return null;

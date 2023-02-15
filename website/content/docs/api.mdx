@@ -1,0 +1,109 @@
+---
+title: 'API'
+description: 'This section describes the Node API provided by scaffdog.'
+---
+
+Besides being used as a CLI tool, scaffdog provides a high-level API for Node.js.  
+See this page on using scaffdog programmatically.
+
+## `createScaffdog(options)`
+
+Factory function of a [Scaffdog](#scaffdog) object. Usually initialised using the result of reading using the [@scaffdog/config](https://github.com/scaffdog/scaffdog/tree/canary/packages/%40scaffdog/config) package.
+
+**Parameters:**
+
+- `options.filepath`: `string`
+- `options.config`: [`ResolvedConfig`](https://github.com/scaffdog/scaffdog/blob/canary/packages/%40scaffdog/types/src/config.ts#L13-L19)
+- `options.cwd?`: `string`
+
+**Return:**
+
+- [`Scaffdog`](#scaffdog)
+
+```typescript
+import { loadConfig } from '@scaffdog/config';
+import { createScaffdog } from 'scaffdog';
+
+const descriptor = loadConfig(project);
+const scaffdog = createScaffdog(descriptor);
+```
+
+## `loadScaffdog(path, options)`
+
+Finds the scaffdog project in the specified directory and returns a [Scaffdog](#scaffdog) object.  
+If no configuration file is found and the scaffdog project is deemed invalid, a rejected Promise is returned.
+
+**Parameters:**
+
+- `path`: `string`
+- `options.cwd?`: `string`
+
+**Return:**
+
+- [`Promise<Scaffdog>`](#scaffdog)
+
+```typescript
+import { loadScaffdog } from 'scaffdog';
+
+const scaffdog = await loadScaffdog();
+```
+
+## `Scaffdog`
+
+An object that holds information about the scaffdog project and provides the central API for the scaffdog.
+
+### `scaffdog.list()`
+
+Returns a list of documents corresponding to [files](./config#simple-configuration) in the configuration file.
+
+**Return:**
+
+- `Promise<Document[]>`
+
+```typescript
+const documents = await scaffdog.list();
+const document = documents.find((d) => d.name === 'component');
+```
+
+### `scaffdog.generate(document, output, options)`
+
+Specify the document object and output directory and compile each template. No file generation is actually performed.
+
+**Parameters:**
+
+- `document`: `Document`
+- `output`: `string`
+- `options.inputs?`: `VariableRecord | GenerateInputsResolver`
+
+**Return:**
+
+- `Promise<File[]>`
+
+```typescript
+import fs from 'node:fs/promises';
+
+const [document] = await scaffdog.list();
+
+// Using object inputs
+const files = await scaffdog.generate(document, '/path/to/dist', {
+  inputs: {
+    name: 'FooComponent',
+  },
+});
+
+for (const file of files) {
+  if (file.skip) {
+    continue;
+  }
+  await fs.writeFile(file.path, file.content);
+}
+
+// Using inputs factory
+// const files = await scaffdog.generate(document, '/path/to/dist', {
+//   inputs: async (context) => {
+//     return {
+//       name: 'FooComponent',
+//     };
+//   },
+// });
+```

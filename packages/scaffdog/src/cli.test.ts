@@ -4,6 +4,7 @@ import { createCLI } from './cli';
 import type { CommandModule } from './command';
 import { createCommand } from './command';
 import { createCommandContainer } from './command-container';
+import { createScaffdogInitializerMock } from './mocks/api';
 import { createLibraryMock } from './mocks/lib';
 import { createLogger } from './mocks/logger';
 
@@ -14,6 +15,7 @@ const pkg = {
 
 describe('run', () => {
   const lib = createLibraryMock();
+  const api = createScaffdogInitializerMock().createScaffdog;
 
   const createContainer = (commands: CommandModule<any, any>[] = []) => {
     return createCommandContainer([
@@ -41,6 +43,7 @@ describe('run', () => {
       logger,
       container,
       lib,
+      api,
     });
 
     expect(await cli.run([])).toBe(0);
@@ -61,6 +64,7 @@ describe('run', () => {
       logger,
       container,
       lib,
+      api,
     });
 
     expect(await cli.run(['--help'])).toBe(0);
@@ -87,6 +91,7 @@ describe('run', () => {
       logger,
       container,
       lib,
+      api,
     });
 
     expect(await cli.run(['foo', '--help'])).toBe(0);
@@ -107,6 +112,7 @@ describe('run', () => {
       logger,
       container,
       lib,
+      api,
     });
 
     expect(await cli.run(['--version'])).toBe(0);
@@ -121,6 +127,7 @@ describe('run', () => {
       logger,
       container,
       lib,
+      api,
     });
 
     expect(await cli.run(['--verbose'])).toBe(0);
@@ -145,6 +152,7 @@ describe('run', () => {
       logger,
       container,
       lib,
+      api,
     });
 
     expect(await cli.run(['cmd'])).toBe(1234);
@@ -158,6 +166,7 @@ describe('run', () => {
       logger,
       container: createCommandContainer([]),
       lib,
+      api,
     });
 
     expect(await cli.run(['cmd'])).toBe(1);

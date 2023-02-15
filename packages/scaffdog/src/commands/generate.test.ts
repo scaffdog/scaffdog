@@ -1,13 +1,16 @@
 import path from 'path';
-import { parse } from '@scaffdog/engine';
+import { createContext, parse } from '@scaffdog/engine';
 import { describe, expect, test, vi } from 'vitest';
+import type { GenerateInputsResolver, Scaffdog } from '../api';
+import type { File } from '../file';
+import { createFile } from '../file.factory';
 import { createResolvedConfig } from '../lib/config.factory';
 import { createConfigLibraryMock } from '../lib/config.mock';
 import { createDocument } from '../lib/document.factory';
-import { createDocumentLibraryMock } from '../lib/document.mock';
 import { createFsLibraryMock } from '../lib/fs.mock';
 import { createPromptLibraryMock } from '../lib/prompt.mock';
 import { createQuestionLibraryMock } from '../lib/question.mock';
+import { createScaffdogMock } from '../mocks/api';
 import { createCommandRunner, cwd } from '../mocks/command-test-utils';
 import { createLibraryMock } from '../mocks/lib';
 import cmd from './generate';
@@ -68,6 +71,29 @@ const documents = [
   }),
 ];
 
+const files = [
+  createFile({
+    name: 'static.txt',
+    path: path.join(cwd, 'static.txt'),
+    content: 'static content',
+  }),
+  createFile({
+    name: 'dir/scaffdog.txt',
+    path: path.join(cwd, 'dir/scaffdog.txt'),
+    content: 'scaffdog',
+  }),
+];
+
+const answers = {
+  value: 'scaffdog',
+};
+
+const createGenerateMock = (files: File[]): Scaffdog['generate'] =>
+  vi.fn(async (_document, _output, opts) => {
+    await (opts!.inputs as GenerateInputsResolver)(createContext({}));
+    return files;
+  });
+
 describe('prompt', () => {
   test('name', async () => {
     const lib = createLibraryMock({
@@ -75,13 +101,8 @@ describe('prompt', () => {
       prompt: createPromptLibraryMock({
         prompt: vi.fn().mockResolvedValueOnce('basic'),
       }),
-      document: createDocumentLibraryMock({
-        resolve: vi.fn().mockResolvedValueOnce(documents),
-      }),
       question: createQuestionLibraryMock({
-        resolve: vi.fn().mockResolvedValueOnce({
-          value: 'scaffdog',
-        }),
+        resolve: vi.fn().mockResolvedValueOnce(answers),
       }),
       fs: createFsLibraryMock({
         fileExists: vi.fn().mockReturnValue(false),
@@ -90,13 +111,29 @@ describe('prompt', () => {
       }),
     });
 
+    const scaffdog = createScaffdogMock({
+      list: vi.fn().mockResolvedValueOnce(documents),
+      generate: createGenerateMock(files),
+    });
+
     const { code, stdout, stderr } = await run({
       lib,
+      api: vi.fn().mockReturnValueOnce(scaffdog),
     });
 
     expect(code).toBe(0);
     expect(stderr).toBe('');
     expect(stdout).toMatchSnapshot();
+
+    expect(scaffdog.list).toBeCalledWith();
+
+    expect(scaffdog.generate).toBeCalledWith(
+      documents[0],
+      path.resolve(cwd, '.'),
+      {
+        inputs: expect.any(Function),
+      },
+    );
 
     expect(lib.prompt.prompt).toBeCalledWith(
       expect.objectContaining({
@@ -137,9 +174,6 @@ describe('prompt', () => {
           .mockResolvedValueOnce(true) // static.txt
           .mockResolvedValueOnce(false), // dir/scaffdog.txt (skipped)
       }),
-      document: createDocumentLibraryMock({
-        resolve: vi.fn().mockResolvedValueOnce(documents),
-      }),
       question: createQuestionLibraryMock({
         resolve: vi.fn().mockResolvedValueOnce({
           value: 'scaffdog',
@@ -152,8 +186,14 @@ describe('prompt', () => {
       }),
     });
 
+    const scaffdog = createScaffdogMock({
+      list: vi.fn().mockResolvedValueOnce(documents),
+      generate: createGenerateMock(files),
+    });
+
     const { code, stdout, stderr } = await run({
       lib,
+      api: vi.fn().mockReturnValueOnce(scaffdog),
     });
 
     expect(code).toBe(0);
@@ -170,13 +210,8 @@ describe('prompt', () => {
   test('magic pattern and destination autocomplete', async () => {
     const lib = createLibraryMock({
       config,
-      document: createDocumentLibraryMock({
-        resolve: vi.fn().mockResolvedValueOnce(documents),
-      }),
       question: createQuestionLibraryMock({
-        resolve: vi.fn().mockResolvedValueOnce({
-          value: 'scaffdog',
-        }),
+        resolve: vi.fn().mockResolvedValueOnce(answers),
       }),
       prompt: createPromptLibraryMock({
         autocomplete: vi.fn().mockResolvedValueOnce('dirB'),
@@ -186,11 +221,22 @@ describe('prompt', () => {
       }),
     });
 
+    const scaffdog = createScaffdogMock({
+      list: vi.fn().mockResolvedValueOnce(documents),
+      generate: createGenerateMock([
+        createFile({
+          path: path.join(cwd, 'dirB/static.txt'),
+          content: 'static content',
+        }),
+      ]),
+    });
+
     const { code, stdout, stderr } = await run({
       args: {
         name: 'multiple',
       },
       lib,
+      api: vi.fn().mockReturnValueOnce(scaffdog),
     });
 
     expect(code).toBe(0);
@@ -216,14 +262,16 @@ describe('args and flags', () => {
   test('force', async () => {
     const lib = createLibraryMock({
       config,
-      document: createDocumentLibraryMock({
-        resolve: vi.fn().mockResolvedValueOnce(documents),
-      }),
       question: createQuestionLibraryMock({
         resolve: vi.fn().mockResolvedValueOnce({
           value: 'scaffdog',
         }),
       }),
+    });
+
+    const scaffdog = createScaffdogMock({
+      list: vi.fn().mockResolvedValueOnce(documents),
+      generate: createGenerateMock(files),
     });
 
     const { code, stdout, stderr } = await run({
@@ -234,6 +282,7 @@ describe('args and flags', () => {
         force: true,
       },
       lib,
+      api: vi.fn().mockReturnValueOnce(scaffdog),
     });
 
     expect(code).toBe(0);
@@ -247,14 +296,14 @@ describe('args and flags', () => {
   test('dry-run', async () => {
     const lib = createLibraryMock({
       config,
-      document: createDocumentLibraryMock({
-        resolve: vi.fn().mockResolvedValueOnce(documents),
-      }),
       question: createQuestionLibraryMock({
-        resolve: vi.fn().mockResolvedValueOnce({
-          value: 'scaffdog',
-        }),
+        resolve: vi.fn().mockResolvedValueOnce(answers),
       }),
+    });
+
+    const scaffdog = createScaffdogMock({
+      list: vi.fn().mockResolvedValueOnce(documents),
+      generate: createGenerateMock(files),
     });
 
     const { code, stdout, stderr } = await run({
@@ -265,6 +314,7 @@ describe('args and flags', () => {
         'dry-run': true,
       },
       lib,
+      api: vi.fn().mockReturnValueOnce(scaffdog),
     });
 
     expect(code).toBe(0);
@@ -278,12 +328,20 @@ describe('args and flags', () => {
   test('output', async () => {
     const lib = createLibraryMock({
       config,
-      document: createDocumentLibraryMock({
-        resolve: vi.fn().mockResolvedValueOnce(documents),
-      }),
       question: createQuestionLibraryMock({
         resolve: vi.fn().mockResolvedValueOnce({}),
       }),
+    });
+
+    const scaffdog = createScaffdogMock({
+      list: vi.fn().mockResolvedValueOnce(documents),
+      generate: createGenerateMock([
+        createFile({
+          name: 'src/dir/nest/file.txt',
+          path: path.join(cwd, 'src/dir/nest/file.txt'),
+          content: 'content',
+        }),
+      ]),
     });
 
     const { code, stdout, stderr } = await run({
@@ -294,6 +352,7 @@ describe('args and flags', () => {
         output: 'dir/nest',
       },
       lib,
+      api: vi.fn().mockReturnValueOnce(scaffdog),
     });
 
     expect(code).toBe(0);
@@ -309,12 +368,21 @@ describe('args and flags', () => {
   test('answers', async () => {
     const lib = createLibraryMock({
       config,
-      document: createDocumentLibraryMock({
-        resolve: vi.fn().mockResolvedValueOnce(documents),
-      }),
       question: createQuestionLibraryMock({
         resolve: vi.fn().mockResolvedValueOnce({}),
       }),
+    });
+
+    const scaffdog = createScaffdogMock({
+      list: vi.fn().mockResolvedValueOnce(documents),
+      generate: createGenerateMock([
+        files[0],
+        createFile({
+          name: 'dir/.txt',
+          path: path.join(cwd, 'dir/.txt'),
+          content: '',
+        }),
+      ]),
     });
 
     const { code, stdout, stderr } = await run({
@@ -325,6 +393,7 @@ describe('args and flags', () => {
         answer: ['key1:value', 'key2:value'],
       },
       lib,
+      api: vi.fn().mockReturnValueOnce(scaffdog),
     });
 
     expect(code).toBe(0);
@@ -341,14 +410,14 @@ describe('args and flags', () => {
   test('no documents', async () => {
     const lib = createLibraryMock({
       config,
-      document: createDocumentLibraryMock({
-        resolve: vi.fn().mockResolvedValueOnce([]),
-      }),
       question: createQuestionLibraryMock({
-        resolve: vi.fn().mockResolvedValueOnce({
-          value: 'scaffdog',
-        }),
+        resolve: vi.fn().mockResolvedValueOnce(answers),
       }),
+    });
+
+    const scaffdog = createScaffdogMock({
+      list: vi.fn().mockResolvedValueOnce([]),
+      generate: createGenerateMock([]),
     });
 
     const { code, stdout, stderr } = await run({
@@ -356,6 +425,7 @@ describe('args and flags', () => {
         name: 'basic',
       },
       lib,
+      api: vi.fn().mockReturnValueOnce(scaffdog),
     });
 
     expect(code).toBe(1);
@@ -366,14 +436,14 @@ describe('args and flags', () => {
   test('not found', async () => {
     const lib = createLibraryMock({
       config,
-      document: createDocumentLibraryMock({
-        resolve: vi.fn().mockResolvedValueOnce(documents),
-      }),
       question: createQuestionLibraryMock({
-        resolve: vi.fn().mockResolvedValueOnce({
-          value: 'scaffdog',
-        }),
+        resolve: vi.fn().mockResolvedValueOnce(answers),
       }),
+    });
+
+    const scaffdog = createScaffdogMock({
+      list: vi.fn().mockResolvedValueOnce(documents),
+      generate: createGenerateMock(files),
     });
 
     const { code, stdout, stderr } = await run({
@@ -381,6 +451,7 @@ describe('args and flags', () => {
         name: 'not-found',
       },
       lib,
+      api: vi.fn().mockReturnValueOnce(scaffdog),
     });
 
     expect(code).toBe(1);
