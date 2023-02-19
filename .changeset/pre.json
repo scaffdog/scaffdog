@@ -10,5 +10,7 @@
     "prettier-plugin-scaffdog": "2.4.0",
     "scaffdog": "2.4.0"
   },
-  "changesets": []
+  "changesets": [
+    "three-pens-rhyme"
+  ]
 }
