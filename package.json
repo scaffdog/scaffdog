@@ -4,7 +4,7 @@
     "packages/@scaffdog/*",
     "packages/*"
   ],
-  "packageManager": "pnpm@7.25.0",
+  "packageManager": "pnpm@7.27.0",
   "scripts": {
     "build": "turbo run build --filter \"./packages/**/*\"",
     "typecheck": "turbo run typecheck --filter \"./packages/**/*\"",
