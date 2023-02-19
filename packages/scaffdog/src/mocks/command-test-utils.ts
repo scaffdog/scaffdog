@@ -1,4 +1,5 @@
 import path from 'path';
+import type { ScaffdogFactory } from '../api';
 import type {
   AnyCommandModule,
   CommandArgs,
@@ -12,6 +13,7 @@ import type {
 import type { CommandContainer } from '../command-container';
 import { createCommandContainer } from '../command-container';
 import type { Library } from '../lib';
+import { createScaffdogInitializerMock } from './api';
 import { createLibraryMock } from './lib';
 import { createLogger } from './logger';
 
@@ -21,6 +23,7 @@ export type CommandRunnerParams<T extends AnyCommandModule> = {
   args?: Partial<CommandArgs<InferredCommandModuleArgs<T>>>;
   flags?: Partial<GlobalFlagsWith<CommandArgs<InferredCommandModuleFlags<T>>>>;
   lib?: Library;
+  api?: ScaffdogFactory;
   container?: CommandContainer;
 };
 
@@ -40,7 +43,7 @@ export const createCommandRunner =
       flags: CommandArgs<F>;
     },
   ): CommandRunner<CommandModule<A, F>> =>
-  async ({ args, flags, lib, container }) => {
+  async ({ args, flags, lib, api, container }) => {
     const { logger, getStdout, getStderr } = createLogger();
 
     const globalFlags: GlobalFlags = {
@@ -64,6 +67,7 @@ export const createCommandRunner =
       logger,
       container: container ?? createCommandContainer([]),
       lib: lib ?? createLibraryMock({}),
+      api: api ?? createScaffdogInitializerMock({}).createScaffdog,
       args: {
         ...defaults.args,
         ...(args ?? {}),

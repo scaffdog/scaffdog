@@ -3,6 +3,7 @@ import { LogLevel } from 'consola';
 import termSize from 'term-size';
 import type { PackageJson } from 'type-fest';
 import yargs from 'yargs/yargs';
+import type { ScaffdogFactory } from './api';
 import type { CommandOption } from './command';
 import { buildCommand } from './command';
 import type { CommandContainer } from './command-container';
@@ -18,6 +19,7 @@ export type CreateCLIOptions = {
   logger: Consola;
   container: CommandContainer;
   lib: Library;
+  api: ScaffdogFactory;
 };
 
 export const createCLI = ({
@@ -25,6 +27,7 @@ export const createCLI = ({
   logger,
   container,
   lib,
+  api,
 }: CreateCLIOptions): CLI => ({
   run: async (argv) => {
     const parser = yargs()
@@ -67,6 +70,7 @@ export const createCLI = ({
       logger,
       container,
       lib,
+      api,
       size: Object.defineProperties(
         {
           rows: 0,

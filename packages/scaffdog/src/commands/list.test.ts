@@ -4,7 +4,7 @@ import { describe, expect, test, vi } from 'vitest';
 import { createResolvedConfig } from '../lib/config.factory';
 import { createConfigLibraryMock } from '../lib/config.mock';
 import { createDocument } from '../lib/document.factory';
-import { createDocumentLibraryMock } from '../lib/document.mock';
+import { createScaffdogMock } from '../mocks/api';
 import { createCommandRunner, cwd } from '../mocks/command-test-utils';
 import { createLibraryMock } from '../mocks/lib';
 import cmd from './list';
@@ -69,26 +69,22 @@ test('success', async () => {
 
   const lib = createLibraryMock({
     config,
-    document: createDocumentLibraryMock({
-      resolve: vi.fn().mockResolvedValueOnce(documents),
-    }),
+  });
+
+  const scaffdog = createScaffdogMock({
+    list: vi.fn().mockResolvedValueOnce(documents),
   });
 
   const { code, stdout, stderr } = await run({
     lib,
+    api: vi.fn().mockReturnValueOnce(scaffdog),
   });
 
   expect(code).toBe(0);
   expect(stderr).toBe('');
   expect(stdout).toMatchSnapshot();
 
-  expect(lib.document.resolve).toBeCalledWith(
-    path.resolve(cwd, '.scaffdog'),
-    ['*'],
-    {
-      tags: ['{{', '}}'],
-    },
-  );
+  expect(scaffdog.list).toBeCalledWith();
 });
 
 describe('failure', () => {
@@ -111,13 +107,15 @@ describe('failure', () => {
   test('document not found', async () => {
     const lib = createLibraryMock({
       config,
-      document: createDocumentLibraryMock({
-        resolve: vi.fn().mockResolvedValueOnce([]),
-      }),
+    });
+
+    const scaffdog = createScaffdogMock({
+      list: vi.fn().mockResolvedValueOnce([]),
     });
 
     const { code, stdout, stderr } = await run({
       lib,
+      api: vi.fn().mockReturnValueOnce(scaffdog),
     });
 
     expect(code).toBe(1);

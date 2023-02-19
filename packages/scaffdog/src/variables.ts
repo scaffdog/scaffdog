@@ -22,31 +22,33 @@ export const assignGlobalVariables = (
 
 export type CreateTemplateVariablesOptions = {
   cwd: string;
-  root: string;
+  dir: string;
   name: string;
 };
 
 export const createTemplateVariables = ({
   cwd,
-  root,
+  dir,
   name,
 }: CreateTemplateVariablesOptions): VariableMap => {
-  const variables: VariableMap = new Map();
-
-  const absolute = path.resolve(cwd, root, name);
+  const absolute = path.resolve(dir, name);
   const relative = path.relative(cwd, absolute);
   const info = path.parse(relative);
 
-  variables.set('cwd', cwd);
-  variables.set('output', {
-    root,
-    path: relative,
-    abs: absolute,
-    name: info.name,
-    base: info.base,
-    ext: info.ext,
-    dir: info.dir,
-  });
+  const variables: VariableMap = new Map([
+    [
+      'output',
+      {
+        root: info.dir /** @deprecated Use `output.dir` instead of `output.root` */,
+        path: relative,
+        abs: absolute,
+        name: info.name,
+        base: info.base,
+        ext: info.ext,
+        dir: info.dir,
+      },
+    ],
+  ]);
 
   return variables;
 };

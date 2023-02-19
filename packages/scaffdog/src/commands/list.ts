@@ -10,17 +10,20 @@ export default createCommand({
   summary: 'Print a list of available documents.',
   args: {},
   flags: {},
-})(async ({ cwd, logger, lib: { config, document }, flags }) => {
+})(async ({ cwd, logger, lib: { config }, api, flags }) => {
   const { project } = flags;
-  const cfg = config.load(cwd, project);
+  const dirname = path.resolve(cwd, project);
+  const cfg = config.load(dirname);
   if (cfg == null) {
     return 1;
   }
 
-  const dirname = path.resolve(cwd, project);
-  const documents = await document.resolve(dirname, cfg.files, {
-    tags: cfg.tags,
+  const scaffdog = api({
+    ...cfg,
+    cwd,
   });
+
+  const documents = await scaffdog.list();
 
   if (documents.length === 0) {
     logger.warn('Document file not found.');

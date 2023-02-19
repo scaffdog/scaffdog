@@ -1,5 +1,4 @@
 import path from 'path';
-import { compile, createContext, extendContext } from '@scaffdog/engine';
 import ansiEscapes from 'ansi-escapes';
 import chalk from 'chalk';
 import globby from 'globby';
@@ -9,10 +8,14 @@ import { emojify } from 'node-emoji';
 import plur from 'plur';
 import { createCommand } from '../command';
 import type { File } from '../file';
-import { helpers } from '../helpers';
 import type { Document } from '../lib/document';
 import { formatFile } from '../utils/format';
-import { assignGlobalVariables, createTemplateVariables } from '../variables';
+
+class InputsResolverError extends Error {
+  public constructor(public parent: Error) {
+    super();
+  }
+}
 
 export default createCommand({
   name: 'generate',
@@ -55,26 +58,23 @@ export default createCommand({
   async ({
     cwd,
     logger,
-    lib: { fs, error, prompt, config, question, document },
+    lib: { fs, error, prompt, config, question },
+    api,
     size,
     args,
     flags,
   }) => {
     // configuration
     const { project } = flags;
-    const cfg = config.load(cwd, project);
+    const dirname = path.resolve(cwd, project);
+    const cfg = config.load(dirname);
     if (cfg == null) {
       return 1;
     }
 
-    const dirname = path.resolve(cwd, project);
-
-    // base context
-    const context = createContext({
+    const scaffdog = api({
+      ...cfg,
       cwd,
-      variables: cfg.variables,
-      helpers: new Map([...cfg.helpers, ...helpers]),
-      tags: cfg.tags,
     });
 
     // clear
@@ -85,9 +85,7 @@ export default createCommand({
     // resolve document
     let documents: Document[];
     try {
-      documents = await document.resolve(dirname, cfg.files, {
-        tags: context.tags,
-      });
+      documents = await scaffdog.list();
     } catch (e) {
       return error.handle(e, 'Document Resolve Error');
     }
@@ -100,13 +98,12 @@ export default createCommand({
     }
 
     const name =
-      args.name == null
-        ? await prompt.prompt({
-            type: 'list',
-            message: 'Please select a document.',
-            choices: documents.map((d) => d.name),
-          })
-        : args.name;
+      args.name ??
+      (await prompt.prompt({
+        type: 'list',
+        message: 'Please select a document.',
+        choices: documents.map((d) => d.name),
+      }));
 
     logger.debug('using name: %s', name);
 
@@ -171,68 +168,40 @@ export default createCommand({
     dist = path.resolve(cwd, dist);
     logger.debug('normalized dist: %s', dist);
 
-    // set variables
-    assignGlobalVariables(context, {
-      cwd,
-      document: doc,
-    });
-
-    // inputs
-    try {
-      const inputs = await question.resolve({
-        context,
-        questions: doc.questions ?? {},
-        answers: flags.answer ?? [],
-      });
-
-      context.variables.set('inputs', inputs);
-    } catch (e) {
-      return error.handle(e, 'Question Error');
-    }
-
-    logger.debug('variables: %O', context.variables);
-
     // generate
-    const files: File[] = [];
+    let files: File[];
     try {
-      for (const [key, ast] of doc.variables) {
-        context.variables.set(key, compile(ast, context));
-      }
+      files = await scaffdog.generate(doc, dist, {
+        inputs: async (context) => {
+          try {
+            const inputs = await question.resolve({
+              context,
+              questions: doc.questions ?? {},
+              answers: flags.answer ?? [],
+            });
 
-      for (const tpl of doc.templates) {
-        const filename = compile(tpl.filename, context);
-        if (/^!/.test(filename)) {
-          const name = filename.slice(1);
-          files.push({
-            skip: true,
-            path: path.resolve(cwd, dist, name),
-            name,
-            content: '',
-          });
-          continue;
-        }
+            logger.debug(
+              'variables: %O',
+              new Map([...context.variables, ['inputs', inputs]]),
+            );
 
-        const ctx = extendContext(context, {
-          variables: createTemplateVariables({
-            cwd,
-            root: dist,
-            name: filename,
-          }),
-        });
-
-        files.push({
-          skip: false,
-          path: path.resolve(cwd, dist, filename),
-          name: filename,
-          content: compile(tpl.content, ctx),
-        });
-      }
+            return inputs;
+          } catch (e) {
+            throw new InputsResolverError(e as Error);
+          }
+        },
+      });
     } catch (e) {
-      return error.handle(e, 'Compile Error');
+      if (e instanceof InputsResolverError) {
+        return error.handle(e.parent, 'Question Error');
+      } else {
+        return error.handle(e, 'Compile Error');
+      }
     }
 
     logger.debug('files: %O', files);
 
+    // write files
     const writes: Set<File> = new Set();
     const skips: Set<File> = new Set();
 
@@ -286,6 +255,7 @@ export default createCommand({
       }
     }
 
+    // report
     const msg = {
       write: chalk.bold.green(`${writes.size} ${plur('file', writes.size)}`),
       skip: skips.size > 0 ? chalk.bold.gray(` (${skips.size} skipped)`) : '',

@@ -40,6 +40,10 @@ export const sidebar: RouteItem[] = [
     path: '/docs/cli',
   },
   {
+    title: 'API',
+    path: '/docs/api',
+  },
+  {
     title: 'Integration',
     path: '/docs/integration',
   },
