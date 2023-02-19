@@ -157,7 +157,7 @@ importers:
       '@scaffdog/engine': workspace:*
       '@scaffdog/error': workspace:*
       '@scaffdog/types': workspace:*
-      '@types/inquirer': 8.2.5
+      '@types/inquirer': 8.2.6
       '@types/micromatch': 4.0.2
       '@types/node-emoji': 1.8.2
       '@types/update-notifier': 6.0.1
@@ -219,7 +219,7 @@ importers:
       yargs: 17.5.1
       zod: 3.17.10
     devDependencies:
-      '@types/inquirer': 8.2.5
+      '@types/inquirer': 8.2.6
       '@types/micromatch': 4.0.2
       '@types/node-emoji': 1.8.2
       '@types/update-notifier': 6.0.1
@@ -3030,10 +3030,11 @@ packages:
       '@types/unist': 2.0.6
     dev: false
 
-  /@types/inquirer/8.2.5:
-    resolution: {integrity: sha512-QXlzybid60YtAwfgG3cpykptRYUx2KomzNutMlWsQC64J/WG/gQSl+P4w7A21sGN0VIxRVava4rgnT7FQmFCdg==}
+  /@types/inquirer/8.2.6:
+    resolution: {integrity: sha512-3uT88kxg8lNzY8ay2ZjP44DKcRaTGztqeIvN2zHvhzIBH/uAPaL75aBtdNRKbA7xXoMbBt5kX0M00VKAnfOYlA==}
     dependencies:
       '@types/through': 0.0.30
+      rxjs: 7.5.7
     dev: true
 
   /@types/is-ci/3.0.0:
