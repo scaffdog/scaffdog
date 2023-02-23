@@ -1,6 +1,6 @@
 {
   "name": "@scaffdog/engine",
-  "version": "2.5.0-canary.0",
+  "version": "2.5.0-canary.1",
   "description": "A module of scaffdog template engine.",
   "keywords": [
     "scaffdog",
