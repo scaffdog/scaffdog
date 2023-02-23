@@ -36,9 +36,9 @@ const logger = consola.create({
 const lib = createLibrary(logger);
 
 const initializer = createScaffdogInitializer({
-  version: pkg.version!,
   lib,
 });
 
+export const version = pkg.version!;
 export const createScaffdog = initializer.createScaffdog;
 export const loadScaffdog = initializer.loadScaffdog;

@@ -3,7 +3,7 @@ import { ScaffdogError } from '@scaffdog/error';
 import { describe, expect, test } from 'vitest';
 import { z } from 'zod';
 import { createLogger } from '../mocks/logger';
-import { createErrorLibrary } from './error';
+import { createErrorLibrary, InternalAggregateError } from './error';
 
 const ROOT_PATH = path.join(__dirname, '../../../..');
 
@@ -20,6 +20,34 @@ describe('handle', () => {
   };
 
   test.each([
+    [
+      'InternalAggregateErorr',
+      new InternalAggregateError(
+        [
+          new ScaffdogError('message', {}),
+          (
+            z
+              .object({
+                foo: z.string(),
+                bar: z.object({
+                  baz: z.number(),
+                }),
+              })
+              .safeParse({
+                foo: 0,
+                bar: {
+                  baz: '',
+                },
+                qux: false,
+              }) as any
+          ).error,
+          new Error('title'),
+        ],
+        'AggregateError message',
+      ),
+      'Parsing Error',
+    ],
+
     [
       'ScaffdogError - without source',
       new ScaffdogError('message', {}),

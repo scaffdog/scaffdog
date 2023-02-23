@@ -5,7 +5,6 @@ import { createResolvedConfig } from '../lib/config.factory';
 export const createScaffdogMock = (
   mocks: Partial<Scaffdog> = {},
 ): Scaffdog => ({
-  version: '',
   path: {
     project: '',
     config: '',

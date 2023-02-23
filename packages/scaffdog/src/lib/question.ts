@@ -6,8 +6,8 @@ import type { PromptLibrary, PromptQuestion } from './prompt';
 
 const questionIfSchema = z.union([z.boolean(), z.string()]);
 
-export type QuestionCheckbox = z.infer<typeof questionCheckboxSchema>;
-const questionCheckboxSchema = z
+type RawQuestionCheckbox = z.infer<typeof rawQuestionCheckboxSchema>;
+const rawQuestionCheckboxSchema = z
   .object({
     message: z.string(),
     choices: z.array(z.string()),
@@ -17,8 +17,8 @@ const questionCheckboxSchema = z
   })
   .strict();
 
-export type QuestionList = z.infer<typeof questionListSchema>;
-const questionListSchema = z
+type RawQuestionList = z.infer<typeof rawQuestionListSchema>;
+const rawQuestionListSchema = z
   .object({
     message: z.string(),
     choices: z.array(z.string()),
@@ -28,8 +28,8 @@ const questionListSchema = z
   })
   .strict();
 
-export type QuestionConfirm = z.infer<typeof questionConfirmSchema>;
-const questionConfirmSchema = z
+type RawQuestionConfirm = z.infer<typeof rawQuestionConfirmSchema>;
+const rawQuestionConfirmSchema = z
   .object({
     confirm: z.string(),
     initial: z.boolean().optional(),
@@ -37,8 +37,8 @@ const questionConfirmSchema = z
   })
   .strict();
 
-export type QuestionInput = z.infer<typeof questionInputSchema>;
-const questionInputSchema = z
+type RawQuestionInput = z.infer<typeof rawQuestionInputSchema>;
+const rawQuestionInputSchema = z
   .object({
     message: z.string(),
     initial: z.string().optional(),
@@ -46,58 +46,67 @@ const questionInputSchema = z
   })
   .strict();
 
-export type QuestionObject = z.infer<typeof questionObjectSchema>;
-const questionObjectSchema = z.union([
-  questionCheckboxSchema,
-  questionListSchema,
-  questionConfirmSchema,
-  questionInputSchema,
+type RawQuestionObject = z.infer<typeof rawQuestionObjectSchema>;
+const rawQuestionObjectSchema = z.union([
+  rawQuestionCheckboxSchema,
+  rawQuestionListSchema,
+  rawQuestionConfirmSchema,
+  rawQuestionInputSchema,
 ]);
 
-export type Question = z.infer<typeof questionSchema>;
-const questionSchema = z.union([
+const rawQuestionSchema = z.union([
   z.string(), // input syntax sugar
-  questionObjectSchema,
+  rawQuestionObjectSchema,
 ]);
 
-export type QuestionRecord = z.infer<typeof questionRecordSchema>;
-export const questionRecordSchema = z.record(z.string(), questionSchema);
+export type RawQuestionRecord = z.infer<typeof rawQuestionRecordSchema>;
+export const rawQuestionRecordSchema = z.record(z.string(), rawQuestionSchema);
+
+export type QuestionCheckbox = Omit<RawQuestionCheckbox, 'multiple'> & {
+  type: 'checkbox';
+};
+
+export type QuestionList = Omit<RawQuestionList, 'multiple'> & {
+  type: 'list';
+};
+
+export type QuestionConfirm = Omit<RawQuestionConfirm, 'confirm'> & {
+  type: 'confirm';
+  message: string;
+};
+
+export type QuestionInput = RawQuestionInput & {
+  type: 'input';
+};
+
+export type Question =
+  | QuestionCheckbox
+  | QuestionList
+  | QuestionConfirm
+  | QuestionInput;
+
+export type QuestionMap = Map<string, Question>;
 
 export type QuestionResolveOptions = {
   context: Context;
-  questions: QuestionRecord;
+  questions: QuestionMap;
   answers: string[];
 };
 
 /**
  * @internal
  */
-const isQuestionObject = (v: unknown): v is QuestionObject => isPlainObject(v);
+const isQuestionObject = (v: unknown): v is RawQuestionObject =>
+  isPlainObject(v);
 
-const isQuestionCheckbox = (v: unknown): v is QuestionCheckbox =>
+const isQuestionCheckbox = (v: unknown): v is RawQuestionCheckbox =>
   isQuestionObject(v) && 'choices' in v && v.multiple === true;
 
-const isQuestionList = (v: unknown): v is QuestionList =>
+const isQuestionList = (v: unknown): v is RawQuestionList =>
   isQuestionObject(v) && 'choices' in v && v.multiple !== true;
 
-const isQuestionConfirm = (v: unknown): v is QuestionConfirm =>
+const isQuestionConfirm = (v: unknown): v is RawQuestionConfirm =>
   isQuestionObject(v) && 'confirm' in v;
-
-type NormalizedQuestionMap = Map<string, QuestionObject>;
-
-export const normalizeQuestions = (
-  questions: QuestionRecord,
-): NormalizedQuestionMap =>
-  Object.entries(questions).reduce((acc, [key, value]) => {
-    if (typeof value === 'string') {
-      acc.set(key, {
-        message: value,
-      });
-    } else {
-      acc.set(key, value);
-    }
-    return acc;
-  }, new Map());
 
 const questionIf = createHelper<[any]>((_, result) => {
   if (typeof result === 'boolean') {
@@ -108,7 +117,7 @@ const questionIf = createHelper<[any]>((_, result) => {
   );
 });
 
-export const confirmIf = (question: QuestionObject, context: Context) => {
+export const confirmIf = (question: Question, context: Context) => {
   if (question.if != null) {
     if (typeof question.if === 'boolean') {
       return question.if;
@@ -125,54 +134,54 @@ export const confirmIf = (question: QuestionObject, context: Context) => {
   return true;
 };
 
-export const transformPromptQuestion = (
-  question: QuestionObject,
-): PromptQuestion => {
+export const transformPromptQuestion = (question: Question): PromptQuestion => {
   const validate = (v: string) => (v !== '' ? true : 'required input!');
 
-  if (isQuestionConfirm(question)) {
-    return {
-      type: 'confirm',
-      message: question.confirm,
-      default: question.initial,
-      validate,
-    };
+  switch (question.type) {
+    case 'confirm':
+      return {
+        type: 'confirm',
+        message: question.message,
+        default: question.initial,
+        validate,
+      };
+    case 'checkbox':
+    case 'list':
+      return {
+        type: question.type === 'checkbox' ? 'checkbox' : 'list',
+        message: question.message,
+        choices: question.choices,
+        default: question.initial,
+        validate,
+      };
+    default:
+      return {
+        type: 'input',
+        message: question.message,
+        default: question.initial,
+        validate,
+      };
   }
-
-  if (isQuestionCheckbox(question) || isQuestionList(question)) {
-    return {
-      type: question.multiple === true ? 'checkbox' : 'list',
-      message: question.message,
-      choices: question.choices,
-      default: question.initial,
-      validate,
-    };
-  }
-
-  return {
-    ...question,
-    type: 'input',
-    default: question.initial,
-    validate,
-  };
 };
 
-export const getInitialValue = (question: QuestionObject): Variable => {
-  if (isQuestionConfirm(question)) {
-    return question.initial ?? false;
+export const getInitialValue = (question: Question): Variable => {
+  switch (question.type) {
+    case 'confirm':
+      return question.initial ?? false;
+    case 'checkbox':
+    case 'list':
+      return question.type === 'checkbox'
+        ? question.initial ?? []
+        : question.initial ?? '';
+    default:
+      return question.initial ?? '';
   }
-
-  if (isQuestionCheckbox(question) || isQuestionList(question)) {
-    return question.multiple ? question.initial ?? [] : question.initial ?? '';
-  }
-
-  return question.initial ?? '';
 };
 
 type AnswerMap = Map<string, Variable>;
 
 export const parseAnswers = (
-  questions: NormalizedQuestionMap,
+  questions: QuestionMap,
   answers: string[],
 ): AnswerMap => {
   const map: AnswerMap = new Map();
@@ -188,29 +197,39 @@ export const parseAnswers = (
 
     const question = questions.get(key)!;
 
-    if (isQuestionCheckbox(question)) {
-      if (!question.choices.includes(value)) {
-        const expected = question.choices.join(', ');
-        throw new Error(`"${key}" must be the value of "${expected}"`);
+    switch (question.type) {
+      case 'checkbox': {
+        if (!question.choices.includes(value)) {
+          const expected = question.choices.join(', ');
+          throw new Error(`"${key}" must be the value of "${expected}"`);
+        }
+        const previous = map.get(key) as string[] | undefined;
+        map.set(key, previous == null ? [value] : [...previous, value]);
+        break;
       }
-      const previous = map.get(key) as string[] | undefined;
-      map.set(key, previous == null ? [value] : [...previous, value]);
-    } else if (isQuestionList(question)) {
-      if (!question.choices.includes(value)) {
-        const expected = question.choices.join(', ');
-        throw new Error(`"${key}" must be one of "${expected}"`);
+      case 'list': {
+        if (!question.choices.includes(value)) {
+          const expected = question.choices.join(', ');
+          throw new Error(`"${key}" must be one of "${expected}"`);
+        }
+        map.set(key, value);
+        break;
       }
-      map.set(key, value);
-    } else if (isQuestionConfirm(question)) {
-      if (value !== 'true' && value !== 'false') {
-        throw new Error(`"${key}" must be true or false, but found "${value}"`);
+      case 'confirm': {
+        if (value !== 'true' && value !== 'false') {
+          throw new Error(
+            `"${key}" must be true or false, but found "${value}"`,
+          );
+        }
+        map.set(key, value === 'true');
+        break;
       }
-      map.set(key, value === 'true');
-    } else {
-      if (value === '') {
-        throw new Error(`"${key}" is required but found empty value`);
+      default: {
+        if (value === '') {
+          throw new Error(`"${key}" is required but found empty value`);
+        }
+        map.set(key, value);
       }
-      map.set(key, value);
     }
   }
 
@@ -221,22 +240,63 @@ export const parseAnswers = (
  * @public
  */
 export type QuestionLibrary = {
+  parse: (questions: RawQuestionRecord) => QuestionMap;
   resolve: (options: QuestionResolveOptions) => Promise<VariableRecord>;
 };
 
 export const createQuestionLibrary = (
   prompt: PromptLibrary,
 ): QuestionLibrary => ({
+  parse: (questions) => {
+    const map: QuestionMap = new Map();
+
+    Object.entries(questions).forEach(([key, value]) => {
+      const raw =
+        typeof value === 'string'
+          ? {
+              message: value,
+            }
+          : value;
+
+      if (isQuestionCheckbox(raw)) {
+        const { multiple, ...rest } = raw;
+        map.set(key, {
+          ...rest,
+          type: 'checkbox',
+        });
+      } else if (isQuestionList(raw)) {
+        const { multiple, ...rest } = raw;
+        map.set(key, {
+          ...rest,
+          type: 'list',
+        });
+      } else if (isQuestionConfirm(raw)) {
+        const { confirm, ...rest } = raw;
+        map.set(key, {
+          ...rest,
+          type: 'confirm',
+          message: confirm,
+        });
+      } else {
+        map.set(key, {
+          ...raw,
+          type: 'input',
+        });
+      }
+    });
+
+    return map;
+  },
+
   resolve: async ({ context, questions, answers }) => {
     const inputs: VariableRecord = Object.create(null);
-    const entries = normalizeQuestions(questions);
-    if (entries.size === 0) {
+    if (questions.size === 0) {
       return inputs;
     }
 
-    const answer = parseAnswers(entries, answers);
+    const answer = parseAnswers(questions, answers);
 
-    for (const [name, question] of entries) {
+    for (const [name, question] of questions) {
       const ctx = extendContext(context, {
         variables: new Map([['inputs', inputs]]),
       });

@@ -47,9 +47,15 @@ test('success', async () => {
           content: parse('2'),
         },
       ],
-      questions: {
-        key1: 'msg',
-      },
+      questions: new Map([
+        [
+          'key1',
+          {
+            type: 'input',
+            message: 'msg',
+          },
+        ],
+      ]),
     }),
     createDocument({
       name: 'doc3',
@@ -60,10 +66,22 @@ test('success', async () => {
           content: parse('1'),
         },
       ],
-      questions: {
-        key1: 'msg',
-        key2: 'msg',
-      },
+      questions: new Map([
+        [
+          'key1',
+          {
+            type: 'input',
+            message: 'msg',
+          },
+        ],
+        [
+          'key2',
+          {
+            type: 'input',
+            message: 'msg',
+          },
+        ],
+      ]),
     }),
   ];
 

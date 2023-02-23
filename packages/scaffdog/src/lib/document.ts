@@ -8,8 +8,10 @@ import { extract } from '@scaffdog/core';
 import { ScaffdogError } from '@scaffdog/error';
 import frontmatter from 'front-matter';
 import * as z from 'zod';
+import { InternalAggregateError } from './error';
 import type { FsLibrary } from './fs';
-import { questionRecordSchema } from './question';
+import type { QuestionLibrary, QuestionMap } from './question';
+import { rawQuestionRecordSchema } from './question';
 
 const MARKDOWN_EXTNAME = new Set([
   '.markdown',
@@ -22,14 +24,18 @@ const MARKDOWN_EXTNAME = new Set([
   '.mkdn',
 ]);
 
-export type DocumentAttributes = z.infer<typeof attrSchema>;
-const attrSchema = z.object({
+export type RawDocumentAttributes = z.infer<typeof rawAttrSchema>;
+const rawAttrSchema = z.object({
   name: z.string(),
   root: z.string(),
   output: z.union([z.string(), z.array(z.string())]),
   ignore: z.array(z.string()).optional(),
-  questions: questionRecordSchema.optional(),
+  questions: rawQuestionRecordSchema.optional(),
 });
+
+export type DocumentAttributes = Omit<RawDocumentAttributes, 'questions'> & {
+  questions: QuestionMap;
+};
 
 export type Document = DocumentAttributes & {
   path: string;
@@ -41,20 +47,23 @@ export type Document = DocumentAttributes & {
  * @internal
  */
 export const parse = (
+  question: QuestionLibrary,
   path: string,
   input: string,
   options: ExtractOptions,
 ): Document => {
-  const { attributes, body } = frontmatter<DocumentAttributes>(input);
-  const attrs = attrSchema.safeParse(attributes);
+  const { attributes, body } = frontmatter<RawDocumentAttributes>(input);
+  const attrs = rawAttrSchema.safeParse(attributes);
   if (!attrs.success) {
     const [issue] = attrs.error.issues;
     const paths = issue.path.join('.');
-    const msg = `Document Parsing Error: in '${paths}': ${issue.message}`;
+    const msg = `Document Parsing Error: in "${paths}": ${issue.message} at "${path}"`;
     throw new ScaffdogError(msg, {
       source: input,
     });
   }
+
+  const questions = question.parse(attrs.data.questions ?? {});
 
   const { variables, templates } = extract(body, options);
 
@@ -63,6 +72,7 @@ export const parse = (
     path,
     variables,
     templates,
+    questions,
   };
 };
 
@@ -77,7 +87,10 @@ export type DocumentLibrary = {
   ) => Promise<Document[]>;
 };
 
-export const createDocumentLibrary = (fs: FsLibrary): DocumentLibrary => ({
+export const createDocumentLibrary = (
+  fs: FsLibrary,
+  question: QuestionLibrary,
+): DocumentLibrary => ({
   resolve: async (dirname, patterns, options) => {
     const paths = await fs.glob(patterns, {
       cwd: dirname,
@@ -87,13 +100,34 @@ export const createDocumentLibrary = (fs: FsLibrary): DocumentLibrary => ({
       absolute: true,
     });
 
-    return await Promise.all(
+    const results = await Promise.allSettled(
       paths
         .filter((filepath) => MARKDOWN_EXTNAME.has(path.extname(filepath)))
         .map(async (filepath) => {
           const content = await fs.readFile(filepath);
-          return parse(filepath, content, options);
+          return parse(question, filepath, content, options);
         }),
     );
+
+    const [documents, errors] = results.reduce<[Document[], any[]]>(
+      (acc, cur) => {
+        if (cur.status === 'fulfilled') {
+          acc[0].push(cur.value);
+        } else {
+          acc[1].push(cur.reason);
+        }
+        return acc;
+      },
+      [[], []],
+    );
+
+    if (errors.length > 0) {
+      throw new InternalAggregateError(
+        errors,
+        `${errors.length} documents failed to load`,
+      );
+    }
+
+    return documents;
   },
 });

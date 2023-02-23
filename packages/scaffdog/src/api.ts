@@ -23,7 +23,6 @@ export type GenerateOptions = {
 };
 
 export type Scaffdog = {
-  version: string;
   path: {
     project: string;
     config: string;
@@ -63,7 +62,6 @@ export type ScaffdogLoader = (
  * Initializer
  */
 export type ScaffdogInitializerOptions = {
-  version: string;
   lib: Library;
 };
 
@@ -73,7 +71,6 @@ export type ScaffdogInitializer = {
 };
 
 export const createScaffdogInitializer = ({
-  version,
   lib,
 }: ScaffdogInitializerOptions): ScaffdogInitializer => {
   const createScaffdog: ScaffdogInitializer['createScaffdog'] = ({
@@ -81,7 +78,6 @@ export const createScaffdogInitializer = ({
     config,
     cwd = process.cwd(),
   }) => ({
-    version,
     path: {
       project: dirname(filepath),
       config: filepath,
