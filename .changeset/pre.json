@@ -11,6 +11,7 @@
     "scaffdog": "2.4.0"
   },
   "changesets": [
+    "friendly-flowers-carry",
     "three-pens-rhyme"
   ]
 }
