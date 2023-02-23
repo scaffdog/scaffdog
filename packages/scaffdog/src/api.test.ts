@@ -9,12 +9,10 @@ import { createLibraryMock } from './mocks/lib';
 import { createFile } from './file.factory';
 
 const cwd = '/path/test';
-const version = '0.0.0';
 
 describe('createScaffdog', () => {
   test('fields', async () => {
     const { createScaffdog } = createScaffdogInitializer({
-      version,
       lib: createLibraryMock(),
     });
 
@@ -27,7 +25,6 @@ describe('createScaffdog', () => {
     });
 
     expect(scaffdog).toEqual({
-      version,
       path: {
         project: path.join(cwd, '.scaffdog'),
         config: path.join(cwd, '.scaffdog/config.js'),
@@ -52,7 +49,6 @@ describe('createScaffdog', () => {
     });
 
     const { createScaffdog } = createScaffdogInitializer({
-      version,
       lib,
     });
 
@@ -80,7 +76,6 @@ describe('createScaffdog', () => {
 
   test('generate - inputs record', async () => {
     const { createScaffdog } = createScaffdogInitializer({
-      version,
       lib: createLibraryMock(),
     });
 
@@ -146,7 +141,6 @@ describe('createScaffdog', () => {
 
   test('generate - inputs factory', async () => {
     const { createScaffdog } = createScaffdogInitializer({
-      version,
       lib: createLibraryMock(),
     });
 

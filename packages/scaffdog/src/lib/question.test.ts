@@ -1,75 +1,14 @@
 import { createContext } from '@scaffdog/engine';
 import { describe, expect, test, vi } from 'vitest';
 import { createPromptLibraryMock } from './prompt.mock';
+import type { Question } from './question';
 import {
   confirmIf,
   createQuestionLibrary,
   getInitialValue,
-  normalizeQuestions,
   parseAnswers,
   transformPromptQuestion,
 } from './question';
-
-describe('normalizeQuestions', () => {
-  test.each([
-    [
-      'string only',
-      {
-        key1: 'msg1',
-        key2: 'msg2',
-      },
-      new Map([
-        [
-          'key1',
-          {
-            message: 'msg1',
-          },
-        ],
-        [
-          'key2',
-          {
-            message: 'msg2',
-          },
-        ],
-      ]),
-    ],
-
-    [
-      'mixed',
-      {
-        key1: 'msg1',
-        key2: {
-          message: 'msg2',
-        },
-        key3: {
-          confirm: 'msg3',
-        },
-      },
-      new Map([
-        [
-          'key1',
-          {
-            message: 'msg1',
-          },
-        ],
-        [
-          'key2',
-          {
-            message: 'msg2',
-          },
-        ],
-        [
-          'key3',
-          {
-            confirm: 'msg3',
-          },
-        ],
-      ]),
-    ],
-  ])('%s', (_, questions, expected) => {
-    expect(normalizeQuestions(questions)).toEqual(expected);
-  });
-});
 
 describe('confirmIf', () => {
   const context = createContext({
@@ -83,10 +22,11 @@ describe('confirmIf', () => {
     ]),
   });
 
-  test.each([
+  test.each<[string, Question, boolean]>([
     [
       'without if',
       {
+        type: 'input',
         message: 'msg',
       },
       true,
@@ -95,6 +35,7 @@ describe('confirmIf', () => {
     [
       'with literal (true)',
       {
+        type: 'input',
         message: 'msg',
         if: true,
       },
@@ -104,6 +45,7 @@ describe('confirmIf', () => {
     [
       'with literal (false)',
       {
+        type: 'input',
         message: 'msg',
         if: false,
       },
@@ -113,6 +55,7 @@ describe('confirmIf', () => {
     [
       'with expression (true)',
       {
+        type: 'input',
         message: 'msg',
         if: 'inputs.key == "value"',
       },
@@ -122,6 +65,7 @@ describe('confirmIf', () => {
     [
       'with expression (false)',
       {
+        type: 'input',
         message: 'msg',
         if: 'inputs.key != "value"',
       },
@@ -135,6 +79,7 @@ describe('confirmIf', () => {
     expect(() =>
       confirmIf(
         {
+          type: 'input',
           message: 'msg',
           if: '"string"',
         },
@@ -145,11 +90,12 @@ describe('confirmIf', () => {
 });
 
 describe('transformPromptQuestion', () => {
-  test.each([
+  test.each<[string, Question, any]>([
     [
       'confirm',
       {
-        confirm: 'msg',
+        type: 'confirm',
+        message: 'msg',
       },
       {
         type: 'confirm',
@@ -161,7 +107,8 @@ describe('transformPromptQuestion', () => {
     [
       'confirm with initial',
       {
-        confirm: 'msg',
+        type: 'confirm',
+        message: 'msg',
         initial: true,
       },
       {
@@ -174,9 +121,9 @@ describe('transformPromptQuestion', () => {
     [
       'checkbox',
       {
+        type: 'checkbox',
         message: 'msg',
         choices: ['a'],
-        multiple: true,
       },
       {
         type: 'checkbox',
@@ -189,9 +136,9 @@ describe('transformPromptQuestion', () => {
     [
       'checkbox with initial',
       {
+        type: 'checkbox',
         message: 'msg',
         choices: ['a'],
-        multiple: true,
         initial: ['a'],
       },
       {
@@ -205,6 +152,7 @@ describe('transformPromptQuestion', () => {
     [
       'list',
       {
+        type: 'list',
         message: 'msg',
         choices: ['a'],
       },
@@ -219,6 +167,7 @@ describe('transformPromptQuestion', () => {
     [
       'list with initial',
       {
+        type: 'list',
         message: 'msg',
         choices: ['a'],
         initial: 'a',
@@ -234,6 +183,7 @@ describe('transformPromptQuestion', () => {
     [
       'input',
       {
+        type: 'input',
         message: 'msg',
       },
       {
@@ -246,6 +196,7 @@ describe('transformPromptQuestion', () => {
     [
       'input with initial',
       {
+        type: 'input',
         message: 'msg',
         initial: 'a',
       },
@@ -263,11 +214,12 @@ describe('transformPromptQuestion', () => {
 });
 
 describe('getInitialValue', () => {
-  test.each([
+  test.each<[string, Question, unknown]>([
     [
       'confirm',
       {
-        confirm: 'msg',
+        type: 'confirm',
+        message: 'msg',
       },
       false,
     ],
@@ -275,7 +227,8 @@ describe('getInitialValue', () => {
     [
       'confirm with initial',
       {
-        confirm: 'msg',
+        type: 'confirm',
+        message: 'msg',
         initial: true,
       },
       true,
@@ -284,9 +237,9 @@ describe('getInitialValue', () => {
     [
       'checkbox',
       {
+        type: 'checkbox',
         message: 'msg',
         choices: ['a'],
-        multiple: true,
       },
       [],
     ],
@@ -294,9 +247,9 @@ describe('getInitialValue', () => {
     [
       'checkbox with initial',
       {
+        type: 'checkbox',
         message: 'msg',
         choices: ['a'],
-        multiple: true,
         initial: ['a'],
       },
       ['a'],
@@ -305,6 +258,7 @@ describe('getInitialValue', () => {
     [
       'list',
       {
+        type: 'list',
         message: 'msg',
         choices: ['a'],
       },
@@ -314,6 +268,7 @@ describe('getInitialValue', () => {
     [
       'list with initial',
       {
+        type: 'list',
         message: 'msg',
         choices: ['a'],
         initial: 'a',
@@ -324,6 +279,7 @@ describe('getInitialValue', () => {
     [
       'input',
       {
+        type: 'input',
         message: 'msg',
       },
       '',
@@ -332,6 +288,7 @@ describe('getInitialValue', () => {
     [
       'input with initial',
       {
+        type: 'input',
         message: 'msg',
         initial: 'a',
       },
@@ -343,10 +300,11 @@ describe('getInitialValue', () => {
 });
 
 describe('parseAnswers', () => {
-  test.each([
+  test.each<[string, Question, string[], unknown]>([
     [
       'input',
       {
+        type: 'input',
         message: 'msg',
       },
       ['key:value'],
@@ -356,6 +314,7 @@ describe('parseAnswers', () => {
     [
       'input (override)',
       {
+        type: 'input',
         message: 'msg',
       },
       ['key:value', 'key:value2'],
@@ -365,7 +324,8 @@ describe('parseAnswers', () => {
     [
       'confirm (true)',
       {
-        confirm: 'msg',
+        type: 'confirm',
+        message: 'msg',
       },
       ['key:true'],
       true,
@@ -374,7 +334,8 @@ describe('parseAnswers', () => {
     [
       'confirm (false)',
       {
-        confirm: 'msg',
+        type: 'confirm',
+        message: 'msg',
       },
       ['key:false'],
       false,
@@ -383,9 +344,9 @@ describe('parseAnswers', () => {
     [
       'checkbox (single)',
       {
+        type: 'checkbox',
         message: 'msg',
         choices: ['a', 'b'],
-        multiple: true,
       },
       ['key:a'],
       ['a'],
@@ -394,9 +355,9 @@ describe('parseAnswers', () => {
     [
       'checkbox (double)',
       {
+        type: 'checkbox',
         message: 'msg',
         choices: ['a', 'b'],
-        multiple: true,
       },
       ['key:a', 'key:b'],
       ['a', 'b'],
@@ -405,6 +366,7 @@ describe('parseAnswers', () => {
     [
       'list',
       {
+        type: 'list',
         message: 'msg',
         choices: ['a', 'b'],
       },
@@ -415,6 +377,7 @@ describe('parseAnswers', () => {
     [
       'list (override)',
       {
+        type: 'list',
         message: 'msg',
         choices: ['a', 'b'],
       },
@@ -427,10 +390,11 @@ describe('parseAnswers', () => {
     );
   });
 
-  test.each([
+  test.each<[string, Question, string[], RegExp]>([
     [
       'input (empty)',
       {
+        type: 'input',
         message: 'msg',
       },
       ['key:'],
@@ -440,7 +404,8 @@ describe('parseAnswers', () => {
     [
       'confirm (empty)',
       {
-        confirm: 'msg',
+        type: 'confirm',
+        message: 'msg',
       },
       ['key:'],
       /true or false/,
@@ -449,7 +414,8 @@ describe('parseAnswers', () => {
     [
       'confirm (invalid token)',
       {
-        confirm: 'msg',
+        type: 'confirm',
+        message: 'msg',
       },
       ['key:str'],
       /true or false/,
@@ -458,9 +424,9 @@ describe('parseAnswers', () => {
     [
       'checkbox (empty)',
       {
+        type: 'checkbox',
         message: 'msg',
         choices: ['a', 'b'],
-        multiple: true,
       },
       ['key:'],
       /value of "a, b"/,
@@ -469,9 +435,9 @@ describe('parseAnswers', () => {
     [
       'checkbox (invalid)',
       {
+        type: 'checkbox',
         message: 'msg',
         choices: ['a', 'b'],
-        multiple: true,
       },
       ['key:c'],
       /value of "a, b"/,
@@ -480,6 +446,7 @@ describe('parseAnswers', () => {
     [
       'list (empty)',
       {
+        type: 'list',
         message: 'msg',
         choices: ['a', 'b'],
       },
@@ -490,6 +457,7 @@ describe('parseAnswers', () => {
     [
       'list (invalid)',
       {
+        type: 'list',
         message: 'msg',
         choices: ['a', 'b'],
       },
@@ -500,6 +468,102 @@ describe('parseAnswers', () => {
     expect(() =>
       parseAnswers(new Map([['key', question]]), answers),
     ).toThrowError(expected);
+  });
+});
+
+describe('parse', () => {
+  const prompt = createPromptLibraryMock();
+
+  test.each([
+    ['empty', {}, new Map()],
+
+    [
+      'string only',
+      {
+        key1: 'msg1',
+        key2: 'msg2',
+      },
+      new Map([
+        [
+          'key1',
+          {
+            type: 'input',
+            message: 'msg1',
+          },
+        ],
+        [
+          'key2',
+          {
+            type: 'input',
+            message: 'msg2',
+          },
+        ],
+      ]),
+    ],
+
+    [
+      'mixed',
+      {
+        key1: 'msg1',
+        key2: {
+          message: 'msg2',
+        },
+        key3: {
+          confirm: 'msg3',
+        },
+        key4: {
+          message: 'msg4',
+          choices: ['a'],
+          multiple: true,
+        },
+        key5: {
+          message: 'msg5',
+          choices: ['a'],
+          multiple: false,
+        },
+      },
+      new Map([
+        [
+          'key1',
+          {
+            type: 'input',
+            message: 'msg1',
+          },
+        ],
+        [
+          'key2',
+          {
+            type: 'input',
+            message: 'msg2',
+          },
+        ],
+        [
+          'key3',
+          {
+            type: 'confirm',
+            message: 'msg3',
+          },
+        ],
+        [
+          'key4',
+          {
+            type: 'checkbox',
+            message: 'msg4',
+            choices: ['a'],
+          },
+        ],
+        [
+          'key5',
+          {
+            type: 'list',
+            message: 'msg5',
+            choices: ['a'],
+          },
+        ],
+      ]),
+    ],
+  ])('%s', (_, questions, expected) => {
+    expect(createQuestionLibrary(prompt).parse(questions)).toEqual(expected);
   });
 });
 
@@ -514,7 +578,7 @@ describe('resolve', () => {
     expect(
       await createQuestionLibrary(prompt).resolve({
         context,
-        questions: {},
+        questions: new Map(),
         answers: [],
       }),
     ).toEqual({});
@@ -528,17 +592,31 @@ describe('resolve', () => {
     expect(
       await createQuestionLibrary(prompt).resolve({
         context,
-        questions: {
-          answer: 'msg',
-          prompt: {
-            message: 'msg',
-          },
-          initial: {
-            message: 'msg',
-            if: false,
-            initial: 'initial',
-          },
-        },
+        questions: new Map([
+          [
+            'answer',
+            {
+              type: 'input',
+              message: 'msg',
+            },
+          ],
+          [
+            'prompt',
+            {
+              type: 'input',
+              message: 'msg',
+            },
+          ],
+          [
+            'initial',
+            {
+              type: 'input',
+              message: 'msg',
+              if: false,
+              initial: 'initial',
+            },
+          ],
+        ]),
         answers: ['answer:value'],
       }),
     ).toEqual({

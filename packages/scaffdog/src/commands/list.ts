@@ -33,7 +33,7 @@ export default createCommand({
   documents.forEach((doc) => {
     const relative = path.relative(cwd, doc.path);
     const t = count('template', doc.templates.length);
-    const q = count('question', Object.keys(doc.questions ?? {}).length);
+    const q = count('question', doc.questions.size);
     const meta = [relative, t, q].join(', ');
     logger.log(chalk`- {bold ${doc.name}} {gray (${meta})}`);
   });

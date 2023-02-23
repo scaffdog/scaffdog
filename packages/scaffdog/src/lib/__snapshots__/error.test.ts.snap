@@ -4,7 +4,7 @@ exports[`handle > Error 1`] = `
 "
  ERROR  General Error: title
 
-  at src/lib/error.test.ts:59:15
+  at src/lib/error.test.ts:87:15
   at __locale__
   at runWithSuite __locale__
   at Object.collect __locale__
@@ -14,6 +14,22 @@ exports[`handle > Error 1`] = `
   at __locale__
   at Module.withEnv __locale__
   at run __locale__
+
+
+"
+`;
+
+exports[`handle > InternalAggregateErorr 1`] = `
+"
+ ERROR  Parsing Error AggregateError message
+
+    message
+
+    2 issues found
+    - INVALID_TYPE: Expected string, received number (in \\"foo\\")
+    - INVALID_TYPE: Expected number, received string (in \\"bar.baz\\")
+
+    AggregateError message
 
 
 "

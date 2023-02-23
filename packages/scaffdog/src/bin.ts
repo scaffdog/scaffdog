@@ -43,7 +43,6 @@ const require = createRequire(import.meta.url);
     const container = createCommandContainer(commands);
     const lib = createLibrary(logger);
     const { createScaffdog: api } = createScaffdogInitializer({
-      version: pkg.version!,
       lib,
     });
 

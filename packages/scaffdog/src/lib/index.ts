@@ -12,7 +12,7 @@ export const createLibrary = (logger: Consola) => {
   const prompt = createPromptLibrary();
   const config = createConfigLibrary(logger, error);
   const question = createQuestionLibrary(prompt);
-  const document = createDocumentLibrary(fs);
+  const document = createDocumentLibrary(fs, question);
 
   return {
     fs,

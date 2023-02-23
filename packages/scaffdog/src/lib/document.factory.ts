@@ -10,7 +10,7 @@ export const createDocument = (props: PartialDeep<Document> = {}): Document =>
       root: '',
       output: '',
       ignore: [],
-      questions: {},
+      questions: new Map(),
       path: '',
       templates: [],
       variables: new Map(),
