@@ -82,7 +82,7 @@
     "@types/update-notifier": "6.0.1",
     "@types/wrap-ansi": "3.0.0",
     "@types/yargs": "17.0.22",
-    "type-fest": "3.5.7"
+    "type-fest": "3.6.0"
   },
   "publishConfig": {
     "access": "public"
