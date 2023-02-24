@@ -46,7 +46,7 @@
     "@types/prismjs": "1.26.0",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
-    "eslint": "8.32.0",
+    "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
     "github-slugger": "1.5.0",
     "next-sitemap": "3.1.52",
