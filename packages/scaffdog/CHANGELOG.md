@@ -1,5 +1,22 @@
 # Change Log
 
+## 2.5.0-canary.2
+
+### Patch Changes
+
+- [#691](https://github.com/scaffdog/scaffdog/pull/691) [`b325ef5`](https://github.com/scaffdog/scaffdog/commit/b325ef5d6cecb60aa1b0ee23b1e5da9a1792bf39) Thanks [@wadackel](https://github.com/wadackel)! - Add missing exports.
+
+  - `Variable`
+  - `Question*`
+  - `DocumentAttributes`
+
+- Updated dependencies []:
+  - @scaffdog/config@2.5.0-canary.2
+  - @scaffdog/core@2.5.0-canary.2
+  - @scaffdog/engine@2.5.0-canary.2
+  - @scaffdog/error@2.5.0-canary.2
+  - @scaffdog/types@2.5.0-canary.2
+
 ## 2.5.0-canary.1
 
 ### Patch Changes
