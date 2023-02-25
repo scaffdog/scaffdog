@@ -5,10 +5,9 @@ import type {
   VariableSourceMap,
 } from '@scaffdog/core';
 import { extract } from '@scaffdog/core';
-import { ScaffdogError } from '@scaffdog/error';
+import { ScaffdogAggregateError, ScaffdogError } from '@scaffdog/error';
 import frontmatter from 'front-matter';
 import * as z from 'zod';
-import { InternalAggregateError } from './error';
 import type { FsLibrary } from './fs';
 import type { QuestionLibrary, QuestionMap } from './question';
 import { rawQuestionRecordSchema } from './question';
@@ -122,7 +121,7 @@ export const createDocumentLibrary = (
     );
 
     if (errors.length > 0) {
-      throw new InternalAggregateError(
+      throw new ScaffdogAggregateError(
         errors,
         `${errors.length} documents failed to load`,
       );

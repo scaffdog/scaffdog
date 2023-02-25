@@ -35,6 +35,22 @@ exports[`handle > InternalAggregateErorr 1`] = `
 "
 `;
 
+exports[`handle > ScaffdogAggregateError 1`] = `
+"
+ ERROR  Parsing Error AggregateError message
+
+    message
+
+    2 issues found
+    - INVALID_TYPE: Expected string, received number (in \\"foo\\")
+    - INVALID_TYPE: Expected number, received string (in \\"bar.baz\\")
+
+    AggregateError message
+
+
+"
+`;
+
 exports[`handle > ScaffdogError - with source 1`] = `
 "
  ERROR  Compile Error
