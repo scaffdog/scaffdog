@@ -6,6 +6,8 @@ description: 'This section describes the Node API provided by scaffdog.'
 Besides being used as a CLI tool, scaffdog provides a high-level API for Node.js.  
 See this page on using scaffdog programmatically.
 
+**Note:** API documentation is currently not detailed. Check the source code for more information.
+
 ## `createScaffdog(options)`
 
 Factory function of a [Scaffdog](#scaffdog) object. Usually initialised using the result of reading using the [@scaffdog/config](https://github.com/scaffdog/scaffdog/tree/canary/packages/%40scaffdog/config) package.
@@ -13,7 +15,7 @@ Factory function of a [Scaffdog](#scaffdog) object. Usually initialised using th
 **Parameters:**
 
 - `options.filepath`: `string`
-- `options.config`: [`ResolvedConfig`](https://github.com/scaffdog/scaffdog/blob/canary/packages/%40scaffdog/types/src/config.ts#L13-L19)
+- `options.config`: [`ResolvedConfig`][ResolvedConfig]
 - `options.cwd?`: `string`
 
 **Return:**
@@ -58,11 +60,21 @@ Returns a list of documents corresponding to [files](./config#simple-configurati
 
 **Return:**
 
-- `Promise<Document[]>`
+- [`Promise<Document[]>`][Document]
 
 ```typescript
-const documents = await scaffdog.list();
-const document = documents.find((d) => d.name === 'component');
+import { ScaffdogAggregateError } from 'scaffdog';
+
+try {
+  const documents = await scaffdog.list();
+  const document = documents.find((d) => d.name === 'component');
+} catch (e) {
+  if (e instanceof ScaffdogAggregateError) {
+    console.error(e.message, e.errors);
+  } else {
+    console.error(e);
+  }
+}
 ```
 
 ### `scaffdog.generate(document, output, options)`
@@ -71,13 +83,13 @@ Specify the document object and output directory and compile each template. No f
 
 **Parameters:**
 
-- `document`: `Document`
+- `document`: [`Document`][Document]
 - `output`: `string`
-- `options.inputs?`: `VariableRecord | GenerateInputsResolver`
+- `options.inputs?`: [`VariableRecord`][VariableRecord] | [`GenerateInputsResolver`][GenerateInputsResolver]
 
 **Return:**
 
-- `Promise<File[]>`
+- [`Promise<File[]>`][File]
 
 ```typescript
 import fs from 'node:fs/promises';
@@ -107,3 +119,9 @@ for (const file of files) {
 //   },
 // });
 ```
+
+[ResolvedConfig]: https://github.com/scaffdog/scaffdog/blob/canary/packages/%40scaffdog/types/src/config.ts#L13-L19
+[Document]: https://github.com/scaffdog/scaffdog/blob/canary/packages/scaffdog/src/lib/document.ts#L40-L44
+[File]: https://github.com/scaffdog/scaffdog/blob/canary/packages/scaffdog/src/file.ts#L1-L6
+[VariableRecord]: https://github.com/scaffdog/scaffdog/blob/canary/packages/@scaffdog/types/src/variable.ts#L12
+[GenerateInputsResolver]: https://github.com/scaffdog/scaffdog/blob/canary/packages/scaffdog/src/api.ts#L15-L17
