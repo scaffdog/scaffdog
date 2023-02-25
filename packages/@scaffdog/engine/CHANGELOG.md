@@ -1,5 +1,22 @@
 # Change Log
 
+## 2.5.0
+
+### Minor Changes
+
+- [#665](https://github.com/scaffdog/scaffdog/pull/665) [`12e2b48`](https://github.com/scaffdog/scaffdog/commit/12e2b4822e5a549244582078659a76665e0e6291) Thanks [@wadackel](https://github.com/wadackel)! - Added two Node APIs.
+
+  - `createScaffdog(options)`
+  - `loadScaffdog(path, options)`
+
+### Patch Changes
+
+- [#686](https://github.com/scaffdog/scaffdog/pull/686) [`8ec6e42`](https://github.com/scaffdog/scaffdog/commit/8ec6e427e1a6c85d1726707cb7cc301ef8630bfb) Thanks [@wadackel](https://github.com/wadackel)! - - Add `version` export.
+  - Report document parsing errors at an early stage.
+- Updated dependencies [[`8ec6e42`](https://github.com/scaffdog/scaffdog/commit/8ec6e427e1a6c85d1726707cb7cc301ef8630bfb), [`0c32135`](https://github.com/scaffdog/scaffdog/commit/0c32135b6fbc1b9871b887c98eb751efdf95886c), [`12e2b48`](https://github.com/scaffdog/scaffdog/commit/12e2b4822e5a549244582078659a76665e0e6291)]:
+  - @scaffdog/error@2.5.0
+  - @scaffdog/types@2.5.0
+
 ## 2.5.0-canary.3
 
 ### Patch Changes
