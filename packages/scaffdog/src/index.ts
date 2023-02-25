@@ -11,11 +11,12 @@ const pkg = require('../package.json') as PackageJson;
  * Export types
  */
 export type { LoadConfigResult } from '@scaffdog/config';
+export { ScaffdogAggregateError, ScaffdogError } from '@scaffdog/error';
 export type {
   Context,
   ResolvedConfig,
-  VariableRecord,
   Variable,
+  VariableRecord,
 } from '@scaffdog/types';
 export type {
   GenerateInputs,
@@ -28,15 +29,15 @@ export type {
   ScaffdogLoaderOptions,
 } from './api';
 export type { File } from './file';
+export type { Document, DocumentAttributes } from './lib/document';
 export type {
+  Question,
   QuestionCheckbox,
-  QuestionList,
   QuestionConfirm,
   QuestionInput,
-  Question,
+  QuestionList,
   QuestionMap,
 } from './lib/question';
-export type { Document, DocumentAttributes } from './lib/document';
 
 /**
  * Export initializer

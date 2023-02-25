@@ -1,9 +1,9 @@
 import path from 'path';
-import { ScaffdogError } from '@scaffdog/error';
+import { ScaffdogAggregateError, ScaffdogError } from '@scaffdog/error';
 import { describe, expect, test } from 'vitest';
 import { z } from 'zod';
 import { createLogger } from '../mocks/logger';
-import { createErrorLibrary, InternalAggregateError } from './error';
+import { createErrorLibrary } from './error';
 
 const ROOT_PATH = path.join(__dirname, '../../../..');
 
@@ -21,8 +21,8 @@ describe('handle', () => {
 
   test.each([
     [
-      'InternalAggregateErorr',
-      new InternalAggregateError(
+      'ScaffdogAggregateError',
+      new ScaffdogAggregateError(
         [
           new ScaffdogError('message', {}),
           (

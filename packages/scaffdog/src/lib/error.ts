@@ -1,29 +1,8 @@
-import { ScaffdogError } from '@scaffdog/error';
+import { ScaffdogAggregateError, ScaffdogError } from '@scaffdog/error';
 import chalk from 'chalk';
 import type { Consola } from 'consola';
 import indentString from 'indent-string';
 import { z } from 'zod';
-
-export class InternalAggregateError extends Error {
-  public errors: unknown[];
-
-  public constructor(errors: unknown[], message: string) {
-    super(message);
-
-    this.errors = errors;
-
-    Object.defineProperty(this, 'name', {
-      configurable: true,
-      enumerable: false,
-      value: 'InternalAggregateError',
-      writable: true,
-    });
-
-    if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, this.constructor);
-    }
-  }
-}
 
 const indent = (s: string) => indentString(s, 4);
 
@@ -48,7 +27,7 @@ export type ErrorLibrary = {
 
 export const createErrorLibrary = (logger: Consola): ErrorLibrary => ({
   handle: (e, title) => {
-    if (e instanceof InternalAggregateError) {
+    if (e instanceof ScaffdogAggregateError) {
       logger.error(title, e.message);
       for (const err of e.errors) {
         if (err instanceof ScaffdogError) {
