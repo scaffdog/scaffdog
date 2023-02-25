@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.5.0-canary.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @scaffdog/types@2.5.0-canary.3
+
 ## 2.5.0-canary.2
 
 ### Patch Changes

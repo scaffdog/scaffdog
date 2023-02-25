@@ -1,5 +1,20 @@
 # Change Log
 
+## 2.5.0-canary.3
+
+### Patch Changes
+
+- [#695](https://github.com/scaffdog/scaffdog/pull/695) [`0c32135`](https://github.com/scaffdog/scaffdog/commit/0c32135b6fbc1b9871b887c98eb751efdf95886c) Thanks [@wadackel](https://github.com/wadackel)! - Add `ScaffdogAggregateError` custom error class.
+
+  ```typescript
+  import { ScaffdogAggregateError } from '@scaffdog/error';
+  // or
+  // import { ScaffdogAggregateError } from 'scaffdog';
+  ```
+
+- Updated dependencies []:
+  - @scaffdog/types@2.5.0-canary.3
+
 ## 2.5.0-canary.2
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.5.0-canary.3
+
+### Patch Changes
+
+- Updated dependencies [[`0c32135`](https://github.com/scaffdog/scaffdog/commit/0c32135b6fbc1b9871b887c98eb751efdf95886c)]:
+  - @scaffdog/error@2.5.0-canary.3
+  - @scaffdog/types@2.5.0-canary.3
+
 ## 2.5.0-canary.2
 
 ### Patch Changes
