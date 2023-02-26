@@ -409,12 +409,11 @@ const Features: React.FC = () => {
               />
             </Box>
           }
-          title="Prettier Integration"
+          title="Editor Integration"
         >
           <p>
-            Markdown works very well with Prettier, and the templates maintain
-            beautiful code. We also offer a Prettier Plugin for scaffdog&apos;s
-            template engine.
+            It provides useful integrations for using scaffdog, such as Prettier
+            plugins and VS Code extensions for GUI operations.
           </p>
         </FeatureEntry>
       </SimpleGrid>
