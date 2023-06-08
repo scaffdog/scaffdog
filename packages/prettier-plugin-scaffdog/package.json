@@ -35,11 +35,11 @@
     "@scaffdog/engine": "workspace:*",
     "@scaffdog/types": "workspace:*",
     "minimatch": "^5.0.0",
-    "prettier": "2.8.4"
+    "prettier": "2.8.8"
   },
   "devDependencies": {
     "@types/minimatch": "5.1.2",
-    "@types/prettier": "2.7.2"
+    "@types/prettier": "2.7.3"
   },
   "gitHead": "14824585829ad0b2093ef44b30f36fce3f4fd682"
 }
