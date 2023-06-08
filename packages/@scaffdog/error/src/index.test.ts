@@ -64,16 +64,17 @@ test('multi line', () => {
 3
 4
 5
+
 6 error! after text
 7
 8`,
-    range: [12, 17],
+    range: [13, 18],
   });
 
   expect(e.format({ ...defaults })).toBe(`   ${errorMessage}
 
- ${s} ${l} 4
  ${s} ${l} 5
+ ${s} ${l} 
  ${r} ${l} 6 ${red('error!')} after text
  ${s} ${l}   ${red('^^^^^^')}
  ${s} ${l} 7

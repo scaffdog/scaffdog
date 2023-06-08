@@ -54,22 +54,16 @@ const extractLines = (
 ): string[] => {
   const lines: string[] = [];
   const buffer: string[] = [];
-  const terminator: string[] = [];
   let line = 1;
 
   for (const s of source) {
     if (NEWLINE.test(s)) {
-      terminator.push(s);
-      continue;
-    }
-
-    if (terminator.length > 0) {
       if (line >= start) {
         lines.push(buffer.join(''));
       }
       buffer.length = 0;
-      terminator.length = 0;
       line++;
+      continue;
     }
 
     buffer.push(s);
