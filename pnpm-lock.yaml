@@ -252,7 +252,7 @@ importers:
       github-slugger: 1.5.0
       next: 13.4.4
       next-contentlayer: ^0.2.7
-      next-seo: ^5.5.0
+      next-seo: ^6.0.0
       next-sitemap: 3.1.55
       prism-react-renderer: ^1.3.5
       prismjs: 1.29.0
@@ -283,7 +283,7 @@ importers:
       framer-motion: 7.0.0_biqbaboplfbrettd7655fr4n2y
       next: 13.4.4_gxeylg6mfvtzvytsvwl7cjkzse
       next-contentlayer: 0.2.7_z4pol2qj2yv3um3jqqobs4b3eu
-      next-seo: 5.5.0_z4pol2qj2yv3um3jqqobs4b3eu
+      next-seo: 6.0.0_z4pol2qj2yv3um3jqqobs4b3eu
       prism-react-renderer: 1.3.5_react@18.2.0
       prismjs: 1.29.0
       react: 18.2.0
@@ -7951,8 +7951,8 @@ packages:
       - supports-color
     dev: false
 
-  /next-seo/5.5.0_z4pol2qj2yv3um3jqqobs4b3eu:
-    resolution: {integrity: sha512-5ouBHFtx8YrSDW44lj0qIEQ+oMcz6stgoITB+SqHUZbhgizoJsyLmq73gJ0lxtEKpcN8vG2QgRIJfdb8OAPChw==}
+  /next-seo/6.0.0_z4pol2qj2yv3um3jqqobs4b3eu:
+    resolution: {integrity: sha512-jKKt1p1z4otMA28AyeoAONixVjdYmgFCWwpEFtu+DwRHQDllVX3RjtyXbuCQiUZEfQ9rFPBpAI90vDeLZlMBdg==}
     peerDependencies:
       next: ^8.1.1-canary.54 || >=9.0.0
       react: '>=16.0.0'
