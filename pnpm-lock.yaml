@@ -253,7 +253,7 @@ importers:
       next: 13.4.4
       next-contentlayer: ^0.2.7
       next-seo: ^5.5.0
-      next-sitemap: 3.1.55
+      next-sitemap: 4.1.3
       prism-react-renderer: ^1.3.5
       prismjs: 1.29.0
       react: 18.2.0
@@ -308,7 +308,7 @@ importers:
       eslint: 8.42.0
       eslint-config-next: 13.4.4_kigkzfftsmftz3xok324pyvzui
       github-slugger: 1.5.0
-      next-sitemap: 3.1.55_next@13.4.4
+      next-sitemap: 4.1.3_next@13.4.4
       type-fest: 3.5.0
       typescript: 4.9.5
 
@@ -1679,7 +1679,7 @@ packages:
       '@commitlint/types': 17.4.4
       fs-extra: 11.1.0
       git-raw-commits: 2.0.11
-      minimist: 1.2.7
+      minimist: 1.2.8
     dev: true
 
   /@commitlint/resolve-extends/17.4.4:
@@ -1781,7 +1781,7 @@ packages:
       '@contentlayer/core': 0.2.7
       '@contentlayer/utils': 0.2.7
       chokidar: 3.5.3
-      fast-glob: 3.2.11
+      fast-glob: 3.2.12
       gray-matter: 4.0.3
       imagescript: 1.2.9
       micromatch: 4.0.5
@@ -1826,8 +1826,8 @@ packages:
       type-fest: 3.5.0
     dev: false
 
-  /@corex/deepmerge/4.0.29:
-    resolution: {integrity: sha512-q/yVUnqckA8Do+EvAfpy7RLdumnBy9ZsducMUtZTvpdbJC7azEf1hGtnYYxm0QfphYxjwggv6XtH64prvS1W+A==}
+  /@corex/deepmerge/4.0.43:
+    resolution: {integrity: sha512-N8uEMrMPL0cu/bdboEWpQYb/0i2K5Qn8eCsxzOmxSggJbbQte7ljMRoXm917AbntqTGOzdTu+vP3KOOzoC70HQ==}
     dev: true
 
   /@cspotcode/source-map-support/0.8.1:
@@ -5605,7 +5605,6 @@ packages:
       glob-parent: 5.1.2
       merge2: 1.4.1
       micromatch: 4.0.5
-    dev: true
 
   /fast-json-stable-stringify/2.1.0:
     resolution: {integrity: sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==}
@@ -6808,7 +6807,7 @@ packages:
     resolution: {integrity: sha512-aKS4WQjPenRxiQsC93MNfjx+nbF4PAdYzmd/1JIj8HYzqfbu86beTuNgXDzPknWk0n0uARlyewZo4s++ES36Ow==}
     hasBin: true
     dependencies:
-      minimist: 1.2.7
+      minimist: 1.2.8
     dev: true
 
   /json5/2.2.3:
@@ -7836,8 +7835,8 @@ packages:
     resolution: {integrity: sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==}
     dev: true
 
-  /minimist/1.2.7:
-    resolution: {integrity: sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==}
+  /minimist/1.2.8:
+    resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
 
   /mixme/0.5.4:
     resolution: {integrity: sha512-3KYa4m4Vlqx98GPdOHghxSdNtTvcP8E0kkaJ5Dlh+h2DRzF7zpuVVcA8B0QpKd11YJeP9QQ7ASkKzOeu195Wzw==}
@@ -7949,16 +7948,17 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /next-sitemap/3.1.55_next@13.4.4:
-    resolution: {integrity: sha512-ZjkRfkqoSLbU+e8W9TWWe0zfOGNA47lpvm35kNcUCmj73gpLX2PIn51gwHT/B6bgGVAFYY0OXixJDrxIIwcEHw==}
+  /next-sitemap/4.1.3_next@13.4.4:
+    resolution: {integrity: sha512-eCvbXMCqbD/rYx912y4FzGOqPCbWOIBL4UkgVY5R15eCXygKFKWzEVZGPNVBDu2KVpRCeG943NibOchfyQGDhQ==}
     engines: {node: '>=14.18'}
     hasBin: true
     peerDependencies:
       '@next/env': '*'
       next: '*'
     dependencies:
-      '@corex/deepmerge': 4.0.29
-      minimist: 1.2.7
+      '@corex/deepmerge': 4.0.43
+      fast-glob: 3.2.12
+      minimist: 1.2.8
       next: 13.4.4_ob7c7ogpcitikph4afkm5ompve
     dev: true
 
@@ -8694,7 +8694,7 @@ packages:
     dependencies:
       deep-extend: 0.6.0
       ini: 1.3.8
-      minimist: 1.2.7
+      minimist: 1.2.8
       strip-json-comments: 2.0.1
     dev: false
 
@@ -9837,7 +9837,7 @@ packages:
     dependencies:
       '@types/json5': 0.0.29
       json5: 1.0.1
-      minimist: 1.2.7
+      minimist: 1.2.8
       strip-bom: 3.0.0
     dev: true
 
