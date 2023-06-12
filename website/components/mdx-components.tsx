@@ -27,11 +27,15 @@ export const mdxComponents: Record<string, React.FC<any>> = {
   Image: (props) => (
     <Box my="3">
       <NextImage
-        layout="responsive"
         width={700}
         height={400}
-        objectFit="contain"
         {...props}
+        sizes="100vw"
+        style={{
+          width: '100%',
+          height: 'auto',
+          objectFit: 'contain',
+        }}
       />
     </Box>
   ),

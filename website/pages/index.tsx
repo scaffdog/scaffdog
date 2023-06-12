@@ -175,6 +175,8 @@ const Hero: React.FC = () => {
             style={{
               objectFit: 'cover',
               userSelect: 'none',
+              maxWidth: '100%',
+              height: 'auto',
             }}
           />
         </Box>
@@ -339,6 +341,10 @@ const Features: React.FC = () => {
                 height={32}
                 quality={100}
                 alt=""
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
               />
             </Box>
           }
@@ -361,6 +367,10 @@ const Features: React.FC = () => {
                 height={34}
                 quality={100}
                 alt=""
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
               />
             </Box>
           }
@@ -383,6 +393,10 @@ const Features: React.FC = () => {
                 height={36}
                 quality={100}
                 alt=""
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
               />
             </Box>
           }
@@ -406,6 +420,10 @@ const Features: React.FC = () => {
                 height={34}
                 quality={100}
                 alt=""
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
               />
             </Box>
           }
@@ -454,6 +472,10 @@ const Play: React.FC = () => {
             height={572}
             quality={100}
             alt=""
+            style={{
+              maxWidth: '100%',
+              height: 'auto',
+            }}
           />
         </Box>
       </Flex>
