@@ -18,7 +18,7 @@
     "@scaffdog/engine": "workspace:*",
     "@scaffdog/error": "workspace:*",
     "@scaffdog/types": "workspace:*",
-    "contentlayer": "^0.2.7",
+    "contentlayer": "^0.3.0",
     "date-fns": "^2.29.1",
     "framer-motion": "^7.0.0",
     "next": "13.4.4",
