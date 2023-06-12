@@ -249,7 +249,7 @@ importers:
       eslint: 8.42.0
       eslint-config-next: 13.4.4
       framer-motion: ^7.0.0
-      github-slugger: 1.5.0
+      github-slugger: 2.0.0
       next: 13.4.5
       next-contentlayer: ^0.3.3
       next-seo: ^5.5.0
@@ -307,7 +307,7 @@ importers:
       '@types/react-dom': 18.2.4
       eslint: 8.42.0
       eslint-config-next: 13.4.4_tizxnkcvjrb4cldxgwq5h3lj5u
-      github-slugger: 1.5.0
+      github-slugger: 2.0.0
       next-sitemap: 3.1.55_next@13.4.5
       type-fest: 3.5.0
       typescript: 5.1.3
@@ -6106,6 +6106,11 @@ packages:
 
   /github-slugger/1.5.0:
     resolution: {integrity: sha512-wIh+gKBI9Nshz2o46B0B3f5k/W+WI9ZAv6y5Dn5WJ5SK1t0TnDimB4WE5rmTD05ZAIn8HALCZVmCsvj0w0v0lw==}
+    dev: false
+
+  /github-slugger/2.0.0:
+    resolution: {integrity: sha512-IaOQ9puYtjrkq7Y0Ygl9KDZnrf/aiUJYUpVf89y8kyaxbRG7Y1SrX/jaumrv81vc61+kiMempujsM3Yw7w5qcw==}
+    dev: true
 
   /glob-parent/5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}

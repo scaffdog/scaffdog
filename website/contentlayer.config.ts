@@ -5,7 +5,7 @@ import { defineDocumentType, makeSource } from 'contentlayer/source-files';
 import remarkEmoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import remarkSlug from 'remark-slug';
-import slugger from 'github-slugger';
+import { slug } from 'github-slugger';
 import type { DocumentGen } from 'contentlayer/core';
 import type { Heading } from './types/content';
 
@@ -22,7 +22,7 @@ const extractToc = (content: string): Heading[] => {
   return [...content.matchAll(/^(### |## )(.*)\n/gm)].map((heading) => {
     const level = heading[1].trim() === '##' ? 2 : 3;
     const text = heading[2].trim();
-    const id = slugger.slug(text, false);
+    const id = slug(text, false);
 
     return {
       id,
