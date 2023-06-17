@@ -16,7 +16,7 @@ const Page: NextPageWithLayout<Props> = ({ doc }) => {
 
   return (
     <MdxLayout frontmatter={doc.frontmatter}>
-      <Component components={mdxComponents} />
+      <Component components={mdxComponents as never} />
     </MdxLayout>
   );
 };

@@ -248,6 +248,7 @@ importers:
       date-fns: ^2.29.1
       eslint: 8.42.0
       eslint-config-next: 13.4.4
+      execa: ^7.1.1
       framer-motion: ^7.0.0
       github-slugger: 2.0.0
       next: 13.4.5
@@ -307,6 +308,7 @@ importers:
       '@types/react-dom': 18.2.4
       eslint: 8.42.0
       eslint-config-next: 13.4.4_tizxnkcvjrb4cldxgwq5h3lj5u
+      execa: 7.1.1
       github-slugger: 2.0.0
       next-sitemap: 3.1.55_next@13.4.5
       type-fest: 3.5.0
@@ -7195,7 +7197,7 @@ packages:
     resolution: {integrity: sha512-Kx8hMakjX03tiGTLAIdJ+lL0htKnXjEZN6hk/tozf/WOuYGdZBJrZ+rCJRbVCugsjB3jMLn9746NsQIf5VjBMw==}
     engines: {node: '>=4'}
     dependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       parse-json: 4.0.0
       pify: 3.0.0
       strip-bom: 3.0.0
