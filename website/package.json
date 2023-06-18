@@ -13,7 +13,7 @@
     "@chakra-ui/react": "^2.7.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@hookform/resolvers": "^2.9.7",
+    "@hookform/resolvers": "^3.0.0",
     "@scaffdog/core": "workspace:*",
     "@scaffdog/engine": "workspace:*",
     "@scaffdog/error": "workspace:*",
