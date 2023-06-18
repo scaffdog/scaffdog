@@ -260,7 +260,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0
       react-hook-form: ^7.44.3
-      react-hotkeys-hook: ^4.0.0
+      react-hotkeys-hook: ^4.4.0
       react-simple-code-editor: ^0.13.0
       recoil: ^0.7.4
       recoil-persist: ^4.2.0
@@ -290,7 +290,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-hook-form: 7.44.3_react@18.2.0
-      react-hotkeys-hook: 4.3.2_biqbaboplfbrettd7655fr4n2y
+      react-hotkeys-hook: 4.4.0_biqbaboplfbrettd7655fr4n2y
       react-simple-code-editor: 0.13.0_biqbaboplfbrettd7655fr4n2y
       recoil: 0.7.4_biqbaboplfbrettd7655fr4n2y
       recoil-persist: 4.2.0_recoil@0.7.4
@@ -9527,8 +9527,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /react-hotkeys-hook/4.3.2_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-ZA/li3kBDHuRTtJIf7Td41UU87bPtnt9xV4r+PlEzpnFoYRDVspk3B+mlaX75zowyQygMVmoaWnM4B88lkyExQ==}
+  /react-hotkeys-hook/4.4.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-wOaCWLwgT/f895CMJrR9hmzVf+gfL8IpjWDXWXKngBp9i6Xqzf0tvLv4VI8l3Vlsg/cc4C/Iik3Ck76L/Hj0tw==}
     peerDependencies:
       react: '>=16.8.1'
       react-dom: '>=16.8.1'

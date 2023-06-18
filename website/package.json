@@ -28,7 +28,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.44.3",
-    "react-hotkeys-hook": "^4.0.0",
+    "react-hotkeys-hook": "^4.4.0",
     "react-simple-code-editor": "^0.13.0",
     "recoil": "^0.7.4",
     "recoil-persist": "^4.2.0",
