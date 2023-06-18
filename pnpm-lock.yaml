@@ -162,7 +162,7 @@ importers:
       '@types/node-emoji': 1.8.2
       '@types/update-notifier': 6.0.1
       '@types/wrap-ansi': 3.0.0
-      '@types/yargs': 17.0.22
+      '@types/yargs': 17.0.24
       ansi-escapes: ^4.3.2
       chalk: ^4.1.0
       cli-truncate: ^2.1.0
@@ -224,7 +224,7 @@ importers:
       '@types/node-emoji': 1.8.2
       '@types/update-notifier': 6.0.1
       '@types/wrap-ansi': 3.0.0
-      '@types/yargs': 17.0.22
+      '@types/yargs': 17.0.24
       type-fest: 3.5.0
 
   website:
@@ -3597,8 +3597,8 @@ packages:
     resolution: {integrity: sha512-iO9ZQHkZxHn4mSakYV0vFHAVDyEOIJQrV2uZ06HxEPcx+mt8swXoZHIbaaJ2crJYFfErySgktuTZ3BeLz+XmFA==}
     dev: true
 
-  /@types/yargs/17.0.22:
-    resolution: {integrity: sha512-pet5WJ9U8yPVRhkwuEIp5ktAeAqRZOq4UdAyWLWzxbtpyXnzbtLdKiXAjJzi/KLmPGS9wk86lUFWZFN6sISo4g==}
+  /@types/yargs/17.0.24:
+    resolution: {integrity: sha512-6i0aC7jV6QzQB8ne1joVZ0eSFIstHsCrobmOtghM11yGlH0j43FKL2UhWdELkyps0zuf7qVTUVCCR+tgSlyLLw==}
     dependencies:
       '@types/yargs-parser': 21.0.0
     dev: true
