@@ -41,7 +41,7 @@
     "@babel/core": "7.22.5",
     "@chakra-ui/styled-system": "2.9.1",
     "@types/github-slugger": "2.0.0",
-    "@types/node": "18.16.17",
+    "@types/node": "18.16.18",
     "@types/prismjs": "1.26.0",
     "@types/react": "18.2.12",
     "@types/react-dom": "18.2.5",
