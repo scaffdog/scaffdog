@@ -1,9 +1,11 @@
-import { Box, Flex, Icon, SimpleGrid, Text } from '@chakra-ui/react';
+'use client';
+
+import { Box, Icon, SimpleGrid, Text } from '@chakra-ui/react';
 import type { RouteItem } from '../routing/types';
-import { ArrowLeftIcon } from './icons/ArrowLeftIcon';
-import { ArrowRightIcon } from './icons/ArrowRightIcon';
 import type { Props as LinkProps } from './Link';
 import { Link } from './Link';
+import { ArrowLeftIcon } from './icons/ArrowLeftIcon';
+import { ArrowRightIcon } from './icons/ArrowRightIcon';
 
 const _Link: React.FC<LinkProps> = ({ rel, href, children, ...rest }) => {
   const previous = rel === 'prev';

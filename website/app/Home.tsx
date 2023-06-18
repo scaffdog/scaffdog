@@ -1,32 +1,34 @@
+'use client';
+
 import type { ButtonProps, HTMLChakraProps } from '@chakra-ui/react';
 import {
   Box,
   Button,
-  chakra,
   Container,
   Flex,
   Heading,
   Icon,
   SimpleGrid,
   Text,
+  chakra,
   useClipboard,
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import NextLink from 'next/link';
+import { Footer } from '../components/Footer';
+import { Header } from '../components/Header';
 import { Highlight } from '../components/Highlight';
+import { Terminal } from '../components/Terminal';
 import { CheckIcon } from '../components/icons/CheckIcon';
 import { ChevronsDownIcon } from '../components/icons/ChevronsDownIcon';
 import { CopyIcon } from '../components/icons/CopyIcon';
 import { ScaffdogIcon } from '../components/icons/ScaffdogIcon';
-import { Terminal } from '../components/Terminal';
-import { Layout } from '../layouts/Layout';
 import feature1src from '../public/top/feature1.png';
 import feature2src from '../public/top/feature2.png';
 import feature3src from '../public/top/feature3.png';
 import feature4src from '../public/top/feature4.png';
 import heroSrc from '../public/top/hero.png';
 import playgroundSrc from '../public/top/playground.png';
-import type { NextPageWithLayout } from './_app';
 
 const _LinkButton: React.FC<ButtonProps & { href: string }> = ({
   href,
@@ -176,7 +178,6 @@ const Hero: React.FC = () => {
               objectFit: 'cover',
               userSelect: 'none',
               maxWidth: '100%',
-              height: 'auto',
             }}
           />
         </Box>
@@ -483,9 +484,13 @@ const Play: React.FC = () => {
   );
 };
 
-const Home: NextPageWithLayout = () => {
+export type Props = {};
+
+export const Home: React.FC<Props> = () => {
   return (
     <>
+      <Header />
+
       <Hero />
 
       <Container
@@ -508,10 +513,8 @@ const Home: NextPageWithLayout = () => {
       </Container>
 
       <Box mt="16" />
+
+      <Footer />
     </>
   );
 };
-
-Home.getLayout = (page) => <Layout>{page}</Layout>;
-
-export default Home;

@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Box,
   Container,
@@ -12,15 +14,13 @@ import { useMemo } from 'react';
 import type { Frontmatter } from '../types/content';
 import { EditIcon } from './icons/EditIcon';
 import { Link } from './Link';
-import { Seo } from './Seo';
 import { TableOfContent } from './TableOfContent';
 
-export type Props = {
+export type Props = React.PropsWithChildren<{
   frontmatter: Frontmatter;
   sidebar?: React.ReactNode;
   pagination?: React.ReactNode;
-  children: React.ReactNode;
-};
+}>;
 
 export const PageContainer: React.FC<Props> = ({
   frontmatter,
@@ -37,8 +37,6 @@ export const PageContainer: React.FC<Props> = ({
 
   return (
     <>
-      <Seo title={frontmatter.title} description={frontmatter.description} />
-
       <Container as="main" maxW="container.xl" mt="14">
         <Flex>
           <Box

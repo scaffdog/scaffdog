@@ -23,7 +23,6 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm docs:build
       - run: pnpm docs:typecheck
-      - run: pnpm docs:export
       - run: touch website/out/.nojekyll
       - uses: actions/upload-pages-artifact@v1
         with:

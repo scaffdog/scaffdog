@@ -1,5 +1,7 @@
+'use client';
+
 import { Box, ListItem, UnorderedList } from '@chakra-ui/react';
-import { usePathname } from '../hooks/usePathname';
+import { usePathname } from 'next/navigation';
 import { sidebar } from '../routing/sidebar';
 import { Link } from './Link';
 

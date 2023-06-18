@@ -1,17 +1,16 @@
+'use client';
+
 import { Box, Flex } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import { RecoilRoot } from 'recoil';
-import { PlaygroundFooter } from '../components/playground/PlaygroundFooter';
-import { PlaygroundHeader } from '../components/playground/PlaygroundHeader';
-import { PlaygroundPreview } from '../components/playground/PlaygroundPreview';
-import { PlaygroundTab } from '../components/playground/PlaygroundTab';
-import { Seo } from '../components/Seo';
+import { PlaygroundFooter } from './PlaygroundFooter';
+import { PlaygroundHeader } from './PlaygroundHeader';
+import { PlaygroundPreview } from './PlaygroundPreview';
+import { PlaygroundTab } from './PlaygroundTab';
 
-const Playground: NextPage = () => {
+export const Playground: NextPage = () => {
   return (
     <RecoilRoot>
-      <Seo title="Playground" description="scaffdog online playground." />
-
       <Flex direction="column" h="100vh">
         <Box flex="0 0 auto">
           <PlaygroundHeader />
@@ -42,5 +41,3 @@ const Playground: NextPage = () => {
     </RecoilRoot>
   );
 };
-
-export default Playground;

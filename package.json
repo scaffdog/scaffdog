@@ -25,7 +25,6 @@
     "docs:build": "turbo run build",
     "docs:typecheck": "turbo run typecheck",
     "docs:dev": "pnpm -C website dev",
-    "docs:export": "pnpm -C website export",
     "generate": "npm-run-all -p generate:* -s format",
     "generate:tasks": "pnpm --if-present -r generate",
     "linkall": "pnpm -r --no-bail exec npm link",
