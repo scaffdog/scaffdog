@@ -16,14 +16,13 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { useScroll } from 'framer-motion';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import { usePathname } from '../hooks/usePathname';
 import { sidebar } from '../routing/sidebar';
+import { Link } from './Link';
 import { GitHubIcon } from './icons/GitHubIcon';
 import { MenuIcon } from './icons/MenuIcon';
 import { ScaffdogIcon } from './icons/ScaffdogIcon';
-import { Link } from './Link';
 
 const _NavLink: React.FC<{ href: string; children: React.ReactNode }> = ({
   href,
@@ -62,8 +61,8 @@ export type Props = {
 };
 
 export const Header: React.FC<Props> = ({ home }) => {
-  const router = useRouter();
   const pathname = usePathname();
+  const pathnameRef = useRef(pathname);
 
   const ref = useRef<HTMLDivElement>(null);
   const [y, setY] = useState(0);
@@ -75,18 +74,11 @@ export const Header: React.FC<Props> = ({ home }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
-    const handler = () => {
+    if (pathnameRef.current !== pathname) {
       onClose();
-    };
-
-    router.events.on('routeChangeComplete', handler);
-    router.events.on('routeChangeError', handler);
-
-    return () => {
-      router.events.off('routeChangeComplete', handler);
-      router.events.off('routeChangeError', handler);
-    };
-  }, [router, onClose]);
+      pathnameRef.current = pathname;
+    }
+  }, [pathname, onClose]);
 
   useEffect(() => {
     return scrollY.onChange(() => {

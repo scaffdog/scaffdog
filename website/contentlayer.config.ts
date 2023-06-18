@@ -1,12 +1,13 @@
-import path from 'path';
 import fs from 'fs/promises';
+import path from 'path';
+import type { DocumentGen } from 'contentlayer/core';
 import type { ComputedFields } from 'contentlayer/source-files';
 import { defineDocumentType, makeSource } from 'contentlayer/source-files';
+import { execaCommand } from 'execa';
+import { slug } from 'github-slugger';
 import remarkEmoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import remarkSlug from 'remark-slug';
-import slugger from 'github-slugger';
-import type { DocumentGen } from 'contentlayer/core';
 import type { Heading } from './types/content';
 
 const Repository = {
@@ -14,7 +15,34 @@ const Repository = {
 };
 
 const getLastEditedDate = async (doc: DocumentGen): Promise<Date> => {
-  const stats = await fs.stat(path.join('content', doc._raw.sourceFilePath));
+  const filepath = path.join('content', doc._raw.sourceFilePath);
+
+  try {
+    const result = await execaCommand(
+      `git log --format=%ct --max-count=1 -- ${path.basename(filepath)}`,
+      {
+        cwd: path.dirname(filepath),
+      },
+    );
+    if (result.exitCode !== 0) {
+      throw new Error(result.stderr);
+    }
+    const output = result.stdout.trim();
+    if (output === '') {
+      throw new Error(
+        `failed to retrieve the git history for file "${filepath}".`,
+      );
+    }
+    const match = output.match(/^(\d+)$/);
+    if (match == null) {
+      throw new Error(
+        `failed to retrieve the git history for file "${filepath}" with unexpected output: "${output}"`,
+      );
+    }
+    return new Date(Number(match[1]) * 1000);
+  } catch (e) {}
+
+  const stats = await fs.stat(filepath);
   return stats.mtime;
 };
 
@@ -22,7 +50,7 @@ const extractToc = (content: string): Heading[] => {
   return [...content.matchAll(/^(### |## )(.*)\n/gm)].map((heading) => {
     const level = heading[1].trim() === '##' ? 2 : 3;
     const text = heading[2].trim();
-    const id = slugger.slug(text, false);
+    const id = slug(text, false);
 
     return {
       id,

@@ -22,16 +22,23 @@ const CodeBlock: React.FC<any> = (props) => {
   return <Highlight code={code} language={language} />;
 };
 
-export const mdxComponents: Record<string, React.FC<any>> = {
+export const mdxComponents: Record<
+  string,
+  React.FC<any> | React.ComponentClass<any>
+> = {
   ...(Chakra as any),
   Image: (props) => (
     <Box my="3">
       <NextImage
-        layout="responsive"
         width={700}
         height={400}
-        objectFit="contain"
         {...props}
+        sizes="100vw"
+        style={{
+          width: '100%',
+          height: 'auto',
+          objectFit: 'contain',
+        }}
       />
     </Box>
   ),

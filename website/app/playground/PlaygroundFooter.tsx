@@ -1,6 +1,6 @@
-import { Box, Container, Flex, Icon, Text } from '@chakra-ui/react';
-import { GitHubIcon } from '../icons/GitHubIcon';
-import { Link } from '../Link';
+import { Container, Flex, Icon, Text } from '@chakra-ui/react';
+import { GitHubIcon } from '../../components/icons/GitHubIcon';
+import { Link } from '../../components/Link';
 
 export type Props = {};
 

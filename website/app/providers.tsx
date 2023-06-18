@@ -1,9 +1,7 @@
+'use client';
+
+import { CacheProvider } from '@chakra-ui/next-js';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
-import type { NextPage } from 'next';
-import { DefaultSeo } from 'next-seo';
-import type { AppProps } from 'next/app';
-import Head from 'next/head';
-import type { ReactElement, ReactNode } from 'react';
 
 const space = {
   px: '1px',
@@ -127,62 +125,12 @@ const theme = extendTheme({
   },
 });
 
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode;
-};
+export type Props = React.PropsWithChildren;
 
-type Props = AppProps & {
-  Component: NextPageWithLayout;
-};
-
-const App: React.FC<Props> = ({ Component, pageProps }) => {
-  const getLayout = Component.getLayout ?? ((page) => page);
-
+export const Providers: React.FC<Props> = ({ children }) => {
   return (
-    <>
-      <Head>
-        <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#319795" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/manifest.webmanifest" />
-      </Head>
-
-      <DefaultSeo
-        defaultTitle="scaffdog - Markdown driven scaffolding tool."
-        description="Markdown driven scaffolding tool. scaffdog speeds up the first steps of your creative activity."
-        openGraph={{
-          type: 'website',
-          title: 'scaffdog - Markdown driven scaffolding tool.',
-          description:
-            'Markdown driven scaffolding tool. scaffdog speeds up the first steps of your creative activity.',
-          site_name: 'scaffdog - documentation',
-          url: 'https://scaff.dog',
-          images: [
-            {
-              type: 'image/png',
-              url: 'https://scaff.dog/ogp.png',
-              alt: 'scaffdog - Markdown driven scaffolding tool.',
-              width: 1280,
-              height: 640,
-            },
-          ],
-        }}
-        twitter={{
-          handle: '@wadackel',
-          site: '@scaffdog',
-          cardType: 'summary_large_image',
-        }}
-      />
-
-      <ChakraProvider theme={theme}>
-        {getLayout(<Component {...pageProps} />)}
-      </ChakraProvider>
-    </>
+    <CacheProvider>
+      <ChakraProvider theme={theme}>{children}</ChakraProvider>
+    </CacheProvider>
   );
 };
-
-export default App;

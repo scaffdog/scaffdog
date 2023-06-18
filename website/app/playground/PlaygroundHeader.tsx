@@ -9,9 +9,9 @@ import {
 } from '@chakra-ui/react';
 import { useCallback } from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
+import { PawPaintIcon } from '../../components/icons/PawPaintIcon';
+import { ScaffdogIcon } from '../../components/icons/ScaffdogIcon';
 import { usePlaygroundCompile } from '../../states/playground';
-import { PawPaintIcon } from '../icons/PawPaintIcon';
-import { ScaffdogIcon } from '../icons/ScaffdogIcon';
 
 export type Props = {};
 

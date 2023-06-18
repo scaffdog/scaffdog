@@ -62,8 +62,8 @@ export const Highlight: React.FC<Props> = ({ code, language }) => {
                 <chakra.span display="table-cell">
                   {line.map((token, key) => (
                     <chakra.span
-                      key={key}
                       {...getTokenProps({ token, key })}
+                      key={key}
                       fontStyle="normal !important"
                     />
                   ))}
