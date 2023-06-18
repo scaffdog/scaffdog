@@ -1,7 +1,5 @@
 import { Box, chakra } from '@chakra-ui/react';
-import type { Language as PrrLanguage } from 'prism-react-renderer';
-import PrrHighlight, { defaultProps } from 'prism-react-renderer';
-import base from 'prism-react-renderer/themes/palenight';
+import { Highlight as PrrHighlight, themes } from 'prism-react-renderer';
 import Prism from 'prismjs';
 
 require('prismjs/components/prism-markup');
@@ -23,15 +21,15 @@ require('prismjs/components/prism-bash');
 require('prismjs/components/prism-diff');
 
 const theme = {
-  ...base,
+  ...themes.palenight,
   plain: {
-    ...base.plain,
+    ...themes.palenight.plain,
     backgroundColor: '#0f001c',
     color: '#c2c5d9',
   },
 };
 
-export type Language = PrrLanguage;
+export type Language = string;
 
 export type Props = {
   language: Language;
@@ -42,9 +40,8 @@ export const Highlight: React.FC<Props> = ({ code, language }) => {
   return (
     <Box my="3" rounded="8px" bg="black" overflow="hidden" fontSize="sm">
       <PrrHighlight
-        {...defaultProps}
-        Prism={Prism as any}
-        language={language}
+        prism={Prism as any}
+        language={language || 'clike'}
         code={code}
         theme={theme}
       >

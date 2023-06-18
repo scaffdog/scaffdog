@@ -1,30 +1,23 @@
 import { Box, chakra, Heading, Text } from '@chakra-ui/react';
-import type { Language } from 'prism-react-renderer';
-import Highlight, { defaultProps } from 'prism-react-renderer';
-import base from 'prism-react-renderer/themes/nightOwlLight';
+import { Highlight, themes } from 'prism-react-renderer';
 import { usePlaygroundCompileState } from '../../states/playground';
 import { detectPrismLanguage } from '../../utils/highlight';
 
 const theme = {
-  ...base,
+  ...themes.nightOwlLight,
   plain: {
-    ...base.plain,
+    ...themes.nightOwlLight.plain,
     backgroundColor: '#f7fafc',
   },
 };
 
-export const _Highlight: React.FC<{ code: string; language: Language }> = ({
+export const _Highlight: React.FC<{ code: string; language: string }> = ({
   code,
   language,
 }) => {
   return (
     <Box overflow="hidden" fontSize="sm">
-      <Highlight
-        {...defaultProps}
-        language={language}
-        code={code}
-        theme={theme}
-      >
+      <Highlight language={language} code={code} theme={theme}>
         {({ className, style, tokens, getTokenProps }) => (
           <chakra.pre
             className={className}

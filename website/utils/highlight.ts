@@ -1,5 +1,4 @@
 import path from 'path';
-import type { Language } from 'prism-react-renderer';
 
 const languages = {
   markup: ['html', 'xml', 'svg', 'atom', 'rss'],
@@ -80,11 +79,11 @@ const map = new Map(
   }),
 );
 
-export const detectPrismLanguage = (filepath: string): Language => {
+export const detectPrismLanguage = (filepath: string): string => {
   const { ext: raw, base } = path.parse(filepath);
   const ext = raw.slice(1);
   if (map.has(ext)) {
-    return map.get(ext) as Language;
+    return map.get(ext)!;
   }
 
   switch (base) {
