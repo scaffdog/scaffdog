@@ -5,18 +5,59 @@ import {
   Flex,
   Icon,
   Link,
+  Stack,
   Text,
+  useClipboard,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/navigation';
 import { useCallback } from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
+import { CopyIcon } from '../../components/icons/CopyIcon';
 import { PawPaintIcon } from '../../components/icons/PawPaintIcon';
 import { ScaffdogIcon } from '../../components/icons/ScaffdogIcon';
-import { usePlaygroundCompile } from '../../states/playground';
+import {
+  usePlaygroundCompile,
+  usePlaygroundInputState,
+  usePlaygroundSourceState,
+} from '../../states/playground';
+import { gzip } from '../../utils/gzip';
 
 export type Props = {};
 
 export const PlaygroundHeader: React.FC<Props> = () => {
+  const router = useRouter();
   const compile = usePlaygroundCompile();
+  const [source] = usePlaygroundSourceState();
+  const [input] = usePlaygroundInputState();
+  const { setValue: setClipboard, hasCopied, onCopy } = useClipboard('');
+
+  const copyUrl = useCallback(() => {
+    const url = new URL(window.location.href);
+
+    const params = new URLSearchParams();
+    params.set('code', gzip(source));
+    params.set('input', gzip(JSON.stringify(input)));
+
+    const pathname = `${url.pathname}?${params}`;
+
+    router.replace(pathname);
+    setClipboard(`${url.origin}${pathname}`);
+
+    window.requestAnimationFrame(() => {
+      onCopy();
+    });
+  }, [router, source, input, setClipboard, onCopy]);
+
+  useHotkeys(
+    'meta+s',
+    (e) => {
+      e.preventDefault();
+      copyUrl();
+    },
+    {
+      enableOnFormTags: ['input', 'textarea'],
+    },
+  );
 
   useHotkeys(
     'meta+enter, ctrl+enter',
@@ -28,7 +69,15 @@ export const PlaygroundHeader: React.FC<Props> = () => {
     },
   );
 
-  const handleClick = useCallback(
+  const handleCopyClick = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      copyUrl();
+    },
+    [copyUrl],
+  );
+
+  const handleGenerateClick = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
       compile();
@@ -63,7 +112,20 @@ export const PlaygroundHeader: React.FC<Props> = () => {
           </Link>
         </Box>
 
-        <Box>
+        <Stack direction="row" spacing={1}>
+          <Button
+            rightIcon={<Icon as={CopyIcon} />}
+            h="5"
+            variant="ghost"
+            borderRadius="full"
+            color="black"
+            _hover={{ bg: 'gray.200' }}
+            _active={{ bg: 'gray.100' }}
+            onClick={handleCopyClick}
+          >
+            {hasCopied ? 'Copied!' : 'Copy URL'}
+          </Button>
+
           <Button
             rightIcon={<Icon as={PawPaintIcon} />}
             h="5"
@@ -72,11 +134,11 @@ export const PlaygroundHeader: React.FC<Props> = () => {
             bg="black"
             _hover={{ bg: 'gray.600' }}
             _active={{ bg: 'gray.400' }}
-            onClick={handleClick}
+            onClick={handleGenerateClick}
           >
             Generate
           </Button>
-        </Box>
+        </Stack>
       </Flex>
     </Container>
   );

@@ -22,7 +22,10 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { CloseIcon } from '../../components/icons/CloseIcon';
 import type { PlaygroundInputEntry } from '../../states/playground';
-import { usePlaygroundInputState } from '../../states/playground';
+import {
+  playgroundInputEntrySchema,
+  usePlaygroundInputState,
+} from '../../states/playground';
 
 const _Entry: React.FC<{
   index: number;
@@ -59,13 +62,6 @@ const _Entry: React.FC<{
   );
 };
 
-const schema = yup
-  .object({
-    key: yup.string().required(),
-    value: yup.string().required(),
-  })
-  .required();
-
 export type Props = {};
 
 export const PlaygroundInputEditor: React.FC<Props> = () => {
@@ -75,7 +71,7 @@ export const PlaygroundInputEditor: React.FC<Props> = () => {
     formState: { errors },
     reset,
   } = useForm<PlaygroundInputEntry>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(playgroundInputEntrySchema),
   });
 
   const [inputs, setInputs] = usePlaygroundInputState();

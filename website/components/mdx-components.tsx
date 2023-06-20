@@ -1,10 +1,17 @@
-import NextImage from 'next/image';
 import * as Chakra from '@chakra-ui/react';
-import { LinkedHeading } from './LinkedHeading';
+import NextImage from 'next/image';
+import { useMemo } from 'react';
+import { gzip } from '../utils/gzip';
 import type { Language } from './Highlight';
 import { Highlight } from './Highlight';
+import { LinkedHeading } from './LinkedHeading';
+import { PawPaintIcon } from './icons/PawPaintIcon';
 
-const { Alert, Heading, Box, chakra, Kbd } = Chakra;
+const { Alert, Heading, Box, Button, Icon, chakra, Kbd } = Chakra;
+
+const Strong: React.FC<any> = (props) => (
+  <Box as="strong" fontWeight="bold" {...props} />
+);
 
 const Pre: React.FC<any> = ({ children, ...rest }) => (
   <chakra.div {...rest}>{children}</chakra.div>
@@ -20,6 +27,58 @@ const CodeBlock: React.FC<any> = (props) => {
   const language = className?.replace('language-', '') as Language;
 
   return <Highlight code={code} language={language} />;
+};
+
+const Example: React.FC<any> = (props) => {
+  const { input = {} } = props;
+  const { className, children } = props.children.props.children.props as {
+    className?: string;
+    children: string;
+  };
+
+  const code = children?.trim() ?? '';
+  const language = className?.replace('language-', '') as Language;
+
+  const href = useMemo(() => {
+    const params = new URLSearchParams();
+    const source = `
+# Example
+
+\`\`\`
+${code}
+\`\`\`
+    `.trim();
+    const inputs = Object.entries(input).map(([key, value]) => ({
+      key,
+      value,
+    }));
+    params.set('code', gzip(source));
+    params.set('input', gzip(JSON.stringify(inputs)));
+    return `/playground?${params}`;
+  }, [code, JSON.stringify(input)]);
+
+  return (
+    <Box position="relative">
+      <Strong>Example:</Strong>
+      <br />
+      <Highlight code={code} language={language} />
+      <Button
+        as="a"
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        variant="outline"
+        size="xs"
+        colorScheme="whiteAlpha"
+        position="absolute"
+        right={1}
+        bottom={1}
+        rightIcon={<Icon as={PawPaintIcon} />}
+      >
+        Try
+      </Button>
+    </Box>
+  );
 };
 
 export const mdxComponents: Record<
@@ -56,7 +115,7 @@ export const mdxComponents: Record<
   h6: (props) => (
     <LinkedHeading as="h6" mt="3" mb="0.5" fontSize="md" {...props} />
   ),
-  strong: (props) => <Box as="strong" fontWeight="bold" {...props} />,
+  strong: Strong,
   code: (props) => (
     <chakra.code
       py="0.2em"
@@ -150,4 +209,5 @@ export const mdxComponents: Record<
   kbd: Kbd,
   hr: (props) => <chakra.hr my="5" {...props} />,
   Alert,
+  Example,
 };
