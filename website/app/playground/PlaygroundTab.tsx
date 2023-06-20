@@ -44,13 +44,19 @@ export const PlaygroundTab: React.FC<Props> = () => {
   }, []);
 
   return (
-    <Tabs size="sm" h="100%" colorScheme="purple">
+    <Tabs isFitted size="sm" h="100%" colorScheme="purple">
       <TabList h="40px">
         <Tab>Template</Tab>
         <Tab>Input</Tab>
       </TabList>
 
-      <TabPanels h="calc(100vh - 56px - 40px - 36px)" overflow="auto">
+      <TabPanels
+        h={{
+          base: 'auto',
+          md: 'calc(100vh - 56px - 40px - 36px)',
+        }}
+        overflow="auto"
+      >
         <TabPanel p="0" h="100%">
           {mounted && <PlaygroundEditor />}
         </TabPanel>

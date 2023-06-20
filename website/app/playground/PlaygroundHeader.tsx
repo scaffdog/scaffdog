@@ -7,6 +7,7 @@ import {
   Link,
   Stack,
   Text,
+  VisuallyHidden,
   useClipboard,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
@@ -106,15 +107,24 @@ export const PlaygroundHeader: React.FC<Props> = () => {
               w="4"
               h="4"
             />
-            <Text as="span" ml="1" fontSize="sm" fontWeight="bold">
+            <Text
+              aria-hidden
+              as="span"
+              display={{ base: 'none', md: 'block' }}
+              ml="1"
+              fontSize="sm"
+              fontWeight="bold"
+            >
               Back to documentation
             </Text>
+            <VisuallyHidden>Back to documentation</VisuallyHidden>
           </Link>
         </Box>
 
-        <Stack direction="row" spacing={1}>
+        <Stack direction="row" justify="center" spacing={1}>
           <Button
             rightIcon={<Icon as={CopyIcon} />}
+            size={{ base: 'sm', md: 'md' }}
             h="5"
             variant="ghost"
             borderRadius="full"
@@ -128,6 +138,7 @@ export const PlaygroundHeader: React.FC<Props> = () => {
 
           <Button
             rightIcon={<Icon as={PawPaintIcon} />}
+            size={{ base: 'sm', md: 'md' }}
             h="5"
             borderRadius="full"
             color="white"
