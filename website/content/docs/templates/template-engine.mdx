@@ -16,7 +16,7 @@ Between `{{` and `}}` is interpreted as a tag. Whitespace in tag contents is ign
 {{ <statement> }}
 ```
 
-**Example:**
+<Example input={{ value: 'foo-bar' }}>
 
 ```clike
 {{ inputs.value }}
@@ -28,6 +28,8 @@ Between `{{` and `}}` is interpreted as a tag. Whitespace in tag contents is ign
 {{ 2 + 3 }}
 {{ "string" }}
 ```
+
+</Example>
 
 **Output:**
 
@@ -111,18 +113,20 @@ Ternary operators are supported to branch the result based on the result of eval
 {{ <expression> ? <expression> : <expression> }}
 ```
 
-**Example:**
+<Example>
 
 ```clike
 {{ 1 != 2 ? "a" : "b" }}
 {{ 2 > 5 ? "a" : "b" }}
 ```
 
+</Example>
+
 **Output:**
 
 ```
-b
 a
+b
 ```
 
 ## Local Variables
@@ -174,7 +178,7 @@ You can also refer to an `index` by following the array value with a `,` token.
 {{ for <identifier>, <identifier> in <expression> }}body{{ end }}
 ```
 
-**Example:**
+<Example>
 
 ```clike
 {{ for v in seq 1 5 }}{{ v }}{{ end }}
@@ -184,6 +188,8 @@ You can also refer to an `index` by following the array value with a `,` token.
 {{ for v in seq 1 5 }}{{ if v == 2 }}{{ continue }}{{ end }}{{ v }}{{ end }}
 {{ for v in seq 1 5 }}{{ if v == 2 }}{{ break }}{{ end }}{{ v }}{{ end }}
 ```
+
+</Example>
 
 **Output:**
 
@@ -203,13 +209,15 @@ Use `{{-` to trim before the tag, and `-}}` to trim after the tag.
 {{- <statement> -}}
 ```
 
-**Example:**
+<Example>
 
 ```clike
 before {{- "text" }} after
 before {{ "text" -}} after
 before {{- "text" -}} after
 ```
+
+</Example>
 
 **Output:**
 

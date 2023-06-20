@@ -9,6 +9,8 @@ import {
   useRecoilValue,
 } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
+import type { InferType } from 'yup';
+import { array, object, string } from 'yup';
 
 export type File = {
   skip: boolean;
@@ -23,12 +25,20 @@ const { persistAtom } = recoilPersist({
 /**
  * input
  */
-export type PlaygroundInputEntry = {
-  key: string;
-  value: string;
-};
+export const playgroundInputEntrySchema = object({
+  key: string().required(),
+  value: string().required(),
+});
+export type PlaygroundInputEntry = InferType<typeof playgroundInputEntrySchema>;
 
-const playgroundInputState = atom<PlaygroundInputEntry[]>({
+export const playgroundInputEntryListSchema = array()
+  .of(playgroundInputEntrySchema)
+  .required();
+export type PlaygroundInputEntryList = InferType<
+  typeof playgroundInputEntryListSchema
+>;
+
+const playgroundInputState = atom<PlaygroundInputEntryList>({
   key: 'playground.input',
   default: [
     {

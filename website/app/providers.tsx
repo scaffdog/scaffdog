@@ -83,6 +83,11 @@ const theme = extendTheme({
         fontWeight: 'bold',
       },
       sizes: {
+        xs: {
+          py: '0.5',
+          px: '1.5',
+          h: '3',
+        },
         sm: {
           py: '0.5',
           px: '1.5',
