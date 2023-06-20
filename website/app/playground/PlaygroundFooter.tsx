@@ -22,7 +22,7 @@ export const PlaygroundFooter: React.FC<Props> = () => {
             </Text>
           </Link>
 
-          <Text as="span" ml="0.5">
+          <Text as="span" display={{ base: 'none', md: 'block' }} ml="0.5">
             - scaffdog is Markdown driven scaffolding tool.
           </Text>
         </Flex>

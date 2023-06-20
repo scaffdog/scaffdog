@@ -55,7 +55,7 @@ export const PlaygroundPreview: React.FC<Props> = () => {
   }
 
   return (
-    <Box w="50vw" h="100%" overflowY="auto" fontSize="sm">
+    <Box h="100%" overflowY="auto" fontSize="sm">
       {files.state === 'failure' && (
         <Box>
           <Heading as="div" p="2" fontSize="lg" color="pink.500">
