@@ -242,7 +242,7 @@ importers:
       '@scaffdog/types': workspace:*
       '@types/github-slugger': 2.0.0
       '@types/node': 18.16.18
-      '@types/pako': ^2.0.0
+      '@types/pako': 2.0.0
       '@types/prismjs': 1.26.0
       '@types/react': 18.2.12
       '@types/react-dom': 18.2.5
