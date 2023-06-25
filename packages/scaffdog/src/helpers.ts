@@ -1,4 +1,5 @@
 import path from 'path';
+import vm from 'vm';
 import { defineHelper, extendContext, render } from '@scaffdog/engine';
 import type { HelperMap, Variable } from '@scaffdog/types';
 import { isPlainObject } from 'is-plain-object';
@@ -13,6 +14,17 @@ const isObjectVariable = (
 };
 
 export const helpers: HelperMap = new Map();
+
+defineHelper<[v: string, code?: string]>(helpers, 'eval', (ctx, v, code) => {
+  const evalCode = code != null ? code : v;
+  const context: Record<string, unknown> = Object.create(null);
+
+  for (const [key, value] of ctx.variables.entries()) {
+    context[key] = value;
+  }
+
+  return vm.runInNewContext(evalCode, context);
+});
 
 defineHelper<string[]>(
   helpers,

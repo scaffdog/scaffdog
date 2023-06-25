@@ -102,7 +102,6 @@ importers:
       is-plain-object: ^5.0.0
       plur: 4.0.0
       regenerate: 1.4.2
-      safe-eval: ^0.4.1
     dependencies:
       '@scaffdog/error': link:../error
       '@scaffdog/types': link:../types
@@ -110,7 +109,6 @@ importers:
       dayjs: 1.11.4
       is-plain-object: 5.0.0
       plur: 4.0.0
-      safe-eval: 0.4.1
     devDependencies:
       '@unicode/unicode-15.0.0': 1.3.1
       regenerate: 1.4.2
@@ -269,6 +267,7 @@ importers:
       remark-emoji: ^3.0.2
       remark-gfm: ^3.0.1
       remark-slug: ^7.0.1
+      shadowrealm-api: ^0.8.2
       type-fest: 3.5.0
       typescript: 5.1.3
       yup: ^1.0.0
@@ -300,6 +299,7 @@ importers:
       remark-emoji: 3.0.2
       remark-gfm: 3.0.1
       remark-slug: 7.0.1
+      shadowrealm-api: 0.8.2
       yup: 1.2.0
     devDependencies:
       '@babel/core': 7.22.5
@@ -9925,10 +9925,6 @@ packages:
   /safe-buffer/5.2.1:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
 
-  /safe-eval/0.4.1:
-    resolution: {integrity: sha512-wmiu4RSYVZ690RP1+cv/LxfPK1dIlEN35aW7iv4SMYdqDrHbkll4+NJcHmKm7PbCuI1df1otOcPwgcc2iFR85g==}
-    dev: false
-
   /safe-regex-test/1.0.0:
     resolution: {integrity: sha512-JBUUzyOgEwXQY1NuPtvcj/qcBDbDmEvWufhlnXZIm75DEHp+afM1r1ujJpJsV/gSM4t59tpDyPi1sd6ZaPFfsA==}
     dependencies:
@@ -10007,6 +10003,10 @@ packages:
   /set-blocking/2.0.0:
     resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}
     dev: true
+
+  /shadowrealm-api/0.8.2:
+    resolution: {integrity: sha512-JJvmduce8QhsyCnabM7Fm+FzEeubuuARCe/iJcSqzdzRKISeQjCvMKFIrbt4ATEIWuFF00mU2uTKG76Ifc1xOQ==}
+    dev: false
 
   /shebang-command/1.2.0:
     resolution: {integrity: sha512-EV3L1+UQWGor21OmnvojK36mhg+TyIKDh3iFBKBohr5xeXIhNBcx8oWdgkTEEQ+BEFFYdLRuqMfd5L84N1V5Vg==}

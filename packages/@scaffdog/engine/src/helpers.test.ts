@@ -102,19 +102,6 @@ describe('language', () => {
       `{{ contains((seq(3)), 4) ? "true" : "false" }}`,
       `false`,
     ],
-
-    [
-      'eval - basic',
-      `{{ eval "parseInt(count5, 10) > 4 ? 'true' : 'false'" }}`,
-      `true`,
-    ],
-    ['eval - chain', `{{ "foo" | eval "parseInt(count5, 10) + 5" }}`, `10`],
-    ['eval - chain', `{{ "foo" | eval "parseInt(count5, 10) + 5" }}`, `10`],
-    [
-      'eval - array',
-      `{{ eval ("parseInt(count5,10)+1 / parseInt(count5,10)+2 / parseInt(count5,10)+3" | split "/") }}`,
-      `6,7,8`,
-    ],
   ])('%s', (_, source, expected) => {
     expect(compile(parse(source, { tags: context.tags }), context)).toBe(
       expected,

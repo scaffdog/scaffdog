@@ -2,7 +2,6 @@ import type { HelperMap, Variable } from '@scaffdog/types';
 import * as cc from 'change-case';
 import plur from 'plur';
 import dayjs from 'dayjs';
-import safeEval from 'safe-eval';
 import { defineHelper } from './helper-utils';
 import { isArray, isString, isNumber, isObject, typeOf } from './utils';
 
@@ -144,17 +143,6 @@ defineHelper<[search: string | any[], item: any]>(
     disableAutoLoop: true,
   },
 );
-
-defineHelper<[v: string, code?: string]>(helpers, 'eval', (ctx, v, code) => {
-  const evalCode = code != null ? code : v;
-  const context: { [key: string]: any } = Object.create(null);
-
-  for (const [key, value] of ctx.variables.entries()) {
-    context[key] = value;
-  }
-
-  return safeEval(evalCode, context);
-});
 
 /**
  * string utils
