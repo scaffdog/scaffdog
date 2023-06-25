@@ -1,14 +1,19 @@
 'use client';
 
 import { Box, Flex } from '@chakra-ui/react';
-import type { NextPage } from 'next';
 import { RecoilRoot } from 'recoil';
+import { useLayoutEffect } from 'react';
 import { PlaygroundFooter } from './PlaygroundFooter';
 import { PlaygroundHeader } from './PlaygroundHeader';
 import { PlaygroundPreview } from './PlaygroundPreview';
 import { PlaygroundTab } from './PlaygroundTab';
 
-export const Playground: NextPage = () => {
+export const Playground: React.FC = () => {
+  useLayoutEffect(() => {
+    // eslint-disable-next-line no-console
+    import('shadowrealm-api/dist/polyfill').catch(console.warn);
+  }, []);
+
   return (
     <RecoilRoot>
       <Flex direction="column" h={{ base: 'auto', md: '100vh' }}>

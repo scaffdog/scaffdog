@@ -33,7 +33,7 @@ export const _Highlight: React.FC<{ code: string; language: string }> = ({
               <chakra.div key={i} display="table-row" px="2">
                 <chakra.span display="table-cell">
                   {line.map((token, key) => (
-                    <span key={key} {...getTokenProps({ token, key })} />
+                    <span key={key} {...getTokenProps({ token })} />
                   ))}
                 </chakra.span>
               </chakra.div>
