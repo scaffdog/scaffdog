@@ -1,5 +1,22 @@
 # Change Log
 
+## 2.5.1
+
+### Patch Changes
+
+- [#784](https://github.com/scaffdog/scaffdog/pull/784) [`a9b4c0b`](https://github.com/scaffdog/scaffdog/commit/a9b4c0b10ba68f7bbb4f3b74d5454d8cda02db08) Thanks [@wadackel](https://github.com/wadackel)! - Fixes for `safe-eval` vulnerability issues.
+  Fixes to remove `safe-eval` as a dependency and use `vm.runInNewContext` instead.
+  Since scaffdog is intended to be used in a development environment, it is assumed that the input code is safe. Do not use the `eval` helper function in situations where it receives input from third parties.
+
+  Fixes: #766
+
+- Updated dependencies [[`a9b4c0b`](https://github.com/scaffdog/scaffdog/commit/a9b4c0b10ba68f7bbb4f3b74d5454d8cda02db08), [`7659ec1`](https://github.com/scaffdog/scaffdog/commit/7659ec176125d213cd03ffec7cfac6066a8716b1)]:
+  - @scaffdog/engine@2.5.1
+  - @scaffdog/error@2.5.1
+  - @scaffdog/core@2.5.1
+  - @scaffdog/config@2.5.1
+  - @scaffdog/types@2.5.1
+
 ## 2.5.0
 
 ### Minor Changes

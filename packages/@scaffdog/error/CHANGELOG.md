@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.5.1
+
+### Patch Changes
+
+- [#730](https://github.com/scaffdog/scaffdog/pull/730) [`7659ec1`](https://github.com/scaffdog/scaffdog/commit/7659ec176125d213cd03ffec7cfac6066a8716b1) Thanks [@wadackel](https://github.com/wadackel)! - Fixed an error report when a template with a blank line contains invalid syntax.
+
+- Updated dependencies []:
+  - @scaffdog/types@2.5.1
+
 ## 2.5.0
 
 ### Minor Changes
