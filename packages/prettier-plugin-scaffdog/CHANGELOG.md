@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.5.1
+
+### Patch Changes
+
+- Updated dependencies [[`a9b4c0b`](https://github.com/scaffdog/scaffdog/commit/a9b4c0b10ba68f7bbb4f3b74d5454d8cda02db08)]:
+  - @scaffdog/engine@2.5.1
+  - @scaffdog/config@2.5.1
+  - @scaffdog/types@2.5.1
+
 ## 2.5.0
 
 ### Minor Changes
