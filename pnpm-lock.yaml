@@ -263,7 +263,7 @@ importers:
       react-hotkeys-hook: ^4.4.0
       react-simple-code-editor: ^0.13.0
       recoil: ^0.7.4
-      recoil-persist: ^4.2.0
+      recoil-persist: ^5.0.0
       remark-emoji: ^3.0.2
       remark-gfm: ^3.0.1
       remark-slug: ^7.0.1
@@ -295,7 +295,7 @@ importers:
       react-hotkeys-hook: 4.4.0_biqbaboplfbrettd7655fr4n2y
       react-simple-code-editor: 0.13.0_biqbaboplfbrettd7655fr4n2y
       recoil: 0.7.4_biqbaboplfbrettd7655fr4n2y
-      recoil-persist: 4.2.0_recoil@0.7.4
+      recoil-persist: 5.0.1_recoil@0.7.4
       remark-emoji: 3.0.2
       remark-gfm: 3.0.1
       remark-slug: 7.0.1
@@ -9539,8 +9539,8 @@ packages:
       picomatch: 2.3.1
     dev: false
 
-  /recoil-persist/4.2.0_recoil@0.7.4:
-    resolution: {integrity: sha512-MHVfML9GxJP3RpkKR4F5rp7DtvzIvjWhowtMao/b7h2k4afMio/4sMAdUtltIrDaeVegH0Iga8Sx5XQ3oD7CzA==}
+  /recoil-persist/5.0.1_recoil@0.7.4:
+    resolution: {integrity: sha512-1u0BTvL0n0EdDgjyKbSu5tGFaQiMVBKtEKau575vNtCmi9esWeZ4lpUuzPrI8teERr/IkJeOA+Wg5/dzAVDtEg==}
     peerDependencies:
       recoil: ^0.7.2
     dependencies:
