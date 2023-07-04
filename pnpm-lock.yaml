@@ -15,7 +15,7 @@ importers:
       '@commitlint/config-conventional': 17.6.6
       '@commitlint/config-lerna-scopes': 17.6.6
       '@types/mock-fs': 4.13.1
-      '@types/node': 18.16.18
+      '@types/node': 18.16.19
       '@typescript-eslint/eslint-plugin': 5.60.1
       '@typescript-eslint/parser': 5.60.1
       eslint: 8.44.0
@@ -42,7 +42,7 @@ importers:
       '@commitlint/config-conventional': 17.6.6
       '@commitlint/config-lerna-scopes': 17.6.6
       '@types/mock-fs': 4.13.1
-      '@types/node': 18.16.18
+      '@types/node': 18.16.19
       '@typescript-eslint/eslint-plugin': 5.60.1_sys7oyzzpp7dirgslgzodwmody
       '@typescript-eslint/parser': 5.60.1_iqf7tbmerllfqanu4l3d6aqdn4
       eslint: 8.44.0
@@ -239,7 +239,7 @@ importers:
       '@scaffdog/error': workspace:*
       '@scaffdog/types': workspace:*
       '@types/github-slugger': 2.0.0
-      '@types/node': 18.16.18
+      '@types/node': 18.16.19
       '@types/pako': 2.0.0
       '@types/prismjs': 1.26.0
       '@types/react': 18.2.14
@@ -305,7 +305,7 @@ importers:
       '@babel/core': 7.22.5
       '@chakra-ui/styled-system': 2.9.1
       '@types/github-slugger': 2.0.0
-      '@types/node': 18.16.18
+      '@types/node': 18.16.19
       '@types/pako': 2.0.0
       '@types/prismjs': 1.26.0
       '@types/react': 18.2.14
@@ -1918,15 +1918,15 @@ packages:
       '@commitlint/execute-rule': 17.4.0
       '@commitlint/resolve-extends': 17.4.4
       '@commitlint/types': 17.4.4
-      '@types/node': 18.16.18
+      '@types/node': 18.16.19
       chalk: 4.1.2
       cosmiconfig: 8.0.0
-      cosmiconfig-typescript-loader: 4.0.0_ipuveflyf56eslxsomzlunohza
+      cosmiconfig-typescript-loader: 4.0.0_q4ht2ub33hhixzfdc4xoxz5hge
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
       resolve-from: 5.0.0
-      ts-node: 10.9.1_jyxq5rouozouiavch4kcldvi3a
+      ts-node: 10.9.1_pqdfkuhuhnwv2d7uogwywwxtqq
       typescript: 5.1.6
     transitivePeerDependencies:
       - '@swc/core'
@@ -2589,7 +2589,7 @@ packages:
     engines: {node: ^8.13.0 || >=10.10.0}
     dependencies:
       '@grpc/proto-loader': 0.7.7
-      '@types/node': 18.16.18
+      '@types/node': 18.16.19
     dev: false
 
   /@grpc/proto-loader/0.7.7:
@@ -3398,7 +3398,7 @@ packages:
   /@types/fs-extra/9.0.13:
     resolution: {integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==}
     dependencies:
-      '@types/node': 18.16.18
+      '@types/node': 18.16.19
     dev: true
 
   /@types/github-slugger/2.0.0:
@@ -3438,7 +3438,7 @@ packages:
   /@types/keyv/3.1.4:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
-      '@types/node': 18.16.18
+      '@types/node': 18.16.19
     dev: false
 
   /@types/lodash.mergewith/4.6.7:
@@ -3488,7 +3488,7 @@ packages:
   /@types/mock-fs/4.13.1:
     resolution: {integrity: sha512-m6nFAJ3lBSnqbvDZioawRvpLXSaPyn52Srf7OfzjubYbYX8MTUdIgDxQl0wEapm4m/pNYSd9TXocpQ0TvZFlYA==}
     dependencies:
-      '@types/node': 18.16.18
+      '@types/node': 18.16.19
     dev: true
 
   /@types/ms/0.7.31:
@@ -3502,7 +3502,7 @@ packages:
   /@types/node-fetch/2.6.2:
     resolution: {integrity: sha512-DHqhlq5jeESLy19TYhLakJ07kNumXWjcDdxXsLUMJZ6ue8VZJj4kLPQVE/2mdHh3xZziNF1xppu5lwmS53HR+A==}
     dependencies:
-      '@types/node': 18.16.18
+      '@types/node': 18.16.19
       form-data: 3.0.1
     dev: true
 
@@ -3514,8 +3514,8 @@ packages:
     resolution: {integrity: sha512-6u+36Dj3aDzhfBVUf/mfmc92OEdzQ2kx2jcXGdigfl70E/neV21ZHE6UCz4MDzTRcVqGAM27fk+DLXvyDsn3Jw==}
     dev: true
 
-  /@types/node/18.16.18:
-    resolution: {integrity: sha512-/aNaQZD0+iSBAGnvvN2Cx92HqE5sZCPZtx2TsK+4nvV23fFe09jVDvpArXr2j9DnYlzuU9WuoykDDc6wqvpNcw==}
+  /@types/node/18.16.19:
+    resolution: {integrity: sha512-IXl7o+R9iti9eBW4Wg2hx1xQDig183jj7YLn8F7udNceyfkbn1ZxmzZXuak20gR40D7pIkIY1kYGx5VIGbaHKA==}
 
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
@@ -3561,7 +3561,7 @@ packages:
   /@types/responselike/1.0.0:
     resolution: {integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==}
     dependencies:
-      '@types/node': 18.16.18
+      '@types/node': 18.16.19
     dev: false
 
   /@types/scheduler/0.16.3:
@@ -3574,7 +3574,7 @@ packages:
   /@types/through/0.0.30:
     resolution: {integrity: sha512-FvnCJljyxhPM3gkRgWmxmDZyAQSiBQQWLI0A0VFL0K7W1oRUrPJSqNO0NvTnLkBcotdlp3lKvaT0JrnyRDkzOg==}
     dependencies:
-      '@types/node': 18.16.18
+      '@types/node': 18.16.19
     dev: true
 
   /@types/unist/2.0.6:
@@ -4692,7 +4692,7 @@ packages:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
     dev: false
 
-  /cosmiconfig-typescript-loader/4.0.0_ipuveflyf56eslxsomzlunohza:
+  /cosmiconfig-typescript-loader/4.0.0_q4ht2ub33hhixzfdc4xoxz5hge:
     resolution: {integrity: sha512-cVpucSc2Tf+VPwCCR7SZzmQTQkPbkk4O01yXsYqXBIbjE1bhwqSyAgYQkRK1un4i0OPziTleqFhdkmOc4RQ/9g==}
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
@@ -4701,9 +4701,9 @@ packages:
       ts-node: '>=10'
       typescript: '>=3'
     dependencies:
-      '@types/node': 18.16.18
+      '@types/node': 18.16.19
       cosmiconfig: 8.0.0
-      ts-node: 10.9.1_jyxq5rouozouiavch4kcldvi3a
+      ts-node: 10.9.1_pqdfkuhuhnwv2d7uogwywwxtqq
       typescript: 5.1.6
     dev: true
 
@@ -9298,7 +9298,7 @@ packages:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 18.16.18
+      '@types/node': 18.16.19
       long: 5.2.3
     dev: false
 
@@ -10507,7 +10507,7 @@ packages:
       code-block-writer: 12.0.0
     dev: true
 
-  /ts-node/10.9.1_jyxq5rouozouiavch4kcldvi3a:
+  /ts-node/10.9.1_pqdfkuhuhnwv2d7uogwywwxtqq:
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -10526,7 +10526,7 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.3
-      '@types/node': 18.16.18
+      '@types/node': 18.16.19
       acorn: 8.9.0
       acorn-walk: 8.2.0
       arg: 4.1.3
@@ -11078,7 +11078,7 @@ packages:
       vfile-message: 3.1.4
     dev: false
 
-  /vite-node/0.32.2_@types+node@18.16.18:
+  /vite-node/0.32.2_@types+node@18.16.19:
     resolution: {integrity: sha512-dTQ1DCLwl2aEseov7cfQ+kDMNJpM1ebpyMMMwWzBvLbis8Nla/6c9WQcqpPssTwS6Rp/+U6KwlIj8Eapw4bLdA==}
     engines: {node: '>=v14.18.0'}
     hasBin: true
@@ -11088,7 +11088,7 @@ packages:
       mlly: 1.4.0
       pathe: 1.1.1
       picocolors: 1.0.0
-      vite: 4.3.9_@types+node@18.16.18
+      vite: 4.3.9_@types+node@18.16.19
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -11099,7 +11099,7 @@ packages:
       - terser
     dev: true
 
-  /vite/4.3.9_@types+node@18.16.18:
+  /vite/4.3.9_@types+node@18.16.19:
     resolution: {integrity: sha512-qsTNZjO9NoJNW7KnOrgYwczm0WctJ8m/yqYAMAK9Lxt4SoySUfS5S8ia9K7JHpa3KEeMfyF8LoJ3c5NeBJy6pg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -11124,7 +11124,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 18.16.18
+      '@types/node': 18.16.19
       esbuild: 0.17.19
       postcss: 8.4.24
       rollup: 3.25.2
@@ -11165,7 +11165,7 @@ packages:
     dependencies:
       '@types/chai': 4.3.5
       '@types/chai-subset': 1.3.3
-      '@types/node': 18.16.18
+      '@types/node': 18.16.19
       '@vitest/expect': 0.32.2
       '@vitest/runner': 0.32.2
       '@vitest/snapshot': 0.32.2
@@ -11185,8 +11185,8 @@ packages:
       strip-literal: 1.0.1
       tinybench: 2.5.0
       tinypool: 0.5.0
-      vite: 4.3.9_@types+node@18.16.18
-      vite-node: 0.32.2_@types+node@18.16.18
+      vite: 4.3.9_@types+node@18.16.19
+      vite-node: 0.32.2_@types+node@18.16.19
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less
