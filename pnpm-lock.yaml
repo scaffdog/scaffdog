@@ -125,8 +125,8 @@ importers:
         specifier: workspace:*
         version: link:../types
       mdast-util-to-string:
-        specifier: ^2.0.0
-        version: 2.0.0
+        specifier: ^3.0.0
+        version: 3.1.0
       remark-parse:
         specifier: ^9.0.0
         version: 9.0.0
@@ -7863,7 +7863,7 @@ packages:
       '@types/mdast': 3.0.10
       '@types/unist': 2.0.6
       decode-named-character-reference: 1.0.2
-      mdast-util-to-string: 3.1.0
+      mdast-util-to-string: 3.2.0
       micromark: 3.0.10
       micromark-util-decode-numeric-character-reference: 1.0.0
       micromark-util-decode-string: 1.0.2
@@ -8039,7 +8039,7 @@ packages:
       '@types/mdast': 3.0.10
       '@types/unist': 2.0.6
       longest-streak: 3.0.1
-      mdast-util-to-string: 3.1.0
+      mdast-util-to-string: 3.2.0
       micromark-util-decode-string: 1.0.2
       unist-util-visit: 4.1.0
       zwitch: 2.0.2
