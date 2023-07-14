@@ -281,8 +281,8 @@ importers:
         specifier: 7.1.0
         version: 7.1.0
       term-size:
-        specifier: ^2.2.1
-        version: 2.2.1
+        specifier: ^3.0.0
+        version: 3.0.0
       update-notifier:
         specifier: ^5.1.0
         version: 5.1.0
@@ -10656,6 +10656,12 @@ packages:
   /term-size@2.2.1:
     resolution: {integrity: sha512-wK0Ri4fOGjv/XPy8SBHZChl8CM7uMc5VML7SqiQ0zG7+J5Vr+RMQDoHa2CNT6KHUnTGIXH34UDMkPzAUyapBZg==}
     engines: {node: '>=8'}
+    dev: true
+
+  /term-size@3.0.0:
+    resolution: {integrity: sha512-djz8Mao5rNsnC6o5AcEClJkiVdwkHTA/PrHjd5mI4JU9AsFh6iog9yhqxim17HkuJnMHtLu7lL8Jfa1kiihW5g==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dev: false
 
   /text-extensions@1.9.0:
     resolution: {integrity: sha512-wiBrwC1EhBelW12Zy26JeOUkQ5mRu+5o8rpsJk5+2t+Y5vE7e842qtZDQ2g1NpX/29HdyFeJ4nSIhI47ENSxlQ==}
