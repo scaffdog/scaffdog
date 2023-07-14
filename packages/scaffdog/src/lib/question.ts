@@ -1,8 +1,8 @@
 import { createHelper, extendContext, render } from '@scaffdog/engine';
 import type { Context, Variable, VariableRecord } from '@scaffdog/types';
-import { isPlainObject } from 'is-plain-object';
+import isPlainObject from 'is-plain-obj';
 import * as z from 'zod';
-import type { PromptLibrary, PromptQuestion } from './prompt';
+import type { PromptLibrary, PromptQuestion } from './prompt.js';
 
 const questionIfSchema = z.union([z.boolean(), z.string()]);
 

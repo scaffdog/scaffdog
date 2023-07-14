@@ -3,9 +3,9 @@ import { extract } from '@scaffdog/core';
 import { compile, createContext } from '@scaffdog/engine';
 import chalk from 'chalk';
 import symbols from 'log-symbols';
-import { emojify } from 'node-emoji';
-import { createCommand } from '../command';
-import type { File } from '../file';
+import emoji from 'node-emoji';
+import { createCommand } from '../command.js';
+import type { File } from '../file.js';
 
 export default createCommand({
   name: 'init',
@@ -104,13 +104,13 @@ https://scaff.dog/docs/templates
 
   logger.log('');
   logger.log(
-    emojify(
+    emoji.emojify(
       chalk`
 Setup of {bold.green scaffdog} :dog: is complete!
 
 ${list}
 
-Now you can do scaffold by running \`{green $ scaffdog generate}\`.
+Now you can do scaffold by running {green.bold $ scaffdog generate}.
 
 Please refer to the following documents and customize it.
 {underline https://scaff.dog/docs/templates}

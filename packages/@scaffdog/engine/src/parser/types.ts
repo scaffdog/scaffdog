@@ -1,5 +1,5 @@
 import type { TagPair } from '@scaffdog/types';
-import type { ParseErrorStack } from './error';
+import type { ParseErrorStack } from './error.js';
 
 /**
  * Parser

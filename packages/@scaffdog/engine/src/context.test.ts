@@ -1,7 +1,7 @@
 import type { Context } from '@scaffdog/types';
 import { test, expect } from 'vitest';
-import { createContext, extendContext } from './context';
-import { helpers } from './helpers';
+import { createContext, extendContext } from './context.js';
+import { helpers } from './helpers.js';
 
 test('createContext', () => {
   const expected: Context = {

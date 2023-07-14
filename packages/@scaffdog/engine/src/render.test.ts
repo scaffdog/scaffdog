@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
-import { createContext } from './context';
-import { render } from './render';
+import { createContext } from './context.js';
+import { render } from './render.js';
 
 test('success', () => {
   expect(

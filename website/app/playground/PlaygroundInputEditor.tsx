@@ -19,7 +19,6 @@ import {
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import { CloseIcon } from '../../components/icons/CloseIcon';
 import type { PlaygroundInputEntry } from '../../states/playground';
 import {

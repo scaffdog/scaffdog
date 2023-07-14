@@ -7,7 +7,7 @@ import type {
   Variable,
   VariableMap,
 } from '@scaffdog/types';
-import { isPlainObject } from 'is-plain-object';
+import isPlainObject from 'is-plain-obj';
 import type {
   BinaryExpression,
   BreakStatement,
@@ -30,7 +30,7 @@ import type {
   UnaryExpression,
   UpdateExpression,
   VariableStatement,
-} from './ast';
+} from './ast.js';
 import {
   isExpression,
   isIdentifier,
@@ -38,7 +38,7 @@ import {
   isLiteral,
   isParenthesizedExpression,
   isPrimaryExpression,
-} from './ast';
+} from './ast.js';
 import {
   isArray,
   isBoolean,
@@ -47,7 +47,7 @@ import {
   isObject,
   isString,
   typeOf,
-} from './utils';
+} from './utils.js';
 
 class IterateState {
   private previous: symbol | null = null;

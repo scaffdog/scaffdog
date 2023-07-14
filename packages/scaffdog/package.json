@@ -1,6 +1,7 @@
 {
   "name": "scaffdog",
   "version": "2.5.1",
+  "type": "module",
   "description": "scaffdog is Markdown driven scaffolding tool.",
   "keywords": [
     "scaffdog",
@@ -22,11 +23,19 @@
   },
   "license": "MIT",
   "author": "wadackel <wadackel@gmail.com>",
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    },
+    "./package.json": {
+      "import": "./package.json"
+    }
+  },
   "bin": {
-    "scaffdog": "./dist/bin.cjs"
+    "scaffdog": "dist/bin.mjs"
   },
   "files": [
     "dist",
@@ -53,7 +62,7 @@
     "ansi-escapes": "^4.3.2",
     "chalk": "^4.1.0",
     "cli-truncate": "^2.1.0",
-    "consola": "^2.15.3",
+    "consola": "^3.2.3",
     "deepmerge": "^4.2.2",
     "figures": "^3.2.0",
     "front-matter": "^4.0.2",
@@ -62,7 +71,7 @@
     "indent-string": "^4.0.0",
     "inquirer": "^8.2.0",
     "inquirer-autocomplete-prompt": "^2.0.0",
-    "is-plain-object": "^5.0.0",
+    "is-plain-obj": "^4.1.0",
     "log-symbols": "^4.1.0",
     "micromatch": "^4.0.4",
     "node-emoji": "^1.10.0",

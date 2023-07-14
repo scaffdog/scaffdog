@@ -3,11 +3,11 @@ import type { LoadConfigResult } from '@scaffdog/config';
 import { loadConfig } from '@scaffdog/config';
 import { compile, createContext, extendContext } from '@scaffdog/engine';
 import type { Context, ResolvedConfig, VariableRecord } from '@scaffdog/types';
-import type { File } from './file';
-import { helpers } from './helpers';
-import type { Library } from './lib';
-import type { Document } from './lib/document';
-import { assignGlobalVariables, createTemplateVariables } from './variables';
+import type { File } from './file.js';
+import { helpers } from './helpers.js';
+import type { Library } from './lib/index.js';
+import type { Document } from './lib/document.js';
+import { assignGlobalVariables, createTemplateVariables } from './variables.js';
 
 /**
  * Public API

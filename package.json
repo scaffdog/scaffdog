@@ -1,5 +1,6 @@
 {
   "private": true,
+  "type": "module",
   "workspaces": [
     "packages/@scaffdog/*",
     "packages/*"
@@ -22,6 +23,7 @@
     "test": "turbo run test --filter \"./packages/**/*\"",
     "test:e2e": "pnpm -C packages/scaffdog test:e2e",
     "test:e2e:watch": "pnpm -C packages/scaffdog test:e2e:watch",
+    "test:examples": "pnpm -F \"@examples/*\" test",
     "docs:build": "turbo run build",
     "docs:typecheck": "turbo run typecheck",
     "docs:dev": "pnpm -C website dev",
@@ -64,7 +66,7 @@
     "lint-staged": "13.2.3",
     "mock-fs": "5.2.0",
     "npm-run-all": "4.1.5",
-    "prettier": "2.8.8",
+    "prettier": "3.0.0",
     "prettier-plugin-packagejson": "2.4.4",
     "rimraf": "5.0.1",
     "ts-morph": "19.0.0",
@@ -72,7 +74,7 @@
     "turbo": "1.10.6",
     "typescript": "5.1.6",
     "unbuild": "1.2.1",
-    "vitest": "0.32.4",
-    "zx": "4.3.0"
+    "vitest": "0.33.0",
+    "zx": "7.2.3"
   }
 }

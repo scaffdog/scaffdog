@@ -2,8 +2,8 @@ import path from 'path';
 import vm from 'vm';
 import { defineHelper, extendContext, render } from '@scaffdog/engine';
 import type { HelperMap, Variable } from '@scaffdog/types';
-import { isPlainObject } from 'is-plain-object';
-import { createFsLibrary } from './lib/fs';
+import isPlainObject from 'is-plain-obj';
+import { createFsLibrary } from './lib/fs.js';
 
 const fs = createFsLibrary();
 

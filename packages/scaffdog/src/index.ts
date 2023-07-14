@@ -1,8 +1,8 @@
 import { createRequire } from 'module';
-import consola, { LogLevel } from 'consola';
+import { LogLevels, createConsola } from 'consola';
 import type { PackageJson } from 'type-fest';
-import { createScaffdogInitializer } from './api';
-import { createLibrary } from './lib';
+import { createScaffdogInitializer } from './api.js';
+import { createLibrary } from './lib/index.js';
 
 const require = createRequire(import.meta.url);
 const pkg = require('../package.json') as PackageJson;
@@ -27,9 +27,9 @@ export type {
   ScaffdogFactoryOptions,
   ScaffdogLoader,
   ScaffdogLoaderOptions,
-} from './api';
-export type { File } from './file';
-export type { Document, DocumentAttributes } from './lib/document';
+} from './api.js';
+export type { File } from './file.js';
+export type { Document, DocumentAttributes } from './lib/document.js';
 export type {
   Question,
   QuestionCheckbox,
@@ -37,13 +37,13 @@ export type {
   QuestionInput,
   QuestionList,
   QuestionMap,
-} from './lib/question';
+} from './lib/question.js';
 
 /**
  * Export initializer
  */
-const logger = consola.create({
-  level: LogLevel.Silent,
+const logger = createConsola({
+  level: LogLevels.silent,
   reporters: [],
 });
 

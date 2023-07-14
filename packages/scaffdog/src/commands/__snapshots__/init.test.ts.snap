@@ -14,7 +14,7 @@ Setup of scaffdog 🐶 is complete!
   ✔ .scaffdog/config.js
   ✔ .scaffdog/pretty-dog.md
 
-Now you can do scaffold by running \`$ scaffdog generate\`.
+Now you can do scaffold by running $ scaffdog generate.
 
 Please refer to the following documents and customize it.
 https://scaff.dog/docs/templates
@@ -28,7 +28,7 @@ Setup of scaffdog 🐶 is complete!
   ✔ .scaffdog/config.js
   ✔ .scaffdog/pretty-dog.md
 
-Now you can do scaffold by running \`$ scaffdog generate\`.
+Now you can do scaffold by running $ scaffdog generate.
 
 Please refer to the following documents and customize it.
 https://scaff.dog/docs/templates

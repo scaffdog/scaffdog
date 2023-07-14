@@ -4,10 +4,10 @@ import { describe, expect, test, vi } from 'vitest';
 import { createResolvedConfig } from '../lib/config.factory';
 import { createConfigLibraryMock } from '../lib/config.mock';
 import { createDocument } from '../lib/document.factory';
-import { createScaffdogMock } from '../mocks/api';
-import { createCommandRunner, cwd } from '../mocks/command-test-utils';
-import { createLibraryMock } from '../mocks/lib';
-import cmd from './list';
+import { createScaffdogMock } from '../mocks/api.js';
+import { createCommandRunner, cwd } from '../mocks/command-test-utils.js';
+import { createLibraryMock } from '../mocks/lib.js';
+import cmd from './list.js';
 
 const config = createConfigLibraryMock({
   load: () =>

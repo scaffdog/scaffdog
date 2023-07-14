@@ -20,7 +20,7 @@ import type {
   UnaryExpression,
   UnaryExpressionOperator,
   UpdateExpression,
-} from '../ast';
+} from '../ast.js';
 import {
   createBinaryExpression,
   createCallExpression,
@@ -31,7 +31,7 @@ import {
   createParenthesizedExpression,
   createUnaryExpression,
   createUpdateExpression,
-} from '../ast';
+} from '../ast.js';
 import {
   attempt,
   char,
@@ -49,13 +49,13 @@ import {
   preceded,
   satisfy,
   string,
-} from './combinators';
-import { whitespaceOrComment } from './comments';
-import { literal, numericLiteral, tagClose } from './literals';
-import { whitespace1 } from './spaces';
-import type { ParseData, Parser, ParseResult, ParseState } from './types';
-import { error, success } from './types';
-import { unicodeIdContinueReg, unicodeIdStartReg } from './unicode-regex';
+} from './combinators.js';
+import { whitespaceOrComment } from './comments.js';
+import { literal, numericLiteral, tagClose } from './literals.js';
+import { whitespace1 } from './spaces.js';
+import type { ParseData, Parser, ParseResult, ParseState } from './types.js';
+import { error, success } from './types.js';
+import { unicodeIdContinueReg, unicodeIdStartReg } from './unicode-regex.js';
 
 // identifier
 const unicodeIdStart: Parser<string> = satisfy((c) =>

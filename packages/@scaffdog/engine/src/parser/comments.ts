@@ -1,5 +1,5 @@
-import type { Comment } from '../ast';
-import { createComment } from '../ast';
+import type { Comment } from '../ast.js';
+import { createComment } from '../ast.js';
 import {
   any,
   concat,
@@ -11,9 +11,9 @@ import {
   peek,
   preceded,
   string,
-} from './combinators';
-import { whitespace } from './spaces';
-import type { Parser } from './types';
+} from './combinators.js';
+import { whitespace } from './spaces.js';
+import type { Parser } from './types.js';
 
 export const comment: Parser<Comment> = map(
   concat([

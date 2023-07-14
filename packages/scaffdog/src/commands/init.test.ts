@@ -3,9 +3,9 @@ import type { Mock } from 'vitest';
 import { describe, expect, test, vi } from 'vitest';
 import { createFsLibraryMock } from '../lib/fs.mock';
 import { createPromptLibraryMock } from '../lib/prompt.mock';
-import { createCommandRunner, cwd } from '../mocks/command-test-utils';
-import { createLibraryMock } from '../mocks/lib';
-import cmd from './init';
+import { createCommandRunner, cwd } from '../mocks/command-test-utils.js';
+import { createLibraryMock } from '../mocks/lib.js';
+import cmd from './init.js';
 
 const run = createCommandRunner(cmd, {
   args: {},

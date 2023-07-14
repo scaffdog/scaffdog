@@ -9,8 +9,8 @@ import {
   createRawTemplate,
   createTag,
   createTagTemplate,
-} from '../ast';
-import { defaults } from '../syntax';
+} from '../ast.js';
+import { defaults } from '../syntax.js';
 import { parse } from '.';
 
 test.each<[source: string, tags: TagPair, data: any]>([

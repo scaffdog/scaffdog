@@ -1,6 +1,6 @@
-import type { HelperMap } from './helper';
-import type { TagPair } from './tag';
-import type { VariableMap } from './variable';
+import type { HelperMap } from './helper.js';
+import type { TagPair } from './tag.js';
+import type { VariableMap } from './variable.js';
 
 export type Context = {
   cwd: string;

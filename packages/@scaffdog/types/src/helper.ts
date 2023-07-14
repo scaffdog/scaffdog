@@ -1,5 +1,5 @@
-import type { Context } from './context';
-import type { Variable } from './variable';
+import type { Context } from './context.js';
+import type { Variable } from './variable.js';
 
 export type Helper<T extends any[] = any[]> = (
   context: Context,

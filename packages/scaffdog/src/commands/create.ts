@@ -1,8 +1,8 @@
 import path from 'path';
 import chalk from 'chalk';
-import { emojify } from 'node-emoji';
+import emoji from 'node-emoji';
 import validFilename from 'valid-filename';
-import { createCommand } from '../command';
+import { createCommand } from '../command.js';
 
 export default createCommand({
   name: 'create',
@@ -124,7 +124,7 @@ https://scaff.dog/docs/templates
   // success message
   logger.log('');
   logger.log(
-    emojify(
+    emoji.emojify(
       chalk`
 :dog: Created document "{bold ${path.relative(cwd, filepath)}}"
 `.trim(),

@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
-import { createCommandRunner } from '../mocks/command-test-utils';
-import cmd from './version';
+import { createCommandRunner } from '../mocks/command-test-utils.js';
+import cmd from './version.js';
 
 const run = createCommandRunner(cmd, {
   args: {},

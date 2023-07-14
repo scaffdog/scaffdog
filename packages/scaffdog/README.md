@@ -39,7 +39,7 @@ Visit https://scaff.dog to view the full documentation.
 
 ## Requirements
 
-- Node.js v14.16.0+
+- Node.js v16.0.0+
 
 ## Getting Started
 

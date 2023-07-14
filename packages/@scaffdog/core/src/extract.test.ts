@@ -1,7 +1,7 @@
 import type { ParseOptions } from '@scaffdog/engine';
 import { parse } from '@scaffdog/engine';
 import { expect, test } from 'vitest';
-import { extract } from './extract';
+import { extract } from './extract.js';
 
 const options: Partial<ParseOptions> = {};
 

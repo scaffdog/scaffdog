@@ -24,7 +24,7 @@ import type {
   UnaryExpression,
   UpdateExpression,
   VariableStatement,
-} from './ast';
+} from './ast.js';
 import {
   isCallExpression,
   isIfStatement,
@@ -32,11 +32,11 @@ import {
   isNumericLiteral,
   isPrimaryExpression,
   isStringLiteral,
-} from './ast';
+} from './ast.js';
 import {
   unicodeIdContinueReg,
   unicodeIdStartReg,
-} from './parser/unicode-regex';
+} from './parser/unicode-regex.js';
 
 /* eslint-disable @typescript-eslint/no-use-before-define */
 

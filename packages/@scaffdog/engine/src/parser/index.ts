@@ -1,12 +1,12 @@
 import { error } from '@scaffdog/error';
 import type { TagPair } from '@scaffdog/types';
-import type { Program } from '../ast';
-import { createProgram } from '../ast';
-import { defaults } from '../syntax';
-import { concat, eof, map } from './combinators';
-import { ParseErrorStack } from './error';
-import { template } from './statements';
-import type { Parser } from './types';
+import type { Program } from '../ast.js';
+import { createProgram } from '../ast.js';
+import { defaults } from '../syntax.js';
+import { concat, eof, map } from './combinators.js';
+import { ParseErrorStack } from './error.js';
+import { template } from './statements.js';
+import type { Parser } from './types.js';
 
 export type ProgramParser = (input: string) => Program;
 

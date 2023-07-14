@@ -5,7 +5,7 @@ import type {
 } from '@scaffdog/types';
 import chalk from 'chalk';
 import stringLength from 'string-length';
-import { ExtensibleError } from './utils';
+import { ExtensibleError } from './utils.js';
 
 const NEWLINE = /\r\n|[\n\r\u2028\u2029]/;
 

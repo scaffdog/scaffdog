@@ -20,8 +20,8 @@ import {
   createTagTemplate,
   createUnaryExpression,
   createVariableStatement,
-} from '../ast';
-import { parseError } from './error';
+} from '../ast.js';
+import { parseError } from './error.js';
 import {
   breakStatement,
   continueStatement,
@@ -32,9 +32,9 @@ import {
   rawTemplate,
   tagTemplate,
   variableStatement,
-} from './statements';
-import type { ParserTestEntry } from './test-utils';
-import { parse, result } from './test-utils';
+} from './statements.js';
+import type { ParserTestEntry } from './test-utils.js';
+import { parse, result } from './test-utils.js';
 
 test.each<ParserTestEntry>([
   ['success', 'end', createEndStatement([0, 2]), '', 3, true, []],

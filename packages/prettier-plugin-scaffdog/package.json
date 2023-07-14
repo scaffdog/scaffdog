@@ -1,6 +1,7 @@
 {
   "name": "prettier-plugin-scaffdog",
   "version": "2.5.1",
+  "type": "module",
   "description": "A Prettier plugin for scaffdog templates that automatically format syntax.",
   "keywords": [
     "scaffdog",
@@ -21,9 +22,17 @@
   },
   "license": "MIT",
   "author": "wadackel <wadackel@gmail.com>",
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "typecheck": "tsc",
     "build": "unbuild",
@@ -35,11 +44,10 @@
     "@scaffdog/engine": "workspace:*",
     "@scaffdog/types": "workspace:*",
     "minimatch": "^5.0.0",
-    "prettier": "2.8.8"
+    "prettier": "3.0.0"
   },
   "devDependencies": {
-    "@types/minimatch": "5.1.2",
-    "@types/prettier": "2.7.3"
+    "@types/minimatch": "5.1.2"
   },
   "gitHead": "14824585829ad0b2093ef44b30f36fce3f4fd682"
 }

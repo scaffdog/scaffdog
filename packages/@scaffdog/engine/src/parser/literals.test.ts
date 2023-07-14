@@ -6,8 +6,8 @@ import {
   createStringLiteral,
   createTag,
   createUndefinedLiteral,
-} from '../ast';
-import { parseError } from './error';
+} from '../ast.js';
+import { parseError } from './error.js';
 import {
   booleanLiteral,
   literal,
@@ -17,9 +17,9 @@ import {
   tagClose,
   tagOpen,
   undefinedLiteral,
-} from './literals';
-import type { ParserTestEntry } from './test-utils';
-import { parse, result } from './test-utils';
+} from './literals.js';
+import type { ParserTestEntry } from './test-utils.js';
+import { parse, result } from './test-utils.js';
 
 test.each<ParserTestEntry>([
   ['error', '', '', 0, false, [parseError('null literal expected', [0, 0])]],

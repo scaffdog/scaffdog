@@ -1,4 +1,4 @@
-import { isPlainObject } from 'is-plain-object';
+import isPlainObject from 'is-plain-obj';
 
 export const isNonNullish = (v: unknown): v is Record<string, unknown> => {
   return v != null;

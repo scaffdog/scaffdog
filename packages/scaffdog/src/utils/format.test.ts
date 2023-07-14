@@ -1,5 +1,5 @@
 import { test, expect } from 'vitest';
-import { formatFile } from './format';
+import { formatFile } from './format.js';
 
 const defaults = {
   columns: 60,

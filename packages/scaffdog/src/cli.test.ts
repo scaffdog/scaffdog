@@ -1,12 +1,12 @@
-import { LogLevel } from 'consola';
+import { LogLevels } from 'consola';
 import { describe, expect, test, vi } from 'vitest';
-import { createCLI } from './cli';
-import type { CommandModule } from './command';
-import { createCommand } from './command';
-import { createCommandContainer } from './command-container';
-import { createScaffdogInitializerMock } from './mocks/api';
-import { createLibraryMock } from './mocks/lib';
-import { createLogger } from './mocks/logger';
+import { createCLI } from './cli.js';
+import { createCommandContainer } from './command-container.js';
+import type { CommandModule } from './command.js';
+import { createCommand } from './command.js';
+import { createScaffdogInitializerMock } from './mocks/api.js';
+import { createLibraryMock } from './mocks/lib.js';
+import { createLogger } from './mocks/logger.js';
 
 const pkg = {
   name: 'scaffdog',
@@ -131,7 +131,7 @@ describe('run', () => {
     });
 
     expect(await cli.run(['--verbose'])).toBe(0);
-    expect(logger.level).toBe(LogLevel.Verbose);
+    expect(logger.level).toBe(LogLevels.verbose);
   });
 
   test('command (valid)', async () => {

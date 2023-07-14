@@ -1,7 +1,7 @@
 import type { Variable } from '@scaffdog/types';
 import { describe, expect, test } from 'vitest';
-import { compile } from './compile';
-import { createContext } from './context';
+import { compile } from './compile.js';
+import { createContext } from './context.js';
 import { parse } from './parser';
 
 const context = createContext({

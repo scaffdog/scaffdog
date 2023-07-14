@@ -1,14 +1,14 @@
 import type { LoadConfigResult } from '@scaffdog/config';
 import { loadConfig } from '@scaffdog/config';
-import type { Consola } from 'consola';
-import type { ErrorLibrary } from './error';
+import type { ConsolaInstance } from 'consola';
+import type { ErrorLibrary } from './error.js';
 
 export type ConfigLibrary = {
   load: (project: string) => LoadConfigResult | null;
 };
 
 export const createConfigLibrary = (
-  logger: Consola,
+  logger: ConsolaInstance,
   error: ErrorLibrary,
 ): ConfigLibrary => ({
   load: (project) => {

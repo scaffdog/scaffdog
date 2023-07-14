@@ -1,7 +1,7 @@
 import type { Merge } from 'type-fest';
-import type { HelperMap, HelperRecord, HelperRegister } from './helper';
-import type { TagPair } from './tag';
-import type { VariableMap, VariableRecord } from './variable';
+import type { HelperMap, HelperRecord, HelperRegister } from './helper.js';
+import type { TagPair } from './tag.js';
+import type { VariableMap, VariableRecord } from './variable.js';
 
 export type Config = {
   files: string[];

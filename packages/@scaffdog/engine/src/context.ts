@@ -1,6 +1,6 @@
 import type { Context } from '@scaffdog/types';
-import { helpers } from './helpers';
-import { defaults } from './syntax';
+import { helpers } from './helpers.js';
+import { defaults } from './syntax.js';
 
 const mergeMap = <T>(map1: Map<string, T>, map2: Map<string, T>) =>
   new Map([...map1, ...map2]);

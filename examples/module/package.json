@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "type": "module",
+  "name": "@examples/module",
+  "version": "0.1.0",
+  "scripts": {
+    "test": "run-s test:*",
+    "test:generate": "scaffdog generate snapshot -f -v -a \"value:foo-bar\"",
+    "test:check": "git diff --exit-code -- output.md",
+    "scaffold": "scaffdog generate"
+  },
+  "dependencies": {
+    "scaffdog": "workspace:*"
+  }
+}

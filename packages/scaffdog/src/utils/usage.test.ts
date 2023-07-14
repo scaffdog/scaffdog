@@ -1,6 +1,6 @@
 import stripAnsi from 'strip-ansi';
 import { describe, expect, test } from 'vitest';
-import { buildUsage } from './usage';
+import { buildUsage } from './usage.js';
 
 describe('buildUsage', () => {
   test('empty', () => {

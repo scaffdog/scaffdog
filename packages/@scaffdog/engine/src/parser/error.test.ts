@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
-import type { ParseErrorEntry } from './error';
-import { parseError, ParseErrorStack } from './error';
+import type { ParseErrorEntry } from './error.js';
+import { parseError, ParseErrorStack } from './error.js';
 
 describe('ParseErrorStack', () => {
   const errors3 = [

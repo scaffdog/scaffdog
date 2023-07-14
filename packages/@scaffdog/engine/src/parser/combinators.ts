@@ -1,7 +1,7 @@
 import type { SourceRange } from '@scaffdog/types';
-import { parseError } from './error';
-import type { Option, ParseData, Parser } from './types';
-import { none, some, error, success } from './types';
+import { parseError } from './error.js';
+import type { Option, ParseData, Parser } from './types.js';
+import { none, some, error, success } from './types.js';
 
 export type SatisfyFn = (fn: (c: string) => boolean) => Parser<string>;
 export const satisfy: SatisfyFn = (fn) => (state) => {

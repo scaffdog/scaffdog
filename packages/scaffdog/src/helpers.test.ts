@@ -1,7 +1,7 @@
 import { compile, createContext, extendContext, parse } from '@scaffdog/engine';
 import type { Variable } from '@scaffdog/types';
 import { expect, test } from 'vitest';
-import { helpers } from './helpers';
+import { helpers } from './helpers.js';
 
 const context = createContext({
   helpers,

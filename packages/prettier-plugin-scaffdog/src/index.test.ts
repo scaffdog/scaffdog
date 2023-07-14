@@ -2,7 +2,7 @@ import path from 'path';
 import { test, expect } from 'vitest';
 import prettier from 'prettier';
 
-const format = (
+const format = async (
   code: string,
   {
     project: scaffdogProject,
@@ -15,7 +15,7 @@ const format = (
     ...options,
     scaffdogProject,
     parser: 'markdown',
-    plugins: ['.'],
+    plugins: ['./dist/index.mjs'],
     filepath: path.resolve(
       __dirname,
       '../fixtures',
@@ -23,37 +23,37 @@ const format = (
     ),
   };
 
-  return prettier.format(code, opts).trim();
+  return (await prettier.format(code, opts)).trim();
 };
 
-test('format', () => {
+test('format', async () => {
   const input = '{{ident  }}';
   const output = '{{ ident }}';
 
   expect(
-    format(input, {
+    await format(input, {
       filepath: '.scaffdog/template.md',
     }),
   ).toBe(output);
 });
 
-test('without target file', () => {
+test('without target file', async () => {
   const input = '{{ident  }}';
   const output = input;
 
   expect(
-    format(input, {
+    await format(input, {
       filepath: 'README.md',
     }),
   ).toBe(output);
 });
 
-test('custom project', () => {
+test('custom project', async () => {
   const input = '{{ident  }}';
   const output = '{{ ident }}';
 
   expect(
-    format(input, {
+    await format(input, {
       project: '.templates',
       filepath: '.templates/template.md',
     }),

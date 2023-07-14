@@ -1,6 +1,7 @@
 {
   "name": "@scaffdog/engine",
   "version": "2.5.1",
+  "type": "module",
   "description": "A module of scaffdog template engine.",
   "keywords": [
     "scaffdog",
@@ -18,9 +19,17 @@
   },
   "license": "MIT",
   "author": "wadackel <wadackel@gmail.com>",
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "typecheck": "tsc",
     "build": "unbuild",
@@ -33,7 +42,7 @@
     "@scaffdog/types": "workspace:*",
     "change-case": "^4.1.2",
     "dayjs": "^1.10.4",
-    "is-plain-object": "^5.0.0",
+    "is-plain-obj": "^4.1.0",
     "plur": "4.0.0"
   },
   "devDependencies": {

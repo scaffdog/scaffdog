@@ -1,4 +1,4 @@
-import type { CommandModule } from './command';
+import type { CommandModule } from './command.js';
 
 export type CommandContainer = {
   all: () => CommandModule[];

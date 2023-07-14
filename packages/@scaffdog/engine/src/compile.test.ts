@@ -1,7 +1,7 @@
 import type { HelperRecord, VariableRecord } from '@scaffdog/types';
 import { test, expect } from 'vitest';
-import { compile } from './compile';
-import { createContext, extendContext } from './context';
+import { compile } from './compile.js';
+import { createContext, extendContext } from './context.js';
 import { parse } from './parser';
 
 type TestContext = {

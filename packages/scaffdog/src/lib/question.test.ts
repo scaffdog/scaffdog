@@ -1,14 +1,14 @@
 import { createContext } from '@scaffdog/engine';
 import { describe, expect, test, vi } from 'vitest';
 import { createPromptLibraryMock } from './prompt.mock';
-import type { Question } from './question';
+import type { Question } from './question.js';
 import {
   confirmIf,
   createQuestionLibrary,
   getInitialValue,
   parseAnswers,
   transformPromptQuestion,
-} from './question';
+} from './question.js';
 
 describe('confirmIf', () => {
   const context = createContext({

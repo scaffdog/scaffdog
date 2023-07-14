@@ -1,9 +1,19 @@
-const fs = require('fs');
-const path = require('path');
-const regenerate = require('regenerate');
+import fs from 'fs';
+import { createRequire } from 'module';
+import path from 'path';
+import regenerate from 'regenerate';
+import { fileURLToPath } from 'url';
+
+const require = createRequire(import.meta.url);
 
 const VERSION = '15.0.0';
-const DEST = path.resolve(__dirname, '..', 'src', 'parser', 'unicode-regex.ts');
+const DEST = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  '..',
+  'src',
+  'parser',
+  'unicode-regex.ts',
+);
 
 const idStart = regenerate()
   .add(

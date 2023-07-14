@@ -4,7 +4,7 @@ import toString from 'mdast-util-to-string';
 import markdown from 'remark-parse';
 import unified from 'unified';
 import visit from 'unist-util-visit-parents';
-import type { Template, VariableSourceMap } from './types';
+import type { Template, VariableSourceMap } from './types.js';
 
 const VARIABLES_SECTION_TITLE_REGEX = /^variables/i;
 const VARIABLE_REGEX = /^([_$a-z][0-9a-z_$]*)\s*:\s*(.*)\s*$/i;

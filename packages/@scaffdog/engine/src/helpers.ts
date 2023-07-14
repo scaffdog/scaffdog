@@ -2,8 +2,8 @@ import type { HelperMap, Variable } from '@scaffdog/types';
 import * as cc from 'change-case';
 import plur from 'plur';
 import dayjs from 'dayjs';
-import { defineHelper } from './helper-utils';
-import { isArray, isString, isNumber, isObject, typeOf } from './utils';
+import { defineHelper } from './helper-utils.js';
+import { isArray, isString, isNumber, isObject, typeOf } from './utils.js';
 
 export const helpers: HelperMap = new Map();
 

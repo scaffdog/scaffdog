@@ -1,4 +1,4 @@
-/// <reference types="../types/inquirer-autocomplete-prompt" />
+/// <reference types="../types/inquirer-autocomplete-prompt.d.ts" />
 import Fuse from 'fuse.js';
 import inquirer from 'inquirer';
 import inquirerAutocompletePrompt from 'inquirer-autocomplete-prompt';

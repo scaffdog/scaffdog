@@ -1,8 +1,8 @@
 import path from 'path';
 import { createContext, parse } from '@scaffdog/engine';
 import { describe, expect, test, vi } from 'vitest';
-import type { GenerateInputsResolver, Scaffdog } from '../api';
-import type { File } from '../file';
+import type { GenerateInputsResolver, Scaffdog } from '../api.js';
+import type { File } from '../file.js';
 import { createFile } from '../file.factory';
 import { createResolvedConfig } from '../lib/config.factory';
 import { createConfigLibraryMock } from '../lib/config.mock';
@@ -10,10 +10,10 @@ import { createDocument } from '../lib/document.factory';
 import { createFsLibraryMock } from '../lib/fs.mock';
 import { createPromptLibraryMock } from '../lib/prompt.mock';
 import { createQuestionLibraryMock } from '../lib/question.mock';
-import { createScaffdogMock } from '../mocks/api';
-import { createCommandRunner, cwd } from '../mocks/command-test-utils';
-import { createLibraryMock } from '../mocks/lib';
-import cmd from './generate';
+import { createScaffdogMock } from '../mocks/api.js';
+import { createCommandRunner, cwd } from '../mocks/command-test-utils.js';
+import { createLibraryMock } from '../mocks/lib.js';
+import cmd from './generate.js';
 
 const run = createCommandRunner(cmd, {
   args: {

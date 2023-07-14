@@ -2,19 +2,20 @@
   "compilerOptions": {
     "target": "es2018",
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "declaration": true,
     "pretty": true,
     "importHelpers": false,
     "strict": true,
     "noEmit": true,
+    "skipLibCheck": true /* @see https://github.com/vitest-dev/vitest/issues/3704 */,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "resolveJsonModule": true
   }
 }

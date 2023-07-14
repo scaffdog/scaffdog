@@ -3,9 +3,9 @@ import { loadConfig } from '@scaffdog/config';
 import { format, parse } from '@scaffdog/engine';
 import type { ResolvedConfig } from '@scaffdog/types';
 import minimatch from 'minimatch';
-import type { Parser as PrettierParser } from 'prettier';
+import type { Parser } from 'prettier';
 import prettier from 'prettier';
-import { parsers as markdownParsers } from 'prettier/parser-markdown';
+import { parsers as markdownParsers } from 'prettier/plugins/markdown';
 
 const configCache = new Map<string, ResolvedConfig>();
 const resolveConfig = (project: string) => {
@@ -20,8 +20,8 @@ const resolveConfig = (project: string) => {
   return config;
 };
 
-const resolveProject = (project: string, filepath: string) => {
-  const configpath = prettier.resolveConfigFile.sync(filepath);
+const resolveProject = async (project: string, filepath: string) => {
+  const configpath = await prettier.resolveConfigFile(filepath);
   const dirname =
     configpath != null
       ? path.dirname(configpath)
@@ -30,13 +30,13 @@ const resolveProject = (project: string, filepath: string) => {
   return path.resolve(dirname, project);
 };
 
-const wrap = (parser: PrettierParser): PrettierParser => ({
+const wrap = (parser: Parser): Parser => ({
   ...parser,
-  preprocess: (text, options) => {
-    text = parser?.preprocess?.(text, options) ?? text;
+  parse: async (text, options) => {
+    const parseMd = (s: string) => parser.parse(s, options);
 
     try {
-      const project = resolveProject(
+      const project = await resolveProject(
         (options as any).scaffdogProject,
         options.filepath,
       );
@@ -46,14 +46,15 @@ const wrap = (parser: PrettierParser): PrettierParser => ({
       const match = config.files.some((file) =>
         minimatch(options.filepath, path.join(project, file)),
       );
-
       if (!match) {
-        return text;
+        return await parseMd(text);
       }
 
-      return format(parse(text, { tags: config.tags }));
+      const txt = format(parse(text, { tags: config.tags }));
+
+      return await parseMd(txt);
     } catch (e) {
-      return text;
+      return await parseMd(text);
     }
   },
 });
