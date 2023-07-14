@@ -78,7 +78,7 @@
     "plur": "^5.0.0",
     "strip-ansi": "7.1.0",
     "term-size": "^3.0.0",
-    "update-notifier": "^5.1.0",
+    "update-notifier": "^6.0.0",
     "valid-filename": "^4.0.0",
     "wrap-ansi": "^8.0.0",
     "yargs": "^17.0.0",
@@ -88,7 +88,7 @@
     "@types/inquirer": "8.2.6",
     "@types/micromatch": "4.0.2",
     "@types/node-emoji": "1.8.2",
-    "@types/update-notifier": "6.0.1",
+    "@types/update-notifier": "6.0.4",
     "@types/yargs": "17.0.24",
     "type-fest": "3.12.0"
   },
