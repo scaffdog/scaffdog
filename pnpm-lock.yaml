@@ -260,8 +260,8 @@ importers:
         specifier: ^8.2.0
         version: 8.2.4
       inquirer-autocomplete-prompt:
-        specifier: ^2.0.0
-        version: 2.0.0(inquirer@8.2.4)
+        specifier: ^3.0.0
+        version: 3.0.0(inquirer@8.2.4)
       is-plain-obj:
         specifier: ^4.1.0
         version: 4.1.0
@@ -6240,6 +6240,14 @@ packages:
       escape-string-regexp: 1.0.5
     dev: false
 
+  /figures@5.0.0:
+    resolution: {integrity: sha512-ej8ksPF4x6e5wvK9yevct0UCXh8TTFlWGVLlgjZuoBH1HwjIfKE/IdL5mq89sFA7zELi1VhKpmtDnrs7zWyeyg==}
+    engines: {node: '>=14'}
+    dependencies:
+      escape-string-regexp: 5.0.0
+      is-unicode-supported: 1.3.0
+    dev: false
+
   /file-entry-cache@6.0.1:
     resolution: {integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==}
     engines: {node: ^10.12.0 || >=12.0.0}
@@ -7025,18 +7033,18 @@ packages:
     resolution: {integrity: sha512-7NXolsK4CAS5+xvdj5OMMbI962hU/wvwoxk+LWR9Ek9bVtyuuYScDN6eS0rUm6TxApFpw7CX1o4uJzcd4AyD3Q==}
     dev: false
 
-  /inquirer-autocomplete-prompt@2.0.0(inquirer@8.2.4):
-    resolution: {integrity: sha512-c2LljLP3ewVJe4AUZzKdA6oWjqhpy5pfsisHAjh7mP3WUQ/O02x5OLMMqcLOYuRHx6i2hlVSIhUv0xYGyFxFYA==}
+  /inquirer-autocomplete-prompt@3.0.0(inquirer@8.2.4):
+    resolution: {integrity: sha512-nsPWllBQB3qhvpVgV1UIJN4xo3yz7Qv8y1+zrNVpJUNPxtUZ7btCum/4UCAs5apPCe/FVhKH1V6Wx0cAwkreyg==}
     engines: {node: '>=12'}
     peerDependencies:
-      inquirer: ^8.0.0
+      inquirer: ^9.1.0
     dependencies:
-      ansi-escapes: 4.3.2
-      figures: 3.2.0
+      ansi-escapes: 6.0.0
+      figures: 5.0.0
       inquirer: 8.2.4
       picocolors: 1.0.0
       run-async: 2.4.1
-      rxjs: 7.5.6
+      rxjs: 7.8.0
     dev: false
 
   /inquirer@8.2.4:
@@ -7373,6 +7381,11 @@ packages:
   /is-unicode-supported@0.1.0:
     resolution: {integrity: sha512-knxG2q4UC3u8stRGyAVJCOdxFmv5DZiRcdlIaAQXAbSfJya+OhopNotLQrstBhququ4ZpuKbDc/8S6mgXgPFPw==}
     engines: {node: '>=10'}
+    dev: false
+
+  /is-unicode-supported@1.3.0:
+    resolution: {integrity: sha512-43r2mRvz+8JRIKnWJ+3j8JtjRKZ6GmjzfaE/qiBJnikNnYv/6bagRJ1kUhNk8R5EX/GkobD+r+sfxCPJsiKBLQ==}
+    engines: {node: '>=12'}
     dev: false
 
   /is-weakref@1.0.2:
@@ -10127,7 +10140,6 @@ packages:
     resolution: {integrity: sha512-F2+gxDshqmIub1KdvZkaEfGDwLNpPvk9Fs6LD/MyQxNgMds/WH9OdDDXOmxUZpME+iSK3rQCctkL0DYyytUqMg==}
     dependencies:
       tslib: 2.5.3
-    dev: true
 
   /sade@1.8.1:
     resolution: {integrity: sha512-xal3CZX1Xlo/k4ApwCFrHVACi9fBqJ7V+mwhBsuf/1IOKbBy098Fex+Wa/5QMubw09pSZ/u8EY8PWgevJsXp1A==}
