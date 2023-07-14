@@ -1,4 +1,4 @@
-import { ExtensibleError } from './utils';
+import { ExtensibleError } from './utils.js';
 
 export class ScaffdogAggregateError extends ExtensibleError {
   private _errors: unknown[];

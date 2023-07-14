@@ -1,6 +1,6 @@
 // NOTE: This is auto-generated file.
 import { vi } from 'vitest';
-import type { FsLibrary } from './fs';
+import type { FsLibrary } from './fs.js';
 export const createFsLibraryMock = (
   mocks: { [P in keyof FsLibrary]?: any } = {},
 ): FsLibrary => ({

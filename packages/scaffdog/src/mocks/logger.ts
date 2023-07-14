@@ -1,10 +1,10 @@
 import { PassThrough } from 'stream';
+import type { ConsolaInstance } from 'consola';
+import { LogLevels, createConsola } from 'consola';
 import stripAnsi from 'strip-ansi';
-import type { Consola } from 'consola';
-import consola, { FancyReporter } from 'consola';
 
 export const createLogger = (): {
-  logger: Consola;
+  logger: ConsolaInstance;
   getStdout: () => string;
   getStderr: () => string;
 } => {
@@ -18,15 +18,13 @@ export const createLogger = (): {
     stderr: new PassThrough(),
   };
 
-  const logger = consola.create({
-    reporters: [
-      new FancyReporter({
-        formatOptions: {
-          date: false,
-        } as any,
-      }),
-    ],
-    ...stream,
+  const logger = createConsola({
+    fancy: true,
+    formatOptions: {
+      date: false,
+    },
+    level: LogLevels.info,
+    ...(stream as any),
   });
 
   stream.stdout.on('data', (chunk) => (output.stdout += chunk));

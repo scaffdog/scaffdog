@@ -1,7 +1,7 @@
 import merge from 'deepmerge';
-import { isPlainObject } from 'is-plain-object';
+import isPlainObject from 'is-plain-obj';
 import type { PartialDeep } from 'type-fest';
-import type { Document } from './document';
+import type { Document } from './document.js';
 
 export const createDocument = (props: PartialDeep<Document> = {}): Document =>
   merge(

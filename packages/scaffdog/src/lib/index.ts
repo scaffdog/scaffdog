@@ -1,12 +1,12 @@
-import type { Consola } from 'consola';
-import { createConfigLibrary } from './config';
-import { createDocumentLibrary } from './document';
-import { createErrorLibrary } from './error';
-import { createFsLibrary } from './fs';
-import { createPromptLibrary } from './prompt';
-import { createQuestionLibrary } from './question';
+import type { ConsolaInstance } from 'consola';
+import { createConfigLibrary } from './config.js';
+import { createDocumentLibrary } from './document.js';
+import { createErrorLibrary } from './error.js';
+import { createFsLibrary } from './fs.js';
+import { createPromptLibrary } from './prompt.js';
+import { createQuestionLibrary } from './question.js';
 
-export const createLibrary = (logger: Consola) => {
+export const createLibrary = (logger: ConsolaInstance) => {
   const fs = createFsLibrary();
   const error = createErrorLibrary(logger);
   const prompt = createPromptLibrary();

@@ -1,5 +1,5 @@
 import path from 'path';
-import type { ScaffdogFactory } from '../api';
+import type { ScaffdogFactory } from '../api.js';
 import type {
   AnyCommandModule,
   CommandArgs,
@@ -9,13 +9,13 @@ import type {
   GlobalFlagsWith,
   InferredCommandModuleArgs,
   InferredCommandModuleFlags,
-} from '../command';
-import type { CommandContainer } from '../command-container';
-import { createCommandContainer } from '../command-container';
+} from '../command.js';
+import type { CommandContainer } from '../command-container.js';
+import { createCommandContainer } from '../command-container.js';
 import type { Library } from '../lib';
-import { createScaffdogInitializerMock } from './api';
-import { createLibraryMock } from './lib';
-import { createLogger } from './logger';
+import { createScaffdogInitializerMock } from './api.js';
+import { createLibraryMock } from './lib.js';
+import { createLogger } from './logger.js';
 
 export const cwd = path.resolve(__dirname, '../../');
 

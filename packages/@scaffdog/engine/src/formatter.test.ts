@@ -1,5 +1,5 @@
 import { test, expect } from 'vitest';
-import { format } from './formatter';
+import { format } from './formatter.js';
 import { parse } from './parser';
 
 test.each([

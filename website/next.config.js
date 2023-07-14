@@ -1,11 +1,11 @@
 // @ts-check
 
-const { withContentlayer } = require('next-contentlayer');
+import { withContentlayer } from 'next-contentlayer';
 
 /**
  * @type {import('next').NextConfig}
  */
-module.exports = withContentlayer({
+export default withContentlayer({
   output: 'export',
   reactStrictMode: true,
   swcMinify: true,

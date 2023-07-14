@@ -1,5 +1,5 @@
 import { test, expect, describe } from 'vitest';
-import { validateConfig } from './validator';
+import { validateConfig } from './validator.js';
 
 describe('valid', () => {
   test('full', () => {

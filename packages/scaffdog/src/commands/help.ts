@@ -1,8 +1,8 @@
 import chalk from 'chalk';
-import type yargs from 'yargs';
-import { createCommand } from '../command';
-import { globalFlags } from '../global-flags';
-import { buildUsage } from '../utils/usage';
+import type * as yargs from 'yargs';
+import { createCommand } from '../command.js';
+import { globalFlags } from '../global-flags.js';
+import { buildUsage } from '../utils/usage.js';
 
 const buildFlagName = (name: string, opts: yargs.Options) => {
   if (opts.alias != null) {
@@ -145,7 +145,7 @@ export default createCommand({
         : []),
       globalFlagsContent,
       {
-        content: chalk`{gray Run {bold \`scaffdog help [command..]\`} for help with a specific command.}`,
+        content: chalk`{gray Run {bold scaffdog help [command..]} for help with a specific command.}`,
         raw: true,
       },
     ]),

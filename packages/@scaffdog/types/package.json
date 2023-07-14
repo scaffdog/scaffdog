@@ -1,6 +1,7 @@
 {
   "name": "@scaffdog/types",
   "version": "2.5.1",
+  "type": "module",
   "description": "scaffdog's type declarations.",
   "keywords": [
     "scaffdog",
@@ -18,7 +19,12 @@
   },
   "license": "MIT",
   "author": "wadackel <wadackel@gmail.com>",
-  "types": "dist/index.d.ts",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts"
+    }
+  },
   "files": [
     "dist"
   ],

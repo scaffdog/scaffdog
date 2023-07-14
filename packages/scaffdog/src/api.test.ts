@@ -1,11 +1,11 @@
 import path from 'node:path';
 import { parse } from '@scaffdog/engine';
 import { describe, expect, test, vi } from 'vitest';
-import { createScaffdogInitializer } from './api';
+import { createScaffdogInitializer } from './api.js';
 import { createResolvedConfig } from './lib/config.factory';
 import { createDocument } from './lib/document.factory';
 import { createDocumentLibraryMock } from './lib/document.mock';
-import { createLibraryMock } from './mocks/lib';
+import { createLibraryMock } from './mocks/lib.js';
 import { createFile } from './file.factory';
 
 const cwd = '/path/test';

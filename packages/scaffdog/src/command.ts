@@ -1,9 +1,9 @@
-import type { Consola } from 'consola';
+import type { ConsolaInstance } from 'consola';
 import type { Merge, PackageJson } from 'type-fest';
-import type yargs from 'yargs';
-import type { ScaffdogFactory } from './api';
-import type { CommandContainer } from './command-container';
-import type { globalFlags } from './global-flags';
+import type * as yargs from 'yargs';
+import type { ScaffdogFactory } from './api.js';
+import type { CommandContainer } from './command-container.js';
+import type { globalFlags } from './global-flags.js';
 import type { Library } from './lib';
 
 export type CommandOption = {
@@ -19,7 +19,7 @@ export type CommandContext<A extends CommandOption, F extends CommandOption> = {
   cwd: string;
   pkg: PackageJson;
   container: CommandContainer;
-  logger: Consola;
+  logger: ConsolaInstance;
   size: {
     rows: number;
     columns: number;

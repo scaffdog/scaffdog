@@ -1,25 +1,25 @@
 #!/usr/bin/env node
 import { createRequire } from 'module';
-import consola, { FancyReporter } from 'consola';
+import { LogLevels, createConsola } from 'consola';
 import type { PackageJson } from 'type-fest';
 import updateNotifier from 'update-notifier';
-import { createScaffdogInitializer } from './api';
-import { createCLI } from './cli';
-import { createCommandContainer } from './command-container';
-import { commands } from './commands';
-import { createLibrary } from './lib';
+import { createScaffdogInitializer } from './api.js';
+import { createCLI } from './cli.js';
+import { createCommandContainer } from './command-container.js';
+import { commands } from './commands/index.js';
+import { createLibrary } from './lib/index.js';
 
 const require = createRequire(import.meta.url);
 
 (async () => {
-  const logger = consola.create({
-    reporters: [
-      new FancyReporter({
-        formatOptions: {
-          date: false,
-        } as any,
-      }),
-    ],
+  const logger = createConsola({
+    level: LogLevels.info,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    fancy: true,
+    formatOptions: {
+      date: false,
+    },
   });
 
   process.on('uncaughtException', (e: null | undefined | Partial<Error>) => {

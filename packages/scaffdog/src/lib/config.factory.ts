@@ -1,5 +1,5 @@
 import merge from 'deepmerge';
-import { isPlainObject } from 'is-plain-object';
+import isPlainObject from 'is-plain-obj';
 import type { ResolvedConfig } from '@scaffdog/types';
 import type { PartialDeep } from 'type-fest';
 

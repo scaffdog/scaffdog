@@ -1,5 +1,5 @@
 import { vi } from 'vitest';
-import type { Scaffdog, ScaffdogInitializer } from '../api';
+import type { Scaffdog, ScaffdogInitializer } from '../api.js';
 import { createResolvedConfig } from '../lib/config.factory';
 
 export const createScaffdogMock = (

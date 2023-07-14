@@ -1,5 +1,5 @@
 import type { Helper, HelperMap } from '@scaffdog/types';
-import { isArray, isNonNullish } from './utils';
+import { isArray, isNonNullish } from './utils.js';
 
 export type CreateHelperOptions = {
   disableAutoLoop: boolean;

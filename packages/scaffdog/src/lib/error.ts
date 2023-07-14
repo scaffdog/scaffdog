@@ -1,6 +1,6 @@
 import { ScaffdogAggregateError, ScaffdogError } from '@scaffdog/error';
 import chalk from 'chalk';
-import type { Consola } from 'consola';
+import type { ConsolaInstance } from 'consola';
 import indentString from 'indent-string';
 import { z } from 'zod';
 
@@ -25,7 +25,7 @@ export type ErrorLibrary = {
   handle: (e: unknown, title: string) => number;
 };
 
-export const createErrorLibrary = (logger: Consola): ErrorLibrary => ({
+export const createErrorLibrary = (logger: ConsolaInstance): ErrorLibrary => ({
   handle: (e, title) => {
     if (e instanceof ScaffdogAggregateError) {
       logger.error(title, e.message);

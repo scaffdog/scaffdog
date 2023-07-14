@@ -1,10 +1,11 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import createJITI from 'jiti';
 import type { Config, ResolvedConfig } from '@scaffdog/types';
-import { validateConfig } from './validator';
+import { validateConfig } from './validator.js';
 
-const jiti = createJITI(__filename, {
+const jiti = createJITI(fileURLToPath(import.meta.url), {
   cache: false,
   interopDefault: true,
   requireCache: false,

@@ -22,11 +22,11 @@ import {
   preceded,
   satisfy,
   string,
-} from './combinators';
-import { parseError } from './error';
-import type { ParserTestEntry } from './test-utils';
-import { parse, result } from './test-utils';
-import { none, some } from './types';
+} from './combinators.js';
+import { parseError } from './error.js';
+import type { ParserTestEntry } from './test-utils.js';
+import { parse, result } from './test-utils.js';
+import { none, some } from './types.js';
 
 test.each<ParserTestEntry>([
   ['error', '', '', 0, false, []],

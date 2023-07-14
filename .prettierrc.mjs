@@ -1,7 +1,7 @@
-module.exports = {
+export default {
   singleQuote: true,
   trailingComma: 'all',
   arrowParens: 'always',
   scaffdogProject: 'packages/scaffdog/.scaffdog',
-  plugins: ['./packages/prettier-plugin-scaffdog'],
+  plugins: ['./packages/prettier-plugin-scaffdog/dist/index.mjs'],
 };

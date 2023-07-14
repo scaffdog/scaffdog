@@ -1,8 +1,8 @@
 import { expect, test } from 'vitest';
-import { createComment } from '../ast';
-import { comment } from './comments';
-import type { ParserTestEntry } from './test-utils';
-import { parse, result } from './test-utils';
+import { createComment } from '../ast.js';
+import { comment } from './comments.js';
+import type { ParserTestEntry } from './test-utils.js';
+import { parse, result } from './test-utils.js';
 
 test.each<ParserTestEntry>([
   ['success', '/**/', createComment('', [0, 3]), '', 4, true, []],

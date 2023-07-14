@@ -4,7 +4,4 @@ export default defineBuildConfig({
   clean: true,
   outDir: 'dist',
   declaration: true,
-  rollup: {
-    emitCJS: true,
-  },
 });

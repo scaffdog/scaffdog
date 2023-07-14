@@ -1,7 +1,7 @@
 import path from 'path';
 import chalk from 'chalk';
 import plur from 'plur';
-import { createCommand } from '../command';
+import { createCommand } from '../command.js';
 
 const count = (word: string, cnt: number) => `${cnt} ${plur(word, cnt)}`;
 

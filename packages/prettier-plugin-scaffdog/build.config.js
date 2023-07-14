@@ -1,4 +1,4 @@
-import config from '../../build.config';
+import config from '../../build.config.js';
 
 export default {
   ...config,

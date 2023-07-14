@@ -15,7 +15,7 @@ import type {
   Template,
   TemplateElementKind,
   VariableStatement,
-} from '../ast';
+} from '../ast.js';
 import {
   createBreakStatement,
   createContinueStatement,
@@ -26,7 +26,7 @@ import {
   createRawTemplate,
   createTagTemplate,
   createVariableStatement,
-} from '../ast';
+} from '../ast.js';
 import {
   any,
   attempt,
@@ -44,11 +44,11 @@ import {
   option,
   preceded,
   string,
-} from './combinators';
-import { whitespaceOrComment } from './comments';
-import { expression, identifier } from './expressions';
-import { tagClose, tagOpen } from './literals';
-import type { Option, Parser, ParseResult, ParseState } from './types';
+} from './combinators.js';
+import { whitespaceOrComment } from './comments.js';
+import { expression, identifier } from './expressions.js';
+import { tagClose, tagOpen } from './literals.js';
+import type { Option, Parser, ParseResult, ParseState } from './types.js';
 
 // end, continue, break
 export const endStatement: Parser<EndStatement> = map(string('end'), (_, r) =>

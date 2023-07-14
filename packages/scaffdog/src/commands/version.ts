@@ -1,4 +1,4 @@
-import { createCommand } from '../command';
+import { createCommand } from '../command.js';
 
 export default createCommand({
   name: 'version',

@@ -8,9 +8,9 @@ import { extract } from '@scaffdog/core';
 import { ScaffdogAggregateError, ScaffdogError } from '@scaffdog/error';
 import frontmatter from 'front-matter';
 import * as z from 'zod';
-import type { FsLibrary } from './fs';
-import type { QuestionLibrary, QuestionMap } from './question';
-import { rawQuestionRecordSchema } from './question';
+import type { FsLibrary } from './fs.js';
+import type { QuestionLibrary, QuestionMap } from './question.js';
+import { rawQuestionRecordSchema } from './question.js';
 
 const MARKDOWN_EXTNAME = new Set([
   '.markdown',

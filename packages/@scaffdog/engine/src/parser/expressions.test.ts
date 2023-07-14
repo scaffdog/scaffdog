@@ -13,8 +13,8 @@ import {
   createStringLiteral,
   createUnaryExpression,
   createUpdateExpression,
-} from '../ast';
-import { parseError } from './error';
+} from '../ast.js';
+import { parseError } from './error.js';
 import {
   additiveExpression,
   callExpression,
@@ -31,9 +31,9 @@ import {
   relationalExpression,
   unaryExpression,
   updateExpression,
-} from './expressions';
-import type { ParserTestEntry } from './test-utils';
-import { parse, result } from './test-utils';
+} from './expressions.js';
+import type { ParserTestEntry } from './test-utils.js';
+import { parse, result } from './test-utils.js';
 
 test.each<ParserTestEntry>([
   ['success', 'a', createIdentifier('a', [0, 0]), '', 1, true, []],

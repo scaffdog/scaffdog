@@ -1,5 +1,5 @@
 import type { SourceRange } from '@scaffdog/types';
-import { isObject } from './utils';
+import { isObject } from './utils.js';
 
 export type Node =
   | Comment

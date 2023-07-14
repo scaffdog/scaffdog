@@ -6,7 +6,7 @@ import type {
   StringLiteral,
   Tag,
   UndefinedLiteral,
-} from '../ast';
+} from '../ast.js';
 import {
   createBooleanLiteral,
   createNullLiteral,
@@ -14,7 +14,7 @@ import {
   createStringLiteral,
   createTag,
   createUndefinedLiteral,
-} from '../ast';
+} from '../ast.js';
 import {
   any,
   attempt,
@@ -34,8 +34,8 @@ import {
   preceded,
   satisfy,
   string,
-} from './combinators';
-import type { Parser } from './types';
+} from './combinators.js';
+import type { Parser } from './types.js';
 
 // null
 export const nullLiteral: Parser<NullLiteral> = map(

@@ -3,7 +3,7 @@ import path from 'path';
 import globby from 'globby';
 import strip from 'strip-ansi';
 import { afterEach, beforeAll, describe, expect, test } from 'vitest';
-import { $, nothrow } from 'zx';
+import { $ } from 'zx';
 import pkg from '../package.json';
 
 $.verbose = false;
@@ -30,7 +30,7 @@ describe('generate', () => {
   });
 
   const run = async (options: string[]) => {
-    const process = await nothrow($`node ${paths.bin} generate ${options}`);
+    const process = await $`node ${paths.bin} generate ${options}`.nothrow();
     return {
       process,
       output: strip(process.toString()),

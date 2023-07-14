@@ -31,6 +31,6 @@ GLOBAL FLAGS
       --help     Show help.
       --version  Output the version number.
 
-Run \`scaffdog help [command..]\` for help with a specific command.
+Run scaffdog help [command..] for help with a specific command.
 "
 `;

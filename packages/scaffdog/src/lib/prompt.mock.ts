@@ -1,6 +1,6 @@
 // NOTE: This is auto-generated file.
 import { vi } from 'vitest';
-import type { PromptLibrary } from './prompt';
+import type { PromptLibrary } from './prompt.js';
 export const createPromptLibraryMock = (
   mocks: { [P in keyof PromptLibrary]?: any } = {},
 ): PromptLibrary => ({

@@ -2,7 +2,7 @@ import chalk from 'chalk';
 import truncate from 'cli-truncate';
 import figures from 'figures';
 import wrap from 'wrap-ansi';
-import type { File } from '../file';
+import type { File } from '../file.js';
 
 const NEWLINE = /\r\n|[\n\r\u2028\u2029]/;
 

@@ -1,8 +1,8 @@
 import type { SourceRange } from '@scaffdog/types';
-import { defaults } from '../syntax';
-import type { ParseErrorEntry } from './error';
-import { ParseErrorStack } from './error';
-import type { Parser, ParseResult, ParseState } from './types';
+import { defaults } from '../syntax.js';
+import type { ParseErrorEntry } from './error.js';
+import { ParseErrorStack } from './error.js';
+import type { Parser, ParseResult, ParseState } from './types.js';
 
 export const range = (start: number, end: number): SourceRange => [start, end];
 

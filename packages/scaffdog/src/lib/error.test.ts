@@ -2,8 +2,8 @@ import path from 'path';
 import { ScaffdogAggregateError, ScaffdogError } from '@scaffdog/error';
 import { describe, expect, test } from 'vitest';
 import { z } from 'zod';
-import { createLogger } from '../mocks/logger';
-import { createErrorLibrary } from './error';
+import { createLogger } from '../mocks/logger.js';
+import { createErrorLibrary } from './error.js';
 
 const ROOT_PATH = path.join(__dirname, '../../../..');
 

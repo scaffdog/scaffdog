@@ -11,7 +11,7 @@ import { PlaygroundTab } from './PlaygroundTab';
 export const Playground: React.FC = () => {
   useLayoutEffect(() => {
     // eslint-disable-next-line no-console
-    import('shadowrealm-api/dist/polyfill').catch(console.warn);
+    import('shadowrealm-api/dist/polyfill.js').catch(console.warn);
   }, []);
 
   return (

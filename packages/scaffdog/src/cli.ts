@@ -1,14 +1,13 @@
-import type { Consola } from 'consola';
-import { LogLevel } from 'consola';
+import { LogLevels, type ConsolaInstance } from 'consola';
 import termSize from 'term-size';
 import type { PackageJson } from 'type-fest';
 import yargs from 'yargs/yargs';
-import type { ScaffdogFactory } from './api';
-import type { CommandOption } from './command';
-import { buildCommand } from './command';
-import type { CommandContainer } from './command-container';
-import { globalFlags } from './global-flags';
-import type { Library } from './lib';
+import type { ScaffdogFactory } from './api.js';
+import type { CommandContainer } from './command-container.js';
+import type { CommandOption } from './command.js';
+import { buildCommand } from './command.js';
+import { globalFlags } from './global-flags.js';
+import type { Library } from './lib/index.js';
 
 export type CLI = {
   run: (argv: string[]) => Promise<number>;
@@ -16,7 +15,7 @@ export type CLI = {
 
 export type CreateCLIOptions = {
   pkg: PackageJson;
-  logger: Consola;
+  logger: ConsolaInstance;
   container: CommandContainer;
   lib: Library;
   api: ScaffdogFactory;
@@ -92,7 +91,7 @@ export const createCLI = ({
     logger.debug('parsed arguments: %O', parsed);
 
     if (parsed.verbose) {
-      logger.level = LogLevel.Verbose;
+      logger.level = LogLevels.verbose;
     }
 
     if (parsed.version) {

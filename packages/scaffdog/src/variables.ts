@@ -1,6 +1,6 @@
 import path from 'path';
 import type { Context, VariableMap } from '@scaffdog/types';
-import type { Document } from './lib/document';
+import type { Document } from './lib/document.js';
 
 export type AssignGlobalVariablesOptions = {
   cwd: string;

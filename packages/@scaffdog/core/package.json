@@ -1,6 +1,7 @@
 {
   "name": "@scaffdog/core",
   "version": "2.5.1",
+  "type": "module",
   "description": "@scaffdog/core is a low layer of scaffdog.",
   "keywords": [
     "scaffdog",
@@ -18,9 +19,17 @@
   },
   "license": "MIT",
   "author": "wadackel <wadackel@gmail.com>",
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "typecheck": "tsc",
     "build": "unbuild",

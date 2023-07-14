@@ -1,7 +1,7 @@
 import type { ExtractOptions } from '@scaffdog/core';
 import { parse as sdParse } from '@scaffdog/engine';
 import { describe, expect, test, vi } from 'vitest';
-import { parse } from './document';
+import { parse } from './document.js';
 import { createQuestionLibraryMock } from './question.mock';
 
 const partial = `

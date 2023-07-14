@@ -1,7 +1,7 @@
 import merge from 'deepmerge';
-import { isPlainObject } from 'is-plain-object';
+import isPlainObject from 'is-plain-obj';
 import type { PartialDeep } from 'type-fest';
-import type { File } from './file';
+import type { File } from './file.js';
 
 export const createFile = (props: PartialDeep<File> = {}): File =>
   merge(
