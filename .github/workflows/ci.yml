@@ -95,6 +95,7 @@ jobs:
           path: packages
       - run: pnpm install --frozen-lockfile
       - run: pnpm test:e2e
+      - run: pnpm test:examples
 
   typecheck:
     runs-on: ubuntu-latest

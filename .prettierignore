@@ -7,3 +7,4 @@ CHANGELOG.md
 website/out
 website/.next
 website/public/*.xml
+examples/*/output.md
