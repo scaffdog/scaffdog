@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import { Chalk } from 'chalk';
 import truncate from 'cli-truncate';
 import figures from 'figures';
 import wrap from 'wrap-ansi';
@@ -23,7 +23,7 @@ export const formatFile = (
   file: File,
   { columns, color }: FormatFileOptions,
 ): string => {
-  const chk = new chalk.Instance({
+  const chk = new Chalk({
     level: color ? 1 : 0,
   });
 
@@ -42,7 +42,7 @@ export const formatFile = (
       chk.green(figures.tick),
       ' ',
       chk.gray(chars.y),
-      chk` File: {bold ${truncate(filename, columns - gutter - 8)}}`,
+      ` File: ${chk.bold(truncate(filename, columns - gutter - 8))}`,
     ].join(''),
     chk.gray([chars.x.repeat(gutter), chars.c, body].join('')),
   );
@@ -61,7 +61,7 @@ export const formatFile = (
         const prefix = chk.gray((i === 0 ? ns : ' ').padStart(gutter - 2));
         const lc = lines.length === 1 && line == '' ? '(empty)' : l;
 
-        output.push(chk` ${prefix} {gray ${chars.y}} ${lc}`);
+        output.push(` ${prefix} ${chk.gray(chars.y)} ${lc}`);
       });
     n++;
   });

@@ -35,12 +35,12 @@ export default createCommand({
     const t = count('template', doc.templates.length);
     const q = count('question', doc.questions.size);
     const meta = [relative, t, q].join(', ');
-    logger.log(chalk`- {bold ${doc.name}} {gray (${meta})}`);
+    logger.log(`- ${chalk.bold(doc.name)} ${chalk.gray(`(${meta})`)}`);
   });
 
   const total = documents.length;
   logger.log('');
-  logger.log(chalk`{bold.green ${total}} ${plur('file', total)} found.`);
+  logger.log(`${chalk.bold.green(total)} ${plur('file', total)} found.`);
 
   return 0;
 });

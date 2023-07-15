@@ -3,7 +3,7 @@ import type {
   SourcePosition,
   SourceRange,
 } from '@scaffdog/types';
-import chalk from 'chalk';
+import { Chalk } from 'chalk';
 import stringLength from 'string-length';
 import { ExtensibleError } from './utils.js';
 
@@ -146,7 +146,7 @@ export class ScaffdogError extends ExtensibleError {
       return this.message;
     }
 
-    const chk = new chalk.Instance({
+    const chk = new Chalk({
       level: options.color ? 1 : 0,
     });
 
