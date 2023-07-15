@@ -46,7 +46,7 @@ export const TableOfContent: React.FC<Props> = ({ frontmatter }) => {
     <Box
       as="aside"
       display={{ base: 'none', xl: 'block' }}
-      minW="3xs"
+      w="3xs"
       py="2"
       pr="2"
       pl="3px"
