@@ -303,7 +303,7 @@ importers:
         specifier: 9.0.3
         version: 9.0.3
       '@types/inquirer-autocomplete-prompt':
-        specifier: ^3.0.0
+        specifier: 3.0.0
         version: 3.0.0
       '@types/micromatch':
         specifier: 4.0.2
