@@ -1,5 +1,25 @@
 # Change Log
 
+## 3.0.0-canary.0
+
+### Major Changes
+
+- [#832](https://github.com/scaffdog/scaffdog/pull/832) [`34243f9`](https://github.com/scaffdog/scaffdog/commit/34243f9da86edce9433db8fc1fe0f3734d400bfd) Thanks [@wadackel](https://github.com/wadackel)! - Node v14 support will be discontinued and switched to support from v16.
+
+- [#832](https://github.com/scaffdog/scaffdog/pull/832) [`35c0a82`](https://github.com/scaffdog/scaffdog/commit/35c0a82ccaa2d0202378dd05946160aec65c6cfb) Thanks [@wadackel](https://github.com/wadackel)! - Migrated to ESM.
+  Since scaffdog is often used as a CLI tool, there should be little negative impact from ESM migration in many cases.
+
+### Patch Changes
+
+- [`1697dea`](https://github.com/scaffdog/scaffdog/commit/1697dea092264da50999beee31a21ee2c36ba012) Thanks [@wadackel](https://github.com/wadackel)! - Update dependencies.
+
+- Updated dependencies [[`34243f9`](https://github.com/scaffdog/scaffdog/commit/34243f9da86edce9433db8fc1fe0f3734d400bfd), [`35c0a82`](https://github.com/scaffdog/scaffdog/commit/35c0a82ccaa2d0202378dd05946160aec65c6cfb), [`1697dea`](https://github.com/scaffdog/scaffdog/commit/1697dea092264da50999beee31a21ee2c36ba012)]:
+  - @scaffdog/config@3.0.0-canary.0
+  - @scaffdog/engine@3.0.0-canary.0
+  - @scaffdog/error@3.0.0-canary.0
+  - @scaffdog/types@3.0.0-canary.0
+  - @scaffdog/core@3.0.0-canary.0
+
 ## 2.5.1
 
 ### Patch Changes
