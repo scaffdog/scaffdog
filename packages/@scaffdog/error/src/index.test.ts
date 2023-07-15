@@ -1,8 +1,8 @@
-import { test, expect } from 'vitest';
-import chalk from 'chalk';
+import { Chalk } from 'chalk';
+import { expect, test } from 'vitest';
 import { error } from './index.js';
 
-const chk = new chalk.Instance({ level: 1 });
+const chk = new Chalk({ level: 1 });
 const red = chk.red;
 const gray = chk.gray;
 

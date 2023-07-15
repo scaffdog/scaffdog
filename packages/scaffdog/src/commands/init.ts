@@ -20,7 +20,8 @@ export default createCommand({
   // create project directory
   if (fs.directoryExists(dirname)) {
     const ok = await prompt.confirm(
-      chalk`"{bold.yellow ${project}}" already exist. Do you want to continue the setup?`,
+      // prettier-ignore
+      `"${chalk.bold.yellow(project)}" already exist. Do you want to continue the setup?`,
       false,
       {},
     );
@@ -98,23 +99,23 @@ https://scaff.dog/docs/templates
   const list = files
     .map((file) => {
       const relative = path.relative(cwd, file.path);
-      return chalk`  ${symbols.success} {bold ${relative}}`;
+      return `  ${symbols.success} ${chalk.bold(relative)}`;
     })
     .join('\n');
 
   logger.log('');
   logger.log(
     emoji.emojify(
-      chalk`
-Setup of {bold.green scaffdog} :dog: is complete!
+      `
+Setup of ${chalk.bold.green('scaffdog')} :dog: is complete!
 
 ${list}
 
-Now you can do scaffold by running {green.bold $ scaffdog generate}.
+Now you can do scaffold by running ${chalk.bold.green('$ scaffdog generate')}.
 
 Please refer to the following documents and customize it.
-{underline https://scaff.dog/docs/templates}
-`.trim(),
+${chalk.underline('https://scaff.dog/docs/templates')}
+      `.trim(),
     ),
   );
 

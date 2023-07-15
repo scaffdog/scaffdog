@@ -160,7 +160,7 @@ export default createCommand({
     );
   } else {
     dist = dirs[0];
-    logger.info(chalk`Output destination directory: "{bold.green ${dist}}"`);
+    logger.info(`Output destination directory: "${chalk.bold.green(dist)}"`);
   }
 
   logger.debug('selected dist: %s', dist);
@@ -235,7 +235,7 @@ export default createCommand({
         const relative = path.relative(cwd, file.path);
 
         const ok = await prompt.confirm(
-          chalk`Would you like to overwrite it? ("{bold.yellow ${relative}}")`,
+          `Would you like to overwrite it? ("${chalk.bold.yellow(relative)}")`,
           false,
           {
             prefix: symbols.warning,
@@ -261,7 +261,7 @@ export default createCommand({
   };
 
   logger.log('');
-  logger.log(emoji.emojify(chalk`:dog: Generated ${msg.write}!${msg.skip}`));
+  logger.log(emoji.emojify(`:dog: Generated ${msg.write}!${msg.skip}`));
   logger.log('');
 
   [...writes, ...skips].forEach((file) => {

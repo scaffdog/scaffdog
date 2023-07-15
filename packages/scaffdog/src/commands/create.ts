@@ -125,9 +125,7 @@ https://scaff.dog/docs/templates
   logger.log('');
   logger.log(
     emoji.emojify(
-      chalk`
-:dog: Created document "{bold ${path.relative(cwd, filepath)}}"
-`.trim(),
+      `:dog: Created document ${chalk.bold(path.relative(cwd, filepath))}`,
     ),
   );
 

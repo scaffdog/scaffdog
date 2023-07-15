@@ -145,7 +145,10 @@ export default createCommand({
         : []),
       globalFlagsContent,
       {
-        content: chalk`{gray Run {bold scaffdog help [command..]} for help with a specific command.}`,
+        content: chalk.gray(
+          // prettier-ignore
+          `Run ${chalk.bold('scaffdog help [command..]')} for help with a specific command.`,
+        ),
         raw: true,
       },
     ]),
