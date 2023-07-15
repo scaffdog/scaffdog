@@ -134,7 +134,7 @@ export const Header: React.FC<Props> = ({ home }) => {
             </Link>
           </Text>
 
-          <Box display={{ base: 'none', sm: 'block' }}>
+          <Box display={{ base: 'none', md: 'block' }}>
             <HStack spacing="3">
               <_NavLink href="/docs">Get Started</_NavLink>
               <_NavLink href="/docs/templates">Docs</_NavLink>
@@ -152,7 +152,7 @@ export const Header: React.FC<Props> = ({ home }) => {
             </HStack>
           </Box>
 
-          <Box display={{ base: 'block', sm: 'none' }} flex="0 1 auto">
+          <Box display={{ base: 'block', md: 'none' }} flex="0 1 auto">
             <IconButton
               ref={menuButtonRef}
               aria-label="Open menu"
