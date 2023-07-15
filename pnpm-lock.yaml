@@ -204,10 +204,6 @@ importers:
       prettier:
         specifier: 3.0.0
         version: 3.0.0
-    devDependencies:
-      '@types/minimatch':
-        specifier: 5.1.2
-        version: 5.1.2
 
   packages/scaffdog:
     dependencies:
@@ -4099,10 +4095,6 @@ packages:
     resolution: {integrity: sha512-oqXqVb0ci19GtH0vOA/U2TmHTcRY9kuZl4mqUxe0QmJAlIW13kzhuK5pi1i9+ngav8FjpSb9FVS/GE00GLX1VA==}
     dependencies:
       '@types/braces': 3.0.1
-    dev: true
-
-  /@types/minimatch@5.1.2:
-    resolution: {integrity: sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==}
     dev: true
 
   /@types/minimist@1.2.2:

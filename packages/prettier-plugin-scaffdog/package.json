@@ -46,8 +46,5 @@
     "minimatch": "^9.0.0",
     "prettier": "3.0.0"
   },
-  "devDependencies": {
-    "@types/minimatch": "5.1.2"
-  },
   "gitHead": "14824585829ad0b2093ef44b30f36fce3f4fd682"
 }
