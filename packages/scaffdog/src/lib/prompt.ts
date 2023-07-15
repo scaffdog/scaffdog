@@ -1,11 +1,11 @@
-/// <reference types="../types/inquirer-autocomplete-prompt.d.ts" />
 import Fuse from 'fuse.js';
+import type { DistinctQuestion } from 'inquirer';
 import inquirer from 'inquirer';
 import inquirerAutocompletePrompt from 'inquirer-autocomplete-prompt';
 
 inquirer.registerPrompt('autocomplete', inquirerAutocompletePrompt);
 
-export type PromptQuestion = inquirer.DistinctQuestion;
+export type PromptQuestion = DistinctQuestion;
 
 export type ConfirmArgs = Omit<PromptQuestion, 'type' | 'name' | 'default'>;
 
