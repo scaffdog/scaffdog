@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import globby from 'globby';
+import { globby } from 'globby';
 import strip from 'strip-ansi';
 import { afterEach, beforeAll, describe, expect, test } from 'vitest';
 import { $ } from 'zx';
