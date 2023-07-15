@@ -24,6 +24,7 @@
     "test:e2e": "pnpm -C packages/scaffdog test:e2e",
     "test:e2e:watch": "pnpm -C packages/scaffdog test:e2e:watch",
     "test:examples": "pnpm -F \"@examples/*\" test",
+    "test:all": "run-s test test:e2e test:examples",
     "docs:build": "turbo run build",
     "docs:typecheck": "turbo run typecheck",
     "docs:dev": "pnpm -C website dev",

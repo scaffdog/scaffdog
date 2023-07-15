@@ -39,13 +39,13 @@
   "dependencies": {
     "@scaffdog/engine": "workspace:*",
     "@scaffdog/types": "workspace:*",
-    "mdast-util-to-string": "^2.0.0",
-    "remark-parse": "^9.0.0",
-    "unified": "^9.2.1",
-    "unist-util-visit-parents": "^3.1.1"
+    "mdast-util-to-string": "^4.0.0",
+    "remark-parse": "^10.0.2",
+    "unified": "^10.1.2",
+    "unist-util-visit-parents": "^6.0.1"
   },
   "devDependencies": {
-    "@types/unist": "2.0.6"
+    "@types/unist": "3.0.0"
   },
   "publishConfig": {
     "access": "public"
