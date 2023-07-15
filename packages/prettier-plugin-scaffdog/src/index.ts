@@ -2,7 +2,7 @@ import path from 'path';
 import { loadConfig } from '@scaffdog/config';
 import { format, parse } from '@scaffdog/engine';
 import type { ResolvedConfig } from '@scaffdog/types';
-import minimatch from 'minimatch';
+import { minimatch } from 'minimatch';
 import type { Parser } from 'prettier';
 import prettier from 'prettier';
 import { parsers as markdownParsers } from 'prettier/plugins/markdown';
