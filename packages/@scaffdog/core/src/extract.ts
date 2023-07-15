@@ -1,9 +1,9 @@
 import type { ParseOptions } from '@scaffdog/engine';
 import { parse } from '@scaffdog/engine';
-import toString from 'mdast-util-to-string';
+import { toString } from 'mdast-util-to-string';
 import markdown from 'remark-parse';
-import unified from 'unified';
-import visit from 'unist-util-visit-parents';
+import { unified } from 'unified';
+import { visitParents } from 'unist-util-visit-parents';
 import type { Template, VariableSourceMap } from './types.js';
 
 const VARIABLES_SECTION_TITLE_REGEX = /^variables/i;
@@ -37,7 +37,7 @@ export const extract = (
   let filename: string | null = null;
 
   // collect templates
-  visit(ast, (node) => {
+  visitParents(ast, (node) => {
     switch (node.type) {
       case 'heading': {
         if ((node as any).depth !== 1) {
@@ -75,7 +75,7 @@ export const extract = (
 
       case 'list': {
         if (isInVariables) {
-          visit(node, (child) => {
+          visitParents(node, (child) => {
             if (child.type === 'listItem') {
               const [key, value] = parseVariable(toString(child).trim());
               if (key && value) {
