@@ -1,7 +1,7 @@
 import path from 'path';
 import ansiEscapes from 'ansi-escapes';
 import chalk from 'chalk';
-import globby from 'globby';
+import { isDynamicPattern } from 'globby';
 import symbols from 'log-symbols';
 import micromatch from 'micromatch';
 import emoji from 'node-emoji';
@@ -124,7 +124,7 @@ export default createCommand({
     const output = typeof doc.output === 'string' ? [doc.output] : doc.output;
 
     for (const pattern of output) {
-      if (globby.hasMagic(pattern)) {
+      if (isDynamicPattern(pattern)) {
         const found = await fs.glob(path.join(doc.root, pattern), {
           cwd,
           onlyDirectories: true,

@@ -1,7 +1,7 @@
 import { readFileSync, statSync } from 'fs';
 import { mkdir, readFile, writeFile } from 'fs/promises';
-import type { GlobbyOptions } from 'globby';
-import globby from 'globby';
+import type { Options as GlobbyOptions } from 'globby';
+import { globby } from 'globby';
 
 export type FsMkdirOptions = {
   recursive?: boolean;
