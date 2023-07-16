@@ -24,7 +24,7 @@ questions:
 {{- body := file | after blank -}}
 
 {{ header }}
-import {{ cmd }} from './{{ name }}';
+import {{ cmd }} from './{{ name }}.js';
 
 {{ body | replace "];" ("," + cmd + "];") }}
 ```
@@ -32,7 +32,7 @@ import {{ cmd }} from './{{ name }}';
 # `{{ name }}.ts`
 
 ```typescript
-import { createCommand } from '{{ relative "../src/command" }}';
+import { createCommand } from '{{ relative "../src/command" }}.js';
 
 export default createCommand({
   name: '{{ name }}',
@@ -49,8 +49,8 @@ export default createCommand({
 
 ```typescript
 import { expect, test } from 'vitest';
-import { createCommandRunner } from '{{ relative "../src/mocks/command-test-utils" }}';
-import cmd from './{{ name }}';
+import { createCommandRunner } from '{{ relative "../src/mocks/command-test-utils" }}.js';
+import cmd from './{{ name }}.js';
 
 const run = createCommandRunner(cmd, {
   args: {},
