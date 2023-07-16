@@ -67,7 +67,7 @@ const run = async () => {
         `
 // NOTE: This is auto-generated file.
 import { vi } from 'vitest';
-import type { ${name} } from './${basename}';
+import type { ${name} } from './${basename}.js';
 export const create${name}Mock = (mocks: { [P in keyof ${name}]?: any } = {}): ${name} => ({
 ${members.map((p) => `${p}: vi.fn(),`).join('\n')}
 ...mocks,
