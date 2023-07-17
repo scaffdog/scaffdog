@@ -24,7 +24,7 @@ jobs:
       - run: pnpm docs:build
       - run: pnpm docs:typecheck
       - run: touch website/out/.nojekyll
-      - uses: actions/upload-pages-artifact@v1
+      - uses: actions/upload-pages-artifact@v2
         with:
           path: 'website/out'
 
