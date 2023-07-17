@@ -1,7 +1,7 @@
 import { LogLevels, type ConsolaInstance } from 'consola';
 import termSize from 'term-size';
 import type { PackageJson } from 'type-fest';
-import yargs from 'yargs/yargs';
+import yargs from 'yargs';
 import type { ScaffdogFactory } from './api.js';
 import type { CommandContainer } from './command-container.js';
 import type { CommandOption } from './command.js';
