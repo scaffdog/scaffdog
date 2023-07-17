@@ -81,7 +81,7 @@
     "update-notifier": "^6.0.0",
     "valid-filename": "^4.0.0",
     "wrap-ansi": "^8.0.0",
-    "yargs": "^17.0.0",
+    "yargs": "^17.7.2",
     "zod": "^3.11.6"
   },
   "devDependencies": {
