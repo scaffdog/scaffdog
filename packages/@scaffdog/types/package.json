@@ -1,6 +1,6 @@
 {
   "name": "@scaffdog/types",
-  "version": "3.0.0-canary.0",
+  "version": "3.0.0-canary.1",
   "type": "module",
   "description": "scaffdog's type declarations.",
   "keywords": [

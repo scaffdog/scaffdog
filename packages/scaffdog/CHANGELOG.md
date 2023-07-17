@@ -1,5 +1,18 @@
 # Change Log
 
+## 3.0.0-canary.1
+
+### Patch Changes
+
+- [#846](https://github.com/scaffdog/scaffdog/pull/846) [`9ff2499`](https://github.com/scaffdog/scaffdog/commit/9ff249918430a2bc6a37de4ee1a368694e06906b) Thanks [@wadackel](https://github.com/wadackel)! - Updated [yargs](https://github.com/yargs/yargs) package.
+
+- Updated dependencies []:
+  - @scaffdog/config@3.0.0-canary.1
+  - @scaffdog/core@3.0.0-canary.1
+  - @scaffdog/engine@3.0.0-canary.1
+  - @scaffdog/error@3.0.0-canary.1
+  - @scaffdog/types@3.0.0-canary.1
+
 ## 3.0.0-canary.0
 
 ### Major Changes
