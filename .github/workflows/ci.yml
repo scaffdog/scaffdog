@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 2
-      - uses: pnpm/action-setup@v2.3.0
+      - uses: pnpm/action-setup@v2.4.0
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
@@ -40,7 +40,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 2
-      - uses: pnpm/action-setup@v2.3.0
+      - uses: pnpm/action-setup@v2.4.0
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
@@ -62,7 +62,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 2
-      - uses: pnpm/action-setup@v2.3.0
+      - uses: pnpm/action-setup@v2.4.0
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
@@ -84,7 +84,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 2
-      - uses: pnpm/action-setup@v2.3.0
+      - uses: pnpm/action-setup@v2.4.0
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
@@ -107,7 +107,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 2
-      - uses: pnpm/action-setup@v2.3.0
+      - uses: pnpm/action-setup@v2.4.0
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
@@ -129,7 +129,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 2
-      - uses: pnpm/action-setup@v2.3.0
+      - uses: pnpm/action-setup@v2.4.0
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
@@ -162,7 +162,7 @@ jobs:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2.3.0
+      - uses: pnpm/action-setup@v2.4.0
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
