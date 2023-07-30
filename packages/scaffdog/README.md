@@ -146,6 +146,7 @@ Check out our [documentation site](https://scaff.dog/docs/templates) to customiz
 
 There are important changes in the major update.
 
+- [To v3 from v2](/MIGRATION.md#to-v3-from-v2)
 - [To v2 from v1](/MIGRATION.md#to-v2-from-v1)
 - [To v1 from v0](/MIGRATION.md#to-v1-from-v0)
 
