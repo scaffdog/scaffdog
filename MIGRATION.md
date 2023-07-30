@@ -1,7 +1,27 @@
 # Migration Guide
 
+- [To v3 from v2](#to-v3-from-v2)
 - [To v2 from v1](#to-v2-from-v1)
 - [To v1 from v0](#to-v1-from-v0)
+
+## To v3 from v2
+
+This will be a major update with minimal impact on many users who use scaffdog as a CLI.
+
+### Node.js version
+
+Support has been changed to `v16.0.0` or later to match the Node.js release cycle. This is the only breaking change.
+
+### Pure ESM package
+
+This package is now the Pure ESM package.  
+Please see [sindresorhus/esm-package.md](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).
+
+If you are using scaffdog as API, please migrate to ESM.
+
+#### VSCode User
+
+Users of [scaffdog/vscode](https://github.com/scaffdog/vscode) should use `v0.1.0` or later version. This version supports ESM and CommonJS. If you are using a version less than `v0.1.0`, you will not be able to load the ESM and an error will occur.
 
 ## To v2 from v1
 
