@@ -389,8 +389,8 @@ importers:
         specifier: ^0.7.4
         version: 0.7.4(react-dom@18.2.0)(react@18.2.0)
       recoil-persist:
-        specifier: ^5.0.0
-        version: 5.0.0(recoil@0.7.4)
+        specifier: ^5.1.0
+        version: 5.1.0(recoil@0.7.4)
       remark-emoji:
         specifier: ^3.1.2
         version: 3.1.2
@@ -9728,9 +9728,8 @@ packages:
       picomatch: 2.3.1
     dev: false
 
-  /recoil-persist@5.0.0(recoil@0.7.4):
-    resolution: {integrity: sha512-YxAm6yF+S4IxuxmlzTVrqZblptXjpN0dQVmQ9wzNGUC2u3jILr9S31ke9evnGc3vmA04Jur2ItlfKrmiIQ/jOg==}
-    deprecated: This version has been deprecated
+  /recoil-persist@5.1.0(recoil@0.7.4):
+    resolution: {integrity: sha512-sew4k3uBVJjRWKCSFuBw07Y1p1pBOb0UxLJPxn4G2bX/9xNj+r2xlqYy/BRfyofR/ANfqBU04MIvulppU4ZC0w==}
     peerDependencies:
       recoil: ^0.7.2
     dependencies:
