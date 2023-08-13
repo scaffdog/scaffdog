@@ -54,7 +54,7 @@
     "execa": "7.2.0",
     "github-slugger": "2.0.0",
     "next-sitemap": "4.2.2",
-    "type-fest": "4.1.0",
+    "type-fest": "4.2.0",
     "typescript": "5.1.6"
   }
 }
