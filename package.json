@@ -72,7 +72,7 @@
     "rimraf": "5.0.1",
     "ts-morph": "19.0.0",
     "tsx": "3.12.7",
-    "turbo": "1.10.12",
+    "turbo": "1.10.13",
     "typescript": "5.1.6",
     "unbuild": "1.2.1",
     "vitest": "0.34.2",
