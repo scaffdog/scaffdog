@@ -44,7 +44,7 @@
     "@babel/core": "7.22.10",
     "@chakra-ui/styled-system": "2.9.1",
     "@types/github-slugger": "2.0.0",
-    "@types/node": "18.17.9",
+    "@types/node": "18.17.11",
     "@types/pako": "2.0.0",
     "@types/prismjs": "1.26.0",
     "@types/react": "18.2.21",
