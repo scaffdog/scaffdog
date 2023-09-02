@@ -163,8 +163,8 @@ importers:
         version: 5.1.0
     devDependencies:
       '@unicode/unicode-15.0.0':
-        specifier: 1.5.0
-        version: 1.5.0
+        specifier: 1.5.2
+        version: 1.5.2
       regenerate:
         specifier: 1.4.2
         version: 1.4.2
@@ -4163,8 +4163,8 @@ packages:
       eslint-visitor-keys: 3.4.3
     dev: true
 
-  /@unicode/unicode-15.0.0@1.5.0:
-    resolution: {integrity: sha512-3Fou0PImCanYwFHe/JBbDtH3+qv/qz/xiuo4/Pp3hihrNlmZsMXlqaCKP/M9g9RDbwvO2vQLegkfOwAPxC/bqw==}
+  /@unicode/unicode-15.0.0@1.5.2:
+    resolution: {integrity: sha512-PepMvMxf9j4sp4bZn7W9JJoMxynHk66ZPCsx6n3v47T5vmM+qfIy0z1MMU+EDmRZr2cvs1aT9ZwUEMRPVXR23g==}
     dev: true
 
   /@vitest/expect@0.34.3:
