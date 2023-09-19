@@ -74,8 +74,8 @@ importers:
         specifier: 19.0.0
         version: 19.0.0
       tsx:
-        specifier: 3.12.8
-        version: 3.12.8
+        specifier: 3.12.10
+        version: 3.12.10
       turbo:
         specifier: 1.10.14
         version: 1.10.14
@@ -2470,22 +2470,22 @@ packages:
   /@esbuild-kit/cjs-loader@2.4.2:
     resolution: {integrity: sha512-BDXFbYOJzT/NBEtp71cvsrGPwGAMGRB/349rwKuoxNSiKjPraNNnlK6MIIabViCjqZugu6j+xeMDlEkWdHHJSg==}
     dependencies:
-      '@esbuild-kit/core-utils': 3.2.2
+      '@esbuild-kit/core-utils': 3.3.2
       get-tsconfig: 4.6.2
     dev: true
 
-  /@esbuild-kit/core-utils@3.2.2:
-    resolution: {integrity: sha512-Ub6LaRaAgF80dTSzUdXpFLM1pVDdmEVB9qb5iAzSpyDlX/mfJTFGOnZ516O05p5uWWteNviMKi4PAyEuRxI5gA==}
+  /@esbuild-kit/core-utils@3.3.2:
+    resolution: {integrity: sha512-sPRAnw9CdSsRmEtnsl2WXWdyquogVpB3yZ3dgwJfe8zrOzTsV7cJvmwrKVa+0ma5BoiGJ+BoqkMvawbayKUsqQ==}
     dependencies:
       esbuild: 0.18.20
       source-map-support: 0.5.21
     dev: true
 
-  /@esbuild-kit/esm-loader@2.5.5:
-    resolution: {integrity: sha512-Qwfvj/qoPbClxCRNuac1Du01r9gvNOT+pMYtJDapfB1eoGN1YlJ1BixLyL9WVENRx5RXgNLdfYdx/CuswlGhMw==}
+  /@esbuild-kit/esm-loader@2.6.5:
+    resolution: {integrity: sha512-FxEMIkJKnodyA1OaCUoEvbYRkoZlLZ4d/eXFu9Fh8CbBBgP5EmZxrfTRyN0qpXZ4vOvqnE5YdRdcrmUUXuU+dA==}
     dependencies:
-      '@esbuild-kit/core-utils': 3.2.2
-      get-tsconfig: 4.6.2
+      '@esbuild-kit/core-utils': 3.3.2
+      get-tsconfig: 4.7.0
     dev: true
 
   /@esbuild-plugins/node-resolve@0.1.4(esbuild@0.18.20):
@@ -6327,6 +6327,12 @@ packages:
 
   /get-tsconfig@4.6.2:
     resolution: {integrity: sha512-E5XrT4CbbXcXWy+1jChlZmrmCwd5KGx502kDCXJJ7y898TtWW9FwoG5HfOLVRKmlmDGkWN2HM9Ho+/Y8F0sJDg==}
+    dependencies:
+      resolve-pkg-maps: 1.0.0
+    dev: true
+
+  /get-tsconfig@4.7.0:
+    resolution: {integrity: sha512-pmjiZ7xtB8URYm74PlGJozDNyhvsVLUcpBa8DZBG3bWHwaHa9bPiRpiSfovw+fjhwONSCWKRyk+JQHEGZmMrzw==}
     dependencies:
       resolve-pkg-maps: 1.0.0
     dev: true
@@ -10331,13 +10337,13 @@ packages:
   /tslib@2.6.1:
     resolution: {integrity: sha512-t0hLfiEKfMUoqhG+U1oid7Pva4bbDPHYfJNiB7BiIjRkj1pyC++4N3huJfqY6aRH6VTB0rvtzQwjM4K6qpfOig==}
 
-  /tsx@3.12.8:
-    resolution: {integrity: sha512-Lt9KYaRGF023tlLInPj8rgHwsZU8qWLBj4iRXNWxTfjIkU7canGL806AqKear1j722plHuiYNcL2ZCo6uS9UJA==}
+  /tsx@3.12.10:
+    resolution: {integrity: sha512-2+46h4xvUt1aLDNvk5YBT8Uzw+b7BolGbn7iSMucYqCXZiDc+1IMghLVdw8kKjING32JFOeO+Am9posvjkeclA==}
     hasBin: true
     dependencies:
       '@esbuild-kit/cjs-loader': 2.4.2
-      '@esbuild-kit/core-utils': 3.2.2
-      '@esbuild-kit/esm-loader': 2.5.5
+      '@esbuild-kit/core-utils': 3.3.2
+      '@esbuild-kit/esm-loader': 2.6.5
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
