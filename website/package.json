@@ -51,7 +51,7 @@
     "@types/react-dom": "18.2.7",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
-    "execa": "7.2.0",
+    "execa": "8.0.1",
     "github-slugger": "2.0.0",
     "next-sitemap": "4.2.3",
     "type-fest": "4.3.1",
