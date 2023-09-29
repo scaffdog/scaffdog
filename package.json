@@ -56,7 +56,7 @@
     "@commitlint/cli": "17.7.1",
     "@commitlint/config-conventional": "17.7.0",
     "@commitlint/config-lerna-scopes": "17.7.0",
-    "@types/mock-fs": "4.13.1",
+    "@types/mock-fs": "4.13.2",
     "@types/node": "18.17.17",
     "@typescript-eslint/eslint-plugin": "6.7.3",
     "@typescript-eslint/parser": "6.7.3",
