@@ -87,7 +87,7 @@
   "devDependencies": {
     "@types/inquirer": "9.0.3",
     "@types/inquirer-autocomplete-prompt": "3.0.0",
-    "@types/micromatch": "4.0.2",
+    "@types/micromatch": "4.0.3",
     "@types/node-emoji": "1.8.2",
     "@types/update-notifier": "6.0.5",
     "@types/yargs": "17.0.24",
