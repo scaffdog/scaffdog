@@ -29,8 +29,8 @@ importers:
         specifier: 17.7.0
         version: 17.7.0
       '@types/mock-fs':
-        specifier: 4.13.1
-        version: 4.13.1
+        specifier: 4.13.2
+        version: 4.13.2
       '@types/node':
         specifier: 18.17.17
         version: 18.17.17
@@ -3845,8 +3845,8 @@ packages:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
 
-  /@types/mock-fs@4.13.1:
-    resolution: {integrity: sha512-m6nFAJ3lBSnqbvDZioawRvpLXSaPyn52Srf7OfzjubYbYX8MTUdIgDxQl0wEapm4m/pNYSd9TXocpQ0TvZFlYA==}
+  /@types/mock-fs@4.13.2:
+    resolution: {integrity: sha512-mSIMAOjrNTVUFmZgJEigSIm+GlS4hbrk8U5+M8EB45uMrykKdN9TidjjSaOY1yFph2+TD7bsIfB4r+IrMYVyPQ==}
     dependencies:
       '@types/node': 18.17.17
     dev: true
