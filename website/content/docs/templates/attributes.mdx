@@ -9,13 +9,13 @@ The meta of a template document is called Attributes. Several options can be com
 
 List of attributes that can be specified with Front Matter.
 
-| key                      | type       | description                                                                                                                       |
-| :----------------------- | :--------- | :-------------------------------------------------------------------------------------------------------------------------------- |
-| `name`<br />(required)   | `string`   | Name of template.                                                                                                                 |
-| `root`<br />(required)   | `string`   | The directory as the starting point of the output destination.                                                                    |
-| `output`<br />(required) | `string`   | Directory starting from `root` and being a destination candidate. You can use glob syntax. (see [globby][glob-patterns] document) |
-| `ignore`                 | `string[]` | Directory to exclude from candidate output destination. You can use glob syntax. (see [globby][glob-patterns] document)           |
-| `questions`              | `object`   | Message to display when accepting input.                                                                                          |
+| key                      | type                       | description                                                                                                                       |
+| :----------------------- | :------------------------- | :-------------------------------------------------------------------------------------------------------------------------------- |
+| `name`<br />(required)   | `string`                   | Name of template.                                                                                                                 |
+| `root`<br />(required)   | `string`                   | The directory as the starting point of the output destination.                                                                    |
+| `output`<br />(required) | `string` <br /> `string[]` | Directory starting from `root` and being a destination candidate. You can use glob syntax. (see [globby][glob-patterns] document) |
+| `ignore`                 | `string[]`                 | Directory to exclude from candidate output destination. You can use glob syntax. (see [globby][glob-patterns] document)           |
+| `questions`              | `object`                   | Message to display when accepting input.                                                                                          |
 
 [glob-patterns]: https://github.com/sindresorhus/globby#globbing-patterns
 
