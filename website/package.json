@@ -45,7 +45,7 @@
     "@chakra-ui/styled-system": "2.9.1",
     "@types/github-slugger": "2.0.0",
     "@types/node": "18.18.8",
-    "@types/pako": "2.0.1",
+    "@types/pako": "2.0.2",
     "@types/prismjs": "1.26.2",
     "@types/react": "18.2.34",
     "@types/react-dom": "18.2.14",
