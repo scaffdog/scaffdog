@@ -299,8 +299,8 @@ importers:
         specifier: 9.0.6
         version: 9.0.6
       '@types/inquirer-autocomplete-prompt':
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: 3.0.2
+        version: 3.0.2
       '@types/micromatch':
         specifier: 4.0.4
         version: 4.0.4
@@ -3698,8 +3698,8 @@ packages:
     resolution: {integrity: sha512-SZs7ekbP8CN0txVG2xVRH6EgKmEm31BOxA07vkFaETzZz1xh+cbt8BcI0slpymvwhx5dlFnQG2rTlPVQn+iRPQ==}
     dev: false
 
-  /@types/inquirer-autocomplete-prompt@3.0.0:
-    resolution: {integrity: sha512-qgaINEdGNMP4fq3BJi5rvs8iMNrYhrp6krGwuVJ3jhFr+6gwqiHPSWrKov4x9vCJFbpzDVoDYjNdFG3kepdhDw==}
+  /@types/inquirer-autocomplete-prompt@3.0.2:
+    resolution: {integrity: sha512-qQmTMnXCFViLrUrZBkP2RRCj/h8xH5W1IY6Jf6ACjKgfMx2OuOAPmpd9L5JwSLneSOnJWze7g7F9iC/wEDOdTA==}
     dependencies:
       '@types/inquirer': 9.0.6
     dev: true
