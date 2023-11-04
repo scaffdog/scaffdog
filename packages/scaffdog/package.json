@@ -91,7 +91,7 @@
     "@types/node-emoji": "1.8.2",
     "@types/update-notifier": "6.0.6",
     "@types/yargs": "17.0.29",
-    "type-fest": "4.3.1"
+    "type-fest": "4.6.0"
   },
   "publishConfig": {
     "access": "public"
