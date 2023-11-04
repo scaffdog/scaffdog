@@ -308,8 +308,8 @@ importers:
         specifier: 1.8.2
         version: 1.8.2
       '@types/update-notifier':
-        specifier: 6.0.5
-        version: 6.0.5
+        specifier: 6.0.6
+        version: 6.0.6
       '@types/yargs':
         specifier: 17.0.28
         version: 17.0.28
@@ -3874,8 +3874,8 @@ packages:
   /@types/unist@3.0.0:
     resolution: {integrity: sha512-MFETx3tbTjE7Uk6vvnWINA/1iJ7LuMdO4fcq8UfF0pRbj01aGLduVvQcRyswuACJdpnHgg8E3rQLhaRdNEJS0w==}
 
-  /@types/update-notifier@6.0.5:
-    resolution: {integrity: sha512-uUOhxsJ3edPHu06r3k4I2yJ4eoyqBt+53ra9+caXEx0ruoPwqNHTlkq75CUvI4yWsrCA5+31tih+opunLCYnXw==}
+  /@types/update-notifier@6.0.6:
+    resolution: {integrity: sha512-kySKKtYW9ExZC0SsflB6dBcZnMMfxit3s+rzmSIo/hFGL0YDm1RVDZA5VRukzwESoyT8gAMHHOaYZpJPsndh0Q==}
     dependencies:
       '@types/configstore': 6.0.0
       boxen: 7.0.0
