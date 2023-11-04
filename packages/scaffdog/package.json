@@ -82,7 +82,7 @@
     "valid-filename": "^4.0.0",
     "wrap-ansi": "^8.1.0",
     "yargs": "^17.7.2",
-    "zod": "^3.11.6"
+    "zod": "^3.22.3"
   },
   "devDependencies": {
     "@types/inquirer": "9.0.6",

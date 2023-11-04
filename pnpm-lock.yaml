@@ -113,8 +113,8 @@ importers:
         specifier: ^1.14.0
         version: 1.14.0
       zod:
-        specifier: ^3.11.6
-        version: 3.17.10
+        specifier: ^3.22.3
+        version: 3.22.3
 
   packages/@scaffdog/core:
     dependencies:
@@ -292,8 +292,8 @@ importers:
         specifier: ^17.7.2
         version: 17.7.2
       zod:
-        specifier: ^3.11.6
-        version: 3.17.10
+        specifier: ^3.22.3
+        version: 3.22.3
     devDependencies:
       '@types/inquirer':
         specifier: 9.0.6
@@ -2193,7 +2193,7 @@ packages:
       ts-pattern: 4.3.0
       unified: 10.1.2
       yaml: 1.10.2
-      zod: 3.21.4
+      zod: 3.22.3
     transitivePeerDependencies:
       - '@effect-ts/otel-node'
       - esbuild
@@ -11342,12 +11342,8 @@ packages:
       type-fest: 3.5.0
     dev: false
 
-  /zod@3.17.10:
-    resolution: {integrity: sha512-IHXnQYQuOOOL/XgHhgl8YjNxBHi3xX0mVcHmqsvJgcxKkEczPshoWdxqyFwsARpf41E0v9U95WUROqsHHxt0UQ==}
-    dev: false
-
-  /zod@3.21.4:
-    resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
+  /zod@3.22.3:
+    resolution: {integrity: sha512-EjIevzuJRiRPbVH4mGc8nApb/lVLKVpmUhAaR5R5doKGfAnGJ6Gr3CViAVjP+4FWSxCsybeWQdcgCtbX+7oZug==}
     dev: false
 
   /zwitch@2.0.2:
