@@ -20,13 +20,13 @@ export const TableOfContent: React.FC<Props> = ({ frontmatter }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const elements = frontmatter.headings.map(
-        ({ id }) => document.getElementById(id)!,
+      const elements = frontmatter.headings.map(({ id }) =>
+        document.getElementById(id),
       );
 
       let current = '';
       for (const el of elements) {
-        if (el.getBoundingClientRect().top < 120) {
+        if (el != null && el.getBoundingClientRect().top < 120) {
           current = el.getAttribute('id')!;
         }
       }
