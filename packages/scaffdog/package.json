@@ -90,7 +90,7 @@
     "@types/micromatch": "4.0.4",
     "@types/node-emoji": "1.8.2",
     "@types/update-notifier": "6.0.6",
-    "@types/yargs": "17.0.29",
+    "@types/yargs": "17.0.32",
     "type-fest": "4.6.0"
   },
   "publishConfig": {
