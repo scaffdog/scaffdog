@@ -308,8 +308,8 @@ importers:
         specifier: 1.8.2
         version: 1.8.2
       '@types/update-notifier':
-        specifier: 6.0.6
-        version: 6.0.6
+        specifier: 6.0.8
+        version: 6.0.8
       '@types/yargs':
         specifier: 17.0.32
         version: 17.0.32
@@ -3895,11 +3895,11 @@ packages:
   /@types/unist@3.0.2:
     resolution: {integrity: sha512-dqId9J8K/vGi5Zr7oo212BGii5m3q5Hxlkwy3WpYuKPklmBEvsbMYYyLxAQpSffdLl/gdW0XUpKWFvYmyoWCoQ==}
 
-  /@types/update-notifier@6.0.6:
-    resolution: {integrity: sha512-kySKKtYW9ExZC0SsflB6dBcZnMMfxit3s+rzmSIo/hFGL0YDm1RVDZA5VRukzwESoyT8gAMHHOaYZpJPsndh0Q==}
+  /@types/update-notifier@6.0.8:
+    resolution: {integrity: sha512-IlDFnfSVfYQD+cKIg63DEXn3RFmd7W1iYtKQsJodcHK9R1yr8aKbKaPKfBxzPpcHCq2DU8zUq4PIPmy19Thjfg==}
     dependencies:
       '@types/configstore': 6.0.0
-      boxen: 7.0.0
+      boxen: 7.1.1
     dev: true
 
   /@types/which@3.0.0:
@@ -4493,6 +4493,21 @@ packages:
       type-fest: 3.5.0
       widest-line: 4.0.1
       wrap-ansi: 8.1.0
+    dev: false
+
+  /boxen@7.1.1:
+    resolution: {integrity: sha512-2hCgjEmP8YLWQ130n2FerGv7rYpfBmnmp9Uy2Le1vge6X3gZIfSmEzP5QTDElFxcvVcXlEn8Aq6MU/PZygIOog==}
+    engines: {node: '>=14.16'}
+    dependencies:
+      ansi-align: 3.0.1
+      camelcase: 7.0.1
+      chalk: 5.3.0
+      cli-boxes: 3.0.0
+      string-width: 5.1.2
+      type-fest: 3.5.0
+      widest-line: 4.0.1
+      wrap-ansi: 8.1.0
+    dev: true
 
   /bplist-parser@0.2.0:
     resolution: {integrity: sha512-z0M+byMThzQmD9NILRniCUXYsYpjwnlO8N5uCFaCqIOpqRsJCrQL9NK3JsD67CN5a08nF5oIL2bD6loTdHOuKw==}
@@ -4626,6 +4641,12 @@ packages:
   /camelcase@7.0.0:
     resolution: {integrity: sha512-JToIvOmz6nhGsUhAYScbo2d6Py5wojjNfoxoc2mEVLUdJ70gJK2gnd+ABY1Tc3sVMyK7QDPtN0T/XdlCQWITyQ==}
     engines: {node: '>=14.16'}
+    dev: false
+
+  /camelcase@7.0.1:
+    resolution: {integrity: sha512-xlx1yCK2Oc1APsPXDL2LdlNP6+uu8OCDdhOBSVT279M/S+y75O30C2VuD8T2ogdePBBl7PfPF4504tnLgX3zfw==}
+    engines: {node: '>=14.16'}
+    dev: true
 
   /caniuse-lite@1.0.30001519:
     resolution: {integrity: sha512-0QHgqR+Jv4bxHMp8kZ1Kn8CH55OikjKJ6JmKkZYP1F3D7w+lnFXF70nG5eNfsZS89jadi5Ywy5UCSKLAglIRkg==}
