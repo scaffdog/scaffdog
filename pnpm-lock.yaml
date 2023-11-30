@@ -411,8 +411,8 @@ importers:
         specifier: 7.23.3
         version: 7.23.3
       '@chakra-ui/styled-system':
-        specifier: 2.9.1
-        version: 2.9.1
+        specifier: 2.9.2
+        version: 2.9.2
       '@types/github-slugger':
         specifier: 2.0.0
         version: 2.0.0
@@ -1558,6 +1558,15 @@ packages:
       '@chakra-ui/shared-utils': 2.0.5
       csstype: 3.1.0
       lodash.mergewith: 4.6.2
+    dev: false
+
+  /@chakra-ui/styled-system@2.9.2:
+    resolution: {integrity: sha512-To/Z92oHpIE+4nk11uVMWqo2GGRS86coeMmjxtpnErmWRdLcp1WVCVRAvn+ZwpLiNR+reWFr2FFqJRsREuZdAg==}
+    dependencies:
+      '@chakra-ui/shared-utils': 2.0.5
+      csstype: 3.1.2
+      lodash.mergewith: 4.6.2
+    dev: true
 
   /@chakra-ui/switch@2.0.27(@chakra-ui/system@2.5.8)(framer-motion@7.0.0)(react@18.2.0):
     resolution: {integrity: sha512-z76y2fxwMlvRBrC5W8xsZvo3gP+zAEbT3Nqy5P8uh/IPd5OvDsGeac90t5cgnQTyxMOpznUNNK+1eUZqtLxWnQ==}
@@ -4995,6 +5004,10 @@ packages:
 
   /csstype@3.1.0:
     resolution: {integrity: sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==}
+
+  /csstype@3.1.2:
+    resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
+    dev: true
 
   /csv-generate@3.4.3:
     resolution: {integrity: sha512-w/T+rqR0vwvHqWs/1ZyMDWtHHSJaN06klRqJXBEpDJaM/+dZkso0OKh1VcuuYvK3XM53KysVNq8Ko/epCK8wOw==}
