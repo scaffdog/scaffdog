@@ -74,8 +74,8 @@ importers:
         specifier: 20.0.0
         version: 20.0.0
       tsx:
-        specifier: 4.5.1
-        version: 4.5.1
+        specifier: 4.6.2
+        version: 4.6.2
       turbo:
         specifier: 1.10.16
         version: 1.10.16
@@ -10412,8 +10412,8 @@ packages:
   /tslib@2.6.1:
     resolution: {integrity: sha512-t0hLfiEKfMUoqhG+U1oid7Pva4bbDPHYfJNiB7BiIjRkj1pyC++4N3huJfqY6aRH6VTB0rvtzQwjM4K6qpfOig==}
 
-  /tsx@4.5.1:
-    resolution: {integrity: sha512-/5KxoXKkiKnlQm+adAMOgfGP0/QEmdE6fL9/8LxtWYJlzaFx89ou3eqnvN3KDgm+jZJOvsg0klOFymJ4/k00qQ==}
+  /tsx@4.6.2:
+    resolution: {integrity: sha512-QPpBdJo+ZDtqZgAnq86iY/PD2KYCUPSUGIunHdGwyII99GKH+f3z3FZ8XNFLSGQIA4I365ui8wnQpl8OKLqcsg==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     dependencies:
