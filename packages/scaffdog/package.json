@@ -67,7 +67,7 @@
     "figures": "^5.0.0",
     "front-matter": "^4.0.2",
     "fuse.js": "^6.4.6",
-    "globby": "^13.0.0",
+    "globby": "^14.0.0",
     "indent-string": "^5.0.0",
     "inquirer": "^9.2.8",
     "inquirer-autocomplete-prompt": "^3.0.0",
