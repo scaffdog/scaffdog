@@ -29,7 +29,7 @@ jobs:
           chmod -c -R +rX "website/out/" | while read line; do
             echo "::warning title=Invalid file permissions automatically fixed::$line"
           done
-      - uses: actions/upload-pages-artifact@v2
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: 'website/out'
 
