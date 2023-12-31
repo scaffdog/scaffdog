@@ -65,8 +65,8 @@ importers:
         specifier: 3.0.2
         version: 3.0.2
       prettier-plugin-packagejson:
-        specifier: 2.4.7
-        version: 2.4.7(prettier@3.0.2)
+        specifier: 2.4.8
+        version: 2.4.8(prettier@3.0.2)
       rimraf:
         specifier: 5.0.5
         version: 5.0.5
@@ -3218,7 +3218,7 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       jsbi: 4.3.0
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /@lerna/package@6.4.1:
@@ -3322,7 +3322,7 @@ packages:
       '@motionone/easing': 10.13.2
       '@motionone/types': 10.13.2
       '@motionone/utils': 10.13.2
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /@motionone/dom@10.13.1:
@@ -3333,14 +3333,14 @@ packages:
       '@motionone/types': 10.13.2
       '@motionone/utils': 10.13.2
       hey-listen: 1.0.8
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /@motionone/easing@10.13.2:
     resolution: {integrity: sha512-3HqctS5NyDfDQ+8+cZqc3Pu7I6amFCt9zDUjcozHyFXHh4PKYHK4+GJDFjJIS8bCAF2BrJmpmduDQ2V7lFEYeQ==}
     dependencies:
       '@motionone/utils': 10.13.2
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /@motionone/generators@10.13.2:
@@ -3348,7 +3348,7 @@ packages:
     dependencies:
       '@motionone/types': 10.13.2
       '@motionone/utils': 10.13.2
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /@motionone/types@10.13.2:
@@ -3360,7 +3360,7 @@ packages:
     dependencies:
       '@motionone/types': 10.13.2
       hey-listen: 1.0.8
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /@next/env@13.4.19:
@@ -3681,6 +3681,11 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@pkgr/core@0.1.0:
+    resolution: {integrity: sha512-Zwq5OCzuwJC2jwqmpEQt7Ds1DTi6BWSwoGkbb1n9pO3hzb35BoJELx7c0T23iDkBGkh2e7tvOtjF3tr3OaQHDQ==}
+    engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
+    dev: true
 
   /@pkgr/utils@2.4.2:
     resolution: {integrity: sha512-POgTXhjrTfbTV63DiFXav4lBHiICLKKwDeaKn9Nphwj7WH6m0hMMCaJkMyRWjgtPFyRKRVoMXXjczsTQRDEhYw==}
@@ -4631,7 +4636,7 @@ packages:
     resolution: {integrity: sha512-xcLxITLe2HYa1cnYnwCjkOO1PqUHQpozB8x9AR0OgWN2woOBi5kSDVxKfd0b7sb1hw5qFeJhXm9H1nu3xSfLeQ==}
     engines: {node: '>=10'}
     dependencies:
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /aria-query@5.3.0:
@@ -4949,7 +4954,7 @@ packages:
     resolution: {integrity: sha512-gxGWBrTT1JuMx6R+o5PTXMmUnhnVzLQ9SNutD4YqKtI6ap897t3tKECYla6gCWEkplXnlNybEkZg9GEGxKFCgw==}
     dependencies:
       pascal-case: 3.1.2
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /camelcase-keys@6.2.2:
@@ -4986,7 +4991,7 @@ packages:
     resolution: {integrity: sha512-ds37W8CytHgwnhGGTi88pcPyR15qoNkOpYwmMMfnWqqWgESapLqvDx6huFjQ5vqWSn2Z06173XNA7LtMOeUh1A==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.6.1
+      tslib: 2.6.2
       upper-case-first: 2.0.2
     dev: false
 
@@ -5293,7 +5298,7 @@ packages:
     resolution: {integrity: sha512-I2hSBi7Vvs7BEuJDr5dDHfzb/Ruj3FyvFyh7KLilAjNQw3Be+xgqUBA2W6scVEcL0hL1dwPRtIqEPVUCKkSsyQ==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.6.1
+      tslib: 2.6.2
       upper-case: 2.0.2
     dev: false
 
@@ -5693,7 +5698,7 @@ packages:
     resolution: {integrity: sha512-Kv5nKlh6yRrdrGvxeJ2e5y2eRUpkUosIW4A2AS38zwSz27zu7ufDwQPi5Jhs3XAlGNetl3bmnGhQsMtkKJnj3w==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /dot-prop@5.3.0:
@@ -6025,7 +6030,7 @@ packages:
       globby: 13.2.2
       is-core-module: 2.13.1
       is-glob: 4.0.3
-      synckit: 0.8.5
+      synckit: 0.8.6
     transitivePeerDependencies:
       - '@typescript-eslint/parser'
       - eslint-import-resolver-node
@@ -6578,7 +6583,7 @@ packages:
     resolution: {integrity: sha512-KSuV3ur4gf2KqMNoZx3nXNVhqCkn42GuTYCX4tXPEwf0MjpFQmNMiN6m7dXaUXgIoivL6/65agoUMg4RLS0Vbg==}
     engines: {node: '>=10'}
     dependencies:
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /for-each@0.3.3:
@@ -6627,7 +6632,7 @@ packages:
   /framesync@6.0.1:
     resolution: {integrity: sha512-fUY88kXvGiIItgNC7wcTOl0SNRCVXMKSWW2Yzfmn7EKNc+MpCzcz9DhdHcdjbrtN3c6R4H5dTY2jiCpPdysEjA==}
     dependencies:
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /framesync@6.1.2:
@@ -7118,7 +7123,7 @@ packages:
     resolution: {integrity: sha512-H/vuk5TEEVZwrR0lp2zed9OCo1uAILMlx0JEMgC26rzyJJ3N1v6XkwHHXJQdR2doSjcGPM6OKPYoJgf0plJ11Q==}
     dependencies:
       capital-case: 1.0.4
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /hey-listen@1.0.8:
@@ -8023,7 +8028,7 @@ packages:
   /lower-case@2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
     dependencies:
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /lowercase-keys@2.0.0:
@@ -8956,7 +8961,7 @@ packages:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
     dependencies:
       lower-case: 2.0.2
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /node-domexception@1.0.0:
@@ -9286,7 +9291,7 @@ packages:
     resolution: {integrity: sha512-RXlj7zCYokReqWpOPH9oYivUzLYZ5vAPIfEmCTNViosC78F8F0H9y7T7gG2M39ymgutxF5gcFEsyZQSph9Bp3A==}
     dependencies:
       dot-case: 3.0.4
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /parent-module@1.0.1:
@@ -9329,7 +9334,7 @@ packages:
     resolution: {integrity: sha512-uWlGT3YSnK9x3BQJaOdcZwrnV6hPpd8jFH1/ucpiLRPh/2zCVJKS19E4GvYHvaCcACn3foXZ0cLB9Wrx1KGe5g==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /path-browserify@1.0.1:
@@ -9340,7 +9345,7 @@ packages:
     resolution: {integrity: sha512-qO4qCFjXqVTrcbPt/hQfhTQ+VhFsqNKOPtytgNKkKxSoEp3XPUQ8ObFuePylOIok5gjn69ry8XiULxCwot3Wfg==}
     dependencies:
       dot-case: 3.0.4
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /path-exists@4.0.0:
@@ -9468,7 +9473,7 @@ packages:
       framesync: 6.0.1
       hey-listen: 1.0.8
       style-value-types: 5.0.0
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /postcss@8.4.31:
@@ -9503,8 +9508,8 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-packagejson@2.4.7(prettier@3.0.2):
-    resolution: {integrity: sha512-/n1HGcBbuJyTlD3tb2/tW1mT5WIR6FCo+bAijHF6pNoSBf8YoxoskawjSY2ku9/8d6mdzci7oMchziI7CYEWYg==}
+  /prettier-plugin-packagejson@2.4.8(prettier@3.0.2):
+    resolution: {integrity: sha512-ZK37c6pRUKeUIpQWNEdMgNUiGSG5BTfeeAIA01mRjVGTfWxxVzM55Cs+LaHyweFJbEgkgCNsqMA3LGEAjfOPtA==}
     peerDependencies:
       prettier: '>= 1.16.0'
     peerDependenciesMeta:
@@ -9513,7 +9518,7 @@ packages:
     dependencies:
       prettier: 3.0.2
       sort-package-json: 2.6.0
-      synckit: 0.8.6
+      synckit: 0.8.8
     dev: true
 
   /prettier@2.7.1:
@@ -9744,7 +9749,7 @@ packages:
       '@types/react': 18.2.46
       react: 18.2.0
       react-style-singleton: 2.2.1(@types/react@18.2.46)(react@18.2.0)
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /react-remove-scroll@2.5.5(@types/react@18.2.46)(react@18.2.0):
@@ -9761,7 +9766,7 @@ packages:
       react: 18.2.0
       react-remove-scroll-bar: 2.3.3(@types/react@18.2.46)(react@18.2.0)
       react-style-singleton: 2.2.1(@types/react@18.2.46)(react@18.2.0)
-      tslib: 2.6.1
+      tslib: 2.6.2
       use-callback-ref: 1.3.0(@types/react@18.2.46)(react@18.2.0)
       use-sidecar: 1.1.2(@types/react@18.2.46)(react@18.2.0)
     dev: false
@@ -9790,7 +9795,7 @@ packages:
       get-nonce: 1.0.1
       invariant: 2.2.4
       react: 18.2.0
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /react@18.2.0:
@@ -10272,7 +10277,7 @@ packages:
     resolution: {integrity: sha512-8LS0JInaQMCRoQ7YUytAo/xUu5W2XnQxV2HI/6uM6U7CITS1RqPElr30V6uIqyMKM9lJGRVFy5/4CuzcixNYSg==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.6.1
+      tslib: 2.6.2
       upper-case-first: 2.0.2
     dev: false
 
@@ -10382,7 +10387,7 @@ packages:
     resolution: {integrity: sha512-LAOh4z89bGQvl9pFfNF8V146i7o7/CqFPbqzYgP+yYzDIDeS9HaNFtXABamRW+AQzEVODcvE79ljJ+8a9YSdMg==}
     dependencies:
       dot-case: 3.0.4
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /sort-keys@2.0.0:
@@ -10680,14 +10685,14 @@ packages:
     resolution: {integrity: sha512-08yq36Ikn4kx4YU6RD7jWEv27v4V+PUsOGa4n/as8Et3CuODMJQ00ENeAVXAeydX4Z2j1XHZF1K2sX4mGl18fA==}
     dependencies:
       hey-listen: 1.0.8
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /style-value-types@5.1.0:
     resolution: {integrity: sha512-DRIfBtjxQ4ztBZpexkFcI+UR7pODC5qLMf2Syt+bH98PAHHRH2tQnzxBuDQlqcAoYar6GzWnj8iAfqfwnEzCiQ==}
     dependencies:
       hey-listen: 1.0.8
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /styled-jsx@5.1.1(@babel/core@7.23.6)(react@18.2.0):
@@ -10727,19 +10732,19 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  /synckit@0.8.5:
-    resolution: {integrity: sha512-L1dapNV6vu2s/4Sputv8xGsCdAVlb5nRDMFU/E27D44l5U6cw1g0dGd45uLc+OXjNMmF4ntiMdCimzcjFKQI8Q==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    dependencies:
-      '@pkgr/utils': 2.4.2
-      tslib: 2.6.1
-    dev: true
-
   /synckit@0.8.6:
     resolution: {integrity: sha512-laHF2savN6sMeHCjLRkheIU4wo3Zg9Ln5YOjOo7sZ5dVQW8yF5pPE5SIw1dsPhq3TRp1jisKRCdPhfs/1WMqDA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     dependencies:
       '@pkgr/utils': 2.4.2
+      tslib: 2.6.2
+    dev: true
+
+  /synckit@0.8.8:
+    resolution: {integrity: sha512-HwOKAP7Wc5aRGYdKH+dw0PRRpbO841v2DENBtjnR5HFWoiNByAl7vrx3p0G/rCyYXQsrxqtX48TImFtPcIHSpQ==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    dependencies:
+      '@pkgr/core': 0.1.0
       tslib: 2.6.2
     dev: true
 
@@ -10895,7 +10900,6 @@ packages:
 
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
-    dev: true
 
   /tsx@4.7.0:
     resolution: {integrity: sha512-I+t79RYPlEYlHn9a+KzwrvEwhJg35h/1zHsLC2JXvhC2mdynMv6Zxzvhv5EMV6VF5qJlLlkSnMVvdZV3PSIGcg==}
@@ -11250,13 +11254,13 @@ packages:
   /upper-case-first@2.0.2:
     resolution: {integrity: sha512-514ppYHBaKwfJRK/pNC6c/OxfGa0obSnAl106u97Ed0I625Nin96KAjttZF6ZL3e1XLtphxnqrOi9iWgm+u+bg==}
     dependencies:
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /upper-case@2.0.2:
     resolution: {integrity: sha512-KgdgDGJt2TpuwBUIjgG6lzw2GWFRCW9Qkfkiv0DxqHHLYJHmtmdUIKcZd8rHgFSjopVTlw6ggzCm1b8MFQwikg==}
     dependencies:
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /uri-js@4.4.1:
@@ -11277,7 +11281,7 @@ packages:
     dependencies:
       '@types/react': 18.2.46
       react: 18.2.0
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /use-sidecar@1.1.2(@types/react@18.2.46)(react@18.2.0):
@@ -11293,7 +11297,7 @@ packages:
       '@types/react': 18.2.46
       detect-node-es: 1.1.0
       react: 18.2.0
-      tslib: 2.6.1
+      tslib: 2.6.2
     dev: false
 
   /util-deprecate@1.0.2:
