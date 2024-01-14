@@ -47,7 +47,7 @@
     "@types/node": "18.19.4",
     "@types/pako": "2.0.3",
     "@types/prismjs": "1.26.3",
-    "@types/react": "18.2.46",
+    "@types/react": "18.2.47",
     "@types/react-dom": "18.2.18",
     "eslint": "8.56.0",
     "eslint-config-next": "14.0.1",
