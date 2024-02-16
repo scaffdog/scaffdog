@@ -59,8 +59,8 @@ importers:
         specifier: 5.2.0
         version: 5.2.0
       npm-run-all2:
-        specifier: 5.0.0
-        version: 5.0.0
+        specifier: 5.0.2
+        version: 5.0.2
       prettier:
         specifier: 3.0.2
         version: 3.0.2
@@ -2228,10 +2228,6 @@ packages:
     peerDependencies:
       '@effect-ts/otel-node': '*'
     peerDependenciesMeta:
-      '@effect-ts/core':
-        optional: true
-      '@effect-ts/otel':
-        optional: true
       '@effect-ts/otel-node':
         optional: true
     dependencies:
@@ -3634,7 +3630,7 @@ packages:
       '@opentelemetry/propagator-b3': 1.15.1(@opentelemetry/api@1.4.1)
       '@opentelemetry/propagator-jaeger': 1.15.1(@opentelemetry/api@1.4.1)
       '@opentelemetry/sdk-trace-base': 1.15.1(@opentelemetry/api@1.4.1)
-      semver: 7.5.4
+      semver: 7.6.0
     dev: false
 
   /@opentelemetry/semantic-conventions@1.13.0:
@@ -4357,7 +4353,7 @@ packages:
       debug: 4.3.4
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.5.4
+      semver: 7.6.0
       ts-api-utils: 1.0.1(typescript@5.3.3)
       typescript: 5.3.3
     transitivePeerDependencies:
@@ -8840,7 +8836,7 @@ packages:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.13.1
-      semver: 7.5.4
+      semver: 7.6.0
       validate-npm-package-license: 3.0.4
     dev: true
 
@@ -8863,12 +8859,12 @@ packages:
       validate-npm-package-name: 3.0.0
     dev: true
 
-  /npm-run-all2@5.0.0:
-    resolution: {integrity: sha512-twczQhEpj55UROtg0Xz0nzn83TanS5Re12g5g1hcdnyAhlWOt9VNHdSHf2Z6MO3/wOVqy9tEdi0ruJt5NnMgmw==}
+  /npm-run-all2@5.0.2:
+    resolution: {integrity: sha512-S2G6FWZ3pNWAAKm2PFSOtEAG/N+XO/kz3+9l6V91IY+Y3XFSt7Lp7DV92KCgEboEW0hRTu0vFaMe4zXDZYaOyA==}
     engines: {node: '>= 10'}
     hasBin: true
     dependencies:
-      ansi-styles: 4.3.0
+      ansi-styles: 5.2.0
       cross-spawn: 7.0.3
       memorystream: 0.3.1
       minimatch: 3.1.2
@@ -9096,7 +9092,7 @@ packages:
       got: 11.8.6
       registry-auth-token: 4.2.2
       registry-url: 5.1.0
-      semver: 7.5.4
+      semver: 7.6.0
     dev: false
 
   /pako@2.1.0:
@@ -10029,7 +10025,7 @@ packages:
     resolution: {integrity: sha512-0Ju4+6A8iOnpL/Thra7dZsSlOHYAHIeMxfhWQRI1/VLcT3WDBZKKtQt/QkBOsiIN9ZpuvHE6cGZ0x4glCMmfiA==}
     engines: {node: '>=12'}
     dependencies:
-      semver: 7.5.4
+      semver: 7.6.0
     dev: false
 
   /semver@5.7.2:
@@ -10054,7 +10050,6 @@ packages:
     hasBin: true
     dependencies:
       lru-cache: 6.0.0
-    dev: true
 
   /sentence-case@3.0.4:
     resolution: {integrity: sha512-8LS0JInaQMCRoQ7YUytAo/xUu5W2XnQxV2HI/6uM6U7CITS1RqPElr30V6uIqyMKM9lJGRVFy5/4CuzcixNYSg==}
