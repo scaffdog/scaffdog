@@ -40,7 +40,7 @@
   "dependencies": {
     "@scaffdog/error": "workspace:*",
     "@scaffdog/types": "workspace:*",
-    "change-case": "^4.1.2",
+    "change-case": "^5.0.0",
     "dayjs": "^1.10.4",
     "is-plain-obj": "^4.1.0",
     "plur": "5.1.0"
