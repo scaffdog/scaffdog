@@ -277,8 +277,8 @@ importers:
         specifier: 7.1.0
         version: 7.1.0
       term-size:
-        specifier: ^3.0.0
-        version: 3.0.0
+        specifier: ^4.0.0
+        version: 4.0.0
       update-notifier:
         specifier: ^6.0.0
         version: 6.0.0
@@ -2228,10 +2228,6 @@ packages:
     peerDependencies:
       '@effect-ts/otel-node': '*'
     peerDependenciesMeta:
-      '@effect-ts/core':
-        optional: true
-      '@effect-ts/otel':
-        optional: true
       '@effect-ts/otel-node':
         optional: true
     dependencies:
@@ -10532,9 +10528,10 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /term-size@3.0.0:
-    resolution: {integrity: sha512-djz8Mao5rNsnC6o5AcEClJkiVdwkHTA/PrHjd5mI4JU9AsFh6iog9yhqxim17HkuJnMHtLu7lL8Jfa1kiihW5g==}
+  /term-size@4.0.0:
+    resolution: {integrity: sha512-105zga8eUjLH0I+ffu2UXZLCHCEu6fbgpeKRnBmScUQuMbEXtR77DQkUS9XoaJhvxko6W/4ZiwcPETtzYUgYrw==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    deprecated: Renamed to terminal-size
     dev: false
 
   /text-extensions@2.4.0:
