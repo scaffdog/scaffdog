@@ -48,6 +48,7 @@ import {
 import { whitespaceOrComment } from './comments.js';
 import { expression, identifier } from './expressions.js';
 import { tagClose, tagOpen } from './literals.js';
+import { whitespace1 } from './spaces.js';
 import type { Option, Parser, ParseResult, ParseState } from './types.js';
 
 // end, continue, break
@@ -233,6 +234,7 @@ export const forStatement: Parser<ForStatement> = (state) =>
   map(
     concat([
       string('for'),
+      whitespace1,
       whitespaceOrComment,
       cut(expected(forBinding, 'Missing expression after "for" keyword')),
       whitespaceOrComment,
@@ -253,6 +255,7 @@ export const forStatement: Parser<ForStatement> = (state) =>
     ]),
     (
       [
+        ,
         ,
         leading1,
         [value, index],
