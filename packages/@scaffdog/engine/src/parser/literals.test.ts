@@ -167,7 +167,6 @@ test.each<ParserTestEntry>([
   expect(parse(numericLiteral, args[1])).toEqual(result(...args));
 });
 
-/* eslint-disable no-useless-escape */
 test.each<ParserTestEntry>([
   [
     'success',
@@ -242,7 +241,6 @@ test.each<ParserTestEntry>([
 ])('stringLiteral - %s %s', (...args) => {
   expect(parse(stringLiteral, args[1])).toEqual(result(...args));
 });
-/* eslint-enable no-useless-escape */
 
 test.each<ParserTestEntry>([
   ['success', 'null', createNullLiteral([0, 3]), '', 4, true, []],

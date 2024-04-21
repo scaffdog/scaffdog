@@ -303,7 +303,6 @@ export const manyTill: ManyTillFn = (p, q) => (state) => {
   const rs: ParseData<typeof p>[] = [];
   let s = state;
 
-  // eslint-disable-next-line no-constant-condition
   while (true) {
     const qr = q(s);
     if (qr.type === 'success') {
