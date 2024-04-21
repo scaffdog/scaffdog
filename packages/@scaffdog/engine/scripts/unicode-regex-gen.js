@@ -17,13 +17,17 @@ const DEST = path.resolve(
 
 const idStart = regenerate()
   .add(
-    require(`@unicode/unicode-${VERSION}/Binary_Property/ID_Start/code-points.js`),
+    require(
+      `@unicode/unicode-${VERSION}/Binary_Property/ID_Start/code-points.js`,
+    ),
   )
   .toRegExp();
 
 const idContinue = regenerate()
   .add(
-    require(`@unicode/unicode-${VERSION}/Binary_Property/ID_Continue/code-points.js`),
+    require(
+      `@unicode/unicode-${VERSION}/Binary_Property/ID_Continue/code-points.js`,
+    ),
   )
   .toRegExp();
 
