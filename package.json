@@ -36,7 +36,7 @@
     "canary:enter": "changeset pre enter canary",
     "canary:exit": "changeset pre exit",
     "release": "changeset publish",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "lint-staged": {
     "*.{js,jsx,cjs,ts,tsx,css,md,yml,json}": [
