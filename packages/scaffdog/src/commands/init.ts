@@ -3,7 +3,7 @@ import { extract } from '@scaffdog/core';
 import { compile, createContext } from '@scaffdog/engine';
 import chalk from 'chalk';
 import symbols from 'log-symbols';
-import emoji from 'node-emoji';
+import { emojify } from 'node-emoji';
 import { createCommand } from '../command.js';
 import type { File } from '../file.js';
 
@@ -105,7 +105,7 @@ https://scaff.dog/docs/templates
 
   logger.log('');
   logger.log(
-    emoji.emojify(
+    emojify(
       `
 Setup of ${chalk.bold.green('scaffdog')} :dog: is complete!
 
