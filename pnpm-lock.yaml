@@ -62,11 +62,11 @@ importers:
         specifier: 6.1.2
         version: 6.1.2
       prettier:
-        specifier: 3.0.2
-        version: 3.0.2
+        specifier: 3.2.5
+        version: 3.2.5
       prettier-plugin-packagejson:
         specifier: 2.5.0
-        version: 2.5.0(prettier@3.0.2)
+        version: 2.5.0(prettier@3.2.5)
       rimraf:
         specifier: 5.0.5
         version: 5.0.5
@@ -202,8 +202,8 @@ importers:
         specifier: ^9.0.0
         version: 9.0.0
       prettier:
-        specifier: 3.0.2
-        version: 3.0.2
+        specifier: 3.2.5
+        version: 3.2.5
 
   packages/scaffdog:
     dependencies:
@@ -9276,7 +9276,7 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-packagejson@2.5.0(prettier@3.0.2):
+  /prettier-plugin-packagejson@2.5.0(prettier@3.2.5):
     resolution: {integrity: sha512-6XkH3rpin5QEQodBSVNg+rBo4r91g/1mCaRwS1YGdQJZ6jwqrg2UchBsIG9tpS1yK1kNBvOt84OILsX8uHzBGg==}
     peerDependencies:
       prettier: '>= 1.16.0'
@@ -9284,7 +9284,7 @@ packages:
       prettier:
         optional: true
     dependencies:
-      prettier: 3.0.2
+      prettier: 3.2.5
       sort-package-json: 2.10.0
       synckit: 0.9.0
     dev: true
@@ -9295,8 +9295,8 @@ packages:
     hasBin: true
     dev: true
 
-  /prettier@3.0.2:
-    resolution: {integrity: sha512-o2YR9qtniXvwEZlOKbveKfDQVyqxbEIWn48Z8m3ZJjBjcCmUy3xZGIv+7AkaeuaTr6yPXJjwv07ZWlsWbEy1rQ==}
+  /prettier@3.2.5:
+    resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
     engines: {node: '>=14'}
     hasBin: true
 

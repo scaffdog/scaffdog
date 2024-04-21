@@ -179,11 +179,9 @@ export function memberExpression(
       }
       return props
         .slice(1)
-        .reduce<MemberExpression | PrimaryExpressionKind>(
-          (acc, [expr, computed]) =>
-            createMemberExpression(acc, expr, computed),
-          createMemberExpression(obj, props[0]![0], props[0]![1]),
-        );
+        .reduce<
+          MemberExpression | PrimaryExpressionKind
+        >((acc, [expr, computed]) => createMemberExpression(acc, expr, computed), createMemberExpression(obj, props[0]![0], props[0]![1]));
     },
   )(state);
 }
