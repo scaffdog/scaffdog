@@ -4,7 +4,7 @@ import chalk from 'chalk';
 import { isDynamicPattern } from 'globby';
 import symbols from 'log-symbols';
 import micromatch from 'micromatch';
-import emoji from 'node-emoji';
+import { emojify } from 'node-emoji';
 import plur from 'plur';
 import { createCommand } from '../command.js';
 import type { File } from '../file.js';
@@ -261,7 +261,7 @@ export default createCommand({
   };
 
   logger.log('');
-  logger.log(emoji.emojify(`:dog: Generated ${msg.write}!${msg.skip}`));
+  logger.log(emojify(`:dog: Generated ${msg.write}!${msg.skip}`));
   logger.log('');
 
   [...writes, ...skips].forEach((file) => {
