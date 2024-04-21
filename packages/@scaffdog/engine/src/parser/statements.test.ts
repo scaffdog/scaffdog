@@ -650,6 +650,19 @@ test.each<ParserTestEntry>([
     true,
     [],
   ],
+  [
+    'success',
+    '{{ formula }}',
+    createTagTemplate(
+      createTag('open', '{{', false, [0, 1]),
+      createExpressionStatement(createIdentifier('formula', [3, 9])),
+      createTag('close', '}}', false, [11, 12]),
+    ),
+    '',
+    13,
+    true,
+    [],
+  ],
   ['error', '{{ a', '', 4, true, [parseError('Missing "}}"', [4, 4])]],
 ])('tagTemplate - %s %s', (...args) => {
   expect(parse(tagTemplate, args[1])).toEqual(result(...args));
