@@ -36,7 +36,7 @@
     "canary:enter": "changeset pre enter canary",
     "canary:exit": "changeset pre exit",
     "release": "changeset publish",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "lint-staged": {
     "*.{js,jsx,cjs,ts,tsx,css,md,yml,json}": [
@@ -63,7 +63,7 @@
     "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-import": "2.29.1",
-    "husky": "8.0.3",
+    "husky": "9.0.11",
     "lint-staged": "15.2.2",
     "mock-fs": "5.2.0",
     "npm-run-all2": "6.1.2",
