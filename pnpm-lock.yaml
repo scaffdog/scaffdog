@@ -29,7 +29,7 @@ importers:
         specifier: 19.0.0
         version: 19.0.0
       '@eslint/js':
-        specifier: ^9.1.1
+        specifier: 9.1.1
         version: 9.1.1
       '@types/mock-fs':
         specifier: 4.13.4
@@ -47,7 +47,7 @@ importers:
         specifier: 2.29.1
         version: 2.29.1(@typescript-eslint/parser@7.7.0)(eslint@9.1.0)
       globals:
-        specifier: ^15.0.0
+        specifier: 15.0.0
         version: 15.0.0
       husky:
         specifier: 9.0.11
@@ -83,7 +83,7 @@ importers:
         specifier: 5.4.5
         version: 5.4.5
       typescript-eslint:
-        specifier: ^7.7.0
+        specifier: 7.7.0
         version: 7.7.0(eslint@9.1.0)(typescript@5.4.5)
       unbuild:
         specifier: 1.2.1
@@ -7280,7 +7280,7 @@ packages:
     dependencies:
       dir-glob: 3.0.1
       fast-glob: 3.3.2
-      ignore: 5.2.4
+      ignore: 5.3.1
       merge2: 1.4.1
       slash: 4.0.0
     dev: true
