@@ -90,7 +90,7 @@
     "@types/micromatch": "4.0.7",
     "@types/update-notifier": "6.0.8",
     "@types/yargs": "17.0.32",
-    "type-fest": "4.9.0"
+    "type-fest": "4.16.0"
   },
   "publishConfig": {
     "access": "public"

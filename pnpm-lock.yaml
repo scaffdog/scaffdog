@@ -6,7 +6,7 @@ settings:
 
 overrides:
   ansi-regex: 5.0.1
-  type-fest: 3.5.0
+  type-fest: 4.15.0
   trim-newlines: 3.0.1
 
 importers:
@@ -187,8 +187,8 @@ importers:
   packages/@scaffdog/types:
     dependencies:
       type-fest:
-        specifier: 3.5.0
-        version: 3.5.0
+        specifier: 4.15.0
+        version: 4.15.0
 
   packages/prettier-plugin-scaffdog:
     dependencies:
@@ -314,8 +314,8 @@ importers:
         specifier: 17.0.32
         version: 17.0.32
       type-fest:
-        specifier: 3.5.0
-        version: 3.5.0
+        specifier: 4.15.0
+        version: 4.15.0
 
   website:
     dependencies:
@@ -447,8 +447,8 @@ importers:
         specifier: 4.2.3
         version: 4.2.3(next@14.0.1)
       type-fest:
-        specifier: 3.5.0
-        version: 3.5.0
+        specifier: 4.15.0
+        version: 4.15.0
       typescript:
         specifier: 5.4.5
         version: 5.4.5
@@ -2190,7 +2190,7 @@ packages:
       remark-parse: 10.0.2
       remark-rehype: 10.1.0
       source-map-support: 0.5.21
-      type-fest: 3.5.0
+      type-fest: 4.15.0
       unified: 10.1.2
     transitivePeerDependencies:
       - '@effect-ts/otel-node'
@@ -2257,7 +2257,7 @@ packages:
       memfs: 3.5.3
       oo-ascii-tree: 1.86.1
       ts-pattern: 4.3.0
-      type-fest: 3.5.0
+      type-fest: 4.15.0
     dev: false
 
   /@corex/deepmerge@4.0.43:
@@ -4839,21 +4839,21 @@ packages:
     resolution: {integrity: sha512-gKXj5ALrKWQLsYG9jlTRmR/xKluxHV+Z9QEwNIgCfM1/uwPMCuzVVnh5mwTd+OuBZcwSIMbqssNWRm1lE51QaQ==}
     engines: {node: '>=8'}
     dependencies:
-      type-fest: 3.5.0
+      type-fest: 4.15.0
     dev: false
 
   /ansi-escapes@6.0.0:
     resolution: {integrity: sha512-IG23inYII3dWlU2EyiAiGj6Bwal5GzsgPMwjYGvc1HPE2dgbj4ZB5ToWBKSquKw74nB3TIuOwaI6/jSULzfgrw==}
     engines: {node: '>=14.16'}
     dependencies:
-      type-fest: 3.5.0
+      type-fest: 4.15.0
     dev: false
 
   /ansi-escapes@6.2.0:
     resolution: {integrity: sha512-kzRaCqXnpzWs+3z5ABPQiVke+iq0KXkHo8xiWV4RPTi5Yli0l97BEQuhXV1s7+aSU/fu1kUuxgS4MsQ0fRuygw==}
     engines: {node: '>=14.16'}
     dependencies:
-      type-fest: 3.5.0
+      type-fest: 4.15.0
     dev: true
 
   /ansi-regex@5.0.1:
@@ -5099,7 +5099,7 @@ packages:
       chalk: 5.3.0
       cli-boxes: 3.0.0
       string-width: 5.1.2
-      type-fest: 3.5.0
+      type-fest: 4.15.0
       widest-line: 4.0.1
       wrap-ansi: 8.1.0
     dev: false
@@ -5113,7 +5113,7 @@ packages:
       chalk: 5.3.0
       cli-boxes: 3.0.0
       string-width: 5.1.2
-      type-fest: 3.5.0
+      type-fest: 4.15.0
       widest-line: 4.0.1
       wrap-ansi: 8.1.0
     dev: true
@@ -5687,7 +5687,7 @@ packages:
     resolution: {integrity: sha512-x8dy3RnvYdlUcPOjkEHqozhiwzKNSq7GcPuXFbnyMOCHxX8V3OgIg/pYuabl2sbUPfIJaeAQB7PMOK8DFIdoRA==}
     engines: {node: '>=12'}
     dependencies:
-      type-fest: 3.5.0
+      type-fest: 4.15.0
     dev: false
 
   /css-box-model@1.2.1:
@@ -7231,7 +7231,7 @@ packages:
     resolution: {integrity: sha512-Qg5QtVkCy/kv3FUSlu4ukeZDVf9ee0iXLAUYX13gbR17bnejFTzr4iS9bY7kwCf1NztRNm1t91fjOiyx4CSwPQ==}
     engines: {node: '>=8'}
     dependencies:
-      type-fest: 3.5.0
+      type-fest: 4.15.0
     dev: true
 
   /globals@14.0.0:
@@ -8205,7 +8205,7 @@ packages:
       graceful-fs: 4.2.10
       parse-json: 5.2.0
       strip-bom: 4.0.0
-      type-fest: 3.5.0
+      type-fest: 4.15.0
     dev: true
 
   /load-yaml-file@0.2.0:
@@ -8652,7 +8652,7 @@ packages:
       read-pkg-up: 7.0.1
       redent: 3.0.0
       trim-newlines: 3.0.1
-      type-fest: 3.5.0
+      type-fest: 4.15.0
       yargs-parser: 18.1.3
     dev: true
 
@@ -10054,7 +10054,7 @@ packages:
     dependencies:
       find-up: 4.1.0
       read-pkg: 5.2.0
-      type-fest: 3.5.0
+      type-fest: 4.15.0
     dev: true
 
   /read-pkg@5.2.0:
@@ -10064,7 +10064,7 @@ packages:
       '@types/normalize-package-data': 2.4.1
       normalize-package-data: 2.5.0
       parse-json: 5.2.0
-      type-fest: 3.5.0
+      type-fest: 4.15.0
     dev: true
 
   /read-yaml-file@1.1.0:
@@ -11204,9 +11204,9 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /type-fest@3.5.0:
-    resolution: {integrity: sha512-bI3zRmZC8K0tUz1HjbIOAGQwR2CoPQG68N5IF7gm0LBl8QSNXzkmaWnkWccCUL5uG9mCsp4sBwC8SBrNSISWew==}
-    engines: {node: '>=14.16'}
+  /type-fest@4.15.0:
+    resolution: {integrity: sha512-tB9lu0pQpX5KJq54g+oHOLumOx+pMep4RaM6liXh2PKmVRFF+/vAtUP0ZaJ0kOySfVNjF6doBWPHhBhISKdlIA==}
+    engines: {node: '>=16'}
 
   /typed-array-buffer@1.0.0:
     resolution: {integrity: sha512-Y8KTSIglk9OZEr8zywiIHG/kmQ7KWyjseXs1CbSo8vC42w7hg2HgYTxSWwP0+is7bWDc1H+Fo026CpHFwm8tkw==}
@@ -11916,7 +11916,7 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       sort-keys: 2.0.0
-      type-fest: 3.5.0
+      type-fest: 4.15.0
       write-json-file: 3.2.0
     dev: true
 
@@ -12027,7 +12027,7 @@ packages:
       property-expr: 2.0.5
       tiny-case: 1.0.3
       toposort: 2.0.2
-      type-fest: 3.5.0
+      type-fest: 4.15.0
     dev: false
 
   /zod@3.22.3:
