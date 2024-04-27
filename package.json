@@ -46,7 +46,7 @@
   "pnpm": {
     "overrides": {
       "ansi-regex": "5.0.1",
-      "type-fest": "4.15.0",
+      "type-fest": "4.17.0",
       "trim-newlines": "3.0.1"
     }
   },
