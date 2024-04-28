@@ -133,8 +133,8 @@ importers:
         specifier: ^10.0.2
         version: 10.0.2
       unified:
-        specifier: ^10.1.2
-        version: 10.1.2
+        specifier: ^11.0.0
+        version: 11.0.4
       unist-util-visit-parents:
         specifier: ^6.0.1
         version: 6.0.1
