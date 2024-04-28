@@ -1,5 +1,16 @@
 # Change Log
 
+## 4.0.0
+
+### Major Changes
+
+- [#1144](https://github.com/scaffdog/scaffdog/pull/1144) [`c77d3cb`](https://github.com/scaffdog/scaffdog/commit/c77d3cbeab056640d9b3d211e94c92393afcb90f) Thanks [@wadackel](https://github.com/wadackel)! - Require Node.js 18
+
+### Patch Changes
+
+- Updated dependencies [[`c77d3cb`](https://github.com/scaffdog/scaffdog/commit/c77d3cbeab056640d9b3d211e94c92393afcb90f)]:
+  - @scaffdog/types@4.0.0
+
 ## 3.0.0
 
 ### Major Changes
