@@ -26,8 +26,8 @@ exports[`handle > ScaffdogAggregateError 1`] = `
     message
 
     2 issues found
-    - INVALID_TYPE: Expected string, received number (in \\"foo\\")
-    - INVALID_TYPE: Expected number, received string (in \\"bar.baz\\")
+    - INVALID_TYPE: Expected string, received number (in "foo")
+    - INVALID_TYPE: Expected number, received string (in "bar.baz")
 
     AggregateError message
 
@@ -39,7 +39,7 @@ exports[`handle > ScaffdogError - with source 1`] = `
 "
  ERROR  Compile Error
 
-       \\"foo\\" is not defined:
+       "foo" is not defined:
 
      > │ {{ foo }}
        │    ^^^
@@ -61,8 +61,8 @@ exports[`handle > ZodError 1`] = `
  ERROR  Parsing Error
 
     2 issues found
-    - INVALID_TYPE: Expected string, received number (in \\"foo\\")
-    - INVALID_TYPE: Expected number, received string (in \\"bar.baz\\")
+    - INVALID_TYPE: Expected string, received number (in "foo")
+    - INVALID_TYPE: Expected number, received string (in "bar.baz")
 
 "
 `;

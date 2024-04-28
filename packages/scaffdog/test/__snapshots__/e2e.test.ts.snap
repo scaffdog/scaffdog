@@ -2,9 +2,9 @@
 
 exports[`generate > failure - inputs (.) 1`] = `
 "
-ℹ Output destination directory: \\"tmp\\"
+ℹ Output destination directory: "tmp"
 
- ERROR  Question Error: \\"value\\" is required but found empty value
+ ERROR  Question Error: "value" is required but found empty value
 
   {stacktrace}
   {stacktrace}
@@ -21,9 +21,9 @@ exports[`generate > failure - inputs (.) 1`] = `
 
 exports[`generate > failure - inputs (.) 2`] = `
 "
-ℹ Output destination directory: \\"tmp\\"
+ℹ Output destination directory: "tmp"
 
- ERROR  Question Error: \\"choice\\" must be one of \\"A, B, C\\"
+ ERROR  Question Error: "choice" must be one of "A, B, C"
 
   {stacktrace}
   {stacktrace}
@@ -40,7 +40,7 @@ exports[`generate > failure - inputs (.) 2`] = `
 
 exports[`generate > success - basic (.) 1`] = `
 "
-ℹ Output destination directory: \\"tmp\\"
+ℹ Output destination directory: "tmp"
 
 🐶 Generated 2 files!
 
@@ -70,7 +70,7 @@ tmp/nest",
 
 exports[`generate > success - basic (override) 1`] = `
 "
-ℹ Output destination directory: \\"tmp/override\\"
+ℹ Output destination directory: "tmp/override"
 
 🐶 Generated 2 files!
 
@@ -100,7 +100,7 @@ tmp/override/nest",
 
 exports[`generate > success - conditional-generate (false) 1`] = `
 "
-ℹ Output destination directory: \\"tmp/false\\"
+ℹ Output destination directory: "tmp/false"
 
 🐶 Generated 1 file! (1 skipped)
 
@@ -121,7 +121,7 @@ exports[`generate > success - conditional-generate (false) 2`] = `
 
 exports[`generate > success - conditional-generate (true) 1`] = `
 "
-ℹ Output destination directory: \\"tmp/true\\"
+ℹ Output destination directory: "tmp/true"
 
 🐶 Generated 1 file! (1 skipped)
 
@@ -142,7 +142,7 @@ exports[`generate > success - conditional-generate (true) 2`] = `
 
 exports[`generate > success - inputs (.) 1`] = `
 "
-ℹ Output destination directory: \\"tmp\\"
+ℹ Output destination directory: "tmp"
 
 🐶 Generated 1 file!
 
@@ -164,7 +164,7 @@ path: tmp/scaffdog.txt",
 
 exports[`generate > success - inputs (deep/nest) 1`] = `
 "
-ℹ Output destination directory: \\"tmp/deep/nest\\"
+ℹ Output destination directory: "tmp/deep/nest"
 
 🐶 Generated 1 file!
 
@@ -186,7 +186,7 @@ path: tmp/deep/nest/e2e.txt",
 
 exports[`generate > success - question (dist) 1`] = `
 "
-ℹ Output destination directory: \\"tmp/dist\\"
+ℹ Output destination directory: "tmp/dist"
 
 🐶 Generated 1 file!
 
@@ -226,7 +226,7 @@ checkbox_if_without_initial: ",
 
 exports[`generate > success - vars (.) 1`] = `
 "
-ℹ Output destination directory: \\"tmp\\"
+ℹ Output destination directory: "tmp"
 
 🐶 Generated 1 file!
 
