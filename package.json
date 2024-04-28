@@ -77,6 +77,6 @@
     "typescript-eslint": "7.7.0",
     "unbuild": "1.2.1",
     "vitest": "0.34.6",
-    "zx": "8.0.1"
+    "zx": "8.0.2"
   }
 }
