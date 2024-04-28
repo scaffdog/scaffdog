@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`args and flags > answers 1`] = `
-"ℹ Output destination directory: \\".\\"
+"ℹ Output destination directory: "."
 
 🐶 Generated 2 files!
 
@@ -11,7 +11,7 @@ exports[`args and flags > answers 1`] = `
 `;
 
 exports[`args and flags > dry-run 1`] = `
-"ℹ Output destination directory: \\".\\"
+"ℹ Output destination directory: "."
 
 ───┬────────────────────────────────────────────────────────
  ✔ │ File: static.txt
@@ -31,7 +31,7 @@ exports[`args and flags > dry-run 1`] = `
 `;
 
 exports[`args and flags > force 1`] = `
-"ℹ Output destination directory: \\".\\"
+"ℹ Output destination directory: "."
 
 🐶 Generated 2 files!
 
@@ -49,13 +49,13 @@ exports[`args and flags > no documents 1`] = `
 
 exports[`args and flags > not found 1`] = `
 "
- ERROR  Document \\"not-found\\" not found.
+ ERROR  Document "not-found" not found.
 
 "
 `;
 
 exports[`args and flags > output 1`] = `
-"ℹ Output destination directory: \\"src/dir/nest\\"
+"ℹ Output destination directory: "src/dir/nest"
 
 🐶 Generated 1 file!
 
@@ -72,7 +72,7 @@ exports[`prompt > magic pattern and destination autocomplete 1`] = `
 `;
 
 exports[`prompt > name 1`] = `
-"ℹ Output destination directory: \\".\\"
+"ℹ Output destination directory: "."
 
 🐶 Generated 2 files!
 
@@ -82,7 +82,7 @@ exports[`prompt > name 1`] = `
 `;
 
 exports[`prompt > overwrite files 1`] = `
-"ℹ Output destination directory: \\".\\"
+"ℹ Output destination directory: "."
 
 🐶 Generated 1 file! (1 skipped)
 
