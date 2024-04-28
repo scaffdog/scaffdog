@@ -1,5 +1,5 @@
 import { LogLevels, type ConsolaInstance } from 'consola';
-import termSize from 'term-size';
+import termSize from 'terminal-size';
 import type { PackageJson } from 'type-fest';
 import yargs from 'yargs';
 import type { ScaffdogFactory } from './api.js';

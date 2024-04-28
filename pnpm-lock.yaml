@@ -276,7 +276,7 @@ importers:
       strip-ansi:
         specifier: 7.1.0
         version: 7.1.0
-      term-size:
+      terminal-size:
         specifier: ^4.0.0
         version: 4.0.0
       update-notifier:
@@ -10528,10 +10528,9 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /term-size@4.0.0:
-    resolution: {integrity: sha512-105zga8eUjLH0I+ffu2UXZLCHCEu6fbgpeKRnBmScUQuMbEXtR77DQkUS9XoaJhvxko6W/4ZiwcPETtzYUgYrw==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-    deprecated: Renamed to terminal-size
+  /terminal-size@4.0.0:
+    resolution: {integrity: sha512-rcdty1xZ2/BkWa4ANjWRp4JGpda2quksXIHgn5TMjNBPZfwzJIgR68DKfSYiTL+CZWowDX/sbOo5ME/FRURvYQ==}
+    engines: {node: '>=18'}
     dev: false
 
   /text-extensions@2.4.0:
