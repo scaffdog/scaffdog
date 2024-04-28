@@ -150,7 +150,7 @@ defineHelper<[search: string | any[], item: any]>(
 defineHelper<[v: string]>(helpers, 'camel', (_, v) => cc.camelCase(v));
 defineHelper<[v: string]>(helpers, 'snake', (_, v) => cc.snakeCase(v));
 defineHelper<[v: string]>(helpers, 'pascal', (_, v) => cc.pascalCase(v));
-defineHelper<[v: string]>(helpers, 'kebab', (_, v) => cc.paramCase(v));
+defineHelper<[v: string]>(helpers, 'kebab', (_, v) => cc.kebabCase(v));
 defineHelper<[v: string]>(helpers, 'constant', (_, v) => cc.constantCase(v));
 defineHelper<[v: string]>(helpers, 'upper', (_, v) => v.toUpperCase());
 defineHelper<[v: string]>(helpers, 'lower', (_, v) => v.toLowerCase());
