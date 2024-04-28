@@ -1,6 +1,6 @@
 {
   "name": "@scaffdog/error",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "type": "module",
   "description": "A utility module of scaffdog error.",
   "keywords": [
