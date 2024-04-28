@@ -1,8 +1,15 @@
 # Migration Guide
 
+- [To v4 from v3](#to-v4-from-v3)
 - [To v3 from v2](#to-v3-from-v2)
 - [To v2 from v1](#to-v2-from-v1)
 - [To v1 from v0](#to-v1-from-v0)
+
+## To v3 from v2
+
+### Node.js version
+
+Support has been changed to `v18.0.0` or later to match the Node.js release cycle. This is the only breaking change.
 
 ## To v3 from v2
 
