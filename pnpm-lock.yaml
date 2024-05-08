@@ -422,8 +422,8 @@ importers:
         specifier: 2.0.3
         version: 2.0.3
       '@types/prismjs':
-        specifier: 1.26.3
-        version: 1.26.3
+        specifier: 1.26.4
+        version: 1.26.4
       '@types/react':
         specifier: 18.3.1
         version: 18.3.1
@@ -2485,8 +2485,8 @@ packages:
   '@types/parse-json@4.0.0':
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
 
-  '@types/prismjs@1.26.3':
-    resolution: {integrity: sha512-A0D0aTXvjlqJ5ZILMz3rNfDBOx9hHxLZYv2by47Sm/pqW35zzjusrZTryatjN/Rf8Us2gZrJD+KeHbUSTux1Cw==}
+  '@types/prismjs@1.26.4':
+    resolution: {integrity: sha512-rlAnzkW2sZOjbqZ743IHUhFcvzaGbqijwOu8QZnZCjfQzBqFE3s4lOTJEsxikImav9uzz/42I+O7YUs1mWgMlg==}
 
   '@types/prop-types@15.7.5':
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
@@ -8655,7 +8655,7 @@ snapshots:
 
   '@types/parse-json@4.0.0': {}
 
-  '@types/prismjs@1.26.3': {}
+  '@types/prismjs@1.26.4': {}
 
   '@types/prop-types@15.7.5': {}
 
@@ -11920,7 +11920,7 @@ snapshots:
 
   prism-react-renderer@2.0.5(react@18.3.1):
     dependencies:
-      '@types/prismjs': 1.26.3
+      '@types/prismjs': 1.26.4
       clsx: 1.2.1
       react: 18.3.1
 
