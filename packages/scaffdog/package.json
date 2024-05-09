@@ -59,7 +59,7 @@
     "@scaffdog/engine": "workspace:*",
     "@scaffdog/error": "workspace:*",
     "@scaffdog/types": "workspace:*",
-    "ansi-escapes": "^6.0.0",
+    "ansi-escapes": "^7.0.0",
     "chalk": "^5.3.0",
     "cli-truncate": "^4.0.0",
     "consola": "^3.2.3",
