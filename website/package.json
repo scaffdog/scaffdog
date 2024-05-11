@@ -46,7 +46,7 @@
     "@types/github-slugger": "2.0.0",
     "@types/node": "18.19.31",
     "@types/pako": "2.0.3",
-    "@types/prismjs": "1.26.3",
+    "@types/prismjs": "1.26.4",
     "@types/react": "18.3.1",
     "@types/react-dom": "18.3.0",
     "eslint": "9.2.0",
