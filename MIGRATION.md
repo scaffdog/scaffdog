@@ -5,7 +5,7 @@
 - [To v2 from v1](#to-v2-from-v1)
 - [To v1 from v0](#to-v1-from-v0)
 
-## To v3 from v2
+## To v4 from v3
 
 ### Node.js version
 
