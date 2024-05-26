@@ -70,7 +70,7 @@
     "prettier-plugin-packagejson": "2.5.0",
     "rimraf": "5.0.7",
     "ts-morph": "22.0.0",
-    "tsx": "4.10.4",
+    "tsx": "4.11.0",
     "turbo": "1.13.3",
     "typescript": "5.4.5",
     "typescript-eslint": "7.10.0",
