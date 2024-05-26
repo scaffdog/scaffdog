@@ -73,7 +73,7 @@
     "tsx": "4.10.4",
     "turbo": "1.13.3",
     "typescript": "5.4.5",
-    "typescript-eslint": "7.9.0",
+    "typescript-eslint": "7.10.0",
     "unbuild": "1.2.1",
     "vitest": "1.6.0",
     "zx": "8.1.1"
