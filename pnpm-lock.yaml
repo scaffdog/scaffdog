@@ -91,8 +91,8 @@ importers:
         specifier: 1.6.0
         version: 1.6.0(@types/node@18.19.33)
       zx:
-        specifier: 8.1.1
-        version: 8.1.1
+        specifier: 8.1.2
+        version: 8.1.2
 
   examples/commonjs:
     dependencies:
@@ -6373,8 +6373,8 @@ packages:
   zwitch@2.0.2:
     resolution: {integrity: sha512-JZxotl7SxAJH0j7dN4pxsTV6ZLXoLdGME+PsjkL/DaBrVryK9kTGq06GfKrwcSOqypP+fdXGoCHE36b99fWVoA==}
 
-  zx@8.1.1:
-    resolution: {integrity: sha512-JYAyM06wK+KLy07MkipBTghtd3zsYBxTH44Fh3p932ntDKdT5jxziEK51siPG+rqT+MWV1yK9mCM1/CB92PV7Q==}
+  zx@8.1.2:
+    resolution: {integrity: sha512-zkCiXKh8D/eo6r58OmJvO5mc2NthcSRvysb3fuS6VQlHPbEPBcxduRwM3m6ZfHj+7cLHcrahCnuO2TDAbW+6xw==}
     engines: {node: '>= 12.17.0'}
     hasBin: true
 
@@ -13267,7 +13267,7 @@ snapshots:
 
   zwitch@2.0.2: {}
 
-  zx@8.1.1:
+  zx@8.1.2:
     optionalDependencies:
       '@types/fs-extra': 11.0.4
       '@types/node': 20.12.12
