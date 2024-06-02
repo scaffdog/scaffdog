@@ -6,7 +6,7 @@ settings:
 
 overrides:
   ansi-regex: 5.0.1
-  type-fest: 4.18.2
+  type-fest: 4.18.3
 
 importers:
 
@@ -186,8 +186,8 @@ importers:
   packages/@scaffdog/types:
     dependencies:
       type-fest:
-        specifier: 4.18.2
-        version: 4.18.2
+        specifier: 4.18.3
+        version: 4.18.3
 
   packages/prettier-plugin-scaffdog:
     dependencies:
@@ -313,8 +313,8 @@ importers:
         specifier: 17.0.32
         version: 17.0.32
       type-fest:
-        specifier: 4.18.2
-        version: 4.18.2
+        specifier: 4.18.3
+        version: 4.18.3
 
   website:
     dependencies:
@@ -446,8 +446,8 @@ importers:
         specifier: 4.2.3
         version: 4.2.3(next@14.0.1(@babel/core@7.24.5)(@opentelemetry/api@1.4.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       type-fest:
-        specifier: 4.18.2
-        version: 4.18.2
+        specifier: 4.18.3
+        version: 4.18.3
       typescript:
         specifier: 5.4.5
         version: 5.4.5
@@ -5963,8 +5963,8 @@ packages:
     resolution: {integrity: sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==}
     engines: {node: '>=4'}
 
-  type-fest@4.18.2:
-    resolution: {integrity: sha512-+suCYpfJLAe4OXS6+PPXjW3urOS4IoP9waSiLuXfLgqZODKw/aWwASvzqE886wA0kQgGy0mIWyhd87VpqIy6Xg==}
+  type-fest@4.18.3:
+    resolution: {integrity: sha512-Q08/0IrpvM+NMY9PA2rti9Jb+JejTddwmwmVQGskAlhtcrw1wsRzoR6ode6mR+OAabNa75w/dxedSUY2mlphaQ==}
     engines: {node: '>=16'}
 
   typed-array-buffer@1.0.0:
@@ -7572,7 +7572,7 @@ snapshots:
       remark-parse: 10.0.2
       remark-rehype: 10.1.0
       source-map-support: 0.5.21
-      type-fest: 4.18.2
+      type-fest: 4.18.3
       unified: 10.1.2
     optionalDependencies:
       esbuild: 0.20.2
@@ -7630,7 +7630,7 @@ snapshots:
       memfs: 3.5.3
       oo-ascii-tree: 1.86.1
       ts-pattern: 4.3.0
-      type-fest: 4.18.2
+      type-fest: 4.18.3
 
   '@corex/deepmerge@4.0.43': {}
 
@@ -8899,11 +8899,11 @@ snapshots:
 
   ansi-escapes@4.3.2:
     dependencies:
-      type-fest: 4.18.2
+      type-fest: 4.18.3
 
   ansi-escapes@6.2.0:
     dependencies:
-      type-fest: 4.18.2
+      type-fest: 4.18.3
 
   ansi-escapes@7.0.0:
     dependencies:
@@ -9058,7 +9058,7 @@ snapshots:
       chalk: 5.3.0
       cli-boxes: 3.0.0
       string-width: 5.1.2
-      type-fest: 4.18.2
+      type-fest: 4.18.3
       widest-line: 4.0.1
       wrap-ansi: 8.1.0
 
@@ -9394,7 +9394,7 @@ snapshots:
 
   crypto-random-string@4.0.0:
     dependencies:
-      type-fest: 4.18.2
+      type-fest: 4.18.3
 
   css-box-model@1.2.1:
     dependencies:
@@ -10835,7 +10835,7 @@ snapshots:
       graceful-fs: 4.2.10
       parse-json: 5.2.0
       strip-bom: 4.0.0
-      type-fest: 4.18.2
+      type-fest: 4.18.3
 
   load-yaml-file@0.2.0:
     dependencies:
@@ -11154,7 +11154,7 @@ snapshots:
       read-pkg-up: 7.0.1
       redent: 3.0.0
       trim-newlines: 3.0.1
-      type-fest: 4.18.2
+      type-fest: 4.18.3
       yargs-parser: 18.1.3
 
   merge-stream@2.0.0: {}
@@ -12059,14 +12059,14 @@ snapshots:
     dependencies:
       find-up: 4.1.0
       read-pkg: 5.2.0
-      type-fest: 4.18.2
+      type-fest: 4.18.3
 
   read-pkg@5.2.0:
     dependencies:
       '@types/normalize-package-data': 2.4.1
       normalize-package-data: 2.5.0
       parse-json: 5.2.0
-      type-fest: 4.18.2
+      type-fest: 4.18.3
 
   read-yaml-file@1.1.0:
     dependencies:
@@ -12724,7 +12724,7 @@ snapshots:
 
   type-detect@4.0.8: {}
 
-  type-fest@4.18.2: {}
+  type-fest@4.18.3: {}
 
   typed-array-buffer@1.0.0:
     dependencies:
@@ -13202,7 +13202,7 @@ snapshots:
   write-pkg@4.0.0:
     dependencies:
       sort-keys: 2.0.0
-      type-fest: 4.18.2
+      type-fest: 4.18.3
       write-json-file: 3.2.0
 
   xdg-basedir@5.1.0: {}
@@ -13273,7 +13273,7 @@ snapshots:
       property-expr: 2.0.5
       tiny-case: 1.0.3
       toposort: 2.0.2
-      type-fest: 4.18.2
+      type-fest: 4.18.3
 
   zod@3.22.3: {}
 
