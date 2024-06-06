@@ -44,7 +44,7 @@
     "@scaffdog/engine": "workspace:*",
     "@scaffdog/types": "workspace:*",
     "minimatch": "^9.0.0",
-    "prettier": "3.2.5"
+    "prettier": "3.3.0"
   },
   "gitHead": "14824585829ad0b2093ef44b30f36fce3f4fd682"
 }
