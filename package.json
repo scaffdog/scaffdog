@@ -74,7 +74,7 @@
     "turbo": "1.13.3",
     "typescript": "5.4.5",
     "typescript-eslint": "7.11.0",
-    "unbuild": "1.2.1",
+    "unbuild": "2.0.0",
     "vitest": "1.6.0",
     "zx": "8.1.2"
   }
