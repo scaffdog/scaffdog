@@ -61,11 +61,11 @@ importers:
         specifier: 6.2.0
         version: 6.2.0
       prettier:
-        specifier: 3.3.0
-        version: 3.3.0
+        specifier: 3.3.2
+        version: 3.3.2
       prettier-plugin-packagejson:
         specifier: 2.5.0
-        version: 2.5.0(prettier@3.3.0)
+        version: 2.5.0(prettier@3.3.2)
       rimraf:
         specifier: 5.0.7
         version: 5.0.7
@@ -204,8 +204,8 @@ importers:
         specifier: ^9.0.0
         version: 9.0.0
       prettier:
-        specifier: 3.3.0
-        version: 3.3.0
+        specifier: 3.3.2
+        version: 3.3.2
 
   packages/scaffdog:
     dependencies:
@@ -1911,6 +1911,7 @@ packages:
   '@humanwhocodes/config-array@0.13.0':
     resolution: {integrity: sha512-DZLEEqFWQFiyK6h5YIeynKx7JlvCYWL0cImfSRXZ9l4Sg2efkFGTuFf6vzXjK1cq6IYkU+Eg/JizXw+TD2vRNw==}
     engines: {node: '>=10.10.0'}
+    deprecated: Use @eslint/config-array instead
 
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
@@ -1918,6 +1919,7 @@ packages:
 
   '@humanwhocodes/object-schema@2.0.3':
     resolution: {integrity: sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==}
+    deprecated: Use @eslint/object-schema instead
 
   '@humanwhocodes/retry@0.3.0':
     resolution: {integrity: sha512-d2CGZR2o7fS6sWB7DG/3a95bGKQyHMACZ5aW8qGkkqQpUoZV6C0X7Pc7l4ZNMZkfNBf4VWNe9E1jRsf0G146Ew==}
@@ -5171,8 +5173,8 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
-  prettier@3.3.0:
-    resolution: {integrity: sha512-J9odKxERhCQ10OC2yb93583f6UnYutOeiV5i0zEDS7UGTdUt0u+y8erxl3lBKvwo/JHyyoEdXjwp4dke9oyZ/g==}
+  prettier@3.3.2:
+    resolution: {integrity: sha512-rAVeHYMcv8ATV5d508CFdn+8/pHPpXeIid1DdrPwXnaAdH7cqjVbpJaT5eq4yRAFU/lsbwYwSF/n5iNrdJHPQA==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -11902,16 +11904,16 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-packagejson@2.5.0(prettier@3.3.0):
+  prettier-plugin-packagejson@2.5.0(prettier@3.3.2):
     dependencies:
       sort-package-json: 2.10.0
       synckit: 0.9.0
     optionalDependencies:
-      prettier: 3.3.0
+      prettier: 3.3.2
 
   prettier@2.7.1: {}
 
-  prettier@3.3.0: {}
+  prettier@3.3.2: {}
 
   pretty-bytes@6.1.1: {}
 
