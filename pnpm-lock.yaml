@@ -434,8 +434,8 @@ importers:
         specifier: 9.3.0
         version: 9.3.0
       eslint-config-next:
-        specifier: 14.2.3
-        version: 14.2.3(eslint@9.3.0)(typescript@5.5.3)
+        specifier: 14.2.4
+        version: 14.2.4(eslint@9.3.0)(typescript@5.5.3)
       execa:
         specifier: 8.0.1
         version: 8.0.1
@@ -2012,8 +2012,8 @@ packages:
   '@next/env@14.0.1':
     resolution: {integrity: sha512-Ms8ZswqY65/YfcjrlcIwMPD7Rg/dVjdLapMcSHG26W6O67EJDF435ShW4H4LXi1xKO1oRc97tLXUpx8jpLe86A==}
 
-  '@next/eslint-plugin-next@14.2.3':
-    resolution: {integrity: sha512-L3oDricIIjgj1AVnRdRor21gI7mShlSwU/1ZGHmqM3LzHhXXhdkrfeNY5zif25Bi5Dd7fiJHsbhoZCHfXYvlAw==}
+  '@next/eslint-plugin-next@14.2.4':
+    resolution: {integrity: sha512-svSFxW9f3xDaZA3idQmlFw7SusOuWTpDTAeBlO3AEPDltrraV+lqs7mAc6A27YdnpQVVIA3sODqUAAHdWhVWsA==}
 
   '@next/swc-darwin-arm64@14.0.1':
     resolution: {integrity: sha512-JyxnGCS4qT67hdOKQ0CkgFTp+PXub5W1wsGvIq98TNbF3YEIN7iDekYhYsZzc8Ov0pWEsghQt+tANdidITCLaw==}
@@ -3363,8 +3363,8 @@ packages:
     resolution: {integrity: sha512-/veY75JbMK4j1yjvuUxuVsiS/hr/4iHs9FTT6cgTexxdE0Ly/glccBAkloH/DofkjRbZU3bnoj38mOmhkZ0lHw==}
     engines: {node: '>=12'}
 
-  eslint-config-next@14.2.3:
-    resolution: {integrity: sha512-ZkNztm3Q7hjqvB1rRlOX8P9E/cXRL9ajRcs8jufEtwMfTVYRqnmtnaSu57QqHyBlovMuiB8LEzfLBkh5RYV6Fg==}
+  eslint-config-next@14.2.4:
+    resolution: {integrity: sha512-Qr0wMgG9m6m4uYy2jrYJmyuNlYZzPRQq5Kvb9IDlYwn+7yq6W6sfMNFgb+9guM1KYwuIo6TIaiFhZJ6SnQ/Efw==}
     peerDependencies:
       eslint: ^7.23.0 || ^8.0.0
       typescript: '>=3.3.1'
@@ -3718,9 +3718,6 @@ packages:
   get-symbol-description@1.0.0:
     resolution: {integrity: sha512-2EmdH1YvIQiZpltCNgkuiUnyukzxM/R6NDJX31Ke3BG1Nq5b0S2PhX59UKi9vZpPDQVdqn+1IcaAwnzTT5vCjw==}
     engines: {node: '>= 0.4'}
-
-  get-tsconfig@4.7.4:
-    resolution: {integrity: sha512-ofbkKj+0pjXjhejr007J/fLf+sW+8H7K5GCm+msC8q3IpvgjobpyPqSRFemNyIMxklC0zeJpi7VDFna19FacvQ==}
 
   get-tsconfig@4.7.5:
     resolution: {integrity: sha512-ZCuZCnlqNzjb4QprAzXKdpp/gh6KTxSJuw3IBsPnV/7fV4NxC9ckB+vPTt8w7fJA0TaSD7c55BR47JD6MEDyDw==}
@@ -8105,7 +8102,7 @@ snapshots:
 
   '@next/env@14.0.1': {}
 
-  '@next/eslint-plugin-next@14.2.3':
+  '@next/eslint-plugin-next@14.2.4':
     dependencies:
       glob: 10.3.10
 
@@ -9564,9 +9561,9 @@ snapshots:
 
   escape-string-regexp@5.0.0: {}
 
-  eslint-config-next@14.2.3(eslint@9.3.0)(typescript@5.5.3):
+  eslint-config-next@14.2.4(eslint@9.3.0)(typescript@5.5.3):
     dependencies:
-      '@next/eslint-plugin-next': 14.2.3
+      '@next/eslint-plugin-next': 14.2.4
       '@rushstack/eslint-patch': 1.5.0
       '@typescript-eslint/parser': 6.9.1(eslint@9.3.0)(typescript@5.5.3)
       eslint: 9.3.0
@@ -9601,7 +9598,7 @@ snapshots:
       eslint: 9.3.0
       eslint-module-utils: 2.8.0(@typescript-eslint/parser@6.9.1(eslint@9.3.0)(typescript@5.5.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.5.5(@typescript-eslint/parser@6.9.1(eslint@9.3.0)(typescript@5.5.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@9.3.0))(eslint@9.3.0)
       eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.11.0(eslint@9.3.0)(typescript@5.5.3))(eslint@9.3.0)
-      get-tsconfig: 4.7.4
+      get-tsconfig: 4.7.5
       globby: 13.2.2
       is-core-module: 2.13.1
       is-glob: 4.0.3
@@ -10039,10 +10036,6 @@ snapshots:
     dependencies:
       call-bind: 1.0.2
       get-intrinsic: 1.2.1
-
-  get-tsconfig@4.7.4:
-    dependencies:
-      resolve-pkg-maps: 1.0.0
 
   get-tsconfig@4.7.5:
     dependencies:
