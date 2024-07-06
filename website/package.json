@@ -41,7 +41,7 @@
     "yup": "^1.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.24.6",
+    "@babel/core": "7.24.7",
     "@chakra-ui/styled-system": "2.9.2",
     "@types/github-slugger": "2.0.0",
     "@types/node": "18.19.39",
