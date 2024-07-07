@@ -65,7 +65,7 @@
     "husky": "9.0.11",
     "lint-staged": "15.2.7",
     "mock-fs": "5.2.0",
-    "npm-run-all2": "6.2.0",
+    "npm-run-all2": "6.2.2",
     "prettier": "3.3.0",
     "prettier-plugin-packagejson": "2.5.0",
     "rimraf": "5.0.7",
