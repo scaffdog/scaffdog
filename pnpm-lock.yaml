@@ -67,8 +67,8 @@ importers:
         specifier: 2.5.2
         version: 2.5.2(prettier@3.3.2)
       rimraf:
-        specifier: 5.0.7
-        version: 5.0.7
+        specifier: 5.0.10
+        version: 5.0.10
       ts-morph:
         specifier: 22.0.0
         version: 22.0.0
@@ -5388,9 +5388,8 @@ packages:
   rfdc@1.4.1:
     resolution: {integrity: sha512-q1b3N5QkRUWUl7iyylaaj3kOpIT0N2i9MqIEQXP73GVsN9cw3fdx8X63cEmWhJGi2PPCF23Ijp7ktmd39rawIA==}
 
-  rimraf@5.0.7:
-    resolution: {integrity: sha512-nV6YcJo5wbLW77m+8KjH8aB/7/rxQy9SZ0HY5shnwULfS+9nmTtVXAJET5NdZmCzA4fPI/Hm1wo/Po/4mopOdg==}
-    engines: {node: '>=14.18'}
+  rimraf@5.0.10:
+    resolution: {integrity: sha512-l0OE8wL34P4nJH/H2ffoaniAokM2qSmrtXHmlpvYr5AVVX8msAyW0l8NVJFDxlSK4u3Uh/f41cQheDVdnYijwQ==}
     hasBin: true
 
   rollup-plugin-dts@5.3.1:
@@ -12038,7 +12037,7 @@ snapshots:
 
   rfdc@1.4.1: {}
 
-  rimraf@5.0.7:
+  rimraf@5.0.10:
     dependencies:
       glob: 10.3.10
 
