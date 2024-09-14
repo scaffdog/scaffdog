@@ -52,9 +52,9 @@
   "devDependencies": {
     "@changesets/changelog-github": "0.5.0",
     "@changesets/cli": "2.27.7",
-    "@commitlint/cli": "19.4.1",
-    "@commitlint/config-conventional": "19.4.1",
-    "@commitlint/config-lerna-scopes": "19.0.0",
+    "@commitlint/cli": "19.5.0",
+    "@commitlint/config-conventional": "19.5.0",
+    "@commitlint/config-lerna-scopes": "19.5.0",
     "@eslint/js": "9.6.0",
     "@types/mock-fs": "4.13.4",
     "@types/node": "18.19.39",
