@@ -165,8 +165,8 @@ importers:
         version: 5.1.0
     devDependencies:
       '@unicode/unicode-15.0.0':
-        specifier: 1.5.2
-        version: 1.5.2
+        specifier: 1.6.0
+        version: 1.6.0
       regenerate:
         specifier: 1.4.2
         version: 1.4.2
@@ -2624,8 +2624,8 @@ packages:
     resolution: {integrity: sha512-Hqgy/ETgpt2L5xueA/zHHIl4fJI2O4XUE9l4+OIfbJIRSnTJb/QscncdqqZzofQegIJugRIF57OJea1khw2SDw==}
     engines: {node: ^18.18.0 || >=20.0.0}
 
-  '@unicode/unicode-15.0.0@1.5.2':
-    resolution: {integrity: sha512-PepMvMxf9j4sp4bZn7W9JJoMxynHk66ZPCsx6n3v47T5vmM+qfIy0z1MMU+EDmRZr2cvs1aT9ZwUEMRPVXR23g==}
+  '@unicode/unicode-15.0.0@1.6.0':
+    resolution: {integrity: sha512-rmmak0L9SQMLbX6iAlxFPwLmiVsiyh/mQNuZX1NkLmV0YMC1hywbPJoUPUzxN0DCyyieDEKrZR3eRSKcab7jxg==}
 
   '@vitest/expect@1.6.0':
     resolution: {integrity: sha512-ixEvFVQjycy/oNgHjqsL6AZCDduC+tflRluaHIzKIsdbzkLn2U/iBnVeJwB6HsIjQBdfMR8Z0tRxKUsvFJEeWQ==}
@@ -8716,7 +8716,7 @@ snapshots:
       '@typescript-eslint/types': 7.15.0
       eslint-visitor-keys: 3.4.3
 
-  '@unicode/unicode-15.0.0@1.5.2': {}
+  '@unicode/unicode-15.0.0@1.6.0': {}
 
   '@vitest/expect@1.6.0':
     dependencies:
