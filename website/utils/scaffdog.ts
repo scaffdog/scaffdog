@@ -14,7 +14,7 @@ type ShadowRealmConstructor = {
 
 type Primitive = undefined | null | boolean | number | string;
 
-type Callable = Function; // eslint-disable-line @typescript-eslint/ban-types
+type Callable = (...args: never) => unknown;
 
 export type ShadowRealm = {
   evaluate: (sourceText: string) => Primitive | Callable;
