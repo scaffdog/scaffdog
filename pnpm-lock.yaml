@@ -382,8 +382,8 @@ importers:
         specifier: ^4.4.0
         version: 4.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-simple-code-editor:
-        specifier: ^0.13.0
-        version: 0.13.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^0.14.0
+        version: 0.14.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       recoil:
         specifier: ^0.7.4
         version: 0.7.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -5403,11 +5403,11 @@ packages:
       '@types/react':
         optional: true
 
-  react-simple-code-editor@0.13.0:
-    resolution: {integrity: sha512-v49lVlDv6dlda92Hm+7PorN9V8k+Ech7Y52dPZ3QYClJXaciiYW42Ja/j6MPb5ZPfU6w34ZMi2HRsLhxUjBF8A==}
+  react-simple-code-editor@0.14.1:
+    resolution: {integrity: sha512-BR5DtNRy+AswWJECyA17qhUDvrrCZ6zXOCfkQY5zSmb96BVUbpVAv03WpcjcwtCwiLbIANx3gebHOcXYn1EHow==}
     peerDependencies:
-      react: '*'
-      react-dom: '*'
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
 
   react-style-singleton@2.2.1:
     resolution: {integrity: sha512-ZWj0fHEMyWkHzKYUr2Bs/4zU6XLmq9HsgBURm7g5pAVfyn49DgUiNgY2d4lXRlYSiCif9YBGpQleewkcqddc7g==}
@@ -12315,7 +12315,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.5
 
-  react-simple-code-editor@0.13.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-simple-code-editor@0.14.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
