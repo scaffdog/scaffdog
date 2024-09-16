@@ -57,7 +57,7 @@
     "@commitlint/config-lerna-scopes": "19.5.0",
     "@eslint/js": "9.6.0",
     "@types/mock-fs": "4.13.4",
-    "@types/node": "18.19.39",
+    "@types/node": "18.19.50",
     "eslint": "9.6.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-import": "2.29.1",
