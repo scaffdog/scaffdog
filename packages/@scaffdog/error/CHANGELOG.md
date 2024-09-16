@@ -1,5 +1,12 @@
 # Change Log
 
+## 4.1.0
+
+### Patch Changes
+
+- Updated dependencies [[`69cab45`](https://github.com/scaffdog/scaffdog/commit/69cab458f5571a56892b1ede55936d306a5326ec)]:
+  - @scaffdog/types@4.1.0
+
 ## 4.0.0
 
 ### Major Changes
@@ -77,7 +84,7 @@
 - [#695](https://github.com/scaffdog/scaffdog/pull/695) [`0c32135`](https://github.com/scaffdog/scaffdog/commit/0c32135b6fbc1b9871b887c98eb751efdf95886c) Thanks [@wadackel](https://github.com/wadackel)! - Add `ScaffdogAggregateError` custom error class.
 
   ```typescript
-  import { ScaffdogAggregateError } from "@scaffdog/error";
+  import { ScaffdogAggregateError } from '@scaffdog/error';
   // or
   // import { ScaffdogAggregateError } from 'scaffdog';
   ```
@@ -92,7 +99,7 @@
 - [#695](https://github.com/scaffdog/scaffdog/pull/695) [`0c32135`](https://github.com/scaffdog/scaffdog/commit/0c32135b6fbc1b9871b887c98eb751efdf95886c) Thanks [@wadackel](https://github.com/wadackel)! - Add `ScaffdogAggregateError` custom error class.
 
   ```typescript
-  import { ScaffdogAggregateError } from "@scaffdog/error";
+  import { ScaffdogAggregateError } from '@scaffdog/error';
   // or
   // import { ScaffdogAggregateError } from 'scaffdog';
   ```
