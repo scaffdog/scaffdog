@@ -25,7 +25,7 @@ const resolveProject = async (project: string, filepath: string) => {
   const dirname =
     configpath != null
       ? path.dirname(configpath)
-      : process.env.VSCODE_CWD ?? process.cwd();
+      : (process.env.VSCODE_CWD ?? process.cwd());
 
   return path.resolve(dirname, project);
 };
