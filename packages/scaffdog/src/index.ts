@@ -14,6 +14,7 @@ export type { LoadConfigResult } from '@scaffdog/config';
 export { ScaffdogAggregateError, ScaffdogError } from '@scaffdog/error';
 export type {
   Context,
+  Config,
   ResolvedConfig,
   Variable,
   VariableRecord,
