@@ -1,5 +1,12 @@
 # Change Log
 
+## 4.1.0
+
+### Patch Changes
+
+- Updated dependencies [[`69cab45`](https://github.com/scaffdog/scaffdog/commit/69cab458f5571a56892b1ede55936d306a5326ec)]:
+  - @scaffdog/types@4.1.0
+
 ## 4.0.0
 
 ### Major Changes

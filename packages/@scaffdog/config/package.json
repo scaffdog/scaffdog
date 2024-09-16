@@ -1,6 +1,6 @@
 {
   "name": "@scaffdog/config",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "type": "module",
   "description": "A module to manipulate configs of scaffdog.",
   "keywords": [

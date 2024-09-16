@@ -1,5 +1,17 @@
 # Change Log
 
+## 4.1.0
+
+### Minor Changes
+
+- [#1278](https://github.com/scaffdog/scaffdog/pull/1278) [`69cab45`](https://github.com/scaffdog/scaffdog/commit/69cab458f5571a56892b1ede55936d306a5326ec) Thanks [@wadackel](https://github.com/wadackel)! - The `Config` type is now exported, allowing you to write configuration files in a type-safe manner.
+
+### Patch Changes
+
+- Updated dependencies [[`69cab45`](https://github.com/scaffdog/scaffdog/commit/69cab458f5571a56892b1ede55936d306a5326ec)]:
+  - @scaffdog/types@4.1.0
+  - @scaffdog/error@4.1.0
+
 ## 4.0.0
 
 ### Major Changes
