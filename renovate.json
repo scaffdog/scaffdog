@@ -9,6 +9,13 @@
   ],
   "labels": ["A-dependencies"],
   "baseBranches": ["canary"],
+  "packageRules": [
+    {
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "devDependencies (non-major)"
+    }
+  ],
   "major": {
     "stabilityDays": 7
   },
