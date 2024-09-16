@@ -69,7 +69,7 @@
     "fuse.js": "^7.0.0",
     "globby": "^14.0.0",
     "indent-string": "^5.0.0",
-    "inquirer": "^9.2.8",
+    "inquirer": "^10.0.0",
     "inquirer-autocomplete-prompt": "^3.0.0",
     "is-plain-obj": "^4.1.0",
     "log-symbols": "^7.0.0",
