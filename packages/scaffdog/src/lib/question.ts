@@ -171,8 +171,8 @@ export const getInitialValue = (question: Question): Variable => {
     case 'checkbox':
     case 'list':
       return question.type === 'checkbox'
-        ? question.initial ?? []
-        : question.initial ?? '';
+        ? (question.initial ?? [])
+        : (question.initial ?? '');
     default:
       return question.initial ?? '';
   }
