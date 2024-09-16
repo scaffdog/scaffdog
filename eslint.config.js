@@ -49,14 +49,7 @@ export default tseslint.config(
   {
     files: ['**/*.ts', '**/*.tsx'],
     rules: {
-      '@typescript-eslint/ban-types': [
-        'error',
-        {
-          types: {
-            '{}': false,
-          },
-        },
-      ],
+      '@typescript-eslint/no-empty-object-type': ['off'],
       '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
       '@typescript-eslint/consistent-type-assertions': 'error',
       '@typescript-eslint/consistent-type-imports': 'error',
