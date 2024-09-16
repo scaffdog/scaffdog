@@ -204,8 +204,8 @@ importers:
         specifier: ^9.0.0
         version: 9.0.0
       prettier:
-        specifier: 3.3.2
-        version: 3.3.2
+        specifier: 3.3.3
+        version: 3.3.3
 
   packages/scaffdog:
     dependencies:
@@ -5284,11 +5284,6 @@ packages:
   prettier@2.7.1:
     resolution: {integrity: sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==}
     engines: {node: '>=10.13.0'}
-    hasBin: true
-
-  prettier@3.3.2:
-    resolution: {integrity: sha512-rAVeHYMcv8ATV5d508CFdn+8/pHPpXeIid1DdrPwXnaAdH7cqjVbpJaT5eq4yRAFU/lsbwYwSF/n5iNrdJHPQA==}
-    engines: {node: '>=14'}
     hasBin: true
 
   prettier@3.3.3:
@@ -12190,8 +12185,6 @@ snapshots:
       prettier: 3.3.3
 
   prettier@2.7.1: {}
-
-  prettier@3.3.2: {}
 
   prettier@3.3.3: {}
 
