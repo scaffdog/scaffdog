@@ -63,7 +63,7 @@
     "eslint-plugin-import": "2.29.1",
     "globals": "15.9.0",
     "husky": "9.0.11",
-    "lint-staged": "15.2.9",
+    "lint-staged": "15.2.10",
     "mock-fs": "5.2.0",
     "npm-run-all2": "6.2.3",
     "prettier": "3.3.2",
