@@ -9,11 +9,11 @@ exports[`handle > Error 1`] = `
   at runWithSuite __locale__
   at Object.collect __locale__
   at Object.collect __locale__
+  at processTicksAndRejections (node:internal/process/task_queues:95:5)
   at collectTests __locale__
   at startTests __locale__
   at __locale__
   at withEnv __locale__
-  at run __locale__
 
 
 "
