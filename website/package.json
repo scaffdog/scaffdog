@@ -41,20 +41,20 @@
     "yup": "^1.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.25.2",
-    "@chakra-ui/styled-system": "2.9.2",
+    "@babel/core": "7.25.9",
+    "@chakra-ui/styled-system": "2.12.0",
     "@types/github-slugger": "2.0.0",
-    "@types/node": "18.19.50",
+    "@types/node": "18.19.58",
     "@types/pako": "2.0.3",
     "@types/prismjs": "1.26.4",
-    "@types/react": "18.3.5",
-    "@types/react-dom": "18.3.0",
-    "eslint": "9.10.0",
-    "eslint-config-next": "14.2.11",
+    "@types/react": "18.3.11",
+    "@types/react-dom": "18.3.1",
+    "eslint": "9.13.0",
+    "eslint-config-next": "14.2.15",
     "execa": "8.0.1",
     "github-slugger": "2.0.0",
     "next-sitemap": "4.2.3",
     "type-fest": "4.26.1",
-    "typescript": "5.6.2"
+    "typescript": "5.6.3"
   }
 }
