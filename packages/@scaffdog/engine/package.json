@@ -46,7 +46,7 @@
     "plur": "5.1.0"
   },
   "devDependencies": {
-    "@unicode/unicode-15.0.0": "1.6.0",
+    "@unicode/unicode-15.0.0": "1.6.5",
     "regenerate": "1.4.2"
   },
   "publishConfig": {
