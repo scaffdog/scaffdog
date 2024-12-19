@@ -22,7 +22,7 @@
     "contentlayer": "^0.3.3",
     "date-fns": "^3.0.0",
     "framer-motion": "^7.0.0",
-    "next": "14.0.1",
+    "next": "14.1.1",
     "next-contentlayer": "^0.3.3",
     "pako": "^2.1.0",
     "prism-react-renderer": "^2.0.5",
