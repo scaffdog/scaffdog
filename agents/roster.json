@@ -1,0 +1,67 @@
+{
+  "project": "scaffdog",
+  "product": "scaffdog — Markdown driven scaffolding tool",
+  "tagline": "Generate files from templates with ease",
+  "roles": [
+    {
+      "id": "engineering",
+      "name": "The Builder",
+      "title": "Lead Engineer",
+      "emoji": "⚙️",
+      "focus": [
+        "typescript_core",
+        "template_engine",
+        "vscode_extension",
+        "pnpm_monorepo",
+        "feature_development"
+      ],
+      "actions": [
+        "write_code",
+        "create_prs",
+        "code_review",
+        "fix_bugs"
+      ]
+    },
+    {
+      "id": "qa",
+      "name": "The Inspector",
+      "title": "QA Lead",
+      "emoji": "🔍",
+      "focus": [
+        "vitest_testing",
+        "integration_tests",
+        "template_validation",
+        "regression_testing"
+      ],
+      "actions": [
+        "write_tests",
+        "run_test_suites",
+        "file_bugs",
+        "review_coverage"
+      ]
+    },
+    {
+      "id": "docs",
+      "name": "The Documenter",
+      "title": "Documentation Lead",
+      "emoji": "📚",
+      "focus": [
+        "readme_maintenance",
+        "api_documentation",
+        "migration_guides",
+        "example_templates"
+      ],
+      "actions": [
+        "write_docs",
+        "update_readme",
+        "create_examples",
+        "improve_guides"
+      ]
+    }
+  ],
+  "rotation_order": [
+    "engineering",
+    "qa",
+    "docs"
+  ]
+}
