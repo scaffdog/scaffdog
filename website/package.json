@@ -20,7 +20,7 @@
     "@scaffdog/error": "workspace:*",
     "@scaffdog/types": "workspace:*",
     "contentlayer": "^0.3.3",
-    "date-fns": "^3.0.0",
+    "date-fns": "^4.0.0",
     "framer-motion": "^7.0.0",
     "next": "14.0.1",
     "next-contentlayer": "^0.3.3",
