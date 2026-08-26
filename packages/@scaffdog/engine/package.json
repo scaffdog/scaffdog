@@ -43,7 +43,7 @@
     "change-case": "^5.0.0",
     "dayjs": "^1.10.4",
     "is-plain-obj": "^4.1.0",
-    "plur": "5.1.0"
+    "plur": "6.0.0"
   },
   "devDependencies": {
     "@unicode/unicode-15.0.0": "1.6.5",
