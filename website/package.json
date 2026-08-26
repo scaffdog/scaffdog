@@ -26,7 +26,7 @@
     "next-contentlayer": "^0.3.3",
     "pako": "^2.1.0",
     "prism-react-renderer": "^2.0.5",
-    "prismjs": "1.29.0",
+    "prismjs": "1.30.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-hook-form": "^7.44.3",
