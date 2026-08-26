@@ -361,8 +361,8 @@ importers:
         specifier: ^0.3.3
         version: 0.3.3(esbuild@0.23.1)(next@14.0.1(@babel/core@7.26.0)(@opentelemetry/api@1.4.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       pako:
-        specifier: ^2.1.0
-        version: 2.1.0
+        specifier: ^3.0.0
+        version: 3.0.1
       prism-react-renderer:
         specifier: ^2.0.5
         version: 2.0.5(react@18.3.1)
@@ -419,8 +419,8 @@ importers:
         specifier: 18.19.68
         version: 18.19.68
       '@types/pako':
-        specifier: 2.0.3
-        version: 2.0.3
+        specifier: 3.0.0
+        version: 3.0.0
       '@types/prismjs':
         specifier: 1.26.5
         version: 1.26.5
@@ -2500,8 +2500,9 @@ packages:
   '@types/node@20.12.12':
     resolution: {integrity: sha512-eWLDGF/FOSPtAvEqeRAQ4C8LSA7M1I7i0ky1I8U7kD1J5ITyW3AsRhQrKVoWf5pFKZ2kILsEGJhsI9r93PYnOw==}
 
-  '@types/pako@2.0.3':
-    resolution: {integrity: sha512-bq0hMV9opAcrmE0Byyo0fY3Ew4tgOevJmQ9grUhpXQhYfyLJ1Kqg3P33JT5fdbT2AjeAjR51zqqVjAL/HMkx7Q==}
+  '@types/pako@3.0.0':
+    resolution: {integrity: sha512-MtIzg1Ul1GxhHZLq6oSKvWQENKqmfK1fdaW+SDcPJe7+YcJVo6AbmkW0BvGFH6+559+hEuCwdXZZe8F85lBPkA==}
+    deprecated: This is a stub types definition. pako provides its own type definitions, so you do not need this installed.
 
   '@types/parse-json@4.0.0':
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
@@ -3550,6 +3551,7 @@ packages:
   eslint@9.17.0:
     resolution: {integrity: sha512-evtlNcpJg+cZLcnVKwsai8fExnqjGPicK7gnUtlNuzu+Fv9bI0aLpND5T44VLQtoMEnI57LoXO9XAkIXwohKrA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -3837,6 +3839,7 @@ packages:
   git-raw-commits@4.0.0:
     resolution: {integrity: sha512-ICsMM1Wk8xSGMowkOmPrzo2Fgmfo4bMHLNX6ytHjajRJUqvHOw/TFapQ+QG75c3X/tTDDhOSRPGC52dDbNM8FQ==}
     engines: {node: '>=16'}
+    deprecated: Deprecated and no longer maintained. Use @conventional-changelog/git-client instead.
     hasBin: true
 
   github-slugger@1.4.0:
@@ -3859,12 +3862,13 @@ packages:
   glob@10.3.10:
     resolution: {integrity: sha512-fa46+tv1Ak0UPK1TOy/pZrIybNNt4HCv7SDzwyfiOZkvZLEbjsZkJBPtDHVshZjbecAoAGSC20MjLDG/qr679g==}
     engines: {node: '>=16 || 14 >=14.17'}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   glob@8.0.3:
     resolution: {integrity: sha512-ull455NHSHI/Y1FqGaaYFaLGkNMMJbavMrEGFXG/PGrg6y7sutWHUHrz6gy6WEBH6akM1M414dWKCNs+IhKdiQ==}
     engines: {node: '>=12'}
-    deprecated: Glob versions prior to v9 are no longer supported
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   global-directory@4.0.1:
     resolution: {integrity: sha512-wHTUcDUoZ1H5/0iVqEudYW4/kAlN5cZ3j/bXn0Dpbizl9iaUVeWSHqiOjsgk6OW2bkLclbBjzewBz6weQ1zA2Q==}
@@ -4883,6 +4887,7 @@ packages:
   next@14.0.1:
     resolution: {integrity: sha512-s4YaLpE4b0gmb3ggtmpmV+wt+lPRuGtANzojMQ2+gmBpgX9w5fTbjsy6dXByBuENsdCX5pukZH/GxdFgO62+pA==}
     engines: {node: '>=18.17.0'}
+    deprecated: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/security-update-2025-12-11 for more details.
     hasBin: true
     peerDependencies:
       '@opentelemetry/api': ^1.1.0
@@ -4901,6 +4906,7 @@ packages:
   node-domexception@1.0.0:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
     engines: {node: '>=10.5.0'}
+    deprecated: Use your platform's native DOMException instead
 
   node-emoji@2.1.3:
     resolution: {integrity: sha512-E2WEOVsgs7O16zsURJ/eH8BqhF029wGpEOnv7Urwdo2wmQanOACwJQh0devF9D9RhoZru0+9JXIS0dBXIAz+lA==}
@@ -5072,8 +5078,8 @@ packages:
   package-manager-detector@0.2.0:
     resolution: {integrity: sha512-E385OSk9qDcXhcM9LNSe4sdhx8a9mAPrZ4sMLW+tmxl5ZuGtPUcdFu+MPP2jbgiWAZ6Pfe5soGFMd+0Db5Vrog==}
 
-  pako@2.1.0:
-    resolution: {integrity: sha512-w+eufiZ1WuJYgPXbV/PO3NCMEc3xqylkKHzp8bxp1uW4qaSNQUkwmLLEc3kKsfz8lpV1F8Ht3U1Cm+9Srog2ug==}
+  pako@3.0.1:
+    resolution: {integrity: sha512-GupotUUI0mlhugKjUs4bjOwLt3nrehy9Ys2dxC0GtgVef5cnKggkDMmf2bq2poCCuVXopWPmqsc9VDT2iJUy+w==}
 
   parent-module@1.0.1:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
@@ -6089,6 +6095,7 @@ packages:
 
   uuid@8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    deprecated: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
     hasBin: true
 
   uvu@0.5.6:
@@ -8607,7 +8614,9 @@ snapshots:
       undici-types: 5.26.5
     optional: true
 
-  '@types/pako@2.0.3': {}
+  '@types/pako@3.0.0':
+    dependencies:
+      pako: 3.0.1
 
   '@types/parse-json@4.0.0': {}
 
@@ -9774,7 +9783,7 @@ snapshots:
       debug: 4.3.6
       enhanced-resolve: 5.15.0
       eslint: 9.17.0(jiti@2.4.2)
-      eslint-module-utils: 2.11.0(@typescript-eslint/parser@8.5.0(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.5.5(@typescript-eslint/parser@8.5.0(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0)(eslint@9.17.0(jiti@2.4.2)))(eslint@9.17.0(jiti@2.4.2))
+      eslint-module-utils: 2.11.0(@typescript-eslint/parser@8.5.0(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.5.5)(eslint@9.17.0(jiti@2.4.2))
       eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.5.0(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2))(eslint@9.17.0(jiti@2.4.2))
       get-tsconfig: 4.7.5
       globby: 13.2.2
@@ -9787,7 +9796,7 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-module-utils@2.11.0(@typescript-eslint/parser@8.5.0(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.5.5(@typescript-eslint/parser@8.5.0(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0)(eslint@9.17.0(jiti@2.4.2)))(eslint@9.17.0(jiti@2.4.2)):
+  eslint-module-utils@2.11.0(@typescript-eslint/parser@8.5.0(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.5.5)(eslint@9.17.0(jiti@2.4.2)):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
@@ -9808,7 +9817,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.12.0(@typescript-eslint/parser@8.5.0(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.5.5(@typescript-eslint/parser@8.5.0(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0)(eslint@9.17.0(jiti@2.4.2)))(eslint@9.17.0(jiti@2.4.2)):
+  eslint-module-utils@2.12.0(@typescript-eslint/parser@8.5.0(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.5.5)(eslint@9.17.0(jiti@2.4.2)):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
@@ -9859,7 +9868,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 9.17.0(jiti@2.4.2)
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.5.0(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.5.5(@typescript-eslint/parser@8.5.0(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0)(eslint@9.17.0(jiti@2.4.2)))(eslint@9.17.0(jiti@2.4.2))
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.5.0(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.5.5)(eslint@9.17.0(jiti@2.4.2))
       hasown: 2.0.2
       is-core-module: 2.15.1
       is-glob: 4.0.3
@@ -11748,7 +11757,7 @@ snapshots:
 
   package-manager-detector@0.2.0: {}
 
-  pako@2.1.0: {}
+  pako@3.0.1: {}
 
   parent-module@1.0.1:
     dependencies:
