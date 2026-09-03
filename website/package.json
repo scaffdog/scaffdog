@@ -44,17 +44,17 @@
     "@babel/core": "7.26.0",
     "@chakra-ui/styled-system": "2.12.0",
     "@types/github-slugger": "2.0.0",
-    "@types/node": "18.19.68",
-    "@types/pako": "2.0.3",
-    "@types/prismjs": "1.26.5",
-    "@types/react": "18.3.17",
-    "@types/react-dom": "18.3.5",
-    "eslint": "9.17.0",
-    "eslint-config-next": "14.2.20",
+    "@types/node": "18.19.130",
+    "@types/pako": "2.0.4",
+    "@types/prismjs": "1.26.6",
+    "@types/react": "18.3.31",
+    "@types/react-dom": "18.3.7",
+    "eslint": "9.39.5",
+    "eslint-config-next": "14.2.35",
     "execa": "8.0.1",
     "github-slugger": "2.0.0",
     "next-sitemap": "4.2.3",
-    "type-fest": "4.30.2",
-    "typescript": "5.7.2"
+    "type-fest": "4.41.0",
+    "typescript": "5.9.3"
   }
 }
