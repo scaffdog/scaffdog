@@ -35,8 +35,8 @@
     "recoil": "^0.7.4",
     "recoil-persist": "^5.1.0",
     "remark-emoji": "^5.0.0",
-    "remark-gfm": "^3.0.1",
-    "remark-slug": "^7.0.1",
+    "remark-gfm": "^4.0.0",
+    "remark-slug": "^8.0.0",
     "shadowrealm-api": "^0.8.2",
     "yup": "^1.0.0"
   },
