@@ -85,12 +85,12 @@
     "zod": "^3.22.3"
   },
   "devDependencies": {
-    "@types/inquirer": "9.0.7",
+    "@types/inquirer": "9.0.10",
     "@types/inquirer-autocomplete-prompt": "3.0.3",
-    "@types/micromatch": "4.0.9",
+    "@types/micromatch": "4.0.10",
     "@types/update-notifier": "6.0.8",
-    "@types/yargs": "17.0.33",
-    "type-fest": "4.30.2"
+    "@types/yargs": "17.0.35",
+    "type-fest": "4.41.0"
   },
   "publishConfig": {
     "access": "public"
