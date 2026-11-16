@@ -39,7 +39,7 @@
   "dependencies": {
     "@scaffdog/types": "workspace:*",
     "chalk": "^5.3.0",
-    "string-length": "6.0.0"
+    "string-length": "7.0.1"
   },
   "publishConfig": {
     "access": "public"
