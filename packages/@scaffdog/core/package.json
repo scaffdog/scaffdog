@@ -41,7 +41,7 @@
     "@scaffdog/types": "workspace:*",
     "mdast-util-to-string": "^4.0.0",
     "remark-parse": "^10.0.2",
-    "unified": "^10.1.2",
+    "unified": "^11.0.0",
     "unist-util-visit-parents": "^6.0.1"
   },
   "devDependencies": {
