@@ -85,7 +85,7 @@
     "zod": "^3.22.3"
   },
   "devDependencies": {
-    "@types/inquirer": "9.0.7",
+    "@types/inquirer": "10.0.0",
     "@types/inquirer-autocomplete-prompt": "3.0.3",
     "@types/micromatch": "4.0.9",
     "@types/update-notifier": "6.0.8",
