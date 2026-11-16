@@ -79,7 +79,7 @@
     "strip-ansi": "7.1.0",
     "terminal-size": "^4.0.0",
     "update-notifier": "^7.0.0",
-    "valid-filename": "^4.0.0",
+    "valid-filename": "^5.0.0",
     "wrap-ansi": "^9.0.0",
     "yargs": "^17.7.2",
     "zod": "^3.22.3"
