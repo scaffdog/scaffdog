@@ -33,7 +33,7 @@
     "build": "unbuild"
   },
   "dependencies": {
-    "type-fest": "4.30.1"
+    "type-fest": "6.0.3"
   },
   "publishConfig": {
     "access": "public"
